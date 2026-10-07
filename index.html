@@ -260,8 +260,9 @@ function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
  $("#o-x").onclick=()=>{modal(`<h2>Supprimer cet évènement ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?"<br>La fiche de chasse associée sera aussi supprimée.":""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
 
 /* ---------- lieu + formulaire ---------- */
-function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};
- modal(`<h2>Emplacement</h2><input id="p-q" value="${esc(loc.name)}" placeholder="Nom du lieu ou de la chasse">
+function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.name||"";
+ modal(`<h2>Emplacement</h2><div style="display:flex;gap:6px"><input id="p-q" type="search" style="flex:1;margin:0" placeholder="Rechercher sur la carte (village, lieu-dit…)"><button class="s" id="p-s">🔍</button></div>
+ <div id="p-res" class="sans" style="margin:6px 0"></div>${nm?`<p class="mut sans" id="p-nm" style="margin:4px 0">📌 ${esc(nm)}</p>`:'<p id="p-nm" class="mut sans" style="margin:4px 0"></p>'}
  <div id="pmap"></div><p class="mut sans" id="pmsg" style="margin:0 0 8px"></p>
  <button class="s" id="p-g" style="width:100%">📍 Utiliser ma position</button>
  <label>Coordonnées (latitude, longitude)</label><input id="p-c" value="${coord(loc)}" placeholder="50.50, 5.90">
@@ -269,21 +270,28 @@ function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};
  let map=null,mk=null;const msg=$("#pmsg"),inp=$("#p-c"),c0=parseCoord(inp.value);
  const put=(la,ln,o={})=>{if(o.write)inp.value=la.toFixed(5)+", "+ln.toFixed(5);if(!map)return;
   if(mk)mk.setLatLng([la,ln]);else{mk=L.marker([la,ln],{draggable:true}).addTo(map);mk.on("dragend",()=>{const q=mk.getLatLng();inp.value=q.lat.toFixed(5)+", "+q.lng.toFixed(5)})}
-  if(o.fly)map.setView([la,ln],Math.max(map.getZoom(),16))};
+  if(o.fly)map.setView([la,ln],o.z||Math.max(map.getZoom(),16))};
  const gps=ok=>{if(!navigator.geolocation){msg.textContent="Géolocalisation non supportée sur cet appareil.";return}
-  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},()=>{msg.textContent="Position indisponible : autorise la localisation pour cette application."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
- if(window.L&&navigator.onLine){
-  L.Icon.Default.imagePath="lib/leaflet/images/";
+  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},e=>{msg.textContent=e&&e.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse → Autorisations).":"Position indisponible pour le moment."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
+ if(window.L){
+  try{L.Icon.Default.imagePath="lib/leaflet/images/";
   map=L.map("pmap").setView(c0?[c0[0],c0[1]]:[50.5,4.6],c0?16:8);let err=0;
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map).on("tileerror",()=>{if(++err==3)msg.textContent="La carte ne se charge pas (connexion insuffisante). Tu peux utiliser ta position ou saisir les coordonnées."});
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map).on("tileerror",()=>{if(++err==3)msg.textContent="La carte ne se charge pas : pas de connexion internet ou réseau bloqué. Tu peux utiliser ta position ou saisir les coordonnées."});
   map.on("click",e=>put(e.latlng.lat,e.latlng.lng,{write:true}));
   if(c0)put(c0[0],c0[1]);else gps((la,ln)=>map.setView([la,ln],16));
   setTimeout(()=>map.invalidateSize(),200);
-  inp.oninput=()=>{const c=parseCoord(inp.value);if(c)put(c[0],c[1],{fly:true})};
- }else{$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Pas de connexion internet : la carte ne s\'affiche pas.<br>Utilise ta position GPS ou saisis les coordonnées.</div>'}
+  inp.oninput=()=>{const c=parseCoord(inp.value);if(c)put(c[0],c[1],{fly:true})}}catch(x){map=null;$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Erreur : '+esc(String(x))+'</div>'}
+ }else{$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Le module de carte n\'est pas chargé (fichiers lib/leaflet absents ?).<br>Utilise ta position GPS ou saisis les coordonnées.</div>'}
+ const search=async()=>{const q=$("#p-q").value.trim(),r=$("#p-res");if(!q)return;r.textContent="Recherche…";
+  try{const j=await (await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&accept-language=fr&countrycodes=be,fr,lu,de,nl&q="+encodeURIComponent(q))).json();
+   if(!j.length){r.textContent="Aucun résultat.";return}
+   r.innerHTML=j.map((x,i)=>`<button class="s" data-i="${i}" style="display:block;width:100%;text-align:left;margin:3px 0">${esc(x.display_name)}</button>`).join("");
+   r.querySelectorAll("button").forEach(b=>b.onclick=()=>{const x=j[+b.dataset.i];nm=x.name||x.display_name.split(",")[0];$("#p-nm").textContent="📌 "+nm;r.innerHTML="";put(+x.lat,+x.lon,{write:true,fly:true,z:15});inp.value=(+x.lat).toFixed(5)+", "+(+x.lon).toFixed(5)})
+  }catch(e){r.textContent="Recherche impossible sans connexion internet."}};
+ $("#p-s").onclick=search;$("#p-q").onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();search()}};
  $("#p-g").onclick=()=>gps((la,ln)=>put(la,ln,{write:true,fly:true}));
  if(reset)$("#p-r").onclick=()=>{closeM("2");reset()};
- $("#p-ok").onclick=()=>{const c=parseCoord(inp.value);closeM("2");cb({name:$("#p-q").value.trim(),lat:c?c[0]:null,lng:c?c[1]:null})}}
+ $("#p-ok").onclick=()=>{const c=parseCoord(inp.value);closeM("2");cb({name:nm,lat:c?c[0]:null,lng:c?c[1]:null})}}
 function full(html,onSave){closeF();const o=document.createElement("div");o.id="ff";o.innerHTML=`<div class="fb">${html}</div><div class="fa"><button class="s" id="f-c">Annuler</button><button class="p" id="f-s">Enregistrer</button></div>`;document.body.appendChild(o);
  const vv=window.visualViewport,fit=()=>{if(vv){o.style.height=vv.height+"px";o.style.top=vv.offsetTop+"px"}};fit();
  if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);o._f=fit}

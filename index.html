@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnet de chasse</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#3f5a2b">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Chasse"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/png" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="lib/leaflet/leaflet.css">
+<script src="lib/leaflet/leaflet.js"></script>
+<style>
+:root{--bg:#f1efe6;--card:#fbfaf5;--ink:#26301f;--mut:#6d7461;--acc:#3f5a2b;--acc2:#a4452c;--line:#d9d6c5;--red:#d32f2f;--dw:min(82vw,300px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}}
+:root[data-theme="dark"]{--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,"Iowan Old Style",serif;overflow-x:hidden}
+body.dr{overflow:hidden}
+h1,h2,h3,button,label,.sans{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#page{min-height:100vh;background:var(--bg);transition:transform .25s}body.dr #page{transform:translateX(var(--dw))}
+main{max-width:640px;margin:0 auto;padding:12px 14px 40px}
+h1{font-size:1.45rem;margin:4px 0 10px}h2{font-size:1.1rem;margin:16px 0 8px}h3{font-size:.95rem;margin:14px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px}
+button.p{background:var(--acc);color:var(--bg);border:0;border-radius:8px;padding:11px 16px;font-size:1rem}
+button.p:disabled{opacity:.35}
+button.s{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 12px;font-size:.9rem}
+button.d{background:none;border:0;color:var(--acc2);padding:8px}
+input,select,textarea{width:100%;font:inherit;padding:9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+input[type=checkbox]{width:auto}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 3px}label.ck{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:.95rem;margin:2px 0}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+#dr{position:fixed;left:0;top:0;bottom:0;width:var(--dw);background:var(--card);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .25s;padding:calc(14px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow:auto;z-index:5}
+body.dr #dr{transform:none}
+#dr h2{margin:0 0 10px}#dr .m{display:block;width:100%;text-align:left;background:none;border:0;color:var(--ink);padding:11px 8px;border-radius:8px;font-size:1rem}
+#dr .m.on{background:var(--bg);color:var(--acc);font-weight:700}#dr hr{border:0;border-top:1px solid var(--line);margin:8px 0;width:100%}
+.hd{display:flex;align-items:center;gap:6px;margin-bottom:8px}.hd b{flex:1;font:600 1rem system-ui;min-width:0}
+.ib{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;width:40px;height:40px;font-size:1.15rem;padding:0}
+.ib.tdy{font:700 1rem system-ui;color:var(--acc);border:2px solid var(--acc)}
+.wk u.ok{background:var(--acc)}
+.yr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 8px 90px}.ym{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;cursor:pointer}
+.ym b{font:600 .85rem system-ui}.mini{display:grid;grid-template-columns:repeat(7,1fr);font:.5rem system-ui;text-align:center;gap:1px 0}
+.mini i{font-style:normal}.mini .hv{background:var(--acc2);color:var(--bg);border-radius:50%}
+.wk{display:flex;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:6px;cursor:pointer;min-height:54px}
+.wk>div:first-child{flex:0 0 46px;text-align:center;font:.8rem system-ui;color:var(--mut)}.wk>div:first-child b{display:block;font-size:1.2rem;color:var(--ink)}
+.wk u{display:block;text-decoration:none;background:var(--acc2);color:var(--bg);font:.8rem system-ui;border-radius:4px;padding:3px 6px;margin-bottom:3px}
+main.full{height:100dvh;max-width:640px;padding:6px 0 0;display:flex;flex-direction:column}
+body.cal{overflow:hidden;overscroll-behavior:none}body.cal #page{height:100dvh;min-height:0;overflow:hidden}
+.hd{justify-content:space-between;padding:0 10px;margin:0;flex:none}
+.vp{flex:1;min-height:0;overflow:hidden;position:relative}.vp.m{touch-action:none}.vp:not(.m){touch-action:pan-y}
+.trk{display:flex;width:300%;height:100%;transform:translateX(-33.3333%);will-change:transform}
+.pn{flex:0 0 33.3333%;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden}.pn.sc{overflow-y:auto}
+.ttl{text-align:center;font:700 1.05rem system-ui;letter-spacing:.08em;padding:6px 0 10px;flex:none}
+.wd{display:grid;grid-template-columns:28px repeat(7,minmax(0,1fr));font:600 .66rem system-ui;color:var(--mut);text-align:center;padding-bottom:5px;flex:none}
+.wd .su,.dn.su{color:var(--red)}
+.wks{flex:1;min-height:0;display:grid;grid-template-rows:repeat(var(--r),minmax(0,1fr));border-bottom:1px solid var(--line)}
+.wr{display:grid;grid-template-columns:28px repeat(7,minmax(0,1fr));border-top:1px solid var(--line);min-height:0}
+.wn{font:.62rem system-ui;font-style:normal;color:var(--mut);text-align:center;padding-top:7px}
+.dc{min-width:0;min-height:0;overflow:hidden;padding:3px 1px 0;text-align:center;cursor:pointer}.dc.o{opacity:.4}
+.dn{display:inline-block;min-width:24px;height:24px;border-radius:50%;font:.82rem/24px system-ui}
+.dn.td{background:var(--acc);color:var(--bg)}.dn.sl{box-shadow:0 0 0 2px var(--acc)}
+.dc u{display:block;text-decoration:none;background:var(--acc2);color:var(--bg);font:.58rem/1.35 system-ui;border-radius:3px;padding:0 2px;margin:2px 1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc u.ok,.wk u.ok{background:var(--acc)}.dc small{color:var(--mut);font:.58rem system-ui}
+.ysc{flex:1;min-height:0;overflow-y:auto}.pd{padding:0 14px 90px}.pw{padding:0 10px 90px}
+#fab{position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:300 2rem/1 system-ui;box-shadow:0 3px 10px #0005;z-index:4;padding:0}
+#ff{position:fixed;left:0;right:0;top:0;height:100dvh;background:var(--bg);z-index:8;display:flex;flex-direction:column}
+.fb{flex:1;min-height:0;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 16px;max-width:560px;width:100%;margin:0 auto}
+.fa{display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--card)}.fa button{flex:1}
+details.dt{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--bg)}
+details.dt>summary{display:flex;align-items:center;gap:8px;padding:12px;font:600 .95rem system-ui;cursor:pointer;list-style:none}
+details.dt>summary::-webkit-details-marker{display:none}details.dt>summary span:first-child{flex:1}
+details.dt>summary::after{content:"›";font-size:1.3rem;transition:transform .2s}details.dt[open]>summary::after{transform:rotate(90deg)}
+details.dt .in{padding:0 12px 8px}
+.bg{background:var(--acc);color:var(--bg);border-radius:99px;padding:0 9px;font:700 .8rem system-ui;min-width:22px;text-align:center}.bg:empty{display:none}
+.tls{display:flex;flex-wrap:wrap;gap:8px}.tl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:.75rem system-ui;color:var(--mut)}.sv{display:flex;align-items:center;gap:8px;color:var(--acc)}.sv b{font:700 1.4rem system-ui;color:var(--ink)}.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}.sr:last-child{border:0}
+.mo{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;justify-content:center;z-index:9}#mo2{z-index:10}#mo3{z-index:11}
+.sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));position:relative}
+.x{position:absolute;right:6px;top:6px;border:0;background:none;color:var(--mut);font-size:1.2rem;padding:8px}
+.li{display:block;width:100%;text-align:left;margin-bottom:8px}
+#pmap{height:260px;border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--bg);overflow:hidden}
+.mapoff{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;font:.9rem system-ui;color:var(--mut);background:repeating-linear-gradient(0deg,transparent 0 39px,var(--line) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,var(--line) 39px 40px)}
+.ph img{background:var(--line);cursor:zoom-in}
+.chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;padding:2px 4px 2px 10px;margin:3px 4px 0 0;font:.85rem system-ui}.chip button{border:0;background:none;color:var(--mut);padding:4px 6px}
+.g4{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}
+.st{display:flex;align-items:center;gap:6px}.st b{min-width:22px;text-align:center;font-family:system-ui}
+.st button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.15rem;padding:0}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.ph img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.big b{display:block;font:700 1.6rem system-ui;color:var(--acc)}.big span{font:.75rem system-ui;color:var(--mut)}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.9rem}.bar em{flex:0 0 120px;font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar div{height:12px;background:var(--acc);border-radius:3px;min-width:2px}.bar small{color:var(--mut);font-family:system-ui}
+.mut{color:var(--mut);font-size:.85rem}a{color:var(--acc)}
+.tc{display:flex;gap:10px;align-items:stretch}.tcm{flex:1;min-width:0}
+.vb{flex:0 0 46px;border:0;border-radius:10px;background:var(--acc);color:var(--bg);font:700 1.5rem system-ui;padding:0}
+.cd{display:flex;align-items:center;gap:10px;cursor:pointer;padding:8px 12px}.cd .vk{color:var(--acc);font-size:1.3rem}
+#fb2{position:fixed;left:0;right:0;bottom:0;z-index:7}.lb{display:flex;align-items:center;gap:8px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}.seg button{flex:1;border:0;background:var(--bg);color:var(--ink);padding:9px 4px;font:.85rem system-ui}.seg button.on{background:var(--acc);color:var(--bg);font-weight:700}
+button.sx{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:var(--bg);font:700 1.1rem system-ui;padding:0}
+button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;border-color:#e0709a77}button.sx.m.on{background:#3b82c4;border-color:#3b82c4;color:#fff}button.sx.f.on{background:#e0709a;border-color:#e0709a;color:#fff}
+.sxi{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;color:#fff;font:700 .78rem system-ui;vertical-align:middle}.sxi.m{background:#3b82c4}.sxi.f{background:#e0709a}
+.det{margin-top:10px}.dl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0;color:var(--ink);font-size:.9rem}.dl input{width:110px}
+#fab2{position:fixed;left:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);box-shadow:0 3px 10px #0005;z-index:4;padding:0;display:flex;align-items:center;justify-content:center}
+#dr .seg{margin:2px 0 8px}
+.chips2{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.fc{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 13px;font:.85rem system-ui}.fc.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px}.pg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sc2{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+.sc2 b{font:700 1.7rem system-ui;color:var(--acc)}.sc2 span{font:.72rem system-ui;color:var(--mut)}
+button.tl{cursor:pointer;text-align:left}
+button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
+</style></head><body>
+<aside id="dr"><h2>Carnet de chasse</h2>
+<button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
+<hr><button class="m" id="m-st">Statistiques</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button>
+<div style="margin-top:auto"><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
+<option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button></div></aside>
+<div id="page"><main id="app"></main></div>
+<script>
+const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
+"Petit gibier":["Lièvre","Lapin de garenne","Faisan","Perdrix grise","Bécasse des bois","Pigeon ramier"],
+"Gibier d'eau":["Canard colvert","Canard chipeau","Canard siffleur","Canard souchet","Canard pilet","Sarcelle d'hiver","Fuligule milouin","Fuligule morillon","Oie cendrée","Oie rieuse","Oie des moissons","Bernache du Canada","Ouette d'Égypte"],
+"Autres":["Renard","Corneille noire","Corbeau freux","Pie bavarde","Geai des chênes","Ragondin","Rat musqué"]};
+const CLS={"Cervidé":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
+const CL={"Cervidé":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
+const XT={"Cervidé":["Cervidé – mâle","Cervidé – femelle","Cervidé – jeune"],"Chevreuil":["Chevreuil – brocard","Chevreuil – chevrette","Chevreuil – chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
+const tname=t=>(t.sx&&CL[t.sp]&&CL[t.sp][t.sx])?t.sp+" – "+CL[t.sp][t.sx]:t.sp;
+const sxi=x=>x?`<span class="sxi ${x}">${x=="m"?"♂":"♀"}</span>`:"";
+const extra=t=>{const f=a=>(a||[]).slice(0,t.p).filter(x=>x!==""&&x!=null),w=f(t.w),c=f(t.c);return(t.sp=="Sanglier"&&w.length?" · "+w.join(", ")+" kg":"")+(c.length&&CLS[t.sp]&&t.sx=="m"?" · "+c.join(", ")+" cors":"")};
+const MODES=["Battue","Approche","Affût","Poussée silencieuse","Chasse devant soi","Chasse à la passée","Chasse à la hutte","Chasse au chien d'arrêt","Chasse au terrier","Chasse à courre","Fauconnerie"];
+const MN=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const UL={b:"Balles",c:"Cartouches"},UNIT=s=>(/^(Cerf|Cervid|Chevreuil|Sanglier|Daim|Mouflon|Renard)/.test(s))?"b":"c";
+const $=s=>document.querySelector(s);
+let S={ev:{},custom:[],sync:"manual",hm:[],hs:[],theme:"light"},view="cal",cv="month",cur=new Date(),fe=null,fd=null,seasonF="all",sel=null;
+try{const r=localStorage.getItem("carnet2");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem("carnet2",JSON.stringify(S));return true}catch(e){alert("Stockage plein : retire des photos ou exporte tes données.");return false}}
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const season=ds=>{const y=+ds.slice(0,4),a=+ds.slice(5,7)>=7?y:y-1;return a+"-"+(a+1)};
+const evs=()=>Object.values(S.ev),on=ds=>evs().filter(e=>e.date==ds);
+const coord=l=>l&&l.lat!=null?l.lat.toFixed(5)+", "+l.lng.toFixed(5):"";
+const lieu=l=>l&&(l.name||coord(l))||"non précisé";
+const link=l=>l&&l.lat!=null?`<a href="https://www.google.com/maps?q=${l.lat},${l.lng}" target="_blank" rel="noopener">ouvrir dans Maps</a>`:"";
+const visTab=()=>{const o={};Object.entries(visSp()).forEach(([g,a])=>{o[g]=a.flatMap(x=>XT[x]||[x])});return o};
+const visM=()=>MODES.filter(m=>!S.hm.includes(m));
+const visSp=()=>{const o={};Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).forEach(([g,a])=>{const f=a.filter(s=>!S.hs.includes(s));if(f.length)o[g]=f});return o};
+function parseCoord(s){const m=String(s).match(/(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)/);return m?[+m[1].replace(",","."),+m[2].replace(",",".")]:null}
+function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
+function modal(h,l=""){closeM(l);const m=document.createElement("div");m.id="mo"+l;m.className="mo";m.innerHTML=`<div class="sh"><button class="x" aria-label="Fermer">✕</button>${h}</div>`;document.body.appendChild(m);m.onclick=e=>{if(e.target==m)closeM(l)};m.querySelector(".x").onclick=()=>closeM(l);hydrate()}
+function closeM(l=""){const m=$("#mo"+l);if(m)m.remove()}
+function go(v){view=v;render()}
+function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFullYear(),d.getMonth()+k,1);if(cv=="year")return new Date(d.getFullYear()+k,0,1);d.setDate(d.getDate()+k*(cv=="week"?7:1));return d}
+function step(k){cur=shifted(k);render()}
+function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
+function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum})[view]();hydrate()}
+function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
+function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
+const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
+
+/* ---------- photos : stockage interne (IndexedDB) ---------- */
+const DB={db:null,open(){return this.db||(this.db=new Promise((res,rej)=>{const r=indexedDB.open("carnet-photos",1);r.onupgradeneeded=()=>r.result.createObjectStore("p");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}))},
+ async tx(m,f){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction("p",m),q=f(t.objectStore("p"));t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)})},
+ put(k,v){return this.tx("readwrite",s=>s.put(v,k))},get(k){return this.tx("readonly",s=>s.get(k))},del(k){return this.tx("readwrite",s=>s.delete(k))},keys(){return this.tx("readonly",s=>s.getAllKeys())}};
+const PU={},pid=()=>"p"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+async function purl(id){if(PU[id])return PU[id];const b=await DB.get(id);return b?(PU[id]=URL.createObjectURL(b)):""}
+async function hydrate(){await Promise.all([...document.querySelectorAll("img[data-pid]")].filter(i=>!i.dataset.ok).map(async i=>{try{const u=await purl(i.dataset.pid);if(u){i.src=u;i.dataset.ok=1}}catch(e){}}))}
+const compress=(f,max=1600,q=.8)=>new Promise(r=>{const i=new Image,u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext("2d").drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>r(b||f),"image/jpeg",q)};i.onerror=()=>r(f);i.src=u});
+async function addPhoto(f){const b=await compress(f),id=pid();await DB.put(id,b);return id}
+async function migratePhotos(){let ch=0;for(const e of evs()){const f=e.fiche;if(!f)continue;for(const k of["photos","tabPhotos"]){const a=f[k]||[];for(let i=0;i<a.length;i++)if(String(a[i]).startsWith("data:")){const b=await(await fetch(a[i])).blob(),id=pid();await DB.put(id,b);a[i]=id;ch=1}}}if(ch)save();return ch}
+async function gc(){try{const used=new Set();evs().forEach(e=>{const f=e.fiche;if(f)[...(f.photos||[]),...(f.tabPhotos||[])].forEach(x=>used.add(x))});for(const k of await DB.keys())if(!used.has(k)){await DB.del(k);if(PU[k]){URL.revokeObjectURL(PU[k]);delete PU[k]}}}catch(e){}}
+const b2d=b=>new Promise(r=>{const fr=new FileReader;fr.onload=()=>r(fr.result);fr.readAsDataURL(b)});
+async function exportJSON(){const c=JSON.parse(JSON.stringify(S));for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;for(const k of["photos","tabPhotos"])f[k]=(await Promise.all((f[k]||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean)}return JSON.stringify(c)}
+document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid]");if(i)modal(`<img data-pid="${i.dataset.pid}" alt="Photo" style="width:100%;border-radius:8px;margin-top:22px">`,"3")});
+
+/* ---------- menu ---------- */
+const pg=$("#page");pg.addEventListener("click",e=>{if(document.body.classList.contains("dr")){e.preventDefault();e.stopPropagation();document.body.classList.remove("dr")}},true);
+const shut=()=>document.body.classList.remove("dr");
+document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
+$("#m-st").onclick=()=>{shut();go("stats")};
+function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
+const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
+document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
+$("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
+$("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
+$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,text/calendar,application/json">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
+$("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>`);
+ $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("carnet-de-chasse.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
+ $("#x-j").onclick=async()=>{dl("carnet-de-chasse.json","application/json",await exportJSON());closeM()}};
+$("#m-mg").onclick=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n=="Cervidé"?"Cervidés":n)}</label>`;
+ modal(`<h2>Mes modes de chasse et espèces</h2><p class="mut sans">Décoche ce que tu ne chasses pas : ces choix disparaissent des listes d'encodage.</p><h3>Modes de chasse</h3>${MODES.map(m=>ck(m,"hm","m")).join("")}
+ ${Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).map(([g,a])=>`<h3>${g}</h3>${a.map(s=>ck(s,"hs","s")).join("")}`).join("")}
+ <h3>Ajouter une espèce</h3><div class="row"><input id="ns" placeholder="Nom de l'espèce"><button class="s" id="na" style="flex:0 0 90px">Ajouter</button></div>`);
+ document.querySelectorAll("#mo input[type=checkbox]").forEach(c=>c.onchange=()=>{const h=c.dataset.m!==undefined?"hm":"hs",n=c.dataset.m??c.dataset.s;S[h]=S[h].filter(x=>x!=n);if(!c.checked)S[h].push(n);save()});
+ $("#na").onclick=()=>{const v=$("#ns").value.trim();if(v&&!S.custom.includes(v)){S.custom.push(v);save();$("#m-mg").onclick()}}};
+function parseICS(txt){const t=txt.replace(/\r?\n[ \t]/g,""),out=[],un=x=>x.replace(/\\n/gi,"\n").replace(/\\([,;\\])/g,"$1").trim();
+ t.split("BEGIN:VEVENT").slice(1).forEach(b=>{const g=k=>{const m=b.match(new RegExp("^"+k+"[^:\\n]*:(.*)$","m"));return m?un(m[1].replace(/\r$/,"")):""};
+  const m=g("DTSTART").match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})(Z)?)?/);if(!m)return;
+  let ds=`${m[1]}-${m[2]}-${m[3]}`;if(m[7])ds=new Date(Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5])).toLocaleDateString("sv-SE",{timeZone:"Europe/Brussels"});
+  const desc=g("DESCRIPTION"),gs=[];desc.split("\n").forEach(l=>{const q=l.match(/^\s*Invit[ée]s?\s*:\s*(.+)$/i);if(q)q[1].split(/,| et /).forEach(n=>{n=n.trim();if(n)gs.push(n)})});
+  out.push({title:g("SUMMARY")||"Évènement",date:ds,loc:g("LOCATION"),guests:gs,desc})});return out}
+async function importFile(f){if(!f)return;const t=await f.text();
+ if(/\.json$/i.test(f.name)){try{S=Object.assign(S,JSON.parse(t));migrate();await migratePhotos();save();closeM();toast("Sauvegarde importée.");render()}catch(x){alert("Fichier invalide.")}return}
+ const a=parseICS(t).filter(x=>!evs().some(o=>o.date==x.date&&o.title==x.title));
+ if(!a.length)return alert("Aucun nouvel évènement trouvé dans ce fichier.");if(!confirm("Importer "+a.length+" évènement(s) ?"))return;
+ a.forEach((x,i)=>{const id="i"+Date.now()+i;S.ev[id]={id,date:x.date,title:x.title,mode:"",role:"part",guests:x.guests||[],host:"",place:{name:x.loc,lat:null,lng:null},desc:x.desc||""}});
+ if(save()){cur=new Date(a[0].date+"T12:00");closeM();toast(a.length+" évènement(s) importé(s).");go("cal")}}
+
+/* ---------- calendrier ---------- */
+function monthP(d0){const y=d0.getFullYear(),m=d0.getMonth(),td=iso(new Date()),first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),rows=Math.ceil((first+n)/7);
+ let h=`<div class="ttl">${MN[m].toUpperCase()} ${y}</div><div class="wd"><i></i>${["LUN.","MAR.","MER.","JEU.","VEN.","SAM.","DIM."].map((x,i)=>`<span class="${i==6?"su":""}">${x}</span>`).join("")}</div><div class="wks" style="--r:${rows}">`;
+ for(let r=0;r<rows;r++){h+=`<div class="wr"><i class="wn">${isoWeek(new Date(y,m,1-first+r*7))}</i>`;
+  for(let i=0;i<7;i++){const d=new Date(y,m,1-first+r*7+i),ds=iso(d),a=on(ds),show=ds==sel?a:a.slice(0,3);
+   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${show.map(e=>`<u class="${e.fiche?"ok":""}">${esc(e.title.replace(/^Chasse\s+/i,""))}</u>`).join("")}${a.length>show.length?`<small>+${a.length-show.length}</small>`:""}</div>`}
+  h+="</div>"}
+ return h+"</div>"}
+function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${e.fiche?"ok":""}" data-ev="${e.id}">${esc(e.title)}</u>`;
+ if(cv=="month")return monthP(d);
+ if(cv=="year")return `<div class="ttl">${y}</div><div class="ysc"><div class="yr">`+MN.map((M,mo)=>{const first=(new Date(y,mo,1).getDay()+6)%7,n=new Date(y,mo+1,0).getDate();let g="<i></i>".repeat(first);
+  for(let k=1;k<=n;k++){const ds=iso(new Date(y,mo,k));g+=`<i class="${on(ds).length?"hv":""}${ds==td?" tt":""}">${k}</i>`}return `<div class="ym" data-m="${mo}" data-y="${y}"><b>${M}</b><div class="mini">${g}</div></div>`}).join("")+"</div></div>";
+ if(cv=="week"){const a=new Date(d);a.setDate(a.getDate()-(a.getDay()+6)%7);const b=new Date(a);b.setDate(b.getDate()+6);let body="";
+  for(let i=0;i<7;i++){const x=new Date(a);x.setDate(a.getDate()+i);const ds=iso(x);body+=`<div class="wk" data-d="${ds}"><div>${["lun","mar","mer","jeu","ven","sam","dim"][i]}<b class="${ds==td?"tt":""}">${x.getDate()}</b></div><div style="flex:1">${on(ds).map(chip).join("")}</div></div>`}
+  return `<div class="ttl">${a.getDate()} ${MN[a.getMonth()].slice(0,4).toLowerCase()}. – ${b.getDate()} ${MN[b.getMonth()].slice(0,4).toLowerCase()}. ${b.getFullYear()}</div><div class="pw">${body}</div>`}
+ const a=on(iso(d));
+ return `<div class="ttl">${esc(d.toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"}))}</div><div class="pd">`+(a.map(e=>`<div class="card" data-ev="${e.id}" style="cursor:pointer"><b>${esc(e.title)}</b><br><span class="sans mut">${esc(e.mode||"Type à préciser")} · ${roleTxt(e)}<br>📍 ${esc(lieu(e.place))}<br>${e.fiche?"Fiche remplie":"Fiche à remplir"}</span></div>`).join("")||'<p class="mut" style="text-align:center">Aucune journée de chasse ce jour.</p>')+"</div>"}
+function rCal(){const mo=cv=="month";
+ $("#app").innerHTML=`<div class="hd"><button class="ib" id="mn" aria-label="Menu">☰</button><button class="ib tdy" id="tdy" aria-label="Aujourd'hui">${new Date().getDate()}</button></div><div class="vp${mo?" m":""}"><div class="trk">${[-1,0,1].map(k=>`<div class="pn${mo||cv=="year"?"":" sc"}">${panel(shifted(k))}</div>`).join("")}</div></div><button id="fab" aria-label="Ajouter une journée de chasse">+</button><button id="fab2" aria-label="Statistiques"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20v-7M2.5 20h19"/></svg></button>`;
+ $("#mn").onclick=()=>document.body.classList.add("dr");
+ $("#tdy").onclick=()=>{cur=new Date();sel=iso(cur);render()};
+ $("#fab2").onclick=()=>go("stats");
+ $("#fab").onclick=()=>openForm(null,cv=="day"?iso(cur):(sel||iso(new Date())));
+ bindSwipe()}
+function tapDay(ds){const a=on(ds);
+ if(a.length){sel=ds;render();if(a.length==1)openEv(a[0].id);else openDay(ds);return}
+ if(sel==ds)openForm(null,ds);else{sel=ds;render()}}
+function bindSwipe(){const v=$(".vp");if(!v)return;const trk=v.firstElementChild,mo=v.classList.contains("m");let x0=null,y0=0,dir=null,dx=0,t0=0;
+ v.addEventListener("touchstart",e=>{if(e.touches.length>1||document.body.classList.contains("dr")||$("#mo")||$("#ff")){x0=null;return}x0=e.touches[0].clientX;y0=e.touches[0].clientY;dir=null;dx=0;t0=Date.now();trk.style.transition="none";v.style.transition="none"},{passive:true});
+ v.addEventListener("touchmove",e=>{if(x0==null)return;const t=e.touches[0],mx=t.clientX-x0,my=t.clientY-y0;
+  if(!dir){if(Math.abs(mx)<8&&Math.abs(my)<8)return;dir=Math.abs(mx)>Math.abs(my)?"h":"v"}
+  if(dir=="h"){dx=mx;trk.style.transform=`translateX(calc(-33.3333% + ${dx}px))`;if(e.cancelable)e.preventDefault()}
+  else if(mo){const k=Math.min(.05,Math.abs(my)/1800);v.style.transformOrigin=my>0?"top":"bottom";v.style.transform=`scaleY(${1+k})`;if(e.cancelable)e.preventDefault()}},{passive:false});
+ const end=()=>{if(x0==null)return;x0=null;v.style.transition="transform .3s cubic-bezier(.2,.8,.2,1)";v.style.transform="";
+  if(dir!="h")return;const W=v.clientWidth,fast=Math.abs(dx)/Math.max(1,Date.now()-t0)>.4&&Math.abs(dx)>30;trk.style.transition="transform .22s ease-out";
+  if(Math.abs(dx)>W*.25||fast){const k=dx<0?1:-1;trk.style.transform=`translateX(${dx<0?-66.6667:0}%)`;setTimeout(()=>step(k),220)}
+  else trk.style.transform="translateX(-33.3333%)"};
+ v.addEventListener("touchend",end);v.addEventListener("touchcancel",end)}
+$("#app").addEventListener("click",e=>{if(view!="cal")return;
+ const ev=e.target.closest("[data-ev]");if(ev){openEv(ev.dataset.ev);return}
+ const mo=e.target.closest("[data-m]");if(mo){cur=new Date(+mo.dataset.y,+mo.dataset.m,1);cv="month";render();return}
+ const d=e.target.closest("[data-d]");if(d)tapDay(d.dataset.d)});
+function roleTxt(e){return e.role=="guest"?"Invité"+(e.host?" par "+esc(e.host):""):"Actionnaire"+((e.guests||[]).length?" · invités : "+esc(e.guests.join(", ")):"")}
+function openDay(ds){const a=on(ds);if(!a.length)return openForm(null,ds);
+ modal(`<h2>${fmt(ds)}</h2>${a.map(e=>`<button class="s li" data-o="${e.id}">${esc(e.title)} <span class="mut">${e.fiche?"· fiche remplie":""}</span></button>`).join("")}<button class="p" id="ad" style="width:100%">Ajouter un évènement</button>`);
+ document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>openEv(b.dataset.o));$("#ad").onclick=()=>openForm(null,ds)}
+function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
+ modal(`<h2>${esc(e.title)}</h2><p class="sans" style="margin:0 0 8px">${fmt(e.date)}</p>
+ <div class="card sans" id="o-c" style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><div style="flex:1">Type de chasse : ${esc(e.mode||"à préciser")}<br>Rôle : ${roleTxt(e)}<br>Lieu de RDV : ${esc(lieu(e.place))} ${link(e.place)}${e.desc?"<br>Notes : "+esc(e.desc).replace(/\n/g,"<br>"):""}</div><button class="d" id="o-x" aria-label="Supprimer l'évènement"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></div>
+ <button class="p" id="o-f" style="width:100%" ${can?"":"disabled"}>${e.fiche?"Consulter la fiche de chasse":"Remplir la fiche de chasse"}</button><div class="row" style="margin-top:8px;align-items:center"><span class="mut sans" style="flex:1">${can?"":"Disponible à partir du "+e.date.split("-").reverse().join("/")+"."}</span><button class="s" id="o-a" style="flex:0 0 auto">+ Ajouter un évènement</button></div>`);
+ $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};
+ $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
+ $("#o-x").onclick=()=>{modal(`<h2>Supprimer cet évènement ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?"<br>La fiche de chasse associée sera aussi supprimée.":""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
+
+/* ---------- lieu + formulaire ---------- */
+function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};
+ modal(`<h2>Emplacement</h2><input id="p-q" value="${esc(loc.name)}" placeholder="Nom du lieu ou de la chasse">
+ <div id="pmap"></div><p class="mut sans" id="pmsg" style="margin:0 0 8px"></p>
+ <button class="s" id="p-g" style="width:100%">📍 Utiliser ma position</button>
+ <label>Coordonnées (latitude, longitude)</label><input id="p-c" value="${coord(loc)}" placeholder="50.50, 5.90">
+ ${reset?'<button class="s" id="p-r" style="width:100%;margin-top:10px">Revenir au lieu de RDV</button>':""}<button class="p" id="p-ok" style="width:100%;margin-top:10px">Confirmer l'emplacement</button>`,"2");
+ let map=null,mk=null;const msg=$("#pmsg"),inp=$("#p-c"),c0=parseCoord(inp.value);
+ const put=(la,ln,o={})=>{if(o.write)inp.value=la.toFixed(5)+", "+ln.toFixed(5);if(!map)return;
+  if(mk)mk.setLatLng([la,ln]);else{mk=L.marker([la,ln],{draggable:true}).addTo(map);mk.on("dragend",()=>{const q=mk.getLatLng();inp.value=q.lat.toFixed(5)+", "+q.lng.toFixed(5)})}
+  if(o.fly)map.setView([la,ln],Math.max(map.getZoom(),16))};
+ const gps=ok=>{if(!navigator.geolocation){msg.textContent="Géolocalisation non supportée sur cet appareil.";return}
+  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},()=>{msg.textContent="Position indisponible : autorise la localisation pour cette application."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
+ if(window.L&&navigator.onLine){
+  L.Icon.Default.imagePath="lib/leaflet/images/";
+  map=L.map("pmap").setView(c0?[c0[0],c0[1]]:[50.5,4.6],c0?16:8);let err=0;
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map).on("tileerror",()=>{if(++err==3)msg.textContent="La carte ne se charge pas (connexion insuffisante). Tu peux utiliser ta position ou saisir les coordonnées."});
+  map.on("click",e=>put(e.latlng.lat,e.latlng.lng,{write:true}));
+  if(c0)put(c0[0],c0[1]);else gps((la,ln)=>map.setView([la,ln],16));
+  setTimeout(()=>map.invalidateSize(),200);
+  inp.oninput=()=>{const c=parseCoord(inp.value);if(c)put(c[0],c[1],{fly:true})};
+ }else{$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Pas de connexion internet : la carte ne s\'affiche pas.<br>Utilise ta position GPS ou saisis les coordonnées.</div>'}
+ $("#p-g").onclick=()=>gps((la,ln)=>put(la,ln,{write:true,fly:true}));
+ if(reset)$("#p-r").onclick=()=>{closeM("2");reset()};
+ $("#p-ok").onclick=()=>{const c=parseCoord(inp.value);closeM("2");cb({name:$("#p-q").value.trim(),lat:c?c[0]:null,lng:c?c[1]:null})}}
+function full(html,onSave){closeF();const o=document.createElement("div");o.id="ff";o.innerHTML=`<div class="fb">${html}</div><div class="fa"><button class="s" id="f-c">Annuler</button><button class="p" id="f-s">Enregistrer</button></div>`;document.body.appendChild(o);
+ const vv=window.visualViewport,fit=()=>{if(vv){o.style.height=vv.height+"px";o.style.top=vv.offsetTop+"px"}};fit();
+ if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);o._f=fit}
+ $("#f-c").onclick=closeF;$("#f-s").onclick=onSave}
+function closeF(){const o=$("#ff");if(o){if(window.visualViewport&&o._f){visualViewport.removeEventListener("resize",o._f);visualViewport.removeEventListener("scroll",o._f)}o.remove()}}
+function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:visM()[0]||"",role:"part",guests:[],host:"",place:{name:"",lat:null,lng:null}};
+ let fl=Object.assign({},e.place),fg=[...(e.guests||[])];
+ const ms=[...new Set(["",...visM(),e.mode])],tdy=iso(new Date());
+ function sv(){const d=$("#e-d").value;if(!d)return alert("Choisis une date.");
+  if(e.fiche&&d>tdy)return alert("Cette journée a une fiche de chasse encodée : elle ne peut pas être déplacée dans le futur.");
+  const g=$("#e-r").value=="guest",gi=$("#e-gi").value.trim();if(!g&&gi&&$("#e-gr").style.display!="none")fg.push(gi);
+  const mode=$("#e-m").value,i=id||"e"+Date.now()+Math.floor(Math.random()*99);
+  S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||mode||"Chasse",role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
+  if(save()){sel=d;cur=new Date(d+"T12:00");closeF();render()}}
+ full(`<h2 style="margin-top:0">${id?"Modifier l'évènement":"Nouvelle journée de chasse"}</h2><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
+ <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><label>Type de chasse</label><select id="e-m">${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
+ ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
+ <label>Rôle</label><select id="e-r"><option value="part" ${e.role!="guest"?"selected":""}>Actionnaire</option><option value="guest" ${e.role=="guest"?"selected":""}>Invité</option></select>
+ <div id="e-pw"><div id="e-gl"></div><button class="s" id="e-gb" style="margin-top:8px">Ajouter un invité ?</button><div class="row" id="e-gr" style="display:none;margin-top:8px"><input id="e-gi" placeholder="Nom de l'invité"><button class="s" id="e-ga" style="flex:0 0 auto">Ajouter</button><button class="s" id="e-gc" style="flex:0 0 auto" aria-label="Annuler l'ajout">✕</button></div></div>
+ <div id="e-hw"><label>Invitant</label><input id="e-h" value="${esc(e.host)}" placeholder="Nom de l'invitant"></div>
+ <label>Lieu de RDV</label><button class="s sans" id="e-l" style="width:100%;text-align:left"></button>`,sv);
+ const gl=()=>{$("#e-gl").innerHTML=(fg.length?"<label>Invités</label>":"")+fg.map((g,i)=>`<span class="chip">${esc(g)}<button data-gx="${i}" aria-label="Retirer">✕</button></span>`).join("");document.querySelectorAll("[data-gx]").forEach(b=>b.onclick=()=>{fg.splice(+b.dataset.gx,1);gl()})};
+ const rl=()=>$("#e-l").textContent="📍 "+(fl.name||coord(fl)||"Choisir sur la carte");
+ const rr=()=>{const g=$("#e-r").value=="guest";$("#e-pw").style.display=g?"none":"block";$("#e-hw").style.display=g?"block":"none"};
+ const hideG=()=>{$("#e-gi").value="";$("#e-gr").style.display="none";$("#e-gb").style.display="block"};
+ gl();rl();rr();$("#e-r").onchange=rr;
+ $("#e-gb").onclick=()=>{$("#e-gb").style.display="none";$("#e-gr").style.display="flex";$("#e-gi").focus()};
+ $("#e-ga").onclick=()=>{const v=$("#e-gi").value.trim();if(v){fg.push(v);gl()}hideG()};
+ $("#e-gc").onclick=hideG;
+ $("#e-l").onclick=()=>pickLoc(fl,p=>{fl=p;rl()})}
+
+/* ---------- fiche : édition ---------- */
+let fdClean="";
+const fkey=()=>JSON.stringify(Object.assign({},fd,{tirs:fd.tirs.map(t=>Object.assign({},t,{ok:0}))}));
+function openFiche(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();go("fiche")}
+function sync(){if($("#f-notes"))fd.notes=$("#f-notes").value}
+function rmBar(){const b=$("#fb2");if(b){if(window.visualViewport&&b._f){visualViewport.removeEventListener("resize",b._f);visualViewport.removeEventListener("scroll",b._f)}b.remove()}}
+function fbar(back,sv){const b=document.createElement("div");b.id="fb2";b.className="fa";b.innerHTML='<button class="s" id="b-r">Retour</button><button class="p" id="b-s">Enregistrer</button>';document.body.appendChild(b);
+ const vv=window.visualViewport,fit=()=>{if(vv)b.style.bottom=Math.max(0,window.innerHeight-vv.height-vv.offsetTop)+"px"};fit();
+ if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);b._f=fit}
+ $("#b-r").onclick=back;if(sv)$("#b-s").onclick=sv;else $("#b-s").remove()}
+function saveFiche(){sync();S.ev[fe].fiche=fd;if(save()){go("sum");gc()}}
+function backFiche(){sync();const to=S.ev[fe].fiche?"sum":"cal";if(fkey()==fdClean)return go(to);
+ modal(`<h2>Enregistrer la saisie ?</h2><p class="sans">Tu as modifié cette fiche sans l'enregistrer.</p><div class="row"><button class="s" id="q-n">Annuler</button><button class="p" id="q-y">Enregistrer</button></div><p class="mut sans">« Annuler » quitte la fiche sans enregistrer ta saisie.</p>`);
+ $("#q-y").onclick=()=>{closeM();saveFiche()};$("#q-n").onclick=()=>{closeM();go(to)}}
+function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).reduce((a,b)=>a+b,0):0;
+ const detail=t=>{const k=t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null;if(!k||!t.p)return"";t[k]=t[k]||[];
+  return `<div class="det"><span class="mut sans">${k=="w"?"Poids (kg)":"Nombre de cors"}</span>${Array.from({length:t.p},(_,i)=>`<label class="dl sans"><span>${k=="w"?"Sanglier":"Mâle"} ${i+1}</span><input type="number" min="0" step="${k=="w"?"0.5":"1"}" inputmode="${k=="w"?"decimal":"numeric"}" data-dk="${t.id}|${k}|${i}" value="${esc(t[k][i]??"")}" placeholder="${k=="w"?"kg":"cors"}"></label>`).join("")}</div>`};
+ const card=t=>{const nm=tname(t),isCl=!!CLS[t.sp];
+  if(t.ok!==false)return `<div class="card cd sans" data-o="${t.id}">${sil(nm,44)}<div style="flex:1;min-width:0"><b>${esc(nm)}</b> ${isCl?"":sxi(t.sx)}<br><span class="mut">Prélevé ${t.p} · Raté ${t.m} · Touché ${t.h} · ${t.n} ${UL[t.u].toLowerCase()}${esc(extra(t))}</span></div><span class="vk" aria-hidden="true">✓</span></div>`;
+  const pick=isCl?`<div class="seg" style="margin-top:8px">${CLS[t.sp].map((l,i)=>`<button data-sx="${t.id}:${"mfj"[i]}" class="${t.sx=="mfj"[i]?"on":""}">${l}</button>`).join("")}</div>`:`<div class="row sans" style="gap:6px;margin-top:8px;justify-content:flex-start"><span class="mut" style="flex:0 0 auto">Sexe</span><button class="sx m${t.sx=="m"?" on":""}" data-sx="${t.id}:m" aria-label="Mâle" style="flex:0 0 auto">♂</button><button class="sx f${t.sx=="f"?" on":""}" data-sx="${t.id}:f" aria-label="Femelle" style="flex:0 0 auto">♀</button></div>`;
+  return `<div class="card tc"><div class="tcm"><div class="row sans" style="gap:8px"><span style="flex:0 0 auto">${sil(nm,40)}</span><b>${esc(t.sp)}</b><button class="s" data-u="${t.id}" style="flex:0 0 auto">${UL[t.u]} ⇄</button><button class="d" data-x="${t.id}" style="flex:0 0 auto">Retirer</button></div>${pick}
+  <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${detail(t)}
+  <button class="s sans" data-l="${t.id}" style="width:100%;margin-top:10px;text-align:left">📍 ${t.loc?"Lieu du tir":"Lieu de RDV"} : ${esc(lieu(t.loc||e.place))} · modifier</button></div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
+ $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
+ <h2>Tirs</h2>
+ <div class="row"><select id="a-sp">${Object.entries(all).map(([g,a])=>`<optgroup label="${g}">${a.map(s=>`<option>${esc(s)}</option>`).join("")}</optgroup>`).join("")}</select><button class="p" id="a-b" style="flex:0 0 auto">Ajouter un tir</button></div>
+ <div style="margin-top:12px">${fd.tirs.map(card).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
+ <h2>Photos</h2><div class="ph">${fd.photos.map((p,i)=>`<div><img data-pid="${p}" alt="Photo ${i+1}"><button class="d" data-rp="${i}">Retirer</button></div>`).join("")}</div><input type="file" accept="image/*" multiple id="f-ph" style="margin-top:8px">
+ <label>Notes</label><textarea id="f-notes" rows="3">${esc(fd.notes)}</textarea>
+ <button class="s" id="tb" style="width:100%;margin-top:14px">Encoder le tableau final${nt?` (${nt} pièce${nt>1?"s":""})`:""}</button><div style="height:90px"></div>`;
+ fbar(backFiche,saveFiche);
+ const T=id=>fd.tirs.find(t=>t.id==id);
+ $("#a-b").onclick=()=>{sync();const sp=$("#a-sp").value;if(!sp)return;fd.tirs.unshift({id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[]});render()};
+ document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.v).ok=true;render()});
+ document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.o).ok=false;render()});
+ document.querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{sync();const[id,x]=b.dataset.sx.split(":"),t=T(id);t.sx=CLS[t.sp]?x:(t.sx==x?null:x);render()});
+ document.querySelectorAll("[data-dk]").forEach(i=>i.oninput=()=>{const[id,k,ix]=i.dataset.dk.split("|"),t=T(id);t[k]=t[k]||[];t[k][+ix]=i.value});
+ document.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.u);t.u=t.u=="b"?"c":"b";render()});
+ document.querySelectorAll("[data-x]").forEach(b=>b.onclick=()=>{sync();fd.tirs=fd.tirs.filter(t=>t.id!=b.dataset.x);render()});
+ document.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.t),k=b.dataset.k,up=+b.dataset.n>0;
+  if(up){if(k=="p"){t.p++;if(t.h<t.p){t.h=t.p;t.n++}}else if(k=="n")t.n++;else{t[k]++;t.n++}}
+  else if(k=="p")t.p=Math.max(0,t.p-1);
+  else if(k=="h"){if(t.h>t.p){t.h--;t.n=Math.max(0,t.n-1)}}
+  else if(k=="m"){if(t.m>0){t.m--;t.n=Math.max(0,t.n-1)}}
+  else t.n=Math.max(0,t.n-1);
+  render()});
+ document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.l);pickLoc(t.loc||e.place,p=>{t.loc=p;render()},t.loc?()=>{t.loc=null;render()}:null)});
+ document.querySelectorAll("[data-rp]").forEach(b=>b.onclick=()=>{sync();fd.photos.splice(+b.dataset.rp,1);render()});
+ $("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
+ $("#tb").onclick=()=>{sync();openTab()}}
+function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const k=Math.min(1,720/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.6))};i.src=URL.createObjectURL(f)})}
+function openTab(){let tmp=Object.assign({},fd.tab);if(!fd.tab)fd.tirs.forEach(t=>{if(t.p)tmp[tname(t)]=(tmp[tname(t)]||0)+t.p});
+ const th=p=>`<img data-pid="${p}" alt="Tableau" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px">`,ents=Object.entries(visTab()),gs=i=>ents[i][1].reduce((a,s)=>a+(tmp[s]||0),0);
+ modal(`<h2>Tableau final</h2><p class="mut sans">Ouvre une catégorie puis indique la quantité par espèce. Pré-rempli avec les pièces prélevées de tes tirs.</p>
+ ${ents.map(([g,a],i)=>`<details class="dt"><summary><span>${g}</span><span class="bg" data-bg="${i}">${gs(i)||""}</span></summary><div class="in">${a.map(s=>`<div class="row sans" style="padding:4px 0"><span>${esc(s)}</span><span class="st" style="flex:0 0 125px;justify-content:flex-end"><button data-s="${esc(s)}" data-gi="${i}" data-n="-1">−</button><b>${tmp[s]||0}</b><button data-s="${esc(s)}" data-gi="${i}" data-n="1">+</button></span></div>`).join("")}</div></details>`).join("")}
+ <h3>Photo du tableau</h3><div class="ph" id="t-th">${fd.tabPhotos.map(th).join("")}</div>
+ <label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:8px;color:var(--ink)">📷 Prendre une photo<input type="file" accept="image/*" capture="environment" id="t-ph" hidden></label>
+ <button class="p" id="t-ok" style="width:100%;margin-top:12px">Valider le tableau</button>`);
+ document.querySelectorAll("#mo [data-s]").forEach(b=>b.onclick=()=>{const s=b.dataset.s;tmp[s]=Math.max(0,(tmp[s]||0)+ +b.dataset.n);b.parentNode.querySelector("b").textContent=tmp[s];$('#mo [data-bg="'+b.dataset.gi+'"]').textContent=gs(+b.dataset.gi)||""});
+ $("#t-ph").onchange=async ev=>{const f=ev.target.files[0];if(!f)return;const p=await addPhoto(f);fd.tabPhotos.push(p);$("#t-th").insertAdjacentHTML("beforeend",th(p));hydrate()};
+ $("#t-ok").onclick=()=>{Object.keys(tmp).forEach(k=>{if(!tmp[k])delete tmp[k]});fd.tab=tmp;closeM();render()}}
+
+/* ---------- fiche : consultation ---------- */
+const GC={br:["#d49a62","#94602f","#53321a"],tn:["#e8b678","#bc7d40","#7d4c25"],dk:["#78685a","#45382d","#1e1813"],gy:["#c4c8cc","#838a90","#4c5156"],bk:["#666b72","#2a2d31","#0d0e10"],cr:["#fffdf6","#ede2cb","#c2b399"],rd:["#f7ae62","#d4631c","#81360f"],gn:["#7fdcb0","#1f9068","#0e4f38"],rs:["#f4a85a","#bd531d","#6c2811"],bl:["#9adce6","#2f8da4","#154d60"],bg:["#ecd0a2","#bf9460","#7f5e33"],wh:["#ffffff","#efede6","#bcb9ae"],ye:["#ffe680","#f2b72d","#a97500"],g2:["#d3c3ac","#96806a","#5a4a3d"],pk:["#ffd0c8","#e59a92","#b0665e"],ro:["#ff8f7e","#d62c1f","#7a0f0a"]};
+(function(){let d="";for(const k in GC){const[l,b,e]=GC[k];d+=`<radialGradient id="g${k}" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="${l}"/><stop offset=".5" stop-color="${b}"/><stop offset="1" stop-color="${e}"/></radialGradient>`}
+ const lin=(id,c)=>`<linearGradient id="${id}" x1="0" x2="1" y1="0" y2="0">${c.map((x,i)=>`<stop offset="${i/(c.length-1)}" stop-color="${x}"/>`).join("")}</linearGradient>`;
+ d+=lin("lcu",["#6b3a1c","#f6b680","#c4793f","#6b3a1c"])+lin("lbr",["#7a5714","#ffe48a","#c9982b","#6b4a0e"])+lin("lsh",["#6e0f0f","#ff7566","#d02424","#6a0c0c"]);
+ document.body.insertAdjacentHTML("afterbegin",`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${d}</defs></svg>`)})();
+const Fl=c=>`fill="url(#g${c})"`,Ey=(x,y,r=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#15110d"/><circle cx="${x-r*.3}" cy="${y-r*.35}" r="${r*.38}" fill="#fff"/>`,SH='<ellipse cx="32" cy="45" rx="21" ry="2.2" fill="#000" opacity=".15"/>';
+const legs=(xs,y1,y2,c,w)=>xs.map(x=>`<rect x="${x}" y="${y1}" width="${w}" height="${y2-y1}" rx="1.4" ${Fl(c)}/><rect x="${x-.2}" y="${y2-1.6}" width="${w+.4}" height="2" rx="1" fill="#1b1410"/>`).join("");
+const bone=(d,w)=>`<path d="${d}" fill="none" stroke="#7a5d2c" stroke-width="${w+1.2}" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#f0dfb0" stroke-width="${w}" stroke-linecap="round"/>`;
+const deer=o=>{const c=o.c,A=o.a;let a="";
+ if(A==2)a=bone("M46 12Q41 7 43 1M43.5 8L38.5 6M43 4.5L38.5 2.5M47.5 11.5Q51 6 49.5 1M50 6L53.5 4M49.6 3L52.5 1",1.4);
+ if(A==1)a=bone("M46 12L44.5 5.5M45 9L41.5 7.5M44.5 5.5L46.5 3.5M48 11.5L49 6L51 4.5",1.3);
+ if(A==3)a='<path d="M46 12L41 8L39 3L43 5L44 1.5L47 6L49.5 2.5L49.5 8L48 11.5Z" fill="#e6d3a3" stroke="#7a5d2c" stroke-width=".8"/>';
+ const rump=o.r?'<ellipse cx="13.6" cy="29" rx="2.6" ry="4.2" fill="#fff8ea"/>':"",sp=o.sp?[[21,25],[26,24],[31,26],[24,29],[29,30],[19,29],[33,23]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.1" fill="#fff4dc" opacity=".9"/>`).join(""):"";
+ return `<g transform="translate(32 44.5) scale(${o.s}) translate(-32 -44.5)">${legs([16,20,36,40],31,44.5,"dk",3)}<ellipse cx="28" cy="29" rx="15" ry="8" ${Fl(c)}/><ellipse cx="27" cy="33.5" rx="11" ry="3.6" ${Fl("cr")} opacity=".4"/>${rump}${sp}<path d="M35 26L43 15L49.5 18L42 34Z" ${Fl(c)}/><ellipse cx="13" cy="25" rx="2" ry="3.2" ${Fl(c)}/>${a}<ellipse cx="48" cy="16" rx="6" ry="3.7" transform="rotate(24 48 16)" ${Fl(c)}/><circle cx="53.4" cy="18.4" r="1.4" fill="#1b1410"/><ellipse cx="43.2" cy="11.5" rx="1.8" ry="3.5" transform="rotate(-28 43.2 11.5)" ${Fl(c)}/><ellipse cx="43.3" cy="11.6" rx=".8" ry="2.4" transform="rotate(-28 43.3 11.6)" fill="#e6a99a" opacity=".8"/>${Ey(49.6,15,.9)}</g>`};
+const hare=(ear,s)=>`<g transform="translate(32 44.5) scale(${s}) translate(-32 -44.5)"><ellipse cx="25" cy="33" rx="15" ry="9.5" ${Fl("bg")}/><ellipse cx="17" cy="37" rx="8" ry="6.5" ${Fl("bg")}/><ellipse cx="22" cy="43.2" rx="9" ry="2" ${Fl("bg")}/><circle cx="11.5" cy="31.5" r="3.4" ${Fl("wh")}/><ellipse cx="38" cy="35" rx="4.5" ry="8" ${Fl("bg")}/><ellipse cx="42" cy="43" rx="4" ry="1.6" ${Fl("bg")}/><ellipse cx="42.5" cy="27" rx="7" ry="5.5" ${Fl("bg")}/><ellipse cx="40" cy="${23-ear}" rx="2.4" ry="${ear}" transform="rotate(-10 40 23)" ${Fl("bg")}/><ellipse cx="45" cy="${23.5-ear}" rx="2.4" ry="${ear}" transform="rotate(14 45 23.5)" ${Fl("bg")}/><ellipse cx="40" cy="${23-ear*.9}" rx="1" ry="${ear*.7}" transform="rotate(-10 40 23)" fill="#e6a99a" opacity=".8"/><circle cx="49" cy="28" r="1.3" fill="#c46a63"/>${Ey(45.5,25.8,1)}</g>`;
+const boar=`<g>${legs([14,19,40,45],33,44.5,"dk",3.6)}<path d="M7 31Q8 20 24 19.5Q38 19 44 24.5L51 27.5Q56 29 55.5 33L52 36.5Q47 37.5 43 36.5Q37 38.5 20 38Q8 38 7 31Z" ${Fl("dk")}/><path d="M12 24Q24 17 40 22" fill="none" stroke="#14100c" stroke-width="2" stroke-dasharray="1.6 1.4" stroke-linecap="round"/><ellipse cx="52" cy="32" rx="6" ry="4.6" ${Fl("dk")}/><ellipse cx="57.3" cy="32.2" rx="2.6" ry="3.2" ${Fl("pk")}/><path d="M53 35.5Q57 38.5 58 33" fill="none" stroke="#fff6e0" stroke-width="1.6" stroke-linecap="round"/><path d="M42 22L45.5 14.5L49 23Z" ${Fl("dk")}/>${Ey(50,28.2,.95)}<path d="M7 31Q4 29 5 25" fill="none" stroke="#2a2018" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const mouflon=`<g>${legs([16,20,38,42],32,44.5,"dk",3)}<ellipse cx="28" cy="30" rx="15" ry="8.5" ${Fl("br")}/><ellipse cx="29" cy="28.5" rx="8" ry="4" ${Fl("cr")} opacity=".6"/><path d="M36 26L43 17L49 20L43 34Z" ${Fl("br")}/><ellipse cx="48" cy="19" rx="5.4" ry="3.8" transform="rotate(22 48 19)" ${Fl("dk")}/><circle cx="53" cy="21" r="1.3" fill="#111"/>${bone("M45 15Q36 9 35 17Q37 22 41 19",2.2)}${Ey(49.5,17.6,.85)}</g>`;
+const fcoq=`<g><path d="M20 29Q6 30 1.5 41Q10 38 17 36.5Q22 35 23 31Z" ${Fl("br")}/><path d="M20 30Q8 32 5 39" stroke="#2a1008" stroke-width=".9" fill="none" opacity=".5"/><ellipse cx="30" cy="30" rx="13.5" ry="8.5" transform="rotate(-8 30 30)" ${Fl("br")}/><ellipse cx="37" cy="31.5" rx="7" ry="6.5" ${Fl("rs")}/><path d="M38 26L40 20L45 20L43 27Z" ${Fl("gn")}/><ellipse cx="40.6" cy="26" rx="4.6" ry="1.4" transform="rotate(-20 40.6 26)" ${Fl("wh")}/><circle cx="44" cy="17.5" r="4.3" ${Fl("gn")}/><ellipse cx="45.3" cy="18.8" rx="3" ry="2.3" ${Fl("ro")}/><path d="M47.5 16.5L51.5 18L47.5 19.3Z" ${Fl("ye")}/>${Ey(45.4,16.4,.8)}<path d="M28 38L27 44M33 38L34 44" stroke="#5a4a3d" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const fpoule=`<g><path d="M20 30Q10 31 7 38Q14 36 19 35Z" ${Fl("g2")}/><ellipse cx="30" cy="31" rx="13" ry="8.5" ${Fl("bg")}/><ellipse cx="37" cy="32" rx="6.5" ry="6" ${Fl("tn")}/>${[[24,28],[29,26],[33,29],[27,32],[22,32],[35,34]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.3" fill="#4e3016" opacity=".45"/>`).join("")}<path d="M38 27L40.5 21.5L45 21.5L43 28Z" ${Fl("bg")}/><circle cx="44" cy="18.5" r="4" ${Fl("bg")}/><path d="M47 17.5L50.6 19L47 20.2Z" ${Fl("ye")}/>${Ey(45.2,17.6,.8)}<path d="M28 38.5L27 44M33 38.5L34 44" stroke="#5a4a3d" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const perdrix=`<g><path d="M16 28L5 32L17 35Z" ${Fl("rs")}/><ellipse cx="29" cy="31" rx="14" ry="10.5" ${Fl("gy")}/><ellipse cx="33" cy="35" rx="9" ry="6" ${Fl("cr")} opacity=".8"/><path d="M27 34Q33 38 39 33" stroke="#7d3410" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="42" cy="21" r="5.2" ${Fl("rd")}/><path d="M45.6 20.2L49.4 21.8L45.6 23Z" ${Fl("ye")}/>${Ey(43.4,19.8,.9)}<path d="M28 41L27 44.5M33 41L34 44.5" stroke="#8a6a50" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const becasse=`<g><ellipse cx="27" cy="31" rx="15" ry="10.5" ${Fl("tn")}/><path d="M14 27Q22 24 32 28M14 32Q23 29 33 33M17 36Q25 34 33 37" stroke="#4e3016" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".6"/><path d="M13 29L4 36L16 36Z" ${Fl("br")}/><circle cx="40.5" cy="22.5" r="6" ${Fl("tn")}/><path d="M44 23.8L61 28.4L44 26Z" ${Fl("bg")}/><circle cx="39" cy="20.5" r="1.9" fill="#1b1410"/><circle cx="38.5" cy="20" r=".6" fill="#fff"/><path d="M26 41L25 44.5M31 41L32 44.5" stroke="#c99a7a" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const pigeon=`<g><path d="M15 29L3 35L16 36Z" ${Fl("gy")}/><ellipse cx="28" cy="31" rx="14.5" ry="9" ${Fl("gy")}/><path d="M18 28Q28 25 36 30M20 32Q28 29 36 33" stroke="#2f3338" stroke-width="1.8" fill="none" opacity=".65" stroke-linecap="round"/><ellipse cx="38" cy="26" rx="5" ry="4.2" ${Fl("gn")}/><circle cx="43" cy="21.5" r="4.4" ${Fl("gy")}/><path d="M46.5 21L51 22.4L46.5 23.4Z" fill="#e9d9d0"/><circle cx="44.5" cy="20.5" r="1" fill="#e5532f"/><circle cx="44.6" cy="20.5" r=".5" fill="#111"/><path d="M27 39L26 44.5M32 39L33 44.5" stroke="#d27a8a" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const duck=(h,b,ch,w)=>`<g><path d="M12 32L4 28L13 37Z" ${Fl("bk")}/><ellipse cx="28" cy="34" rx="17" ry="8.5" ${Fl(b)}/><ellipse cx="27" cy="36.5" rx="13" ry="4.5" ${Fl("wh")} opacity=".22"/><ellipse cx="38.5" cy="30.5" rx="7" ry="6.5" ${Fl(ch)}/><ellipse cx="25" cy="32.5" rx="9" ry="3.4" ${Fl(w)}/><path d="M40 27L42 21L48 22L46 30Z" ${Fl(h)}/><ellipse cx="42.2" cy="26.2" rx="4.4" ry="1.1" transform="rotate(-15 42.2 26.2)" ${Fl("wh")}/><circle cx="45.5" cy="19.5" r="5" ${Fl(h)}/><path d="M48.6 19.4Q55 19.6 56.5 22.6Q50 24 48.4 22Z" ${Fl("ye")}/>${Ey(46.8,18.4,.9)}<path d="M27 42L26 44.5M32 42L33 44.5" stroke="#e08a2a" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const oie=`<g><path d="M12 32L3 29L13 37Z" ${Fl("wh")}/><ellipse cx="26" cy="34" rx="18" ry="9" ${Fl("g2")}/><ellipse cx="26" cy="38" rx="14" ry="4.6" ${Fl("cr")} opacity=".6"/><path d="M36 33Q45 26 42 14L48 14Q51 28 45 38Z" ${Fl("g2")}/><ellipse cx="46.5" cy="12" rx="5" ry="3.6" ${Fl("g2")}/><path d="M50 10.8L58 13L50.6 15Z" ${Fl("rs")}/>${Ey(46,11,.9)}<path d="M25 42L24 44.5M31 42L32 44.5" stroke="#e08a2a" stroke-width="1.8" stroke-linecap="round"/></g>`;
+const corbeau=`<g><path d="M15 29L2 33L16 36Z" ${Fl("bk")}/><ellipse cx="28" cy="31" rx="14.5" ry="8.8" ${Fl("bk")}/><path d="M16 29Q27 24 37 30" stroke="#7a8896" stroke-width="1.4" fill="none" opacity=".5" stroke-linecap="round"/><circle cx="42" cy="21" r="5.2" ${Fl("bk")}/><path d="M45.6 19.4L53 21.6L45.8 24Z" ${Fl("bk")}/><circle cx="43.6" cy="19.6" r="1.1" fill="#d9d9d9"/><circle cx="43.8" cy="19.6" r=".5" fill="#000"/><path d="M27 39L26 44.5M32 39L33 44.5" stroke="#222" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const pie=`<g><path d="M16 29L0 27L1 33L17 35Z" ${Fl("bk")}/><ellipse cx="28" cy="31" rx="14.5" ry="8.8" ${Fl("bk")}/><ellipse cx="31" cy="35" rx="10" ry="5" ${Fl("wh")}/><ellipse cx="24" cy="29" rx="6" ry="2.6" transform="rotate(-8 24 29)" ${Fl("wh")}/><path d="M14 30Q22 27 30 31" stroke="#2f8da4" stroke-width="1.3" fill="none" opacity=".7"/><circle cx="42" cy="21" r="5.2" ${Fl("bk")}/><path d="M45.6 19.4L53 21.6L45.8 24Z" ${Fl("bk")}/><circle cx="43.6" cy="19.6" r="1.1" fill="#d9d9d9"/><path d="M27 39L26 44.5M32 39L33 44.5" stroke="#222" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const geai=`<g><path d="M15 30L3 34L16 36Z" ${Fl("bk")}/><ellipse cx="28" cy="31" rx="14" ry="8.8" ${Fl("rs")}/><ellipse cx="28" cy="33" rx="11" ry="5" ${Fl("pk")} opacity=".6"/><ellipse cx="25" cy="29" rx="7" ry="3" transform="rotate(-6 25 29)" ${Fl("bl")}/><path d="M20 28L30 29M20 30L30 31" stroke="#0b2a38" stroke-width=".8" opacity=".6"/><circle cx="41" cy="21" r="5.2" ${Fl("pk")}/><path d="M37 17Q41 14 45 17" stroke="#222" stroke-width="2" fill="none"/><path d="M44 22L47 26" stroke="#111" stroke-width="1.6" stroke-linecap="round"/><path d="M44.8 20.2L51 22L44.8 23.6Z" ${Fl("bk")}/>${Ey(42.2,19.6,.9)}<path d="M27 39L26 44.5M32 39L33 44.5" stroke="#6a5a4a" stroke-width="1.6" stroke-linecap="round"/></g>`;
+const renard=`<g>${legs([17,21,37,41],34,44.5,"bk",2.8)}<ellipse cx="10" cy="31" rx="11" ry="5.2" transform="rotate(-14 10 31)" ${Fl("rd")}/><ellipse cx="2.8" cy="33.8" rx="3.6" ry="3" ${Fl("wh")}/><ellipse cx="28" cy="32" rx="14.5" ry="7" ${Fl("rd")}/><ellipse cx="29" cy="35.5" rx="10" ry="3" ${Fl("cr")} opacity=".7"/><path d="M38 26L44 22L49 24L47 33L40 34Z" ${Fl("rd")}/><path d="M43 22.5L56 29.2L47.5 33.2L42 31Z" ${Fl("rd")}/><path d="M44 31.5L53 31L47.5 34Z" ${Fl("wh")}/><path d="M43 23L44.4 14L49.5 21.5Z" ${Fl("rd")}/><path d="M44.5 21.5L45 17L47.5 20.8Z" fill="#2a1a10"/><circle cx="56.2" cy="29.2" r="1.5" fill="#111"/>${Ey(49,25.6,.9)}</g>`;
+const rongeur=(c,s)=>`<g transform="translate(32 44.5) scale(${s}) translate(-32 -44.5)"><path d="M11 37Q2 39 3 31Q4 27 8 29" fill="none" stroke="#33281e" stroke-width="2" stroke-linecap="round"/>${legs([20,40],38,44.5,"dk",4)}<ellipse cx="27" cy="33" rx="17.5" ry="10" ${Fl(c)}/><ellipse cx="45" cy="32" rx="8" ry="6" ${Fl(c)}/><circle cx="52.5" cy="33.5" r="1.7" fill="#1b1410"/><rect x="50.5" y="35.5" width="2.4" height="3" rx=".8" fill="#f09030"/><circle cx="43" cy="26.5" r="2.2" ${Fl(c)}/>${Ey(48.5,29.5,.9)}<path d="M52 33L58 31M52 34.5L58 35" stroke="#f5f0e4" stroke-width=".5"/></g>`;
+const ART={cerf:deer({c:"br",a:2,s:1}),biche:deer({c:"br",s:.93}),bichette:deer({c:"br",s:.8}),faon:deer({c:"br",s:.62,sp:1}),brocard:deer({c:"tn",a:1,r:1,s:.78}),chevrette:deer({c:"tn",r:1,s:.74}),chevrillard:deer({c:"tn",r:1,s:.55,sp:1}),daim:deer({c:"tn",a:3,sp:1,s:.88}),mouflon,sanglier:boar,lievre:hare(10,1),lapin:hare(5.5,.78),fcoq,fpoule,perdrix,becasse,pigeon,colvert:duck("gn","gy","br","bl"),chipeau:duck("g2","gy","bk","wh"),siffleur:duck("rs","gy","pk","gy"),souchet:duck("gn","rs","wh","bl"),pilet:duck("br","gy","wh","gn"),sarcelle:duck("rs","gy","tn","gn"),fuligule:duck("rs","bk","gy","gy"),oie,corbeau,pie,geai,renard,ragondin:rongeur("dk",1),rat:rongeur("bk",.7)};
+function silType(s){const n=s.toLowerCase();
+ if(n.startsWith("cerf")||n.startsWith("cervid"))return /bichette/.test(n)?"bichette":/femelle|biche/.test(n)?"biche":/jeune|faon/.test(n)?"faon":"cerf";
+ if(n.startsWith("chevreuil"))return /chevrette|femelle/.test(n)?"chevrette":/chevrillard|jeune/.test(n)?"chevrillard":"brocard";
+ if(n.startsWith("faisan"))return /poule/.test(n)?"fpoule":"fcoq";
+ const m=[["sanglier","sanglier"],["daim","daim"],["mouflon","mouflon"],["lièvre","lievre"],["lapin","lapin"],["perdrix","perdrix"],["bécasse","becasse"],["pigeon","pigeon"],["canard colvert","colvert"],["chipeau","chipeau"],["siffleur","siffleur"],["souchet","souchet"],["pilet","pilet"],["sarcelle","sarcelle"],["fuligule","fuligule"],["oie","oie"],["bernache","oie"],["ouette","oie"],["renard","renard"],["corneille","corbeau"],["corbeau","corbeau"],["pie ","pie"],["geai","geai"],["ragondin","ragondin"],["rat musqué","rat"]];
+ for(const[k,v]of m)if(n.includes(k))return v;return null}
+const sil=(s,w=56)=>{const t=silType(s);return t?`<svg viewBox="0 0 64 48" width="${w}" height="${Math.round(w*.75)}" aria-hidden="true" style="flex:0 0 auto">${SH}${ART[t]}</svg>`:""};
+const ICO={b:'<svg viewBox="0 0 32 32"><g transform="translate(1.6 1.8) scale(.9) rotate(18 16 16)"><path d="M16 2C20 6 22.5 11 22.5 16.5V22H9.5V16.5C9.5 11 12 6 16 2Z" fill="url(#lcu)"/><path d="M12 9Q13 6 15.5 4" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".55"/><rect x="9.5" y="22" width="13" height="6" rx="1" fill="url(#lbr)"/><rect x="9.5" y="22" width="13" height="1.2" fill="#5a3a10" opacity=".5"/><rect x="8.6" y="27.5" width="14.8" height="2.2" rx="1" fill="url(#lbr)"/></g></svg>',
+c:'<svg viewBox="0 0 32 32"><g transform="translate(1.6 1.8) scale(.9) rotate(18 16 16)"><rect x="9" y="3" width="14" height="19" rx="2.2" fill="url(#lsh)"/><path d="M9 4.8Q16 7 23 4.8" stroke="#4a0808" stroke-width="1.2" fill="none" opacity=".6"/><path d="M12 7V20" stroke="#fff" stroke-width="1.1" opacity=".35" stroke-linecap="round"/><rect x="8.4" y="21" width="15.2" height="7" rx="1.4" fill="url(#lbr)"/><rect x="8" y="27.4" width="16" height="2.4" rx="1.1" fill="url(#lbr)"/><circle cx="16" cy="24.5" r="1.6" fill="#7a5714"/></g></svg>',
+t:'<svg viewBox="0 0 32 32"><circle cx="16" cy="17" r="13.5" fill="#000" opacity=".12"/><circle cx="16" cy="16" r="13.5" fill="url(#gwh)"/><circle cx="16" cy="16" r="10.2" fill="url(#gro)"/><circle cx="16" cy="16" r="7" fill="url(#gwh)"/><circle cx="16" cy="16" r="3.9" fill="url(#gro)"/><circle cx="16" cy="16" r="1.5" fill="#fff"/><path d="M16 .8V9M16 23V31.2M.8 16H9M23 16H31.2" stroke="#1d241a" stroke-width="1.4" stroke-linecap="round"/></svg>'};
+const ic=(k,z=24)=>ICO[k].replace("<svg ",`<svg width="${z}" height="${z}" aria-hidden="true" style="flex:0 0 auto" `);
+function gauge(p){let a="";for(let i=0;i<18;i++){const q=i/17*100,h=q<=30?5:q<=45?5+(q-30)/15*23:q<=70?28:q<=85?28+(q-70)/15*82:110,t0=(180+i*10)*Math.PI/180,t1=(190+i*10)*Math.PI/180;a+=`<path d="M${30+22*Math.cos(t0)} ${30+22*Math.sin(t0)}A22 22 0 0 1 ${30+22*Math.cos(t1)} ${30+22*Math.sin(t1)}" stroke="hsl(${h} 70% 45%)" stroke-width="6" fill="none"/>`}
+ const t=(180+Math.min(100,p)*1.8)*Math.PI/180;return `<svg viewBox="0 0 60 36" width="60" height="36" aria-hidden="true">${a}<line x1="30" y1="30" x2="${30+17*Math.cos(t)}" y2="${30+17*Math.sin(t)}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="30" r="3.5" fill="currentColor"/></svg>`}
+function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};
+ if(f.tab&&Object.keys(f.tab).length)Object.assign(cnt,f.tab);else f.tirs.forEach(t=>{if(t.p)cnt[tname(t)]=(cnt[tname(t)]||0)+t.p});
+ const R=[],row=(l,v,i)=>R.push(`<div class="sr"><span class="lb">${i||""}${l}</span><b>${v}</b></div>`),pr=(l,h,n)=>{const p=Math.round(h/n*100);R.push(`<div class="sr"><span class="lb">${ic("t",26)}${l}</span><span style="display:flex;align-items:center;gap:8px">${gauge(p)}<b>${p}%</b></span></div>`)};
+ if(a.m)row("Ratés",a.m);
+ if(a.bn){row("Balles tirées",a.bn,ic("b",26));if(a.bh)row("Balles ayant touché",a.bh);pr("Précision balles",a.bh,a.bn)}
+ if(a.cn){row("Cartouches tirées",a.cn,ic("c",26));if(a.ch)row("Cartouches ayant touché",a.ch);pr("Précision cartouches",a.ch,a.cn)}
+ $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(e.mode||"type à préciser")}<br>📍 ${esc(lieu(e.place))} ${link(e.place)}</p>
+ ${Object.keys(cnt).length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut">Aucun gibier prélevé.</p>'}
+ ${R.length?`<h2>Statistiques</h2><div class="card sans">${R.join("")}</div>`:""}
+ ${f.tirs.length?`<h2>Détail des tirs</h2>${f.tirs.map(t=>`<div class="card sans"><b>${esc(tname(t))}</b> ${CLS[t.sp]?"":sxi(t.sx)}<br>Prélevé <b>${t.p}</b> · Raté <b>${t.m}</b> · Touché <b>${t.h}</b> · ${UL[t.u]} <b>${t.n}</b>${esc(extra(t))}<br><span class="mut">📍 ${esc(lieu(t.loc||e.place))} ${link(t.loc||e.place)}</span></div>`).join("")}`:""}
+ ${(f.tabPhotos||[]).length?`<h2>Tableau de chasse</h2><div class="ph">${f.tabPhotos.map(p=>`<img data-pid="${p}" alt="Tableau de chasse">`).join("")}</div>`:""}
+ ${f.photos.length?`<h2>Photos</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`:""}
+ ${f.notes?`<h2>Notes</h2><div class="card">${esc(f.notes)}</div>`:""}
+ <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
+ $("#bk").onclick=()=>go("cal");$("#md").onclick=()=>openFiche(fe)}
+
+/* ---------- statistiques ---------- */
+function bars2(map,attr,on){const e=Object.entries(map).sort((x,y)=>attr=="sea"?(x[0]<y[0]?1:-1):y[1]-x[1]),m=Math.max(1,...e.map(x=>x[1]));return e.map(([k,v])=>`<button class="bar${k==on?" on":""}" data-${attr}="${esc(k)}"><em>${esc(k)}</em><div style="width:${v/m*55}%"></div><small>${v}</small></button>`).join("")||'<p class="mut">Pas encore de données.</p>'}
+function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(withF.map(e=>season(e.date)))].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
+ const bySp={},bySec={},cnt={},bySea={},place=e=>e.place.name||coord(e.place)||"(sans nom)",pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
+ a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
+ L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});
+ withF.forEach(e=>{const k=season(e.date);bySea[k]=(bySea[k]||0)+pt(e)});
+ const mx=(k,sp)=>{let m=0;a.T.forEach(t=>{if(t.sp==sp&&(k=="w"||t.sx=="m"))(t[k]||[]).slice(0,t.p).forEach(v=>{if(+v>m)m=+v})});return m},hw=mx("w","Sanglier"),hc=mx("c","Cervidé"),hb=mx("c","Chevreuil");
+ const gb=(n,h,u,lab)=>n?`<div class="sc2"><div class="lb" style="justify-content:center">${ic(u,26)}<span style="font:600 .9rem system-ui;color:var(--ink)">${lab}</span></div>${gauge(Math.round(h/n*100)).replace('width="60" height="36"','width="110" height="66"')}<b>${Math.round(h/n*100)}%</b><span>${n} tirées · ${h} touchées</span></div>`:"";
+ const rat={};Object.keys(bySec).forEach(k=>rat[k]=Math.round(bySec[k]/cnt[k]*10)/10);
+ $("#app").innerHTML=`<h1 style="margin-top:4px">Statistiques</h1>
+ <div class="chips2"><button class="fc${seasonF=="all"?" on":""}" data-sf="all">Toutes</button>${seasons.map(x=>`<button class="fc${x==seasonF?" on":""}" data-sf="${x}">${x}</button>`).join("")}</div>
+ <div class="kp" style="margin-top:12px"><div class="sc2"><b>${L.length}</b><span>journées</span></div><div class="sc2"><b>${a.p}</b><span>prélevés</span></div><div class="sc2"><b>${a.m}</b><span>ratés</span></div></div>
+ ${a.bn||a.cn?`<h2>Précision</h2><div class="pg2">${gb(a.bn,a.bh,"b","Balles")}${gb(a.cn,a.ch,"c","Cartouches")}</div>`:""}
+ ${Object.keys(bySp).length?`<h2>Tableau de chasse</h2><div class="tls">${Object.entries(bySp).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
+ ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cervidé – mâle",56)}<b>${hc}</b><span>cors max (cervidé)</span></div>`:""}${hb?`<div class="sc2">${sil("Chevreuil – brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
+ <h2>Par saison</h2><div class="card">${bars2(bySea,"sea",seasonF)}</div>
+ <h2>Par lieu de chasse</h2><div class="card">${bars2(bySec,"pl")}</div><p class="mut sans">Touche une barre pour filtrer ou voir les journées.</p>
+ <h2>Prélevés par sortie, par lieu</h2><div class="card">${Object.entries(rat).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<div class="bar"><em>${esc(k)}</em><div style="width:${v/Math.max(1,...Object.values(rat))*55}%"></div><small>${v}</small></div>`).join("")||'<p class="mut">Pas encore de données.</p>'}</div><div style="height:90px"></div>`;
+ fbar(()=>go("cal"));
+ const drill=(h,top,rows)=>{modal(`<h2 style="display:flex;align-items:center;gap:8px;margin-top:0">${h}</h2>${top}${rows.sort((x,y)=>y.e.date<x.e.date?-1:1).map(r=>`<button class="s li" data-go="${r.e.id}"><b>${dt(r.e.date)}</b> · ${esc(r.e.title)}<br><span class="mut sans">${r.txt}</span></button>`).join("")}`);document.querySelectorAll("#mo [data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;closeM();go("sum")})};
+ document.querySelectorAll("[data-sf]").forEach(b=>b.onclick=()=>{seasonF=b.dataset.sf;render()});
+ document.querySelectorAll("[data-sea]").forEach(b=>b.onclick=()=>{seasonF=seasonF==b.dataset.sea?"all":b.dataset.sea;render()});
+ document.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{const k=b.dataset.sp,rows=[],ws=[],cs=[];let tot=0;
+  L.forEach(e=>{const ts=e.fiche.tirs.filter(t=>tname(t)==k&&t.p);if(!ts.length)return;const q=ts.reduce((x,t)=>x+t.p,0);tot+=q;
+   ts.forEach(t=>{(t.w||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)ws.push(+v)});if(CLS[t.sp]&&t.sx=="m")(t.c||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)cs.push(+v)})});
+   rows.push({e,txt:q+" prélevé"+(q>1?"s":"")+esc(ts.map(extra).join(""))})});
+  const av=x=>(x.reduce((u,v)=>u+v,0)/x.length).toFixed(1);
+  drill(`${sil(k,56)}<span>${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${tot}</b><span>prélevés</span></div><div class="sc2"><b>${rows.length}</b><span>journées</span></div>${ws.length?`<div class="sc2"><b>${av(ws)}</b><span>kg en moyenne</span></div>`:cs.length?`<div class="sc2"><b>${av(cs)}</b><span>cors en moyenne</span></div>`:""}</div>`,rows)});
+ document.querySelectorAll("[data-pl]").forEach(b=>b.onclick=()=>{const k=b.dataset.pl,es=L.filter(e=>place(e)==k);
+  drill(`<span>📍 ${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${es.length}</b><span>journées</span></div><div class="sc2"><b>${bySec[k]}</b><span>prélevés</span></div></div>`,es.map(e=>({e,txt:pt(e)+" prélevé"+(pt(e)>1?"s":"")})))})}
+function migrate(){const OLD="Cerf élaphe",mp={cerf:"m",biche:"f",bichette:"j",faon:"j",brocard:"m",chevrette:"f",chevrillard:"j",coq:"m",poule:"f"},tn={cerf:"mâle",biche:"femelle",bichette:"jeune",faon:"jeune"};
+ S.hs=(S.hs||[]).map(x=>x==OLD?"Cervidé":x);
+ evs().forEach(e=>{const f=e.fiche;if(!f)return;
+  (f.tirs||[]).forEach(t=>{const m=String(t.sp).match(/^(Cerf élaphe|Cervidé|Chevreuil|Faisan) – (.+)$/);if(m){t.sp=m[1]==OLD?"Cervidé":m[1];t.sx=mp[m[2]]||t.sx||null}else if(t.sp==OLD)t.sp="Cervidé"});
+  if(f.tab){const n={};Object.entries(f.tab).forEach(([k,v])=>{const m=k.match(/^(?:Cerf élaphe|Cervidé)(?: – (.+))?$/);if(m)k="Cervidé"+(m[1]?" – "+(tn[m[1]]||m[1]):"");n[k]=(n[k]||0)+v});f.tab=n}});save()}
+applyTheme();migrate();
+go("cal");
+migratePhotos().then(c=>{if(c)render()}).catch(()=>{});
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+</script>
+<script>
+if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").then(r=>{r.onupdatefound=()=>{const n=r.installing;n&&n.addEventListener("statechange",()=>{if(n.state=="installed"&&navigator.serviceWorker.controller)toast("Nouvelle version installée : ferme puis rouvre l'application.")})}}).catch(()=>{}));
+</script></body></html>

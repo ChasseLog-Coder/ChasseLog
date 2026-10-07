@@ -1,0 +1,17 @@
+{
+  "name": "Carnet de chasse",
+  "short_name": "Chasse",
+  "description": "Journal de chasse : calendrier, tirs, photos et statistiques, stockés sur ton téléphone.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f1efe6",
+  "theme_color": "#3f5a2b",
+  "lang": "fr",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

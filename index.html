@@ -115,7 +115,7 @@ button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;fo
 </style></head><body>
 <aside id="dr"><h2>Carnet de chasse</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-st">Statistiques</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-st">Statistiques</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
 <button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button></div></aside>
@@ -175,7 +175,7 @@ function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFu
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates})[view]();hydrate()}
+function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes})[view]();hydrate()}
 function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
 const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
@@ -189,44 +189,94 @@ async function purl(id){if(PU[id])return PU[id];const b=await DB.get(id);return 
 async function hydrate(){await Promise.all([...document.querySelectorAll("img[data-pid]")].filter(i=>!i.dataset.ok).map(async i=>{try{const u=await purl(i.dataset.pid);if(u){i.src=u;i.dataset.ok=1}}catch(e){}}))}
 const compress=(f,max=1600,q=.8)=>new Promise(r=>{const i=new Image,u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext("2d").drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>r(b||f),"image/jpeg",q)};i.onerror=()=>r(f);i.src=u});
 async function addPhoto(f){const b=await compress(f),id=pid();await DB.put(id,b);return id}
-async function migratePhotos(){let ch=0;for(const e of evs()){const f=e.fiche;if(!f)continue;for(const k of["photos","tabPhotos"]){const a=f[k]||[];for(let i=0;i<a.length;i++)if(String(a[i]).startsWith("data:")){const b=await(await fetch(a[i])).blob(),id=pid();await DB.put(id,b);a[i]=id;ch=1}}}if(ch)save();return ch}
-async function gc(){try{const used=new Set();evs().forEach(e=>{const f=e.fiche;if(f)[...(f.photos||[]),...(f.tabPhotos||[])].forEach(x=>used.add(x))});for(const k of await DB.keys())if(!used.has(k)&&!String(k).startsWith("_")){await DB.del(k);if(PU[k]){URL.revokeObjectURL(PU[k]);delete PU[k]}}}catch(e){}}
+async function migratePhotos(){let ch=0;const mv=async arr=>{for(let i=0;i<arr.length;i++)if(String(arr[i]).startsWith("data:")){const b=await(await fetch(arr[i])).blob(),id=pid();await DB.put(id,b);arr[i]=id;ch=1}};
+ for(const e of evs()){const f=e.fiche;if(!f)continue;await mv(f.photos||[]);await mv(f.tabPhotos||[]);for(const t of f.tirs||[])await mv(t.ph||[])}if(ch)save();return ch}
+async function gc(){try{const used=new Set();evs().forEach(e=>{const f=e.fiche;if(f)[...(f.photos||[]),...(f.tabPhotos||[]),...(f.tirs||[]).flatMap(t=>t.ph||[])].forEach(x=>used.add(x))});for(const k of await DB.keys())if(!used.has(k)&&!String(k).startsWith("_")){await DB.del(k);if(PU[k]){URL.revokeObjectURL(PU[k]);delete PU[k]}}}catch(e){}}
 const b2d=b=>new Promise(r=>{const fr=new FileReader;fr.onload=()=>r(fr.result);fr.readAsDataURL(b)});
-async function exportJSON(){const c=JSON.parse(JSON.stringify(S));for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;for(const k of["photos","tabPhotos"])f[k]=(await Promise.all((f[k]||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean)}return JSON.stringify(c)}
+async function exportJSON(){const c=JSON.parse(JSON.stringify(S)),inl=async arr=>(await Promise.all((arr||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean);
+ for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;f.photos=await inl(f.photos);f.tabPhotos=await inl(f.tabPhotos);for(const t of f.tirs||[])if(t.ph)t.ph=await inl(t.ph)}return JSON.stringify(c)}
 document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid]");if(i)modal(`<img data-pid="${i.dataset.pid}" alt="Photo" style="width:100%;border-radius:8px;margin-top:22px">`,"3")});
+
+/* ---------- armes ---------- */
+const S_STD=".243 Win|6.5x55 SE|.270 Win|.308 Win|.30-06 Spr|8x57 IS|9.3x62",S_MAG=S_STD+"|.300 Win Mag|7mm Rem Mag",S_CM=".243 Win|6.5 Creedmoor|.270 Win|7mm-08 Rem|.308 Win|.30-06 Spr|.300 Win Mag",
+ F2="12/76|12/70|20/76|20/70",F3="12/76|12/70|20/76|20/70|16/70|28/70";
+const ARMES={carabine:{
+ "Blaser":{"R8":S_MAG+"|6.5 Creedmoor","R93":S_MAG,"K95":S_STD},
+ "Browning":{"X-Bolt":S_CM,"BAR":S_STD+"|.300 Win Mag","Maral":".308 Win|.30-06 Spr|9.3x62"},
+ "Sauer":{"100":S_MAG,"101":S_MAG,"404":S_STD+"|.300 Win Mag"},
+ "Mauser":{"M03":S_MAG,"M12":S_MAG,"M18":S_CM+"|8x57 IS|9.3x62"},
+ "Merkel":{"RX Helix":S_MAG+"|9.3x74R","KR1":S_STD},
+ "Sako":{"85":S_MAG,"S20":S_CM+"|9.3x62"},
+ "Tikka":{"T3x":S_CM+"|6.5x55 SE"},
+ "Steyr Mannlicher":{"SM12":S_STD,"CL II":S_STD},
+ "Remington":{"700":S_MAG,"783":S_CM},
+ "Winchester":{"Model 70":S_CM,"XPR":S_CM},
+ "Savage":{"110":S_CM,"Axis":S_CM},
+ "Ruger":{"American":S_CM,"M77 Hawkeye":S_CM},
+ "Weatherby":{"Vanguard":S_CM,"Mark V":".270 Win|.30-06 Spr|.300 Win Mag|7mm Rem Mag|.300 Wby Mag"},
+ "CZ":{"550":S_STD,"557":S_STD},
+ "Beretta":{"BRX1":".270 Win|.308 Win|.30-06 Spr|.300 Win Mag"},
+ "Heym":{"SR 30":S_MAG},
+ "Krieghoff":{"Classic (express)":"9.3x74R|.308 Win|.30-06 Spr"}},
+fusil:{
+ "Beretta":{"686 Silver Pigeon":F2,"687 Silver Pigeon III":F2,"A400 Xplor":F2,"A300 Ultima":F2},
+ "Browning":{"B525":F2,"Maxus":F2,"A5":F2+"|16/70","Cynergy":F2},
+ "Benelli":{"Montefeltro":F2,"Vinci":F2,"Raffaello":F2,"Super Black Eagle 3":F2},
+ "Winchester":{"SX4":F2,"SXP":F2,"Select":F2},
+ "Fabarm":{"L4S":F2,"XLR5":F2,"Elos N2":F2},
+ "Franchi":{"Affinity 3":F2,"Instinct":F2,"Horizon":F2},
+ "Miroku":{"MK38":F2,"MK70":F2,"MK60":F2},
+ "Merkel":{"147E":F3,"2000 EL":F3},
+ "Verney-Carron":{"Sagittaire":F3,"Impact":F2,"Vulcain":F2},
+ "Perazzi":{"MX8":"12/70"},
+ "Mossberg":{"500":F2,"930":F2},
+ "Remington":{"870":F2,"Versa Max":F2},
+ "Baikal":{"MP-27":F2,"MP-153":F2}}};
+const gunIc=(h=18)=>`<svg viewBox="0 0 64 20" width="${h*3.2}" height="${h}" aria-hidden="true" style="color:var(--acc);flex:0 0 auto"><path d="M1 9L15 8L17 6L63 6L63 8L31 9L28 12L26 19L20 19L19 12L12 13L1 15Z" fill="currentColor"/></svg>`;
+const gl=g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" ("+g.cal+")":"");
+const gunOf=id=>(S.guns||[]).find(g=>g.id==id);
+let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};
+function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO=ag.brand=="__o",models=cat&&ag.brand&&!brandO&&cat[ag.brand]?Object.keys(cat[ag.brand]):[],modelO=ag.model=="__o",cals=models.length&&ag.model&&!modelO&&cat[ag.brand][ag.model]?cat[ag.brand][ag.model].split("|"):[];
+ const opt=(arr,v,ph)=>`<option value="">${ph}</option>${arr.map(x=>`<option ${x==v?"selected":""}>${esc(x)}</option>`).join("")}<option value="__o" ${v=="__o"?"selected":""}>Autre…</option>`;
+ const brand=brandO?ag.ob:ag.brand,model=(brandO||modelO)?ag.om:ag.model,cal=(brandO||modelO||ag.cal=="__o")?ag.oc:ag.cal,okAdd=ag.type&&brand&&cal;
+ $("#app").innerHTML=`<h1 style="margin-top:4px">Mes armes</h1>
+ <div>${S.guns.map(g=>`<div class="card cd sans">${gunIc(18)}<div style="flex:1;min-width:0"><b>${esc([g.brand,g.model].filter(Boolean).join(" "))}</b><br><span class="mut">${g.type=="fusil"?"Fusil":"Carabine"} · ${esc(g.cal)}</span></div><button class="d" data-dg="${g.id}" style="flex:0 0 auto">Retirer</button></div>`).join("")||'<p class="mut sans">Aucune arme enregistrée.</p>'}</div>
+ <h2>Ajouter une arme</h2><label>Type</label><div class="seg"><button data-gt="carabine" class="${ag.type=="carabine"?"on":""}">Carabine</button><button data-gt="fusil" class="${ag.type=="fusil"?"on":""}">Fusil</button></div>
+ ${cat?`<label>Marque</label><select id="g-b">${opt(Object.keys(cat),ag.brand,"Choisir une marque")}</select>${brandO?`<input id="g-ob" value="${esc(ag.ob)}" placeholder="Marque" style="margin-top:6px">`:""}`:""}
+ ${(models.length||brandO)?`<label>Modèle</label>${brandO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle">`:`<select id="g-m">${opt(models,ag.model,"Choisir un modèle")}</select>${modelO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle" style="margin-top:6px">`:""}`}`:""}
+ ${(cals.length||brandO||modelO)?`<label>Calibre</label>${(brandO||modelO)?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre (ex. .308 Win ou 12/76)">`:`<select id="g-c">${opt(cals,ag.cal,"Choisir un calibre")}</select>${ag.cal=="__o"?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre" style="margin-top:6px">`:""}`}`:""}
+ <button class="p" id="g-ok" style="width:100%;margin-top:14px" ${okAdd?"":"disabled"}>Ajouter cette arme</button><p class="mut sans" style="font-size:.8rem">La liste est indicative : choisis « Autre… » pour saisir une marque, un modèle ou un calibre absent.</p><div style="height:90px"></div>`;
+ fbar(()=>go(vst.length?vst[vst.length-1]:"cal"));
+ document.querySelectorAll("[data-gt]").forEach(b=>b.onclick=()=>{ag={type:b.dataset.gt,brand:"",model:"",cal:"",ob:"",om:"",oc:""};render()});
+ const on=(id,k,reset)=>{const el=$(id);if(el)el.onchange=()=>{ag[k]=el.value;reset.forEach(r=>ag[r]="");render()}},tx=(id,k)=>{const el=$(id);if(el)el.oninput=()=>{ag[k]=el.value;const b=$("#g-ok");if(b){const bb=ag.brand=="__o"?ag.ob:ag.brand,cc=(ag.brand=="__o"||ag.model=="__o"||ag.cal=="__o")?ag.oc:ag.cal;b.disabled=!(ag.type&&bb&&cc)}}};
+ on("#g-b","brand",["model","cal","ob","om","oc"]);on("#g-m","model",["cal","om","oc"]);on("#g-c","cal",["oc"]);tx("#g-ob","ob");tx("#g-om","om");tx("#g-oc","oc");
+ document.querySelectorAll("[data-dg]").forEach(b=>b.onclick=()=>{if(confirm("Retirer cette arme ?")){S.guns=S.guns.filter(g=>g.id!=b.dataset.dg);save();render()}});
+ $("#g-ok").onclick=()=>{const bO=ag.brand=="__o",mO=bO||ag.model=="__o",cO=mO||ag.cal=="__o";S.guns.push({id:"g"+Date.now(),type:ag.type,brand:(bO?ag.ob:ag.brand).trim(),model:(mO?ag.om:ag.model).trim(),cal:(cO?ag.oc:ag.cal).trim()});save();ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};render()}}
 
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-async function syncRem(){try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
+const REM_ON=false;
+async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
  let ch=0;list.forEach(x=>{if(x.fired&&S.ev[x.id]&&!S.ev[x.id].remDone){S.ev[x.id].remDone=1;ch=1}});if(ch)save()}catch(x){}}
 function openFicheId(id){if(!S.ev[id])return;document.querySelectorAll(".mo").forEach(m=>m.remove());closeF();shut();vst=[];view="cal";openFiche(id)}
 async function notify(e){const msg="Pense à encoder ta fiche : "+e.title+" ("+e.date.split("-").reverse().join("/")+")";
  if(document.visibilityState=="visible"||!("Notification" in window)||Notification.permission!="granted"){const d=document.createElement("div");d.className="toast";d.style.pointerEvents="auto";d.textContent="🔔 "+msg;d.onclick=()=>{d.remove();openFicheId(e.id)};document.body.appendChild(d);try{navigator.vibrate&&navigator.vibrate([250,120,250])}catch(x){}setTimeout(()=>d.remove(),12000)}
  if("Notification" in window&&Notification.permission=="granted"&&document.visibilityState!="visible"){try{const r=await navigator.serviceWorker.ready;await r.showNotification("Carnet de chasse",{body:msg,tag:"fiche-"+e.id,vibrate:[250,120,250],data:{id:e.id},icon:"icons/icon-192.png",badge:"icons/icon-192.png"})}catch(x){}}}
-let chkBusy=false;async function chk(){if(chkBusy)return;chkBusy=true;try{await syncRem();if(RM().sleep)return;const now=Date.now();let ch=0;
+let chkBusy=false;async function chk(){if(!REM_ON||chkBusy)return;chkBusy=true;try{await syncRem();if(RM().sleep)return;const now=Date.now();let ch=0;
  for(const e of evs())if(e.rem&&!e.fiche&&!e.remDone){const d=dueOf(e);if(d<=now&&now-d<36*36e5){e.remDone=1;ch=1;await notify(e)}}if(ch){save();syncRem()}}finally{chkBusy=false}}
 setInterval(chk,30000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")chk()});setTimeout(chk,1500);
 if("serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.fiche)openFicheId(e.data.fiche)});
  navigator.serviceWorker.ready.then(async r=>{try{if(r.periodicSync){const st=await navigator.permissions.query({name:"periodic-background-sync"});if(st.state=="granted")await r.periodicSync.register("rappels",{minInterval:3600000})}}catch(x){}}).catch(()=>{})}
 setTimeout(()=>{const q=new URLSearchParams(location.search).get("fiche");if(q){history.replaceState(history.state,"",location.pathname);openFicheId(q)}},300);
-$("#m-rm").onclick=()=>{shut();const R=RM(),paint=()=>{const n=evs().filter(e=>e.rem).length;$("#rm-st").textContent=R.sleep?"💤 Rappels en veille : aucune notification ne sera envoyée. Tes réglages sont conservés.":n?`🔔 ${n} journée${n>1?"s":""} avec rappel à ${R.time}${R.auto?" · les nouvelles journées reçoivent aussi ce rappel":""}.`:"Aucun rappel actif."};
- modal(`<h2>Paramètres de rappels</h2><p class="sans">Me rappeler d'encoder mes données après mes journées.</p><label class="sans">Heure du rappel</label><input type="time" id="rm-t" value="${R.time}">
- <button class="p" id="rm-a" style="width:100%;margin-top:12px">Appliquer pour toutes mes dates de chasse</button><p class="mut sans" id="rm-st" style="margin:10px 0"></p>
- <label class="tg sans"><span>Mettre mes rappels en veille</span><input type="checkbox" id="rm-s" ${R.sleep?"checked":""}></label>
- <p class="mut sans" style="font-size:.8rem">Le rappel est une notification (une vibration ou un son). La toucher ouvre la fiche à encoder. Les notifications en arrière-plan sont les plus fiables dans la version Android installée ; dans le navigateur, elles dépendent d'Android.</p>`);paint();
- $("#rm-t").onchange=e=>{R.time=e.target.value||"20:00";save()};
- $("#rm-a").onclick=async()=>{R.time=$("#rm-t").value||"20:00";R.auto=true;evs().forEach(e=>{if(e.rem!=R.time)delete e.remDone;e.rem=R.time});save();
-  if("Notification" in window&&Notification.permission=="default"){try{await Notification.requestPermission()}catch(x){}}
-  paint();syncRem();chk();toast(("Notification" in window&&Notification.permission=="denied")?"Rappels enregistrés, mais les notifications sont bloquées dans les réglages du navigateur.":"Rappel appliqué à toutes tes journées.")};
- $("#rm-s").onchange=e=>{R.sleep=e.target.checked;save();paint();syncRem();if(!R.sleep)chk()}};
+$("#m-rm").onclick=()=>{shut();modal(`<h2>Paramètres de rappels</h2><p class="sans" style="font-size:1.05rem">🔔 Cette fonction n'est pas encore disponible sur la version web.</p><p class="mut sans">Elle sera ajoutée plus tard, avec la version Android installée.</p>`)};
 
 /* ---------- menu ---------- */
 const pg=$("#page");pg.addEventListener("click",e=>{if(document.body.classList.contains("dr")){e.preventDefault();e.stopPropagation();document.body.classList.remove("dr")}},true);
 const shut=()=>document.body.classList.remove("dr");
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-st").onclick=()=>{shut();go("stats")};
+$("#m-st").onclick=()=>{shut();go("stats")};$("#m-ar").onclick=()=>{shut();go("ar")};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
@@ -354,7 +404,7 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
   if(e.fiche&&d>tdy)return alert("Cette journée a une fiche de chasse encodée : elle ne peut pas être déplacée dans le futur.");
   const g=$("#e-r").value=="guest",gi=$("#e-gi").value.trim();if(!g&&gi&&$("#e-gr").style.display!="none")fg.push(gi);
   const mode=$("#e-m").value,i=id||"e"+Date.now()+Math.floor(Math.random()*99);
-  if(!id&&RM().auto)e.rem=RM().time;if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||mode||"Chasse",role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
+  if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||mode||"Chasse",role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
   if(save()){sel=d;cur=new Date(d+"T12:00");closeF();render()}}
  full(`<h2 style="margin-top:0">${id?"Modifier l'évènement":"Nouvelle journée de chasse"}</h2><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
  <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><label>Type de chasse</label><select id="e-m">${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
@@ -395,6 +445,7 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
   const pick=isCl?`<div class="seg" style="margin-top:8px">${CLS[t.sp].map((l,i)=>`<button data-sx="${t.id}:${"mfj"[i]}" class="${t.sx=="mfj"[i]?"on":""}">${l}</button>`).join("")}</div>`:`<div class="row sans" style="gap:6px;margin-top:8px;justify-content:flex-start"><span class="mut" style="flex:0 0 auto">Sexe</span><button class="sx m${t.sx=="m"?" on":""}" data-sx="${t.id}:m" aria-label="Mâle" style="flex:0 0 auto">♂</button><button class="sx f${t.sx=="f"?" on":""}" data-sx="${t.id}:f" aria-label="Femelle" style="flex:0 0 auto">♀</button></div>`;
   return `<div class="card tc"><div class="tcm"><div class="row sans" style="gap:8px"><span style="flex:0 0 auto">${sil(nm,40)}</span><b>${esc(t.sp)}</b><button class="s" data-u="${t.id}" style="flex:0 0 auto">${UL[t.u]} ⇄</button><button class="d" data-x="${t.id}" style="flex:0 0 auto">Retirer</button></div>${pick}
   <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${detail(t)}
+  ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16)}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:8px;color:var(--ink)">📷 Photo de l'animal<input type="file" accept="image/*" data-tph="${t.id}" hidden></label>
   <button class="s sans" data-l="${t.id}" style="width:100%;margin-top:10px;text-align:left">📍 ${t.loc?"Lieu du tir":"Lieu de RDV"} : ${esc(lieu(t.loc||e.place))} · modifier</button></div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
  <h2>Tirs</h2>
@@ -405,7 +456,7 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
  <button class="s" id="tb" style="width:100%;margin-top:14px">Encoder le tableau final${nt?` (${nt} pièce${nt>1?"s":""})`:""}</button><div style="height:90px"></div>`;
  fbar(backFiche,saveFiche);
  const T=id=>fd.tirs.find(t=>t.id==id);
- $("#a-b").onclick=()=>{sync();const sp=$("#a-sp").value;if(!sp)return;fd.tirs.unshift({id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[]});render()};
+ $("#a-b").onclick=()=>{sync();const sp=$("#a-sp").value;if(!sp)return;fd.tirs.unshift({id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null});render()};
  document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.v).ok=true;render()});
  document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.o).ok=false;render()});
  document.querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{sync();const[id,x]=b.dataset.sx.split(":"),t=T(id);t.sx=CLS[t.sp]?x:(t.sx==x?null:x);render()});
@@ -421,6 +472,9 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
   render()});
  document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.l);pickLoc(t.loc||e.place,p=>{t.loc=p;render()},t.loc?()=>{t.loc=null;render()}:null)});
  document.querySelectorAll("[data-rp]").forEach(b=>b.onclick=()=>{sync();fd.photos.splice(+b.dataset.rp,1);render()});
+ document.querySelectorAll("[data-gn]").forEach(x=>x.onchange=()=>{sync();const t=T(x.dataset.gn);t.gun=x.value||null;if(t.gun)S.lastGun=t.gun;save()});
+ document.querySelectorAll("[data-tph]").forEach(i=>i.onchange=async ev=>{sync();const t=T(i.dataset.tph);t.ph=t.ph||[];for(const f of ev.target.files)t.ph.push(await addPhoto(f));render()});
+ document.querySelectorAll("[data-rtp]").forEach(b=>b.onclick=()=>{sync();const[id,i]=b.dataset.rtp.split("|");T(id).ph.splice(+i,1);render()});
  $("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
  $("#tb").onclick=()=>{sync();openTab()}}
 function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const k=Math.min(1,720/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.6))};i.src=URL.createObjectURL(f)})}
@@ -480,24 +534,29 @@ const ic=(k,z=24)=>ICO[k].replace("<svg ",`<svg width="${z}" height="${z}" aria-
 function gauge(p){let a="";for(let i=0;i<18;i++){const q=i/17*100,h=q<=30?5:q<=45?5+(q-30)/15*23:q<=70?28:q<=85?28+(q-70)/15*82:110,t0=(180+i*10)*Math.PI/180,t1=(190+i*10)*Math.PI/180;a+=`<path d="M${30+22*Math.cos(t0)} ${30+22*Math.sin(t0)}A22 22 0 0 1 ${30+22*Math.cos(t1)} ${30+22*Math.sin(t1)}" stroke="hsl(${h} 70% 45%)" stroke-width="6" fill="none"/>`}
  const t=(180+Math.min(100,p)*1.8)*Math.PI/180;return `<svg viewBox="0 0 60 36" width="60" height="36" aria-hidden="true">${a}<line x1="30" y1="30" x2="${30+17*Math.cos(t)}" y2="${30+17*Math.sin(t)}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="30" r="3.5" fill="currentColor"/></svg>`}
 function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};
- if(f.tab&&Object.keys(f.tab).length)Object.assign(cnt,f.tab);else f.tirs.forEach(t=>{if(t.p)cnt[tname(t)]=(cnt[tname(t)]||0)+t.p});
+ f.tirs.forEach(t=>{if(t.p)cnt[tname(t)]=(cnt[tname(t)]||0)+t.p});const tabC=f.tab||{};
  const R=[],row=(l,v,i)=>R.push(`<div class="sr"><span class="lb">${i||""}${l}</span><b>${v}</b></div>`),pr=(l,h,n)=>{const p=Math.round(h/n*100);R.push(`<div class="sr"><span class="lb">${ic("t",26)}${l}</span><span style="display:flex;align-items:center;gap:8px">${gauge(p)}<b>${p}%</b></span></div>`)};
  if(a.m)row("Ratés",a.m);
  if(a.bn){row("Balles tirées",a.bn,ic("b",26));if(a.bh)row("Balles ayant touché",a.bh);pr("Précision balles",a.bh,a.bn)}
  if(a.cn){row("Cartouches tirées",a.cn,ic("c",26));if(a.ch)row("Cartouches ayant touché",a.ch);pr("Précision cartouches",a.ch,a.cn)}
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(e.mode||"type à préciser")}<br>📍 ${esc(lieu(e.place))} ${link(e.place)}</p>
- <h2 style="margin-top:14px">Mes résultats</h2>${Object.keys(cnt).length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<button class="tl" data-rs="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche un résultat pour voir le détail du tir.</p>`:'<p class="mut">Aucun gibier prélevé.</p>'}
+ <h2 style="margin-top:14px">Mes résultats</h2>${Object.keys(cnt).length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<button class="tl" data-rs="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche un résultat pour voir le détail du tir.</p>`:'<p class="mut sans">Aucun gibier prélevé par toi.</p>'}
  ${R.length?`<h2>Statistiques</h2><div class="card sans">${R.join("")}</div>`:""}
- <h2>Tableau de la journée</h2>${(f.tabPhotos||[]).length?`<div class="ph">${f.tabPhotos.map(p=>`<img data-pid="${p}" alt="Tableau de chasse">`).join("")}</div>`:'<p class="mut sans">Pas de photo du tableau.</p>'}
+ <h2>Tableau de la journée</h2>${Object.keys(tabC).length?`<div class="tls">${Object.entries(tabC).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut sans">Tableau final non encodé.</p>'}${(f.tabPhotos||[]).length?`<div class="ph">${f.tabPhotos.map(p=>`<img data-pid="${p}" alt="Tableau de chasse">`).join("")}</div>`:''}
  ${f.photos.length?`<button class="s" id="sh-ph" style="width:100%;margin-top:10px">📷 Afficher les photos (${f.photos.length})</button>`:""}
  ${f.notes?`<h2>Notes</h2><div class="card">${esc(f.notes)}</div>`:""}
  <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
  $("#bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");$("#md").onclick=()=>openFiche(fe);
  if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
  document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&(tname(t)==k||k.startsWith(t.sp)));
-  const one=t=>`<div class="card sans"><div class="row" style="gap:10px;justify-content:flex-start">${sil(tname(t),48)}<div><b>${esc(tname(t))}</b> ${CLS[t.sp]?"":sxi(t.sx)}</div></div>
-   <p style="margin:8px 0">Prélevé <b>${t.p}</b> · Raté <b>${t.m}</b> · Touché <b>${t.h}</b><br>${UL[t.u]} tirées : <b>${t.n}</b>${t.n?` · précision ${pc(t.h,t.n)}`:""}${esc(extra(t))}</p>
-   <p class="mut" style="margin:0 0 10px">📍 ${esc(lieu(t.loc||e.place))} ${link(t.loc||e.place)}</p><button class="p" data-et="${t.id}" style="width:100%">Modifier ce tir</button></div>`;
+  const one=t=>{const u=UL[t.u].toLowerCase(),p=t.n?Math.round(t.h/t.n*100):0,ex=t.sp=="Sanglier"?(t.w||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" kg"):(CLS[t.sp]&&t.sx=="m")?(t.c||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" cors"):[];
+   return `<div class="card sans"><div class="row" style="gap:10px;justify-content:flex-start">${sil(tname(t),48)}<div><b>${esc(tname(t))}</b> ${CLS[t.sp]?"":sxi(t.sx)}</div></div>
+   <div class="sr"><span class="lb">${ic(t.u,26)}${UL[t.u]} tirées</span><b>${t.n}</b></div><div class="sr"><span class="lb">${UL[t.u]} ayant touché</span><b>${t.h}</b></div>
+   ${t.n?`<div class="sr"><span class="lb">${ic("t",26)}Précision</span><span style="display:flex;align-items:center;gap:8px">${gauge(p)}<b>${p}%</b></span></div>`:""}
+   ${ex.length?`<div class="sr"><span class="lb">${t.sp=="Sanglier"?"Poids":"Nombre de cors"}</span><b>${ex.join(" · ")}</b></div>`:""}
+   ${gunOf(t.gun)?`<div class="sr"><span class="lb">${gunIc(16)}Arme</span><b style="text-align:right">${esc(gl(gunOf(t.gun)))}</b></div>`:""}
+   ${(t.ph||[]).length?`<div class="ph" style="margin-top:8px">${t.ph.map(x=>`<img data-pid="${x}" alt="Photo de l'animal">`).join("")}</div>`:""}
+   <p class="mut" style="margin:8px 0 10px">📍 ${esc(lieu(t.loc||e.place))} ${link(t.loc||e.place)}</p><button class="p" data-et="${t.id}" style="width:100%">Modifier ce tir</button></div>`};
   modal(`<h2 style="display:flex;align-items:center;gap:8px;margin-top:0">${sil(k,44)}<span>${esc(k)}</span></h2>${ts.length?ts.map(one).join(""):'<p class="mut sans">Le détail de ce tir n\'a pas été encodé (tableau final saisi directement).</p><button class="p" data-et="" style="width:100%">Modifier la fiche</button>'}`);
   document.querySelectorAll("#mo [data-et]").forEach(x=>x.onclick=()=>{const id=x.dataset.et;closeM();openFiche(fe);const t=fd.tirs.find(q=>q.id==id);if(t){t.ok=false;render();const el=document.querySelector(`[data-v="${id}"]`);if(el)el.scrollIntoView({block:"center"})}})})}
 
@@ -530,7 +589,7 @@ function rRates(){const L=evs().filter(e=>e.fiche&&(seasonF=="all"||season(e.dat
  fbar(()=>go("stats"));document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;go("sum")})}
 function bars2(map,attr,on){const e=Object.entries(map).sort((x,y)=>attr=="sea"?(x[0]<y[0]?1:-1):y[1]-x[1]),m=Math.max(1,...e.map(x=>x[1]));return e.map(([k,v])=>`<button class="bar${k==on?" on":""}" data-${attr}="${esc(k)}"><em>${esc(k)}</em><div style="width:${v/m*55}%"></div><small>${v}</small></button>`).join("")||'<p class="mut">Pas encore de données.</p>'}
 function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(withF.map(e=>season(e.date)))].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
- const bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
+ const plan=evs().filter(e=>seasonF=="all"||season(e.date)==seasonF).length,bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});
  withF.forEach(e=>{const k=season(e.date);bySea[k]=(bySea[k]||0)+pt(e)});
@@ -539,7 +598,8 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(withF
  const rat={};Object.keys(bySec).forEach(k=>rat[k]=Math.round(bySec[k]/cnt[k]*10)/10);
  $("#app").innerHTML=`<h1 style="margin-top:4px">Statistiques</h1>
  <div class="chips2"><button class="fc${seasonF=="all"?" on":""}" data-sf="all">Toutes</button>${seasons.map(x=>`<button class="fc${x==seasonF?" on":""}" data-sf="${x}">${x}</button>`).join("")}</div>
- <div class="kp" style="margin-top:12px"><button class="sc2" data-kp="j"><b>${L.length}</b><span>journées</span><i class="chev">›</i></button><button class="sc2" data-kp="p"><b>${a.p}</b><span>prélevés</span><i class="chev">›</i></button><button class="sc2" data-kp="r"><b>${a.m}</b><span>ratés</span><i class="chev">›</i></button></div>
+ <div class="kp" style="margin-top:12px;grid-template-columns:1fr 1fr"><div class="sc2"><b>${plan}</b><span>journées planifiées</span></div><button class="sc2" data-kp="j"><b>${L.length}</b><span>journées chassées</span><i class="chev">›</i></button></div>
+ <div class="kp" style="margin-top:8px;grid-template-columns:1fr 1fr"><button class="sc2" data-kp="p"><b>${a.p}</b><span>prélevés</span><i class="chev">›</i></button><button class="sc2" data-kp="r"><b>${a.m}</b><span>ratés</span><i class="chev">›</i></button></div>
  ${a.bn||a.cn?`<h2>Précision</h2><div class="pg2">${gb(a.bn,a.bh,"b","Balles")}${gb(a.cn,a.ch,"c","Cartouches")}</div>`:""}
  ${Object.keys(bySp).length?`<h2 id="tbc">Tableau de chasse</h2><div class="tls">${Object.entries(bySp).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
  ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cervidé – mâle",56)}<b>${hc}</b><span>cors max (cervidé)</span></div>`:""}${hb?`<div class="sc2">${sil("Chevreuil – brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}

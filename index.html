@@ -202,7 +202,7 @@ document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid
 
 /* ---------- commentaires (bêta) ---------- */
 // Clé d'accès Web3Forms (https://web3forms.com) : elle fait suivre chaque commentaire vers ton adresse e-mail. À renseigner ici.
-const FB_KEY="";
+const FB_KEY="d25e1cea-b1cc-4d3c-bbb6-cc30decffc29";
 let fbS={type:"avis",name:"",anon:false,msg:"",sent:false,err:"",busy:false};
 function rFeedback(){const F=fbS;
  if(F.sent){$("#app").innerHTML=`${BKB}<div style="text-align:center;padding:90px 10px 0"><div style="font-size:3rem">🙏</div><h1 style="margin:10px 0">Merci pour ton retour !</h1><p class="sans" style="font-size:1.05rem;line-height:1.5">Les messages comme le tien sont précieux pour le développement de ChasseLog.</p><button class="p" id="fb-ok" style="width:100%;margin-top:22px">Retour au calendrier</button></div>`;

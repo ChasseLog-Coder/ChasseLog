@@ -93,6 +93,12 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 #okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
 #app.quick .vb{display:none}
 .dc u.nh,.wk u.nh{background:#5d6d7e;color:#fff}.dc u.ev b{display:block;font-weight:800}
+.ob{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.oh{display:flex;align-items:center;gap:10px}.oh b{font:700 1rem system-ui}.on2{flex:1;min-width:0}
+.orow{margin-top:8px;font:.88rem system-ui}.orow .ol{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.orow .od{font-weight:700;white-space:nowrap}
+.bdg{display:inline-block;border-radius:99px;padding:2px 9px;font:700 .72rem system-ui;white-space:nowrap}.bdg.o{background:#2e8b3a;color:#fff}.bdg.f{background:var(--line);color:var(--ink)}.bdg.x{background:#b3402a;color:#fff}
+.tlb{position:relative;height:10px;border-radius:5px;background:var(--line);margin:6px 0 2px;overflow:hidden}.tlb i{position:absolute;top:0;bottom:0;background:#2e8b3a;border-radius:5px}.tlb u{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--acc2)}
+.tlm{display:flex;justify-content:space-between;font:.6rem system-ui;color:var(--mut)}.onote{font:.78rem system-ui;color:var(--mut);margin-top:4px}
 .hk{width:26px;height:26px;border-radius:50%;border:2px solid var(--mut);background:none;color:transparent;font:800 .9rem/1 system-ui;padding:0;flex:0 0 auto}.hk.on{background:#2e8b3a;border-color:#2e8b3a;color:#fff}
 .lbx{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.85rem;color:var(--mut);margin:10px 0 3px;font-family:system-ui,sans-serif}
 select:disabled{opacity:.45}
@@ -134,16 +140,16 @@ button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;fo
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08h<br>Météo : Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08k<br>Météo : Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
-"Petit gibier":["Lièvre","Lapin de garenne","Faisan","Perdrix grise","Bécasse des bois","Pigeon ramier"],
-"Gibier d'eau":["Canard colvert","Canard chipeau","Canard siffleur","Canard souchet","Canard pilet","Sarcelle d'hiver","Fuligule milouin","Fuligule morillon","Oie cendrée","Oie rieuse","Oie des moissons","Bernache du Canada","Ouette d'Égypte"],
-"Autres":["Renard","Corneille noire","Corbeau freux","Pie bavarde","Geai des chênes","Ragondin","Rat musqué"]};
+"Petit gibier":["Lièvre","Faisan","Perdrix grise","Bécasse des bois"],
+"Gibier d'eau":["Canard colvert","Bernache du Canada","Foulque macroule"],
+"Autre gibier":["Lapin de garenne","Pigeon ramier","Renard"]};
 const CLS={"Cervidé":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
 const CL={"Cervidé":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
 const XT={"Cervidé":["Cervidé – mâle","Cervidé – femelle","Cervidé – jeune"],"Chevreuil":["Chevreuil – brocard","Chevreuil – chevrette","Chevreuil – chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
@@ -196,7 +202,7 @@ function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFu
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick})[view]();hydrate()}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick,ouv:rOuv})[view]();hydrate()}
 function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
 const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
@@ -258,8 +264,19 @@ function rFeedback(){const F=fbS;
   const body={access_key:FB_KEY,subject:"ChasseLog – "+(av?"Avis":"Erreur signalée"),from_name:"ChasseLog bêta",name:F.anon||!F.name.trim()?"Anonyme":F.name.trim(),type:av?"Avis":"Erreur",message:msg||"-",version:APP_V,appareil:navigator.userAgent.slice(0,160)};
   if(av)Object.assign(body,{fonctions_souhaitees:F.q1.join(", ")||"-",carnet_actuel:F.q2||"-",agacements:F.q3.trim()||"-",recommandation:F.q4==null?"-":F.q4+"/10"});
   try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body)}),j=await r.json();
-   if(j&&j.success){F.sent=true;F.busy=false;render()}else throw new Error()}
+   if(j&&j.success){F.sent=true;F.busy=false;S.fbAsked=true;save();render()}else throw new Error()}
   catch(e){F.busy=false;F.err="L'envoi a échoué. Tes réponses sont conservées, réessaie dans un instant.";render()}}}
+
+/* ---------- invitation à donner son avis (une seule fois, après quelques minutes d'utilisation) ---------- */
+const ASK_AFTER=180;// secondes d'utilisation cumulée
+setInterval(()=>{if(S.fbAsked||document.visibilityState!="visible")return;S.useSec=(S.useSec||0)+15;
+ if(S.useSec<ASK_AFTER){if(S.useSec%60==0)save();return}
+ if(view!="cal"||$(".mo")||$("#ff")||document.body.classList.contains("dr"))return;
+ S.fbAsked=true;save();
+ modal(`<h2 style="margin-top:0">Ton avis compte !</h2><p class="sans" style="font-size:1.02rem;line-height:1.5">ChasseLog est en test et évolue grâce aux retours des chasseurs. Tu as deux minutes pour nous dire ce que tu en penses ?</p>
+ <button class="p" id="ask-y" style="width:100%">Donner mon avis</button><button class="s" id="ask-n" style="width:100%;margin-top:8px">Non merci</button>
+ <p class="mut sans" style="font-size:.8rem;margin-top:10px">Ce message ne s'affichera plus. Tu peux toujours donner ton avis depuis le menu.</p>`);
+ $("#ask-y").onclick=()=>{closeM();go("fb")};$("#ask-n").onclick=()=>closeM()},15000);
 
 /* ---------- inviter un ami ---------- */
 async function invite(){
@@ -415,6 +432,65 @@ async function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,H=1350,
  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
  const u=URL.createObjectURL(blob);modal(`<h2>Ma journée</h2><img src="${u}" alt="Image de ta journée" style="width:100%;border-radius:10px"><p class="mut sans">Le partage direct n'est pas disponible ici : télécharge l'image puis envoie-la.</p><a class="p" href="${u}" download="chasselog-${e.date}.png" style="display:block;text-align:center;background:var(--acc);color:var(--bg);border-radius:8px;padding:11px;text-decoration:none;font-family:system-ui">Télécharger l'image</a>`)}
 
+/* ---------- périodes d'ouverture (Wallonie 2025-2030) ---------- */
+// Source : AGW du 5 juin 2025 fixant les dates de l'ouverture, de la clôture et de la suspension de la chasse (1/7/2025 - 30/6/2030), vade-mecum Royal Saint-Hubert Club (juillet 2025).
+const CC="Uniquement sur les territoires des conseils cynégétiques agréés.";
+const OUV=[
+ ["Grand gibier",[
+  {sp:"Cerf",img:"Cervidé – mâle",n:"Soumis au plan de tir.",rows:[
+   {l:"Grands cerfs boisés",aa:[["09-21","12-31"]],tir:[["10-01","12-31"]],n:"Uniquement conseils cynégétiques agréés et Chasse royale de Ciergnon. Interdit ailleurs."},
+   {l:"Petits cerfs",aa:[["09-21","01-31"]],tir:[["10-01","01-31"]],n:"Uniquement conseils cynégétiques agréés et Chasse royale de Ciergnon. Interdit ailleurs."},
+   {l:"Biches, bichettes et faons",aa:[["09-21","01-31"]],tir:[["10-01","01-31"]]}]},
+  {sp:"Chevreuil",img:"Chevreuil – brocard",rows:[
+   {l:"Brocards",aa:[["04-15","05-15"],["07-15","08-15"],["10-01","12-31"]],tir:[["10-01","12-31"]],n:"Appeau autorisé à l'approche et à l'affût."},
+   {l:"Chevrettes, chevrillards et faons",aa:[["10-01","12-31"]],tir:[["10-01","12-31"]]}]},
+  {sp:"Daim",rows:[{aa:[["09-21","01-31"]],tir:[["10-01","01-31"]]}]},
+  {sp:"Mouflon",rows:[{aa:[["09-21","01-31"]],tir:[["10-01","01-31"]]}]},
+  {sp:"Sanglier",rows:[{aa:[["07-01","06-30"]]},{l:"En plaine",tir:[["08-01","01-31"]]},{l:"Au bois",tir:[["10-01","01-31"]]}]}]],
+ ["Petit gibier",[
+  {sp:"Lièvre",rows:[{aa:[["10-01","12-31"]],tir:[["10-01","12-31"]],n:CC+" Interdit ailleurs."}]},
+  {sp:"Faisan",img:"Faisan – coq",rows:[{aa:[["10-01","01-31"]],tir:[["10-01","01-31"]],n:"Coq et poule."}]},
+  {sp:"Perdrix grise",rows:[{aa:[["09-20","11-15"]],tir:[["09-20","11-15"]],n:CC+" Avec un plan de gestion approuvé pour la saison. Interdit ailleurs."}]},
+  {sp:"Bécasse des bois",rows:[{aa:[["11-01","01-15"]],tir:[["11-01","01-15"]],n:"Approche uniquement entre le lever et le coucher officiels du soleil."}]}]],
+ ["Gibier d'eau",[
+  {sp:"Bernache du Canada",rows:[{aa:[["08-01","03-10"]],tir:[["08-01","03-10"]],n:"Appeaux, leurres et appelants autorisés."}]},
+  {sp:"Canard colvert",rows:[{aa:[["09-01","01-15"]],tir:[["09-01","01-15"]],n:"Appeaux, leurres et appelants autorisés."}]},
+  {sp:"Foulque macroule",rows:[{aa:[["10-15","01-31"]],tir:[["10-15","01-31"]],n:"Commercialisation interdite."}]}]],
+ ["Autre gibier",[
+  {sp:"Lapin",img:"Lapin de garenne",rows:[{aa:[["10-01","01-31"]],tir:[["10-01","01-31"]],n:"Bourses et furet autorisés."}]},
+  {sp:"Pigeon ramier",rows:[{aa:[["10-20","02-L"]],tir:[["10-20","02-L"]],n:"Appeaux, leurres et appelants autorisés."}]},
+  {sp:"Renard",rows:[{aa:[["07-01","06-30"]]},{l:"Battue, botte",tir:[["07-01","06-30"]]},{l:"Au chien courant",tir:[["08-01","02-L"]]}]}]]];
+const OUV_VOL=[{sp:"Tout gibier visé par l'arrêté",r:[["09-20","01-31"]]},{sp:"Pigeon ramier",r:[["10-20","02-L"]]},{sp:"Lapin",img:"Lapin de garenne",r:[["10-01","01-31"]],n:"Bourses et furet autorisés."},{sp:"Renard",r:[["07-01","06-30"]]}];
+const OMODES=[["tir","Battue et tir"],["aa","Approche et affût"],["vol","Chasse à vol"]];
+let ouvM=null;
+const oOrd=md=>{const[m,d]=md.split("-"),mm=+m,dd=d=="L"?29.5:+d;return(mm>=7?mm-7:mm+5)*31+dd};
+const oFmt=md=>md=="02-L"?"fin février":md.split("-").reverse().join("/");
+function oStat(rs){if(!rs||!rs.length)return{c:"x",t:"Interdit"};const n=new Date(),t=oOrd(String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"));
+ if(rs.some(([a,b])=>a=="07-01"&&b=="06-30"))return{c:"o",t:"Ouvert",d:""};
+ const cur=rs.find(([a,b])=>oOrd(a)<=t&&t<=oOrd(b));if(cur){const left=Math.round((oOrd(cur[1])-t));return{c:"o",t:"Ouvert",d:"jusqu'au "+oFmt(cur[1])+(left<=14?` (plus que ${left} j)`:"")}}
+ const nx=rs.filter(([a])=>oOrd(a)>t).sort((x,y)=>oOrd(x[0])-oOrd(y[0]))[0]||rs.slice().sort((x,y)=>oOrd(x[0])-oOrd(y[0]))[0];return{c:"f",t:"Fermé",d:"ouverture le "+oFmt(nx[0])}}
+function oBar(rs){const n=new Date(),t=oOrd(String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"));
+ return `<div class="tlb">${(rs||[]).map(([a,b])=>`<i style="left:${(oOrd(a)-1)/372*100}%;width:${(oOrd(b)-oOrd(a)+1)/372*100}%"></i>`).join("")}<u style="left:${(t-1)/372*100}%"></u></div><div class="tlm">${"J A S O N D J F M A M J".split(" ").map(x=>`<span>${x}</span>`).join("")}</div>`}
+function oRow(l,rs,n){const st=oStat(rs);return `<div class="orow"><div class="ol"><span>${l?esc(l):""}</span><span class="bdg ${st.c}">${st.t}</span></div>
+ ${rs&&rs.length?`<div class="ol" style="margin-top:3px"><span class="od">${rs.map(([a,b])=>a=="07-01"&&b=="06-30"?"Toute l'année":oFmt(a)+" → "+oFmt(b)).join(" · ")}</span><span class="mut" style="font-size:.78rem;text-align:right">${st.d||""}</span></div>${oBar(rs)}`:""}${n?`<div class="onote">${esc(n)}</div>`:""}</div>`}
+function rOuv(){if(!ouvM){const m=(visM().find(x=>/approche|affût/i.test(x))&&!visM().some(x=>/battue/i.test(x)))?"aa":"tir";ouvM=m}const M=ouvM;
+ let body="",nOpen=0;
+ if(M=="vol")body=`<h2>Chasse à vol (fauconnerie)</h2>`+OUV_VOL.map(it=>{const st=oStat(it.r);if(st.c=="o")nOpen++;return `<div class="ob"><div class="oh">${it.sp.startsWith("Tout")?'<span style="font-size:1.8rem;width:56px;text-align:center">🦅</span>':sil(it.img||it.sp,56)}<div class="on2"><b>${esc(it.sp)}</b></div></div>${oRow("",it.r,it.n)}</div>`}).join("");
+ else body=OUV.map(([g,items])=>`<h2>${g}</h2>`+items.map(it=>{const rows=it.rows.filter(r=>r[M]);if(!rows.length)return"";rows.forEach(r=>{if(oStat(r[M]).c=="o")nOpen++});
+  return `<div class="ob"><div class="oh">${sil(it.img||it.sp,56)}<div class="on2"><b>${esc(it.sp)}</b>${it.n?`<div class="onote" style="margin:0">${esc(it.n)}</div>`:""}</div></div>${rows.map(r=>oRow(r.l,r[M],r.n)).join("")}</div>`}).join("")).join("");
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Périodes d'ouverture</h1><p class="mut sans" style="margin-top:-6px">Wallonie · saisons 2025 à 2030 · aujourd'hui ${new Date().toLocaleDateString("fr-BE",{day:"numeric",month:"long"})}</p>
+ <div class="chips2">${OMODES.map(([k,l])=>`<button class="fc${M==k?" on":""}" data-om="${k}">${l}</button>`).join("")}</div>
+ <p class="sans" style="margin:10px 0 0"><b>${nOpen}</b> ${nOpen>1?"périodes ouvertes":"période ouverte"} aujourd'hui · ${M=="tir"?"battue, botte, chien courant…":M=="aa"?"approche et affût":"fauconnerie"}</p>
+ ${body}
+ <h2>À savoir</h2><div class="card sans" style="font-size:.85rem;line-height:1.45">
+ • Grand gibier, bernache et colvert à l'approche ou à l'affût : autorisés aussi l'heure avant le lever et l'heure après le coucher officiels du soleil.<br>
+ • Usage du chien interdit du 1er mars au 31 juillet (sauf chien tenu à la longe pour rechercher un gibier blessé).<br>
+ • Chasse interdite : chat haret, sarcelle d'hiver, chasse à courre.<br>
+ • Le gibier d'eau peut être suspendu par le Ministre en cas de gel prolongé.</div>
+ <p class="mut sans" style="font-size:.78rem">Source : arrêté du Gouvernement wallon du 5 juin 2025 (ouvertures du 1er juillet 2025 au 30 juin 2030) et vade-mecum du Royal Saint-Hubert Club (juillet 2025). Information indicative : vérifie toujours les conditions de ton conseil cynégétique et ton plan de tir.</p><div style="height:40px"></div>`;
+ $("#bk2").onclick=backTo;centerChip();
+ document.querySelectorAll("[data-om]").forEach(b=>b.onclick=()=>{ouvM=b.dataset.om;render();window.scrollTo(0,0)})}
+
 /* ---------- armes ---------- */
 const S_STD=".243 Win|6.5x55 SE|.270 Win|.308 Win|.30-06 Spr|8x57 IS|9.3x62",S_MAG=S_STD+"|.300 Win Mag|7mm Rem Mag",S_CM=".243 Win|6.5 Creedmoor|.270 Win|7mm-08 Rem|.308 Win|.30-06 Spr|.300 Win Mag",
  F2="12/76|12/70|20/76|20/70",F3="12/76|12/70|20/76|20/70|16/70|28/70";
@@ -478,7 +554,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-08h",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-08k",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -510,7 +586,7 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-bk").onclick=()=>{shut();bkSettings()};
+$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-bk").onclick=()=>{shut();bkSettings()};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
@@ -781,7 +857,7 @@ function silType(s){const n=s.toLowerCase();
  if(n.startsWith("cerf")||n.startsWith("cervid"))return /bichette/.test(n)?"bichette":/femelle|biche/.test(n)?"biche":/jeune|faon/.test(n)?"faon":"cerf";
  if(n.startsWith("chevreuil"))return /chevrette|femelle/.test(n)?"chevrette":/chevrillard|jeune/.test(n)?"chevrillard":"brocard";
  if(n.startsWith("faisan"))return /poule/.test(n)?"fpoule":"fcoq";
- const m=[["sanglier","sanglier"],["daim","daim"],["mouflon","mouflon"],["lièvre","lievre"],["lapin","lapin"],["perdrix","perdrix"],["bécasse","becasse"],["pigeon","pigeon"],["canard colvert","colvert"],["chipeau","chipeau"],["siffleur","siffleur"],["souchet","souchet"],["pilet","pilet"],["sarcelle","sarcelle"],["fuligule","fuligule"],["oie","oie"],["bernache","oie"],["ouette","oie"],["renard","renard"],["corneille","corbeau"],["corbeau","corbeau"],["pie ","pie"],["geai","geai"],["ragondin","ragondin"],["rat musqué","rat"]];
+ const m=[["sanglier","sanglier"],["daim","daim"],["mouflon","mouflon"],["lièvre","lievre"],["lapin","lapin"],["perdrix","perdrix"],["bécasse","becasse"],["pigeon","pigeon"],["canard colvert","colvert"],["chipeau","chipeau"],["siffleur","siffleur"],["souchet","souchet"],["pilet","pilet"],["sarcelle","sarcelle"],["fuligule","fuligule"],["oie","oie"],["bernache","oie"],["ouette","oie"],["renard","renard"],["foulque","fuligule"],["corneille","corbeau"],["corbeau","corbeau"],["pie ","pie"],["geai","geai"],["ragondin","ragondin"],["rat musqué","rat"]];
  for(const[k,v]of m)if(n.includes(k))return v;return null}
 const sil=(s,w=56)=>{const t=silType(s);return t?`<svg viewBox="0 0 64 48" width="${w}" height="${Math.round(w*.75)}" aria-hidden="true" style="flex:0 0 auto">${SH}${ART[t]}</svg>`:""};
 const ICO={b:'<svg viewBox="0 0 32 32"><g transform="translate(1.6 1.8) scale(.9) rotate(18 16 16)"><path d="M16 2C20 6 22.5 11 22.5 16.5V22H9.5V16.5C9.5 11 12 6 16 2Z" fill="url(#lcu)"/><path d="M12 9Q13 6 15.5 4" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".55"/><rect x="9.5" y="22" width="13" height="6" rx="1" fill="url(#lbr)"/><rect x="9.5" y="22" width="13" height="1.2" fill="#5a3a10" opacity=".5"/><rect x="8.6" y="27.5" width="14.8" height="2.2" rx="1" fill="url(#lbr)"/></g></svg>',

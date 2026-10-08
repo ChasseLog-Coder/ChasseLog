@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Carnet de chasse</title>
+<title>ChasseLog</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#3f5a2b">
 <meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Chasse"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ChasseLog"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" type="image/png" href="icons/icon-192.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
@@ -113,7 +113,7 @@ button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
 </style></head><body>
-<aside id="dr"><h2>Carnet de chasse</h2>
+<aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
 <hr><button class="m" id="m-st">Statistiques</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
@@ -267,7 +267,7 @@ async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let
 function openFicheId(id){if(!S.ev[id])return;document.querySelectorAll(".mo").forEach(m=>m.remove());closeF();shut();vst=[];view="cal";openFiche(id)}
 async function notify(e){const msg="Pense à encoder ta fiche : "+e.title+" ("+e.date.split("-").reverse().join("/")+")";
  if(document.visibilityState=="visible"||!("Notification" in window)||Notification.permission!="granted"){const d=document.createElement("div");d.className="toast";d.style.pointerEvents="auto";d.textContent="🔔 "+msg;d.onclick=()=>{d.remove();openFicheId(e.id)};document.body.appendChild(d);try{navigator.vibrate&&navigator.vibrate([250,120,250])}catch(x){}setTimeout(()=>d.remove(),12000)}
- if("Notification" in window&&Notification.permission=="granted"&&document.visibilityState!="visible"){try{const r=await navigator.serviceWorker.ready;await r.showNotification("Carnet de chasse",{body:msg,tag:"fiche-"+e.id,vibrate:[250,120,250],data:{id:e.id},icon:"icons/icon-192.png",badge:"icons/icon-192.png"})}catch(x){}}}
+ if("Notification" in window&&Notification.permission=="granted"&&document.visibilityState!="visible"){try{const r=await navigator.serviceWorker.ready;await r.showNotification("ChasseLog",{body:msg,tag:"fiche-"+e.id,vibrate:[250,120,250],data:{id:e.id},icon:"icons/icon-192.png",badge:"icons/icon-192.png"})}catch(x){}}}
 let chkBusy=false;async function chk(){if(!REM_ON||chkBusy)return;chkBusy=true;try{await syncRem();if(RM().sleep)return;const now=Date.now();let ch=0;
  for(const e of evs())if(e.rem&&!e.fiche&&!e.remDone){const d=dueOf(e);if(d<=now&&now-d<36*36e5){e.remDone=1;ch=1;await notify(e)}}if(ch){save();syncRem()}}finally{chkBusy=false}}
 setInterval(chk,30000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")chk()});setTimeout(chk,1500);
@@ -288,8 +288,8 @@ $("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
 $("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
 $("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,text/calendar,application/json">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>`);
- $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("carnet-de-chasse.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
- $("#x-j").onclick=async()=>{dl("carnet-de-chasse.json","application/json",await exportJSON());closeM()}};
+ $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
+ $("#x-j").onclick=async()=>{dl("chasselog.json","application/json",await exportJSON());closeM()}};
 $("#m-mg").onclick=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n=="Cervidé"?"Cervidés":n)}</label>`;
  modal(`<h2>Mes modes de chasse et espèces</h2><p class="mut sans">Décoche ce que tu ne chasses pas : ces choix disparaissent des listes d'encodage.</p><h3>Modes de chasse</h3>${MODES.map(m=>ck(m,"hm","m")).join("")}
  ${Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).map(([g,a])=>`<h3>${g}</h3>${a.map(s=>ck(s,"hs","s")).join("")}`).join("")}
@@ -594,7 +594,7 @@ function rRates(){const L=evs().filter(e=>e.fiche&&(seasonF=="all"||season(e.dat
 function bars2(map,attr,on){const e=Object.entries(map).sort((x,y)=>attr=="sea"?(x[0]<y[0]?1:-1):y[1]-x[1]),m=Math.max(1,...e.map(x=>x[1]));return e.map(([k,v])=>`<button class="bar${k==on?" on":""}" data-${attr}="${esc(k)}"><em>${esc(k)}</em><div style="width:${v/m*55}%"></div><small>${v}</small></button>`).join("")||'<p class="mut">Pas encore de données.</p>'}
 const todayS=()=>iso(new Date());
 const periodEv=()=>evs().filter(e=>seasonF=="all"||season(e.date)==seasonF);
-function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(withF.map(e=>season(e.date)))].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
+function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(evs().map(e=>season(e.date)))].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
  const PE=periodEv(),plan=PE.length,passed=PE.filter(e=>e.date<=todayS()).length,bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});

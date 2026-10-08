@@ -1,6 +1,6 @@
 {
-  "name": "Carnet de chasse",
-  "short_name": "Chasse",
+  "name": "ChasseLog",
+  "short_name": "ChasseLog",
   "description": "Journal de chasse : calendrier, tirs, photos et statistiques, stockés sur ton téléphone.",
   "start_url": "./index.html",
   "scope": "./",

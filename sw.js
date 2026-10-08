@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle fonctionne sans connexion.
 // Les fonds de carte (OpenStreetMap) ne sont volontairement PAS mis en cache.
-const V = "carnet-v3";
+const V = "carnet-v4";
 const FILES = [
   "./", "index.html", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "icons/apple-touch-icon.png",
@@ -37,7 +37,7 @@ self.addEventListener("periodicsync", e => {
     for (const x of l) {
       if (x.fired || x.due > now || now - x.due > 36 * 36e5) continue;
       x.fired = true;
-      await self.registration.showNotification("Carnet de chasse", { body: "Pense à encoder ta fiche : " + x.title + " (" + x.date.split("-").reverse().join("/") + ")", tag: "fiche-" + x.id, vibrate: [250, 120, 250], data: { id: x.id }, icon: "icons/icon-192.png", badge: "icons/icon-192.png" });
+      await self.registration.showNotification("ChasseLog", { body: "Pense à encoder ta fiche : " + x.title + " (" + x.date.split("-").reverse().join("/") + ")", tag: "fiche-" + x.id, vibrate: [250, 120, 250], data: { id: x.id }, icon: "icons/icon-192.png", badge: "icons/icon-192.png" });
     }
     await remPut(l);
   })());

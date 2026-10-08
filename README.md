@@ -1,4 +1,4 @@
-# Carnet de chasse – PWA (test)
+# ChasseLog – PWA (bêta web)
 
 Application 100 % locale : données et photos restent sur le téléphone (localStorage + IndexedDB). Aucun serveur, aucun compte.
 La carte (OpenStreetMap) ne s'affiche qu'avec une connexion ; sans réseau, un message l'indique. Pas de cartes hors ligne pour l'instant.

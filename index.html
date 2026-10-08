@@ -84,14 +84,18 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .dc u.ev{flex:1 1 auto;min-height:18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;white-space:normal;text-align:left;font:600 .6rem/1.22 system-ui;padding:3px;border-radius:5px;margin:2px 1px 1px;word-break:break-word;hyphens:auto}
 .dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo{background:#e8a032;color:#2a1c05}
 .wx{font:.56rem/1.1 system-ui;color:var(--mut);white-space:nowrap;overflow:hidden}
-#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 30%,#ff6b4a,#c62a17 60%,#7d140a);box-shadow:0 4px 14px #0007,0 0 0 4px #ffffff66;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
+#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);box-shadow:0 5px 14px #0008,inset 0 2px 3px #ffffff40,0 0 0 3px #ffffffcc;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
 #bang:active{transform:translateX(-50%) scale(.93)}
-#pst{align-self:center;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .75rem system-ui;padding:6px 12px;z-index:5;box-shadow:0 2px 6px #0003;white-space:nowrap}
+#pst{align-self:center;border-radius:99px;border:0;background:var(--acc);color:var(--bg);font:700 .9rem system-ui;padding:9px 18px;z-index:5;box-shadow:0 2px 6px #0003;white-space:nowrap}
 .sunb{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:.9rem system-ui;margin:0 0 6px}.sunb span{display:inline-flex;align-items:center;gap:5px}.sunb small{width:100%;font-size:.72rem;color:var(--mut)}
 .pkg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .pk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px 8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;font:600 .78rem/1.2 system-ui;color:var(--ink);text-align:center;min-height:100px}.pk:active{transform:scale(.95)}
 #okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
 #app.quick .vb{display:none}
+.dc u.nh,.wk u.nh{background:#5d6d7e;color:#fff}.dc u.ev b{display:block;font-weight:800}
+.hk{width:26px;height:26px;border-radius:50%;border:2px solid var(--mut);background:none;color:transparent;font:800 .9rem/1 system-ui;padding:0;flex:0 0 auto}.hk.on{background:#2e8b3a;border-color:#2e8b3a;color:#fff}
+.lbx{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.85rem;color:var(--mut);margin:10px 0 3px;font-family:system-ui,sans-serif}
+select:disabled{opacity:.45}
 .chq{display:flex;flex-wrap:wrap;gap:6px}.chq button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 12px;font:.85rem system-ui}.chq button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 .nps{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:3px}.nps button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;padding:8px 0;font:.8rem system-ui}.nps button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 .x{position:absolute;right:6px;top:6px;border:0;background:none;color:var(--mut);font-size:1.2rem;padding:8px}
@@ -126,14 +130,14 @@ button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;borde
 .sc2 b{font:700 1.7rem system-ui;color:var(--acc)}.sc2 span{font:.72rem system-ui;color:var(--mut)}
 button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
+.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
 <hr><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08d<br>Météo : Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08f<br>Météo : Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -167,7 +171,7 @@ const visTab=()=>{const o={};Object.entries(visSp()).forEach(([g,a])=>{o[g]=a.fl
 const visM=()=>MODES.filter(m=>!S.hm.includes(m));
 const visSp=()=>{const o={};Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).forEach(([g,a])=>{const f=a.filter(s=>!S.hs.includes(s));if(f.length)o[g]=f});return o};
 function parseCoord(s){const m=String(s).match(/(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)/);return m?[+m[1].replace(",","."),+m[2].replace(",",".")]:null}
-function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
+function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
 function dismiss(m){if(!m||m._d)return;m._d=1;const sh=m.firstElementChild;sh.style.animation="none";sh.style.transition="transform .26s cubic-bezier(.4,0,.6,1)";m.style.transition="background .26s";requestAnimationFrame(()=>{sh.style.transform="translateY(105%)";m.style.background="transparent"});setTimeout(()=>m.remove(),270)}
 function swipeDown(m,sh){let y0=0,dy=0,on=false,t0=0;
  sh.addEventListener("touchstart",e=>{on=false;if(m._d||sh.scrollTop>0||e.touches.length>1||e.target.closest("#pmap,input[type=range]"))return;y0=e.touches[0].clientY;dy=0;t0=Date.now();on=true},{passive:true});
@@ -192,7 +196,7 @@ function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFu
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick})[view]();hydrate()}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick})[view]();hydrate()}
 function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
 const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
@@ -284,15 +288,25 @@ function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
   document.querySelectorAll("[data-bs]").forEach(b=>b.onclick=()=>{B.svc=b.dataset.bs;save();draw()});
   $("#bk-ph").onchange=e=>{B.photos=e.target.checked;save();prep=exportJSON(!B.photos)};
   $("#bk-now").onclick=async()=>{if(await doBackup(prep)){closeM();const x=$("#bkb");if(x)x.remove()}}};draw()}
-function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||view!="cal")return;if(Date.now()-(B.last||0)<B.every*864e5||Date.now()<(B.snooze||0))return;
+function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||$("#mdb")||view!="cal")return;if(Date.now()-(B.last||0)<B.every*864e5||Date.now()<(B.snooze||0))return;
  const prep=exportJSON(!B.photos),d=document.createElement("div");d.id="bkb";
  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">Sauvegarde prévue vers ${SVC[B.svc]}<br><small style="font-weight:400;color:var(--mut)">Dernière : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}</small></span><button class="p" style="padding:9px 12px">Sauvegarder</button><button aria-label="Plus tard" style="border:0;background:none;color:var(--mut);font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");b1.onclick=async()=>{if(await doBackup(prep))d.remove()};b2.onclick=()=>{B.snooze=Date.now()+864e5;save();d.remove()}}
+const needK=t=>t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null,missT=t=>{const k=needK(t);if(!k||!t.p)return false;const a=(t[k]||[]).slice(0,t.p);return a.length<t.p||a.some(v=>v===""||v==null)};
+function missingDet(){const td=iso(new Date()),now=new Date(),sn=S.mdSn||{};return evs().filter(e=>{if(!e.fiche||e.nh||(sn[e.id]||0)>Date.now())return false;const age=(Date.parse(td)-Date.parse(e.date))/864e5;
+ if(age<0||age>14||(age==0&&now.getHours()<18))return false;return e.fiche.tirs.some(missT)}).sort((a,b)=>a.date<b.date?1:-1)}
+function mdCheck(){if(view!="cal"||$("#mdb")||$("#bkb"))return;const e=missingDet()[0];if(!e)return;const k=e.fiche.tirs.filter(missT).map(needK);
+ const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ d.innerHTML=`<span style="flex:1">À compléter : ${k.includes("w")&&k.includes("c")?"poids et cors":k.includes("w")?"poids du sanglier":"nombre de cors"}<br><small style="font-weight:500">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}</small></span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .9rem system-ui;padding:9px 12px">Compléter</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.2rem;padding:4px">✕</button>`;
+ document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");
+ b1.onclick=()=>{d.remove();openFiche(e.id);fd.tirs.forEach(t=>{if(missT(t))t.ok=false});render()};
+ b2.onclick=()=>{S.mdSn=S.mdSn||{};S.mdSn[e.id]=Date.now()+864e5;save();d.remove()}}
+setTimeout(mdCheck,2200);setInterval(mdCheck,10*6e4);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")setTimeout(mdCheck,1200)});
 setTimeout(bkCheck,2500);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")setTimeout(bkCheck,1500)});
 
 /* ---------- météo (Open-Meteo) + soleil ---------- */
-const WXK="chasselog-wx",DEF_LOC={lat:50.4669,lng:4.8675};let WXC={},WXH=null;try{WXC=JSON.parse(localStorage.getItem(WXK)||"{}")}catch(e){}
+const WXK="chasselog-wx";let WXC={},WXH=null;try{WXC=JSON.parse(localStorage.getItem(WXK)||"{}")}catch(e){}
 const wxKey=(la,ln)=>la.toFixed(1)+","+ln.toFixed(1);
 const WI=c=>c==0?"☀️":c<=2?"🌤️":c==3?"☁️":c<=48?"🌫️":c<=57?"🌦️":c<=67?"🌧️":c<=77?"🌨️":c<=82?"🌦️":c<=86?"🌨️":"⛈️";
 const CARD=d=>["N","NE","E","SE","S","SO","O","NO"][Math.round((((d%360)+360)%360)/45)%8];
@@ -301,33 +315,41 @@ async function getWx(la,ln){const k=wxKey(la,ln),c=WXC[k];if(c&&Date.now()-c.t<3
  try{const j=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la.toFixed(3)}&longitude=${ln.toFixed(3)}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant&timezone=auto&forecast_days=16`)).json(),d=j.daily,days={};
   d.time.forEach((t,i)=>days[t]={c:d.weather_code[i],hi:d.temperature_2m_max[i],lo:d.temperature_2m_min[i],pp:d.precipitation_probability_max?d.precipitation_probability_max[i]:null,ws:d.wind_speed_10m_max[i],wd:d.wind_direction_10m_dominant[i]});
   const v={t:Date.now(),days};WXC[k]=v;const ks=Object.keys(WXC);if(ks.length>10)delete WXC[ks[0]];try{localStorage.setItem(WXK,JSON.stringify(WXC))}catch(e){}return v}catch(e){return c||null}}
-async function wxHomeLoc(){try{if(navigator.permissions&&navigator.geolocation){const st=await navigator.permissions.query({name:"geolocation"});if(st.state=="granted"){const q=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{maximumAge:36e5,timeout:8000}));S.wxPos={lat:q.coords.latitude,lng:q.coords.longitude};save()}}}catch(e){}
- return S.wxPos||DEF_LOC}
-async function loadHomeWx(){const l=await wxHomeLoc(),v=await getWx(l.lat,l.lng);if(v&&(!WXH||WXH.t!=v.t)){WXH=v;if(view=="cal"&&!$(".mo")&&!$("#ff"))render()}}
+async function userPos(){try{if(!navigator.permissions||!navigator.geolocation)return null;const st=await navigator.permissions.query({name:"geolocation"});
+ if(st.state!="granted"){if(S.wxPos){delete S.wxPos;save()}return null}
+ if(S.wxPos&&Date.now()-(S.wxPos.t||0)<15*6e4)return S.wxPos;
+ const q=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{maximumAge:6e5,timeout:10000}));S.wxPos={lat:q.coords.latitude,lng:q.coords.longitude,t:Date.now()};save();return S.wxPos}catch(e){return S.wxPos||null}}
+async function loadHomeWx(){const l=await userPos(),v=l?await getWx(l.lat,l.lng):null,old=WXH;WXH=v;if((v?v.t:0)!=(old?old.t:0)&&view=="cal"&&!$(".mo")&&!$("#ff"))render()}
 setTimeout(loadHomeWx,800);setInterval(loadHomeWx,3*36e5);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")loadHomeWx()});
-function sunTimes(ds,lat,lng){const rad=Math.PI/180,dayMs=864e5,J1970=2440588,J2000=2451545,ob=rad*23.4397,J0=.0009;
- const toDays=d=>d.valueOf()/dayMs-.5+J1970-J2000,fromJ=j=>new Date((j+.5-J1970)*dayMs);
- const lw=rad*-lng,phi=rad*lat,n=Math.round(toDays(new Date(ds+"T12:00:00"))-J0-lw/(2*Math.PI)),ds2=J0+lw/(2*Math.PI)+n;
- const M=rad*(357.5291+.98560028*ds2),C=rad*(1.9148*Math.sin(M)+.02*Math.sin(2*M)+.0003*Math.sin(3*M)),Ls=M+C+rad*102.9372+Math.PI,dec=Math.asin(Math.sin(ob)*Math.sin(Ls));
- const Jnoon=J2000+ds2+.0053*Math.sin(M)-.0069*Math.sin(2*Ls),w=Math.acos((Math.sin(-.833*rad)-Math.sin(phi)*Math.sin(dec))/(Math.cos(phi)*Math.cos(dec)));
- const Jset=J2000+J0+(w+lw)/(2*Math.PI)+n+.0053*Math.sin(M)-.0069*Math.sin(2*Ls);return{rise:fromJ(Jnoon-(Jset-Jnoon)),set:fromJ(Jset)}}
+function sunTimes(ds,lat,lng){const r=Math.PI/180,Sn=Math.sin,Co=Math.cos,D0=Date.parse(ds+"T00:00:00Z");
+ const calc=(mins,up)=>{const T=(D0/864e5+2440587.5+mins/1440-2451545)/36525,L0=((280.46646+T*(36000.76983+T*.0003032))%360+360)%360,M=357.52911+T*(35999.05029-.0001537*T),e=.016708634-T*(.000042037+.0000001267*T);
+  const C=Sn(M*r)*(1.914602-T*(.004817+.000014*T))+Sn(2*M*r)*(.019993-.000101*T)+Sn(3*M*r)*.000289,om=125.04-1934.136*T,lam=L0+C-.00569-.00478*Sn(om*r);
+  const eps=23+(26+(21.448-T*(46.815+T*(.00059-T*.001813)))/60)/60+.00256*Co(om*r),dec=Math.asin(Sn(eps*r)*Sn(lam*r)),y=Math.tan(eps*r/2)**2;
+  const eot=4/r*(y*Sn(2*L0*r)-2*e*Sn(M*r)+4*e*y*Sn(M*r)*Co(2*L0*r)-.5*y*y*Sn(4*L0*r)-1.25*e*e*Sn(2*M*r)),ha=Math.acos(Co(90.833*r)/(Co(lat*r)*Co(dec))-Math.tan(lat*r)*Math.tan(dec))/r;
+  return 720-4*lng-eot+(up?-4*ha:4*ha)};
+ const t=up=>{let m=calc(720,up);m=calc(m,up);return new Date(D0+Math.round(m)*6e4)};return{rise:t(true),set:t(false)}}
 const hm=d=>d&&!isNaN(d)?d.toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"}):"–";
 const SUNUP='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#e39a2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18M7 19a5 5 0 0110 0M12 3v6M9.5 5.5L12 3l2.5 2.5M4.5 12.5l1.5 1.5M19.5 12.5L18 14"/></svg>',
  SUNDN='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c4552a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18M7 19a5 5 0 0110 0M12 3v6M9.5 6.5L12 9l2.5-2.5M4.5 12.5l1.5 1.5M19.5 12.5L18 14"/></svg>';
-async function sunBand(el,ds,loc){if(!el||!ds)return;el.dataset.ds=ds;const has=loc&&loc.lat!=null,L=has?loc:(S.wxPos||DEF_LOC),s=sunTimes(ds,L.lat,L.lng);
- const lbl=`<small>${has?"Pour le lieu de RDV":S.wxPos?"Pour ta position actuelle":"Pour Namur, choisis le lieu de RDV pour plus de précision"}</small>`;
+async function sunBand(el,ds,loc){if(!el||!ds)return;el.dataset.ds=ds;const has=loc&&loc.lat!=null;let L=has?loc:null;
+ if(!L){el.innerHTML='<small style="margin:0">Recherche de ta position…</small>';L=await userPos();if(el.dataset.ds!=ds)return}
+ if(!L){el.innerHTML=`<button class="s" id="sun-on" style="width:100%;text-align:left">📍 Active la localisation pour afficher le lever et le coucher du soleil et la météo</button>`;
+  $("#sun-on").onclick=()=>{if(!navigator.geolocation)return;el.innerHTML='<small style="margin:0">Recherche de ta position…</small>';
+   navigator.geolocation.getCurrentPosition(q=>{S.wxPos={lat:q.coords.latitude,lng:q.coords.longitude,t:Date.now()};save();sunBand(el,ds,loc);loadHomeWx()},
+    er=>{el.innerHTML=`<small style="margin:0">${er&&er.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).":"Position indisponible pour le moment."}</small>`},{enableHighAccuracy:false,timeout:15000})};return}
+ const s=sunTimes(ds,L.lat,L.lng),lbl=`<small>${has?"Pour le lieu de RDV":"Pour ta position actuelle"}</small>`;
  const base=`<span>${SUNUP}Lever ${hm(s.rise)}</span><span>${SUNDN}Coucher ${hm(s.set)}</span>`;el.innerHTML=base+lbl;
  const w=await getWx(L.lat,L.lng),d=w&&w.days[ds];if(!d||el.dataset.ds!=ds||!el.isConnected)return;
  el.innerHTML=base+`<span>${WI(d.c)} ${Math.round(d.lo)}° / ${Math.round(d.hi)}°</span><span>${windArrow(d.wd)} Vent ${CARD(d.wd)} ${Math.round(d.ws)} km/h</span>${d.pp!=null?`<span>💧 ${d.pp} %</span>`:""}`+lbl}
 
 /* ---------- tir rapide (BANG), sélection du gibier, postes ---------- */
 let pickCtx=null,quickTid=null;
-const BANG=(()=>{let pts=[];for(let i=0;i<24;i++){const r=i%2?13:27,a=i*Math.PI/12;pts.push((32+r*Math.cos(a)).toFixed(1)+","+(32+r*Math.sin(a)).toFixed(1))}
- return `<svg viewBox="0 0 64 64" width="62" height="62" aria-hidden="true"><polygon points="${pts.join(" ")}" fill="#ffd23f" stroke="#7d140a" stroke-width="1.5" stroke-linejoin="round"/><text x="32" y="36.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="11" fill="#b3200f" transform="rotate(-8 32 32)">BANG</text></svg>`})();
-const todayEvs=()=>on(iso(new Date()));
+const BANG='<svg viewBox="0 0 100 100" width="70" height="70" aria-hidden="true"><defs><radialGradient id="bR" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#ff7a52"/><stop offset=".55" stop-color="#e3261b"/><stop offset="1" stop-color="#8e0d07"/></radialGradient><radialGradient id="bO" cx=".4" cy=".32" r=".75"><stop offset="0" stop-color="#ffd27a"/><stop offset=".6" stop-color="#ff8a1a"/><stop offset="1" stop-color="#d4520a"/></radialGradient><radialGradient id="bY" cx=".42" cy=".35" r=".7"><stop offset="0" stop-color="#fffbe0"/><stop offset=".5" stop-color="#ffe45c"/><stop offset="1" stop-color="#ffb800"/></radialGradient><linearGradient id="bT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#ffe7a3"/></linearGradient><filter id="bS" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#3a0400" flood-opacity=".55"/></filter></defs><g filter="url(#bS)"><polygon points="94.2,41.0 82.1,51.3 92.7,62.4 76.0,65.1 85.6,84.3 64.9,73.6 65.4,96.5 52.4,80.3 42.9,93.6 37.4,79.4 22.5,86.5 27.4,68.4 4.7,71.4 22.4,55.6 2.4,48.0 20.0,41.3 12.2,28.1 27.3,28.1 24.9,10.1 41.1,23.1 46.0,-0.1 54.7,21.5 68.1,7.6 69.2,24.5 84.1,22.3 77.8,36.9" fill="url(#bR)" stroke="#6b0904" stroke-width="1.6" stroke-linejoin="round"/><polygon points="87.9,55.7 71.5,60.0 75.7,72.6 63.2,70.8 60.0,84.9 49.8,71.9 38.5,88.2 38.2,68.1 21.9,74.0 27.8,60.0 16.3,54.6 26.2,46.4 15.9,34.1 33.9,35.9 28.7,16.4 43.9,28.6 50.3,14.3 57.1,26.3 68.9,21.1 67.7,34.9 85.5,34.1 71.0,47.1" fill="url(#bO)" stroke="#a63a05" stroke-width="1" stroke-linejoin="round"/><polygon points="76.2,51.3 66.3,56.9 67.9,66.6 58.1,65.8 53.2,75.9 46.4,65.8 35.1,73.1 36.9,59.9 25.6,57.5 32.1,49.1 27.4,40.5 37.3,38.2 37.8,26.2 48.0,34.1 56.1,23.4 59.2,35.8 69.9,34.9 67.2,44.7" fill="url(#bY)"/></g><ellipse cx="38" cy="33" rx="13" ry="6" fill="#fff" opacity=".35" transform="rotate(-25 38 33)"/><g transform="rotate(-12 50 52)"><text x="50" y="58" text-anchor="middle" font-family="Impact,\'Arial Black\',system-ui,sans-serif" font-weight="900" font-size="19" letter-spacing=".5" fill="url(#bT)" stroke="#7a0d06" stroke-width="3.2" stroke-linejoin="round" paint-order="stroke">BANG!</text></g><circle cx="88" cy="20" r="2.4" fill="#ffd21f"/><circle cx="12" cy="78" r="1.8" fill="#ff8a1a"/><circle cx="84" cy="84" r="1.5" fill="#ffd21f"/></svg>';
+const todayEvs=()=>on(iso(new Date())).filter(e=>!e.nh);
 function chooseEv(cb){const a=todayEvs();if(!a.length)return;if(a.length==1)return cb(a[0].id);
  modal(`<h2>Quelle journée ?</h2>${a.map(e=>`<button class="s li" data-ce="${e.id}">${esc(e.title)}</button>`).join("")}`);document.querySelectorAll("[data-ce]").forEach(b=>b.onclick=()=>{closeM();cb(b.dataset.ce)})}
 const curPoste=e=>e&&e.postes&&e.postes.length?e.postes[e.postes.length-1].n:null;
+const todayPoste=()=>{let best=null;todayEvs().forEach(e=>(e.postes||[]).forEach((x,i)=>{const k=x.ts||i;if(!best||k>=best.k)best={k,n:x.n}}));return best?best.n:null};
 function quickShot(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();pickCtx={mode:"quick"};go("pick")}
 function commonSp(){const vis=Object.values(visSp()).flat(),cnt={};evs().forEach(e=>e.fiche&&e.fiche.tirs.forEach(t=>cnt[t.sp]=(cnt[t.sp]||0)+1));
  const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cervidé","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
@@ -342,9 +364,9 @@ function posteModal(id){const e=S.ev[id];e.postes=e.postes||[];
  const draw=()=>{modal(`<h2>Numéro de poste</h2><p class="mut sans" style="margin-top:-4px">${esc(e.title)}</p>
  ${e.postes.length?`<div class="sans" style="margin-bottom:8px">${e.postes.map((x,i)=>`<span class="chip">N° ${esc(x.n)} <small class="mut">${esc(x.h||"")}</small><button data-px="${i}" aria-label="Retirer">✕</button></span>`).join("")}</div>`:""}
  <label>Nouveau numéro de poste ce jour</label><div class="row"><input id="ps-n" inputmode="numeric" placeholder="ex. 7"><button class="p" id="ps-ok" style="flex:0 0 auto">Ajouter</button></div><p class="mut sans" style="font-size:.8rem">Les tirs encodés ensuite sont rattachés à ce poste.</p>`);
-  $("#ps-ok").onclick=()=>{const v=$("#ps-n").value.trim();if(!v)return;e.postes.push({n:v,h:new Date().toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"})});save();toast("Poste n° "+v+" enregistré.");closeM()};
+  $("#ps-ok").onclick=()=>{const v=$("#ps-n").value.trim();if(!v)return;e.postes.push({n:v,ts:Date.now(),h:new Date().toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"})});save();toast("Poste n° "+v+" enregistré.");closeM();if(view=="cal")render()};
   $("#ps-n").onkeydown=ev=>{if(ev.key=="Enter")$("#ps-ok").click()};
-  document.querySelectorAll("[data-px]").forEach(b=>b.onclick=()=>{e.postes.splice(+b.dataset.px,1);save();draw()})};draw()}
+  document.querySelectorAll("[data-px]").forEach(b=>b.onclick=()=>{e.postes.splice(+b.dataset.px,1);save();draw();if(view=="cal")render()})};draw()}
 
 /* ---------- partage de la journée (image) ---------- */
 const LOGO_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#557a3a"/><stop offset="1" stop-color="#2b3f1e"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#lg)"/><g fill="none" stroke="#f3efe2" stroke-linecap="round"><circle cx="256" cy="256" r="152" stroke-width="24"/><circle cx="256" cy="256" r="90" stroke-width="20"/><path d="M256 62V150M256 362V450M62 256H150M362 256H450" stroke-width="22"/></g><circle cx="256" cy="256" r="34" fill="#e39a2d"/></svg>';
@@ -431,7 +453,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-08d",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-08f",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -493,16 +515,16 @@ async function importFile(f){if(!f)return;const t=await f.text();
  if(save()){cur=new Date(a[0].date+"T12:00");closeM();toast(a.length+" évènement(s) importé(s).");go("cal")}}
 
 /* ---------- calendrier ---------- */
-const evCls=(e,td)=>e.fiche?"ok":e.date<td?"todo":"";
+const evCls=(e,td)=>e.nh?"nh":e.fiche?"ok":e.date<td?"todo":"";
 const wxCell=(ds,td)=>{const w=WXH&&ds>=td&&WXH.days[ds];return w?`<div class="wx">${WI(w.c)} ${Math.round(w.hi)}°</div>`:""};
 function monthP(d0){const y=d0.getFullYear(),m=d0.getMonth(),td=iso(new Date()),first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),rows=Math.ceil((first+n)/7);
  let h=`<div class="ttl">${MN[m].toUpperCase()} ${y}</div><div class="wd"><i></i>${["LUN.","MAR.","MER.","JEU.","VEN.","SAM.","DIM."].map((x,i)=>`<span class="${i==6?"su":""}">${x}</span>`).join("")}</div><div class="wks" style="--r:${rows}">`;
  for(let r=0;r<rows;r++){h+=`<div class="wr"><i class="wn">${isoWeek(new Date(y,m,1-first+r*7))}</i>`;
   for(let i=0;i<7;i++){const d=new Date(y,m,1-first+r*7+i),ds=iso(d),a=on(ds),show=ds==sel?a:a.slice(0,3);
-   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${wxCell(ds,td)}${show.slice(0,2).map(e=>`<u class="ev${a.length>1?" ev2":""} ${evCls(e,td)}">${esc(e.title.replace(/^Chasse\s+(?:(?:du|de la|des|de|aux|au|à la|d')\s*)?/i,"")||e.title)}</u>`).join("")}${a.length>2?`<small>+${a.length-2}</small>`:""}</div>`}
+   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${wxCell(ds,td)}${show.slice(0,2).map(e=>`<u class="ev${a.length>1?" ev2":""} ${evCls(e,td)}">${e.time?`<b>${e.time.replace(":","h")}</b>`:""}${esc(e.title.replace(/^Chasse\s+(?:(?:du|de la|des|de|aux|au|à la|d')\s*)?/i,"")||e.title)}</u>`).join("")}${a.length>2?`<small>+${a.length-2}</small>`:""}</div>`}
   h+="</div>"}
  return h+"</div>"}
-function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${e.fiche?"ok":""}" data-ev="${e.id}">${esc(e.title)}</u>`;
+function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${e.nh?"nh":e.fiche?"ok":""}" data-ev="${e.id}">${e.time?e.time.replace(":","h")+" · ":""}${esc(e.title)}</u>`;
  if(cv=="month")return monthP(d);
  if(cv=="year")return `<div class="ttl">${y}</div><div class="ysc"><div class="yr">`+MN.map((M,mo)=>{const first=(new Date(y,mo,1).getDay()+6)%7,n=new Date(y,mo+1,0).getDate();let g="<i></i>".repeat(first);
   for(let k=1;k<=n;k++){const ds=iso(new Date(y,mo,k));g+=`<i class="${on(ds).length?"hv":""}${ds==td?" tt":""}">${k}</i>`}return `<div class="ym" data-m="${mo}" data-y="${y}"><b>${M}</b><div class="mini">${g}</div></div>`}).join("")+"</div></div>";
@@ -510,9 +532,9 @@ function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="
   for(let i=0;i<7;i++){const x=new Date(a);x.setDate(a.getDate()+i);const ds=iso(x);body+=`<div class="wk" data-d="${ds}"><div>${["lun","mar","mer","jeu","ven","sam","dim"][i]}<b class="${ds==td?"tt":""}">${x.getDate()}</b></div><div style="flex:1">${on(ds).map(chip).join("")}</div></div>`}
   return `<div class="ttl">${a.getDate()} ${MN[a.getMonth()].slice(0,4).toLowerCase()}. – ${b.getDate()} ${MN[b.getMonth()].slice(0,4).toLowerCase()}. ${b.getFullYear()}</div><div class="pw">${body}</div>`}
  const a=on(iso(d));
- return `<div class="ttl">${esc(d.toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"}))}</div><div class="pd">`+(a.map(e=>`<div class="card" data-ev="${e.id}" style="cursor:pointer"><b>${esc(e.title)}</b><br><span class="sans mut">${esc(e.mode||"Type à préciser")} · ${roleTxt(e)}<br>📍 ${esc(lieu(e.place))}<br>${e.fiche?"Fiche remplie":"Fiche à remplir"}</span></div>`).join("")||'<p class="mut" style="text-align:center">Aucune journée de chasse ce jour.</p>')+"</div>"}
+ return `<div class="ttl">${esc(d.toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"}))}</div><div class="pd">`+(a.map(e=>`<div class="card" data-ev="${e.id}" style="cursor:pointer"><b>${esc(e.title)}</b><br><span class="sans mut">${e.nh?"Évènement hors chasse":esc(e.mode||"Type à préciser")+" · "+roleTxt(e)}${e.time?"<br>RDV à "+e.time.replace(":","h"):""}<br>📍 ${esc(lieu(e.place))}${e.nh?"":"<br>"+(e.fiche?"Fiche remplie":"Fiche à remplir")}</span></div>`).join("")||'<p class="mut" style="text-align:center">Aucune journée de chasse ce jour.</p>')+"</div>"}
 function rCal(){const mo=cv=="month";
- $("#app").innerHTML=`<div class="hd"><button class="ib" id="mn" aria-label="Menu">☰</button>${todayEvs().length?'<button id="pst" aria-label="Nouveau numéro de poste">N° de poste</button>':""}<button class="ib tdy" id="tdy" aria-label="Aujourd'hui">${new Date().getDate()}</button></div><div class="vp${mo?" m":""}"><div class="trk">${[-1,0,1].map(k=>`<div class="pn${mo||cv=="year"?"":" sc"}">${panel(shifted(k))}</div>`).join("")}</div></div><button id="fab" aria-label="Ajouter une journée de chasse">+</button><button id="fab2" aria-label="Statistiques"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20v-7M2.5 20h19"/></svg></button>${todayEvs().length?`<button id="bang" aria-label="Encoder un tir">${BANG}</button>`:""}`;
+ $("#app").innerHTML=`<div class="hd"><button class="ib" id="mn" aria-label="Menu">☰</button>${todayEvs().length?`<button id="pst" aria-label="Numéro de poste">${todayPoste()!=null?"Poste n° "+esc(todayPoste()):"N° de poste"}</button>`:""}<button class="ib tdy" id="tdy" aria-label="Aujourd'hui">${new Date().getDate()}</button></div><div class="vp${mo?" m":""}"><div class="trk">${[-1,0,1].map(k=>`<div class="pn${mo||cv=="year"?"":" sc"}">${panel(shifted(k))}</div>`).join("")}</div></div><button id="fab" aria-label="Ajouter une journée de chasse">+</button><button id="fab2" aria-label="Statistiques"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20v-7M2.5 20h19"/></svg></button>${todayEvs().length?`<button id="bang" aria-label="Encoder un tir">${BANG}</button>`:""}`;
  if($("#bang")){$("#bang").onclick=()=>chooseEv(quickShot);$("#pst").onclick=()=>chooseEv(posteModal)}
  $("#mn").onclick=()=>document.body.classList.add("dr");
  $("#tdy").onclick=()=>{cur=new Date();sel=iso(cur);render()};
@@ -542,10 +564,10 @@ function openDay(ds){const a=on(ds);if(!a.length)return openForm(null,ds);
  modal(`<h2>${fmt(ds)}</h2>${a.map(e=>`<button class="s li" data-o="${e.id}">${esc(e.title)} <span class="mut">${e.fiche?"· fiche remplie":""}</span></button>`).join("")}<button class="p" id="ad" style="width:100%">Ajouter un évènement</button>`);
  document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>openEv(b.dataset.o));$("#ad").onclick=()=>openForm(null,ds)}
 function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
- modal(`<h2>${esc(e.title)}</h2><p class="sans" style="margin:0 0 8px">${fmt(e.date)}</p>
- <div class="card sans" id="o-c" style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><div style="flex:1">Type de chasse : ${esc(e.mode||"à préciser")}<br>Rôle : ${roleTxt(e)}<br>Lieu de RDV : ${esc(lieu(e.place))} ${link(e.place)}${e.desc?"<br>Notes : "+esc(e.desc).replace(/\n/g,"<br>"):""}</div><button class="d" id="o-x" aria-label="Supprimer l'évènement"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></div>
- <button class="p" id="o-f" style="width:100%" ${can?"":"disabled"}>${e.fiche?"Consulter la fiche de chasse":"Remplir la fiche de chasse"}</button><div class="row" style="margin-top:8px;align-items:center"><span class="mut sans" style="flex:1">${can?"":"Disponible à partir du "+e.date.split("-").reverse().join("/")+"."}</span><button class="s" id="o-a" style="flex:0 0 auto">+ Ajouter un évènement</button></div>`);
- $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};
+ modal(`<h2>${esc(e.title)}</h2><p class="sans" style="margin:0 0 8px">${fmt(e.date)}${e.time?" · RDV à "+e.time.replace(":","h"):""}</p><div class="sunb" id="o-sun"></div>
+ <div class="card sans" id="o-c" style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><div style="flex:1">${e.nh?"Évènement hors chasse":`Type de chasse : ${esc(e.mode||"à préciser")}<br>Rôle : ${roleTxt(e)}`}<br>Lieu${e.nh?"":" de RDV"} : ${esc(lieu(e.place))} ${link(e.place)}${e.desc?"<br>Notes : "+esc(e.desc).replace(/\n/g,"<br>"):""}</div><button class="d" id="o-x" aria-label="Supprimer l'évènement"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></div>
+ <button class="p" id="o-f" style="width:100%;${e.nh?"display:none":""}" ${can?"":"disabled"}>${e.fiche?"Consulter la fiche de chasse":"Remplir la fiche de chasse"}</button><div class="row" style="margin-top:8px;align-items:center"><span class="mut sans" style="flex:1">${can||e.nh?"":"Disponible à partir du "+e.date.split("-").reverse().join("/")+"."}</span><button class="s" id="o-a" style="flex:0 0 auto">+ Ajouter un évènement</button></div>`);
+ $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};sunBand($("#o-sun"),e.date,e.place);
  $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
  $("#o-x").onclick=()=>{modal(`<h2>Supprimer cet évènement ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?"<br>La fiche de chasse associée sera aussi supprimée.":""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
 
@@ -588,26 +610,39 @@ function full(html,onSave){closeF();const o=document.createElement("div");o.id="
  $("#f-c").onclick=closeF;$("#f-s").onclick=onSave}
 function closeF(){const o=$("#ff");if(o){if(window.visualViewport&&o._f){visualViewport.removeEventListener("resize",o._f);visualViewport.removeEventListener("scroll",o._f)}o.remove()}}
 function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:visM()[0]||"",role:"part",guests:[],host:"",place:{name:"",lat:null,lng:null}};
- let fl=Object.assign({},e.place),fg=[...(e.guests||[])];
+ let fl=Object.assign({},e.place),fg=[...(e.guests||[])],ft=e.time||null,hunt=!e.nh;
  const ms=[...new Set(["",...visM(),e.mode])],tdy=iso(new Date());
  function sv(){const d=$("#e-d").value;if(!d)return alert("Choisis une date.");
   if(e.fiche&&d>tdy)return alert("Cette journée a une fiche de chasse encodée : elle ne peut pas être déplacée dans le futur.");
   const g=$("#e-r").value=="guest",gi=$("#e-gi").value.trim();if(!g&&gi&&$("#e-gr").style.display!="none")fg.push(gi);
-  const mode=$("#e-m").value,i=id||"e"+Date.now()+Math.floor(Math.random()*99);
-  if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||mode||"Chasse",role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
+  if(!hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle ne peut pas devenir un évènement hors chasse.");
+  const mode=hunt?$("#e-m").value:"",i=id||"e"+Date.now()+Math.floor(Math.random()*99);if(ft)e.time=ft;else delete e.time;if(hunt)delete e.nh;else e.nh=true;
+  if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||(hunt?mode||"Chasse":"Évènement"),role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
   if(save()){sel=d;cur=new Date(d+"T12:00");closeF();render()}}
- full(`<h2 style="margin-top:0">${id?"Modifier l'évènement":"Nouvelle journée de chasse"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
- <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><label>Type de chasse</label><select id="e-m">${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
+ full(`<h2 style="margin-top:0" id="e-h2">${id?"Modifier l'évènement":hunt?"Nouvelle journée de chasse":"Nouvel évènement"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
+ <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><div class="lbx"><span>Type de chasse</span><button type="button" id="e-hk" class="hk${hunt?" on":""}" aria-label="Journée de chasse" aria-pressed="${hunt}">✓</button></div><select id="e-m" ${hunt?"":"disabled"}>${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
  ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
- <label>Rôle</label><select id="e-r"><option value="part" ${e.role!="guest"?"selected":""}>Actionnaire</option><option value="guest" ${e.role=="guest"?"selected":""}>Invité</option></select>
+ <p class="mut sans" id="e-nhm" style="margin:6px 0 0;${hunt?"display:none":""}">Ce n'est pas une journée de chasse : l'évènement n'apparaît pas dans les statistiques.</p>
+ <div id="e-rw"><label>Rôle</label><select id="e-r"><option value="part" ${e.role!="guest"?"selected":""}>Actionnaire</option><option value="guest" ${e.role=="guest"?"selected":""}>Invité</option></select>
  <div id="e-pw"><div id="e-gl"></div><button class="s" id="e-gb" style="margin-top:8px">Ajouter un invité ?</button><div class="row" id="e-gr" style="display:none;margin-top:8px"><input id="e-gi" placeholder="Nom de l'invité"><button class="s" id="e-ga" style="flex:0 0 auto">Ajouter</button><button class="s" id="e-gc" style="flex:0 0 auto" aria-label="Annuler l'ajout">✕</button></div></div>
- <div id="e-hw"><label>Invitant</label><input id="e-h" value="${esc(e.host)}" placeholder="Nom de l'invitant"></div>
- <label>Lieu de RDV</label><button class="s sans" id="e-l" style="width:100%;text-align:left"></button>`,sv);
+ <div id="e-hw"><label>Invitant</label><input id="e-h" value="${esc(e.host)}" placeholder="Nom de l'invitant"></div></div>
+ <div id="e-tw"></div>
+ <label id="e-ll">Lieu de RDV</label><button class="s sans" id="e-l" style="width:100%;text-align:left"></button><div class="chq" id="e-pl" style="margin-top:8px"></div>`,sv);
  const gl=()=>{$("#e-gl").innerHTML=(fg.length?"<label>Invités</label>":"")+fg.map((g,i)=>`<span class="chip">${esc(g)}<button data-gx="${i}" aria-label="Retirer">✕</button></span>`).join("");document.querySelectorAll("[data-gx]").forEach(b=>b.onclick=()=>{fg.splice(+b.dataset.gx,1);gl()})};
  const rl=()=>$("#e-l").textContent="📍 "+(fl.name||coord(fl)||"Choisir sur la carte");
  const rr=()=>{const g=$("#e-r").value=="guest";$("#e-pw").style.display=g?"none":"block";$("#e-hw").style.display=g?"block":"none"};
+ const tw=()=>{$("#e-tw").innerHTML=ft?`<label>Heure de RDV</label><div class="row"><input type="time" id="e-tm" value="${ft}"><button class="s" id="e-tx" style="flex:0 0 auto" aria-label="Retirer l'heure">✕</button></div>`:`<button class="s" id="e-ta" style="margin-top:12px">Ajouter une heure de RDV ?</button>`;
+  if(ft){$("#e-tm").onchange=ev=>{ft=ev.target.value||null};$("#e-tx").onclick=()=>{ft=null;tw()}}else $("#e-ta").onclick=()=>{ft="08:30";tw()}};
+ const hk=()=>{$("#e-hk").classList.toggle("on",hunt);$("#e-hk").setAttribute("aria-pressed",hunt);$("#e-m").disabled=!hunt;$("#e-rw").style.display=hunt?"block":"none";$("#e-nhm").style.display=hunt?"none":"block";$("#e-ll").textContent=hunt?"Lieu de RDV":"Lieu";$("#e-t").placeholder=hunt?"Chasse":"Évènement";if(!id)$("#e-h2").textContent=hunt?"Nouvelle journée de chasse":"Nouvel évènement (hors chasse)"};
+ const pk=x=>x.name?x.name.trim().toLowerCase():(x.lat!=null?x.lat.toFixed(4)+","+x.lng.toFixed(4):"");
+ const pl=()=>{const seen=new Set([pk(fl)]),out=[];evs().filter(o=>o.place&&(o.place.name||o.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1).forEach(o=>{const k=pk(o.place);if(!seen.has(k)&&out.length<6){seen.add(k);out.push(o.place)}});
+  $("#e-pl").innerHTML=out.length?`<span class="mut sans" style="width:100%;font-size:.8rem">Lieux déjà utilisés :</span>`+out.map((x,i)=>`<button type="button" data-pl="${i}">📍 ${esc(x.name||coord(x))}</button>`).join(""):"";
+  document.querySelectorAll("#e-pl [data-pl]").forEach(b=>b.onclick=()=>{fl=Object.assign({},out[+b.dataset.pl]);rl();pl();su()})};
  const hideG=()=>{$("#e-gi").value="";$("#e-gr").style.display="none";$("#e-gb").style.display="block"};
- gl();rl();rr();$("#e-r").onchange=rr;
+ gl();rl();rr();tw();hk();pl();$("#e-r").onchange=rr;
+ $("#e-hk").onclick=()=>{if(hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle reste une journée de chasse.");hunt=!hunt;hk()};
+ $("#e-t").addEventListener("change",()=>{if(id||fl.name||fl.lat!=null)return;const v=$("#e-t").value.trim().toLowerCase();if(!v)return;const o=evs().filter(x=>x.title.toLowerCase()==v&&x.place&&(x.place.name||x.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1)[0];
+  if(o){fl=Object.assign({},o.place);rl();pl();su();if(!ft&&o.time){ft=o.time;tw()}if(hunt&&o.mode&&[...$("#e-m").options].some(op=>op.value==o.mode))$("#e-m").value=o.mode;toast("Lieu repris de ta dernière journée « "+o.title+" ».")}});
  $("#e-gb").onclick=()=>{$("#e-gb").style.display="none";$("#e-gr").style.display="flex";$("#e-gi").focus()};
  $("#e-ga").onclick=()=>{const v=$("#e-gi").value.trim();if(v){fg.push(v);gl()}hideG()};
  $("#e-gc").onclick=hideG;
@@ -633,13 +668,14 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
  if(quickTid&&!Q){quickTid=null;setTimeout(()=>go("cal"));return}
  const detail=t=>{const k=t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null;if(!k||!t.p)return"";t[k]=t[k]||[];
   return `<div class="det"><span class="mut sans">${k=="w"?"Poids (kg)":"Nombre de cors"}</span>${Array.from({length:t.p},(_,i)=>`<label class="dl sans"><span>${k=="w"?"Sanglier":"Mâle"} ${i+1}</span><input type="number" min="0" step="${k=="w"?"0.5":"1"}" inputmode="${k=="w"?"decimal":"numeric"}" data-dk="${t.id}|${k}|${i}" value="${esc(t[k][i]??"")}" placeholder="${k=="w"?"kg":"cors"}"></label>`).join("")}</div>`};
- const card=t=>{const nm=tname(t),isCl=!!CLS[t.sp];
+ const card=t=>{const nm=tname(t),isCl=!!CLS[t.sp],qk=quickTid==t.id;
   if(t.ok!==false)return `<div class="card cd sans" data-o="${t.id}">${sil(nm,44)}<div style="flex:1;min-width:0"><b>${esc(nm)}</b> ${isCl?"":sxi(t.sx)}<br><span class="mut">Prélevé ${t.p} · Raté ${t.m} · Touché ${t.h} · ${t.n} ${UL[t.u].toLowerCase()}${esc(extra(t))}</span></div><span class="vk" aria-hidden="true">✓</span></div>`;
   const pick=isCl?`<div class="seg" style="margin-top:8px">${CLS[t.sp].map((l,i)=>`<button data-sx="${t.id}:${"mfj"[i]}" class="${t.sx=="mfj"[i]?"on":""}">${l}</button>`).join("")}</div>`:`<div class="row sans" style="gap:6px;margin-top:8px;justify-content:flex-start"><span class="mut" style="flex:0 0 auto">Sexe</span><button class="sx m${t.sx=="m"?" on":""}" data-sx="${t.id}:m" aria-label="Mâle" style="flex:0 0 auto">♂</button><button class="sx f${t.sx=="f"?" on":""}" data-sx="${t.id}:f" aria-label="Femelle" style="flex:0 0 auto">♀</button></div>`;
-  return `<div class="card tc"><div class="tcm"><div class="row sans" style="gap:8px"><span style="flex:0 0 auto">${sil(nm,40)}</span><b>${esc(t.sp)}</b><button class="s" data-u="${t.id}" style="flex:0 0 auto">${UL[t.u]} ⇄</button><button class="d" data-x="${t.id}" style="flex:0 0 auto">Retirer</button></div>${pick}
-  <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${detail(t)}
-  ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16,"carabine")}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:8px;color:var(--ink)">📷 Photo de l'animal<input type="file" accept="image/*" data-tph="${t.id}" hidden></label>
-  <button class="s sans" data-l="${t.id}" style="width:100%;margin-top:10px;text-align:left">📍 ${t.loc?"Lieu du tir":"Lieu de RDV"} : ${esc(lieu(t.loc||e.place))} · modifier</button></div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
+  return `<div class="card tc"><div class="tcm"><div class="row sans" style="gap:8px"><span style="flex:0 0 auto">${sil(nm,40)}</span><b>${esc(t.sp)}</b><button class="s" data-u="${t.id}" style="flex:0 0 auto">${UL[t.u]} ⇄</button><button class="d" data-x="${t.id}" style="flex:0 0 auto">${qk?"Annuler":"Retirer"}</button></div>${pick}
+  <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${qk?(t.p&&(t.sp=="Sanglier"||(CLS[t.sp]&&t.sx=="m"))?`<p class="mut sans" style="margin:8px 0 0;font-size:.85rem">${t.sp=="Sanglier"?"Le poids":"Le nombre de cors"} se complète plus tard dans la fiche.</p>`:""):detail(t)}
+  ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16,"carabine")}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}${qk?"":`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:8px;color:var(--ink)">📷 Photo de l'animal<input type="file" accept="image/*" data-tph="${t.id}" hidden></label>`}
+  <button class="s sans" data-gps="${t.id}" style="width:100%;margin-top:10px;text-align:left;${t.loc&&t.loc.gps?"border-color:var(--acc);color:var(--acc);font-weight:600":""}">📍 ${t.loc&&t.loc.gps?`Position du tir enregistrée${t.loc.acc?` (± ${Math.round(t.loc.acc)} m)`:""} · actualiser`:"Enregistrer ma position (lieu du tir)"}</button>
+  ${qk?"":`<button class="s sans" data-l="${t.id}" style="width:100%;margin-top:6px;text-align:left">🗺 ${t.loc?(t.loc.gps?"Lieu du tir":"Lieu du tir")+" : "+esc(lieu(t.loc)):"Lieu de RDV : "+esc(lieu(e.place))} · choisir sur la carte</button>`}</div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
  <h2>Tirs</h2>
  <button class="p" id="a-b" style="width:100%">+ Ajouter un tir</button>
@@ -665,6 +701,9 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
   else if(k=="m"){if(t.m>0){t.m--;t.n=Math.max(0,t.n-1)}}
   else t.n=Math.max(0,t.n-1);
   render()});
+ document.querySelectorAll("[data-gps]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.gps);if(!navigator.geolocation)return toast("Géolocalisation non disponible sur cet appareil.");b.textContent="📍 Localisation en cours…";b.disabled=true;
+  navigator.geolocation.getCurrentPosition(q=>{t.loc={name:"Lieu du tir",lat:q.coords.latitude,lng:q.coords.longitude,acc:q.coords.accuracy,gps:1};toast("Position du tir enregistrée.");render()},
+   er=>{toast(er&&er.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur.":"Position introuvable pour le moment, réessaie.");render()},{enableHighAccuracy:true,timeout:20000,maximumAge:0})});
  document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.l);pickLoc(t.loc||e.place,p=>{t.loc=p;render()},t.loc?()=>{t.loc=null;render()}:null)});
  document.querySelectorAll("[data-rp]").forEach(b=>b.onclick=()=>{sync();fd.photos.splice(+b.dataset.rp,1);render()});
  document.querySelectorAll("[data-gn]").forEach(x=>x.onchange=()=>{sync();const t=T(x.dataset.gn);t.gun=x.value||null;if(t.gun)S.lastGun=t.gun;save()});
@@ -795,8 +834,8 @@ function centerChip(){const c=document.querySelector(".chips2"),o=c&&c.querySele
   else d.style.transform="translate(-50%,-60px)"};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 const todayS=()=>iso(new Date());
-const periodEv=()=>evs().filter(e=>seasonF=="all"||season(e.date)==seasonF);
-function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([season(todayS()),...evs().map(e=>season(e.date))])].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
+const periodEv=()=>evs().filter(e=>!e.nh&&(seasonF=="all"||season(e.date)==seasonF));
+function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([season(todayS()),...evs().filter(e=>!e.nh).map(e=>season(e.date))])].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
  const PE=periodEv(),plan=PE.length,passed=PE.filter(e=>e.date<=todayS()).length,bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});

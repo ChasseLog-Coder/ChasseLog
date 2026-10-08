@@ -279,6 +279,17 @@ $("#m-rm").onclick=()=>{shut();modal(`<h2>Paramètres de rappels</h2><p class="s
 /* ---------- menu ---------- */
 const pg=$("#page");pg.addEventListener("click",e=>{if(document.body.classList.contains("dr")){e.preventDefault();e.stopPropagation();document.body.classList.remove("dr")}},true);
 const shut=()=>document.body.classList.remove("dr");
+(()=>{const dr=$("#dr"),b=document.body;let x0=null,y0=0,dx=0,mv=false,t0=0,w=0;
+ const reset=()=>{dr.style.transition="";dr.style.transform="";pg.style.transition="";pg.style.transform=""};
+ document.addEventListener("touchstart",e=>{x0=null;if(!b.classList.contains("dr")||e.touches.length>1)return;x0=e.touches[0].clientX;y0=e.touches[0].clientY;dx=0;mv=false;t0=Date.now();w=dr.offsetWidth},{passive:true});
+ document.addEventListener("touchmove",e=>{if(x0==null)return;dx=e.touches[0].clientX-x0;const dy=e.touches[0].clientY-y0;
+  if(!mv){if(Math.abs(dy)>Math.abs(dx)+4&&Math.abs(dy)>8){x0=null;return}if(Math.abs(dx)<8)return;mv=true;dr.style.transition="none";pg.style.transition="none"}
+  const m=Math.max(-w,Math.min(0,dx));dr.style.transform=`translateX(${m}px)`;pg.style.transform=`translateX(${w+m}px)`},{passive:true});
+ const end=()=>{if(x0==null)return;const was=mv,close=mv&&(dx<-w*.18||(dx<-30&&dx/(Date.now()-t0)<-.5));x0=null;mv=false;if(!was)return;
+  dr.style.transition="transform .25s";pg.style.transition="transform .25s";
+  if(close){b.classList.remove("dr");dr.style.transform="translateX(-100%)";pg.style.transform="translateX(0)"}else{dr.style.transform="translateX(0)";pg.style.transform=`translateX(${w}px)`}
+  setTimeout(reset,270)};
+ document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
 $("#m-st").onclick=()=>{shut();go("stats")};$("#m-ar").onclick=()=>{shut();go("ar")};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}

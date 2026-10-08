@@ -74,6 +74,7 @@ details.dt .in{padding:0 12px 8px}
 .tls{display:flex;flex-wrap:wrap;gap:8px}.tl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:.75rem system-ui;color:var(--mut)}.sv{display:flex;align-items:center;gap:8px;color:var(--acc)}.sv b{font:700 1.4rem system-ui;color:var(--ink)}.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}.sr:last-child{border:0}
 .mo{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;justify-content:center;z-index:9}#mo2{z-index:10}#mo3{z-index:11}
 .sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));position:relative}
+html,body{overscroll-behavior-y:none}#ptr{position:fixed;left:50%;top:0;z-index:40;transform:translate(-50%,-60px);width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--acc);border:1px solid var(--line);box-shadow:0 3px 10px #0004;display:flex;align-items:center;justify-content:center;font-size:1.4rem;pointer-events:none}#ptr.spin span{display:inline-block;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .sh{touch-action:pan-y;overscroll-behavior:contain}.grab{width:42px;height:4px;border-radius:4px;background:var(--line);margin:-6px auto 10px}
 @keyframes shUp{from{transform:translateY(100%)}to{transform:none}}@keyframes moIn{from{opacity:0}to{opacity:1}}
 .mo{animation:moIn .2s ease}.mo .sh{animation:shUp .28s cubic-bezier(.2,.8,.2,1)}
@@ -115,10 +116,10 @@ button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;fo
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-st">Statistiques</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08b</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -138,10 +139,12 @@ const $=s=>document.querySelector(s);
 let S={ev:{},custom:[],sync:"manual",hm:[],hs:[],theme:"light"},view="cal",cv="month",cur=new Date(),fe=null,fd=null,seasonF="all",sel=null;
 try{const r=localStorage.getItem("carnet2");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
 function save(){try{localStorage.setItem("carnet2",JSON.stringify(S));return true}catch(e){alert("Stockage plein : retire des photos ou exporte tes données.");return false}}
+let _seasonInit=0;
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 const season=ds=>{const y=+ds.slice(0,4),a=+ds.slice(5,7)>=7?y:y-1;return a+"-"+(a+1)};
+seasonF=season(iso(new Date()));
 const evs=()=>Object.values(S.ev),on=ds=>evs().filter(e=>e.date==ds);
 const coord=l=>l&&l.lat!=null?l.lat.toFixed(5)+", "+l.lng.toFixed(5):"";
 const lieu=l=>l&&(l.name||coord(l))||"non précisé";
@@ -291,7 +294,7 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-st").onclick=()=>{shut();go("stats")};$("#m-ar").onclick=()=>{shut();go("ar")};
+$("#m-ar").onclick=()=>{shut();go("ar")};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
@@ -593,19 +596,29 @@ async function fillRG(){if(rgBusy)return;S.rg=S.rg||{};const todo=evs().filter(e
  rgBusy=false;if(ch){save();if(view=="stats")render()}}
 const tiré=e=>e.fiche.tirs.some(t=>t.n>0||t.p>0||t.m>0);
 function rJours(){const L=periodEv().filter(e=>e.date<=todayS()).sort((x,y)=>y.date<x.date?-1:1),enc=L.filter(e=>e.fiche),n=enc.filter(tiré).length,dt=d=>d.split("-").reverse().join("/"),pl=periodEv().length;
- $("#app").innerHTML=`<h1 style="margin-top:4px">Journées chassées</h1><p class="mut sans" style="margin-top:-6px">${seasonF=="all"?"Toutes les saisons":"Saison "+seasonF}</p>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Journées chassées</h1><p class="mut sans" style="margin-top:-6px">${seasonF=="all"?"Toutes les saisons":"Saison "+seasonF}</p>
  <div class="card sans" style="text-align:center">${L.length?`<b>${L.length}</b> journée${L.length>1?"s":""} chassée${L.length>1?"s":""}${seasonF=="all"?"":` sur <b>${pl}</b> planifiée${pl>1?"s":""}`}.<br>Tu as tiré <b>${n}</b> journée${n>1?"s":""} sur <b>${enc.length}</b> encodée${enc.length>1?"s":""}, soit <b>${enc.length?Math.round(n/enc.length*100):0} %</b> du temps.${L.length>enc.length?`<br><span class="mut">${L.length-enc.length} fiche${L.length-enc.length>1?"s":""} non encodée${L.length-enc.length>1?"s":""}</span>`:""}`:"Aucune journée passée."}</div>
  <div style="margin-top:12px">${L.map(e=>{const q=e.fiche?e.fiche.tirs.reduce((x,t)=>x+t.p,0):0;return`<button class="s li" data-go="${e.id}"><b>${dt(e.date)}</b> · 📍 ${esc(village(e))}<br><span class="mut sans">${!e.fiche?"Fiche non encodée":tiré(e)?"🎯 A tiré":"Pas de tir"}${q?" · "+q+" prélèvement(s)":""}</span></button>`}).join("")}</div><div style="height:90px"></div>`;
- fbar(()=>go("stats"));document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;const ev=S.ev[fe];if(ev.fiche)go("sum");else openFiche(fe)})}
+ $("#bk2").onclick=backTo;document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;const ev=S.ev[fe];if(ev.fiche)go("sum");else openFiche(fe)})}
 function rRates(){const L=evs().filter(e=>e.fiche&&(seasonF=="all"||season(e.date)==seasonF)),a=agg(L),R=L.filter(e=>e.fiche.tirs.some(t=>t.m>0)).sort((x,y)=>y.date<x.date?-1:1),dt=d=>d.split("-").reverse().join("/");
- $("#app").innerHTML=`<h1 style="margin-top:4px">Ratés</h1><p class="mut sans" style="margin-top:-6px">${seasonF=="all"?"Toutes les saisons":"Saison "+seasonF}</p>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Ratés</h1><p class="mut sans" style="margin-top:-6px">${seasonF=="all"?"Toutes les saisons":"Saison "+seasonF}</p>
  <div class="card sans" style="text-align:center">${a.m?`<b>${a.m}</b> raté${a.m>1?"s":""} sur <b>${a.p+a.m}</b> animaux visés, soit <b>${Math.round(a.m/(a.p+a.m)*100)} %</b>.<br>Répartis sur <b>${R.length}</b> journée${R.length>1?"s":""}.`:"Aucun raté enregistré."}</div>
  <div style="margin-top:12px">${R.map(e=>{const ts=e.fiche.tirs.filter(t=>t.m>0);return`<button class="s li" data-go="${e.id}"><b>${dt(e.date)}</b> · 📍 ${esc(village(e))}<br><span class="mut sans">${ts.map(t=>t.m+" × "+esc(tname(t))).join(" · ")}</span></button>`}).join("")}</div><div style="height:90px"></div>`;
- fbar(()=>go("stats"));document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;go("sum")})}
+ $("#bk2").onclick=backTo;document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;go("sum")})}
 function bars2(map,attr,on){const e=Object.entries(map).sort((x,y)=>attr=="sea"?(x[0]<y[0]?1:-1):y[1]-x[1]),m=Math.max(1,...e.map(x=>x[1]));return e.map(([k,v])=>`<button class="bar${k==on?" on":""}" data-${attr}="${esc(k)}"><em>${esc(k)}</em><div style="width:${v/m*55}%"></div><small>${v}</small></button>`).join("")||'<p class="mut">Pas encore de données.</p>'}
+const BKB=`<button id="bk2" aria-label="Retour" style="position:fixed;top:10px;left:10px;z-index:6;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.7rem;line-height:1;padding:0 0 3px;box-shadow:0 2px 6px #0003">‹</button>`,backTo=()=>go(vst.length?vst[vst.length-1]:"cal");
+function centerChip(){const c=document.querySelector(".chips2"),o=c&&c.querySelector(".on");if(!c||!o)return;const t=Math.max(0,o.offsetLeft-(c.clientWidth-o.offsetWidth)/2);c.scrollLeft=Math.min(window._cs||0,c.scrollWidth);c.scrollTo({left:t,behavior:"smooth"});window._cs=t}
+(()=>{let y0=null,dy=0,el=null,busy=false;const ok=()=>["stats","sj","sr"].includes(view)&&!document.querySelector(".mo")&&!document.body.classList.contains("dr");
+ const ind=()=>el||(el=(()=>{const d=document.createElement("div");d.id="ptr";d.innerHTML="<span>↻</span>";document.body.appendChild(d);return d})());
+ document.addEventListener("touchstart",e=>{y0=null;if(busy||!ok()||e.touches.length>1||window.scrollY>0)return;y0=e.touches[0].clientY;dy=0},{passive:true});
+ document.addEventListener("touchmove",e=>{if(y0==null)return;dy=e.touches[0].clientY-y0;if(dy<=0||window.scrollY>0){if(dy<0)y0=null;return}const m=Math.min(dy*.5,90);ind().style.transition="none";ind().style.transform=`translate(-50%,${m-50+8}px) rotate(${m*4}deg)`},{passive:true});
+ const end=()=>{if(y0==null)return;const go2=dy>110;y0=null;const d=ind();d.style.transition="transform .25s";
+  if(go2){busy=true;d.classList.add("spin");d.style.transform="translate(-50%,40px)";if(view=="stats")window._cs=window._cs;setTimeout(()=>{render();d.classList.remove("spin");d.style.transform="translate(-50%,-60px)";busy=false;toast("Statistiques actualisées")},700)}
+  else d.style.transform="translate(-50%,-60px)"};
+ document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 const todayS=()=>iso(new Date());
 const periodEv=()=>evs().filter(e=>seasonF=="all"||season(e.date)==seasonF);
-function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(evs().map(e=>season(e.date)))].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
+function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([season(todayS()),...evs().map(e=>season(e.date))])].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
  const PE=periodEv(),plan=PE.length,passed=PE.filter(e=>e.date<=todayS()).length,bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});
@@ -619,7 +632,7 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(evs()
   <div class="kp" style="margin-top:8px;grid-template-columns:repeat(3,1fr)"><div class="sc2"><b>${g.n}</b><span>${u} tiré${g.n>1?"es":""}</span></div><div class="sc2"><b>${g.p}</b><span>prélèvements</span></div><div class="sc2"><b>${g.days.size}</b><span>journée${g.days.size>1?"s":""}</span></div></div>
   <div class="sr"><span class="lb">${g.h} touché${g.h>1?"es":""} · ${g.m} raté${g.m>1?"s":""}</span>${pp==null?"":`<span style="display:flex;align-items:center;gap:8px">${gauge(pp)}<b>${pp}%</b></span>`}</div></div>`}).join("");
  const rat={};Object.keys(bySec).forEach(k=>rat[k]=Math.round(bySec[k]/cnt[k]*10)/10);
- $("#app").innerHTML=`<h1 style="margin-top:4px">Statistiques</h1>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Statistiques</h1>
  <div class="chips2"><button class="fc${seasonF=="all"?" on":""}" data-sf="all">Toutes</button>${seasons.map(x=>`<button class="fc${x==seasonF?" on":""}" data-sf="${x}">${x}</button>`).join("")}</div>
  ${seasonF=="all"?`<div class="kp" style="margin-top:12px;grid-template-columns:1fr"><button class="sc2" data-kp="j"><b>${passed}</b><span>journées chassées</span><i class="chev">›</i></button></div>`
  :`<div class="kp" style="margin-top:12px;grid-template-columns:1fr 1fr"><div class="sc2"><b>${plan}</b><span>journées planifiées</span><small class="mut sans">1 juil. ${seasonF.slice(0,4)} – 30 juin ${seasonF.slice(5)}</small></div><button class="sc2" data-kp="j"><b>${passed}/${plan}</b><span>journées chassées</span><i class="chev">›</i></button></div>`}
@@ -631,7 +644,7 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set(evs()
  <h2>Par saison</h2><div class="card">${bars2(bySea,"sea",seasonF)}</div>
  <h2>Par lieu de chasse</h2><div class="card">${bars2(bySec,"pl")}</div><p class="mut sans">Touche une barre pour filtrer ou voir les journées.</p>
  <h2>Prélèvements par sortie, par lieu</h2><div class="card">${Object.entries(rat).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<div class="bar"><em>${esc(k)}</em><div style="width:${v/Math.max(1,...Object.values(rat))*55}%"></div><small>${v}</small></div>`).join("")||'<p class="mut">Pas encore de données.</p>'}</div><div style="height:90px"></div>`;
- fbar(()=>go("cal"));
+ $("#bk2").onclick=backTo;centerChip();
  const drill=(h,top,rows)=>{modal(`<h2 style="display:flex;align-items:center;gap:8px;margin-top:0">${h}</h2>${top}${rows.sort((x,y)=>y.e.date<x.e.date?-1:1).map(r=>`<button class="s li" data-go="${r.e.id}"><b>${dt(r.e.date)}</b> · ${esc(r.e.title)}<br><span class="mut sans">${r.txt}</span></button>`).join("")}`);document.querySelectorAll("#mo [data-go]").forEach(b=>b.onclick=()=>{fe=b.dataset.go;closeM();go("sum")})};
  document.querySelectorAll("[data-sf]").forEach(b=>b.onclick=()=>{seasonF=b.dataset.sf;render()});
  document.querySelectorAll("[data-kp]").forEach(b=>b.onclick=()=>{const k=b.dataset.kp;if(k=="j")go("sj");else if(k=="r")go("sr");else{const h=$("#tbc");(h||document.body).scrollIntoView({behavior:"smooth",block:"start"});if(h){h.style.transition="color .3s";h.style.color="var(--acc)";setTimeout(()=>h.style.color="",1400)}}});

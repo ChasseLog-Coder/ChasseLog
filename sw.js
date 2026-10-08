@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle fonctionne sans connexion.
 // Les fonds de carte (OpenStreetMap) ne sont volontairement PAS mis en cache.
-const V = "carnet-v11";
+const V = "carnet-v12";
 const FILES = [
   "./", "index.html", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "icons/apple-touch-icon.png",

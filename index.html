@@ -80,6 +80,20 @@ html,body{overscroll-behavior-y:none}#ptr{position:fixed;left:50%;top:0;z-index:
 .mo{animation:moIn .2s ease}.mo .sh{animation:shUp .28s cubic-bezier(.2,.8,.2,1)}
 button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl:active{opacity:.7}.chev{color:var(--mut);font-size:.8rem;margin-top:2px}
 .tg{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}.tg input{width:22px;height:22px}
+.dc{display:flex;flex-direction:column;align-items:stretch}.dc .dn{align-self:center}
+.dc u.ev{flex:1 1 auto;min-height:18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;white-space:normal;text-align:left;font:600 .6rem/1.22 system-ui;padding:3px;border-radius:5px;margin:2px 1px 1px;word-break:break-word;hyphens:auto}
+.dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo{background:#e8a032;color:#2a1c05}
+.wx{font:.56rem/1.1 system-ui;color:var(--mut);white-space:nowrap;overflow:hidden}
+#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 30%,#ff6b4a,#c62a17 60%,#7d140a);box-shadow:0 4px 14px #0007,0 0 0 4px #ffffff66;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
+#bang:active{transform:translateX(-50%) scale(.93)}
+#pst{align-self:center;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 .75rem system-ui;padding:6px 12px;z-index:5;box-shadow:0 2px 6px #0003;white-space:nowrap}
+.sunb{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:.9rem system-ui;margin:0 0 6px}.sunb span{display:inline-flex;align-items:center;gap:5px}.sunb small{width:100%;font-size:.72rem;color:var(--mut)}
+.pkg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px 8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;font:600 .78rem/1.2 system-ui;color:var(--ink);text-align:center;min-height:100px}.pk:active{transform:scale(.95)}
+#okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
+#app.quick .vb{display:none}
+.chq{display:flex;flex-wrap:wrap;gap:6px}.chq button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 12px;font:.85rem system-ui}.chq button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.nps{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:3px}.nps button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:6px;padding:8px 0;font:.8rem system-ui}.nps button.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 .x{position:absolute;right:6px;top:6px;border:0;background:none;color:var(--mut);font-size:1.2rem;padding:8px}
 .li{display:block;width:100%;text-align:left;margin-bottom:8px}
 #pmap{height:260px;border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--bg);overflow:hidden}
@@ -117,9 +131,9 @@ button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;fo
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
 <hr><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
-<div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
+<div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08c</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-08d<br>Météo : Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -178,7 +192,7 @@ function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFu
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback})[view]();hydrate()}
+function render(){rmBar();$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick})[view]();hydrate()}
 function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
 const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
@@ -196,37 +210,163 @@ async function migratePhotos(){let ch=0;const mv=async arr=>{for(let i=0;i<arr.l
  for(const e of evs()){const f=e.fiche;if(!f)continue;await mv(f.photos||[]);await mv(f.tabPhotos||[]);for(const t of f.tirs||[])await mv(t.ph||[])}if(ch)save();return ch}
 async function gc(){try{const used=new Set();evs().forEach(e=>{const f=e.fiche;if(f)[...(f.photos||[]),...(f.tabPhotos||[]),...(f.tirs||[]).flatMap(t=>t.ph||[])].forEach(x=>used.add(x))});for(const k of await DB.keys())if(!used.has(k)&&!String(k).startsWith("_")){await DB.del(k);if(PU[k]){URL.revokeObjectURL(PU[k]);delete PU[k]}}}catch(e){}}
 const b2d=b=>new Promise(r=>{const fr=new FileReader;fr.onload=()=>r(fr.result);fr.readAsDataURL(b)});
-async function exportJSON(){const c=JSON.parse(JSON.stringify(S)),inl=async arr=>(await Promise.all((arr||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean);
+async function exportJSON(noPh){const c=JSON.parse(JSON.stringify(S));if(noPh)return JSON.stringify(c);const inl=async arr=>(await Promise.all((arr||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean);
  for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;f.photos=await inl(f.photos);f.tabPhotos=await inl(f.tabPhotos);for(const t of f.tirs||[])if(t.ph)t.ph=await inl(t.ph)}return JSON.stringify(c)}
 document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid]");if(i)modal(`<img data-pid="${i.dataset.pid}" alt="Photo" style="width:100%;border-radius:8px;margin-top:22px">`,"3")});
 
 /* ---------- commentaires (bêta) ---------- */
 // Clé d'accès Web3Forms (https://web3forms.com) : elle fait suivre chaque commentaire vers ton adresse e-mail. À renseigner ici.
 const FB_KEY="d25e1cea-b1cc-4d3c-bbb6-cc30decffc29";
-let fbS={type:"avis",name:"",anon:false,msg:"",sent:false,err:"",busy:false};
+let fbS;const fbReset=()=>fbS={type:"avis",name:"",anon:false,msg:"",q1:[],q2:"",q3:"",q4:null,sent:false,err:"",busy:false};fbReset();
+const FBQ1=["Calendrier des périodes d'ouverture","Météo et vent du jour","Souvenirs (« il y a X ans »)","Bilan de fin de saison","Partage de ma journée","Poste porte-bonheur","Rappels permis / assurance","Distance parcourue (GPS)","Mes trophées","Mes chiens"],
+ FBQ2=["Carnet papier","Tableur (Excel…)","De mémoire","Une autre application","Je ne note rien"];
 function rFeedback(){const F=fbS;
- if(F.sent){$("#app").innerHTML=`${BKB}<div style="text-align:center;padding:90px 10px 0"><div style="font-size:3rem">🙏</div><h1 style="margin:10px 0">Merci pour ton retour !</h1><p class="sans" style="font-size:1.05rem;line-height:1.5">Les messages comme le tien sont précieux pour le développement de ChasseLog.</p><button class="p" id="fb-ok" style="width:100%;margin-top:22px">Retour au calendrier</button></div>`;
-  $("#bk2").onclick=$("#fb-ok").onclick=()=>{fbS={type:"avis",name:"",anon:false,msg:"",sent:false,err:"",busy:false};go("cal")};return}
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Ton avis</h1><p class="mut sans" style="margin-top:-6px">Un bug, une idée, un avis : dis-nous tout.</p>
- <div class="seg"><button data-ft="bug" class="${F.type=="bug"?"on":""}">Signaler une erreur</button><button data-ft="avis" class="${F.type=="avis"?"on":""}">Donner un avis</button></div>
+ if(F.sent){$("#app").innerHTML=`${BKB}<div style="text-align:center;padding:90px 10px 0"><h1 style="margin:10px 0">Merci pour ton retour !</h1><p class="sans" style="font-size:1.05rem;line-height:1.5">Les messages comme le tien sont précieux pour le développement de ChasseLog.</p><button class="p" id="fb-ok" style="width:100%;margin-top:22px">Retour au calendrier</button></div>`;
+  $("#bk2").onclick=$("#fb-ok").onclick=()=>{fbReset();go("cal")};return}
+ const av=F.type=="avis";
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Ton avis</h1><p class="mut sans" style="margin-top:-6px">${av?"Quelques questions rapides, toutes facultatives.":"Décris l'erreur rencontrée : où, quand, ce qui s'est passé."}</p>
+ <div class="seg"><button data-ft="bug" class="${!av?"on":""}">Signaler une erreur</button><button data-ft="avis" class="${av?"on":""}">Donner un avis</button></div>
+ ${av?`<label>1. Quelles fonctions utiliserais-tu le plus ? (plusieurs choix)</label><div class="chq">${FBQ1.map((x,i)=>`<button data-q1="${i}" class="${F.q1.includes(x)?"on":""}">${esc(x)}</button>`).join("")}</div>
+ <label>2. Comment notes-tu tes chasses aujourd'hui ?</label><div class="chq">${FBQ2.map((x,i)=>`<button data-q2="${i}" class="${F.q2==x?"on":""}">${esc(x)}</button>`).join("")}</div>
+ <label>3. Qu'est-ce qui t'agace ou te bloque dans l'application ?</label><textarea id="q3" rows="3">${esc(F.q3)}</textarea>
+ <label>4. Recommanderais-tu ChasseLog à un ami chasseur ? (0 = non, 10 = oui sans hésiter)</label><div class="nps">${Array.from({length:11},(_,i)=>`<button data-q4="${i}" class="${F.q4===i?"on":""}">${i}</button>`).join("")}</div>`:""}
+ <label>${av?"5. Qu'est-ce qui manque ? Une idée, un commentaire ?":"Ton message"}</label><textarea id="fb-m" rows="${av?5:8}" placeholder="${av?"Écris ce qui te passe par la tête…":"Décris ce qui ne va pas…"}">${esc(F.msg)}</textarea>
  <label>Ton nom</label><input id="fb-n" value="${esc(F.name)}" placeholder="Prénom ou nom" ${F.anon?"disabled":""}>
  <label class="ck sans" style="margin-top:8px"><input type="checkbox" id="fb-a" ${F.anon?"checked":""}>Rester anonyme</label>
- <label>Ton message</label><textarea id="fb-m" rows="8" placeholder="Décris ce qui ne va pas, ce qui manque ou ce que tu aimes…">${esc(F.msg)}</textarea>
  <input type="text" id="fb-bot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
- ${F.err?`<p class="sans" style="color:#b3402a;margin:10px 0 0">${esc(F.err)}</p>`:""}
- <button class="p" id="fb-s" style="width:100%;margin-top:14px" ${F.busy?"disabled":""}>${F.busy?"Envoi…":"Envoyer"}</button><p class="mut sans" style="font-size:.8rem">L'envoi nécessite une connexion internet. Rien d'autre n'est transmis que ce message, ton nom (si tu le donnes) et la version de l'application.</p><div style="height:60px"></div>`;
+ ${F.err?`<p class="sans fberr" style="color:#b3402a;margin:10px 0 0">${esc(F.err)}</p>`:""}
+ <button class="p" id="fb-s" style="width:100%;margin-top:14px" ${F.busy?"disabled":""}>${F.busy?"Envoi…":"Envoyer"}</button><p class="mut sans" style="font-size:.8rem">L'envoi nécessite une connexion internet. Rien d'autre n'est transmis que tes réponses, ton nom (si tu le donnes) et la version de l'application.</p><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
- document.querySelectorAll("[data-ft]").forEach(b=>b.onclick=()=>{F.type=b.dataset.ft;document.querySelectorAll("[data-ft]").forEach(x=>x.classList.toggle("on",x==b))});
- $("#fb-n").oninput=e=>F.name=e.target.value;$("#fb-m").oninput=e=>{F.msg=e.target.value;if(F.err){F.err="";const x=$("#app p[style*='b3402a']");if(x)x.remove()}};
+ const clr=()=>{if(F.err){F.err="";const x=$(".fberr");if(x)x.remove()}};
+ document.querySelectorAll("[data-ft]").forEach(b=>b.onclick=()=>{F.type=b.dataset.ft;F.err="";render()});
+ document.querySelectorAll("[data-q1]").forEach(b=>b.onclick=()=>{const v=FBQ1[+b.dataset.q1];F.q1=F.q1.includes(v)?F.q1.filter(x=>x!=v):[...F.q1,v];b.classList.toggle("on");clr()});
+ document.querySelectorAll("[data-q2]").forEach(b=>b.onclick=()=>{const v=FBQ2[+b.dataset.q2];F.q2=F.q2==v?"":v;document.querySelectorAll("[data-q2]").forEach(x=>x.classList.toggle("on",x==b&&F.q2==v));clr()});
+ document.querySelectorAll("[data-q4]").forEach(b=>b.onclick=()=>{const v=+b.dataset.q4;F.q4=F.q4===v?null:v;document.querySelectorAll("[data-q4]").forEach(x=>x.classList.toggle("on",+x.dataset.q4===F.q4));clr()});
+ if($("#q3"))$("#q3").oninput=e=>{F.q3=e.target.value;clr()};
+ $("#fb-n").oninput=e=>F.name=e.target.value;$("#fb-m").oninput=e=>{F.msg=e.target.value;clr()};
  $("#fb-a").onchange=e=>{F.anon=e.target.checked;$("#fb-n").disabled=F.anon};
- $("#fb-s").onclick=async()=>{const msg=F.msg.trim();if(!msg){F.err="Écris un message avant d'envoyer.";return render()}
+ $("#fb-s").onclick=async()=>{const msg=F.msg.trim(),has=av?(msg||F.q1.length||F.q2||F.q3.trim()||F.q4!=null):msg;
+  if(!has){F.err=av?"Réponds à au moins une question ou écris un message.":"Écris un message avant d'envoyer.";return render()}
   if($("#fb-bot").value)return;
   if(!FB_KEY){F.err="L'envoi des commentaires n'est pas encore configuré dans cette version.";return render()}
-  if(!navigator.onLine){F.err="Pas de connexion internet : ton message est conservé, réessaie plus tard.";return render()}
+  if(!navigator.onLine){F.err="Pas de connexion internet : tes réponses sont conservées, réessaie plus tard.";return render()}
   F.busy=true;F.err="";render();
-  try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:FB_KEY,subject:"ChasseLog – "+(F.type=="bug"?"Erreur signalée":"Avis"),from_name:"ChasseLog bêta",name:F.anon||!F.name.trim()?"Anonyme":F.name.trim(),type:F.type=="bug"?"Erreur":"Avis",message:msg,version:APP_V,appareil:navigator.userAgent.slice(0,160)})}),j=await r.json();
+  const body={access_key:FB_KEY,subject:"ChasseLog – "+(av?"Avis":"Erreur signalée"),from_name:"ChasseLog bêta",name:F.anon||!F.name.trim()?"Anonyme":F.name.trim(),type:av?"Avis":"Erreur",message:msg||"-",version:APP_V,appareil:navigator.userAgent.slice(0,160)};
+  if(av)Object.assign(body,{fonctions_souhaitees:F.q1.join(", ")||"-",carnet_actuel:F.q2||"-",agacements:F.q3.trim()||"-",recommandation:F.q4==null?"-":F.q4+"/10"});
+  try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body)}),j=await r.json();
    if(j&&j.success){F.sent=true;F.busy=false;render()}else throw new Error()}
-  catch(e){F.busy=false;F.err="L'envoi a échoué. Ton message est conservé, réessaie dans un instant.";render()}}}
+  catch(e){F.busy=false;F.err="L'envoi a échoué. Tes réponses sont conservées, réessaie dans un instant.";render()}}}
+
+/* ---------- inviter un ami ---------- */
+async function invite(){const text="Je t'invite à essayer ChasseLog, un carnet de chasse gratuit et sans pub pour ton téléphone. Tes données restent sur ton téléphone.";
+ try{if(navigator.share){await navigator.share({title:"ChasseLog",text,url:APP_URL});return}}catch(e){if(e&&e.name=="AbortError")return}
+ try{await navigator.clipboard.writeText(text+" "+APP_URL);toast("Lien d'invitation copié : colle-le dans un message.")}catch(e){prompt("Copie ce lien et envoie-le :",APP_URL)}}
+
+/* ---------- sauvegarde automatique ---------- */
+const BKD=()=>{if(!S.bk)S.bk={on:false,every:14,svc:"gdrive",photos:true,last:0,snooze:0};return S.bk};
+const SVC={gdrive:"Google Drive",onedrive:"OneDrive",dropbox:"Dropbox",icloud:"iCloud Drive",autre:"Autre"};
+async function doBackup(prep){const B=BKD(),json=await(prep||exportJSON(!B.photos)),nm="chasselog-sauvegarde-"+iso(new Date());
+ const done=m=>{B.last=Date.now();B.snooze=0;save();toast(m);return true};
+ for(const f of[new File([json],nm+".json",{type:"application/json"}),new File([json],nm+".txt",{type:"text/plain"})]){
+  try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Sauvegarde ChasseLog"});return done("Sauvegarde envoyée.")}}catch(e){if(e&&e.name=="AbortError")return false}}
+ dl(nm+".json","application/json",json);return done("Fichier téléchargé : range-le dans "+SVC[B.svc]+".")}
+function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
+ const draw=()=>{modal(`<h2>Sauvegarde automatique</h2>
+ <label class="tg sans"><span>Activer la sauvegarde automatique</span><input type="checkbox" id="bk-on" ${B.on?"checked":""}></label>
+ <label>Fréquence</label><div class="seg">${[[7,"7 jours"],[14,"14 jours"],[30,"30 jours"]].map(([v,l])=>`<button data-bf="${v}" class="${B.every==v?"on":""}">${l}</button>`).join("")}</div>
+ <label>Vers quel service ?</label><div class="chq">${Object.entries(SVC).map(([k,l])=>`<button data-bs="${k}" class="${B.svc==k?"on":""}">${l}</button>`).join("")}</div>
+ <label class="ck sans" style="margin-top:12px"><input type="checkbox" id="bk-ph" ${B.photos?"checked":""}>Inclure les photos (fichier plus lourd)</label>
+ <p class="mut sans" style="font-size:.85rem">Dernière sauvegarde : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}.</p>
+ <button class="p" id="bk-now" style="width:100%">Sauvegarder maintenant</button>
+ <p class="mut sans" style="font-size:.8rem;margin-top:10px">Dans la version web, ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage${B.svc=="icloud"?" (sur iPhone : « Enregistrer dans Fichiers », puis iCloud Drive)":""}. Dans la future application Android, elle se fera toute seule. Pour restaurer : menu, « Importer un calendrier ».</p>`);
+  $("#bk-on").onchange=e=>{B.on=e.target.checked;save()};
+  document.querySelectorAll("[data-bf]").forEach(b=>b.onclick=()=>{B.every=+b.dataset.bf;save();draw()});
+  document.querySelectorAll("[data-bs]").forEach(b=>b.onclick=()=>{B.svc=b.dataset.bs;save();draw()});
+  $("#bk-ph").onchange=e=>{B.photos=e.target.checked;save();prep=exportJSON(!B.photos)};
+  $("#bk-now").onclick=async()=>{if(await doBackup(prep)){closeM();const x=$("#bkb");if(x)x.remove()}}};draw()}
+function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||view!="cal")return;if(Date.now()-(B.last||0)<B.every*864e5||Date.now()<(B.snooze||0))return;
+ const prep=exportJSON(!B.photos),d=document.createElement("div");d.id="bkb";
+ d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ d.innerHTML=`<span style="flex:1">Sauvegarde prévue vers ${SVC[B.svc]}<br><small style="font-weight:400;color:var(--mut)">Dernière : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}</small></span><button class="p" style="padding:9px 12px">Sauvegarder</button><button aria-label="Plus tard" style="border:0;background:none;color:var(--mut);font-size:1.2rem;padding:4px">✕</button>`;
+ document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");b1.onclick=async()=>{if(await doBackup(prep))d.remove()};b2.onclick=()=>{B.snooze=Date.now()+864e5;save();d.remove()}}
+setTimeout(bkCheck,2500);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")setTimeout(bkCheck,1500)});
+
+/* ---------- météo (Open-Meteo) + soleil ---------- */
+const WXK="chasselog-wx",DEF_LOC={lat:50.4669,lng:4.8675};let WXC={},WXH=null;try{WXC=JSON.parse(localStorage.getItem(WXK)||"{}")}catch(e){}
+const wxKey=(la,ln)=>la.toFixed(1)+","+ln.toFixed(1);
+const WI=c=>c==0?"☀️":c<=2?"🌤️":c==3?"☁️":c<=48?"🌫️":c<=57?"🌦️":c<=67?"🌧️":c<=77?"🌨️":c<=82?"🌦️":c<=86?"🌨️":"⛈️";
+const CARD=d=>["N","NE","E","SE","S","SO","O","NO"][Math.round((((d%360)+360)%360)/45)%8];
+const windArrow=d=>`<svg viewBox="0 0 24 24" width="16" height="16" style="transform:rotate(${(d+180)%360}deg)" aria-hidden="true"><path d="M12 3l5 9h-3.5v9h-3v-9H7z" fill="currentColor"/></svg>`;
+async function getWx(la,ln){const k=wxKey(la,ln),c=WXC[k];if(c&&Date.now()-c.t<3*36e5)return c;if(!navigator.onLine)return c||null;
+ try{const j=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la.toFixed(3)}&longitude=${ln.toFixed(3)}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant&timezone=auto&forecast_days=16`)).json(),d=j.daily,days={};
+  d.time.forEach((t,i)=>days[t]={c:d.weather_code[i],hi:d.temperature_2m_max[i],lo:d.temperature_2m_min[i],pp:d.precipitation_probability_max?d.precipitation_probability_max[i]:null,ws:d.wind_speed_10m_max[i],wd:d.wind_direction_10m_dominant[i]});
+  const v={t:Date.now(),days};WXC[k]=v;const ks=Object.keys(WXC);if(ks.length>10)delete WXC[ks[0]];try{localStorage.setItem(WXK,JSON.stringify(WXC))}catch(e){}return v}catch(e){return c||null}}
+async function wxHomeLoc(){try{if(navigator.permissions&&navigator.geolocation){const st=await navigator.permissions.query({name:"geolocation"});if(st.state=="granted"){const q=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{maximumAge:36e5,timeout:8000}));S.wxPos={lat:q.coords.latitude,lng:q.coords.longitude};save()}}}catch(e){}
+ return S.wxPos||DEF_LOC}
+async function loadHomeWx(){const l=await wxHomeLoc(),v=await getWx(l.lat,l.lng);if(v&&(!WXH||WXH.t!=v.t)){WXH=v;if(view=="cal"&&!$(".mo")&&!$("#ff"))render()}}
+setTimeout(loadHomeWx,800);setInterval(loadHomeWx,3*36e5);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")loadHomeWx()});
+function sunTimes(ds,lat,lng){const rad=Math.PI/180,dayMs=864e5,J1970=2440588,J2000=2451545,ob=rad*23.4397,J0=.0009;
+ const toDays=d=>d.valueOf()/dayMs-.5+J1970-J2000,fromJ=j=>new Date((j+.5-J1970)*dayMs);
+ const lw=rad*-lng,phi=rad*lat,n=Math.round(toDays(new Date(ds+"T12:00:00"))-J0-lw/(2*Math.PI)),ds2=J0+lw/(2*Math.PI)+n;
+ const M=rad*(357.5291+.98560028*ds2),C=rad*(1.9148*Math.sin(M)+.02*Math.sin(2*M)+.0003*Math.sin(3*M)),Ls=M+C+rad*102.9372+Math.PI,dec=Math.asin(Math.sin(ob)*Math.sin(Ls));
+ const Jnoon=J2000+ds2+.0053*Math.sin(M)-.0069*Math.sin(2*Ls),w=Math.acos((Math.sin(-.833*rad)-Math.sin(phi)*Math.sin(dec))/(Math.cos(phi)*Math.cos(dec)));
+ const Jset=J2000+J0+(w+lw)/(2*Math.PI)+n+.0053*Math.sin(M)-.0069*Math.sin(2*Ls);return{rise:fromJ(Jnoon-(Jset-Jnoon)),set:fromJ(Jset)}}
+const hm=d=>d&&!isNaN(d)?d.toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"}):"–";
+const SUNUP='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#e39a2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18M7 19a5 5 0 0110 0M12 3v6M9.5 5.5L12 3l2.5 2.5M4.5 12.5l1.5 1.5M19.5 12.5L18 14"/></svg>',
+ SUNDN='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c4552a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18M7 19a5 5 0 0110 0M12 3v6M9.5 6.5L12 9l2.5-2.5M4.5 12.5l1.5 1.5M19.5 12.5L18 14"/></svg>';
+async function sunBand(el,ds,loc){if(!el||!ds)return;el.dataset.ds=ds;const has=loc&&loc.lat!=null,L=has?loc:(S.wxPos||DEF_LOC),s=sunTimes(ds,L.lat,L.lng);
+ const lbl=`<small>${has?"Pour le lieu de RDV":S.wxPos?"Pour ta position actuelle":"Pour Namur, choisis le lieu de RDV pour plus de précision"}</small>`;
+ const base=`<span>${SUNUP}Lever ${hm(s.rise)}</span><span>${SUNDN}Coucher ${hm(s.set)}</span>`;el.innerHTML=base+lbl;
+ const w=await getWx(L.lat,L.lng),d=w&&w.days[ds];if(!d||el.dataset.ds!=ds||!el.isConnected)return;
+ el.innerHTML=base+`<span>${WI(d.c)} ${Math.round(d.lo)}° / ${Math.round(d.hi)}°</span><span>${windArrow(d.wd)} Vent ${CARD(d.wd)} ${Math.round(d.ws)} km/h</span>${d.pp!=null?`<span>💧 ${d.pp} %</span>`:""}`+lbl}
+
+/* ---------- tir rapide (BANG), sélection du gibier, postes ---------- */
+let pickCtx=null,quickTid=null;
+const BANG=(()=>{let pts=[];for(let i=0;i<24;i++){const r=i%2?13:27,a=i*Math.PI/12;pts.push((32+r*Math.cos(a)).toFixed(1)+","+(32+r*Math.sin(a)).toFixed(1))}
+ return `<svg viewBox="0 0 64 64" width="62" height="62" aria-hidden="true"><polygon points="${pts.join(" ")}" fill="#ffd23f" stroke="#7d140a" stroke-width="1.5" stroke-linejoin="round"/><text x="32" y="36.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="900" font-size="11" fill="#b3200f" transform="rotate(-8 32 32)">BANG</text></svg>`})();
+const todayEvs=()=>on(iso(new Date()));
+function chooseEv(cb){const a=todayEvs();if(!a.length)return;if(a.length==1)return cb(a[0].id);
+ modal(`<h2>Quelle journée ?</h2>${a.map(e=>`<button class="s li" data-ce="${e.id}">${esc(e.title)}</button>`).join("")}`);document.querySelectorAll("[data-ce]").forEach(b=>b.onclick=()=>{closeM();cb(b.dataset.ce)})}
+const curPoste=e=>e&&e.postes&&e.postes.length?e.postes[e.postes.length-1].n:null;
+function quickShot(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();pickCtx={mode:"quick"};go("pick")}
+function commonSp(){const vis=Object.values(visSp()).flat(),cnt={};evs().forEach(e=>e.fiche&&e.fiche.tirs.forEach(t=>cnt[t.sp]=(cnt[t.sp]||0)+1));
+ const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cervidé","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
+ return[...new Set([...used,...def])].slice(0,6)}
+function rPick(){const e=S.ev[fe],tile=x=>`<button class="pk" data-pk="${esc(x)}">${sil(x,64)||'<span style="font-size:1.8rem;line-height:48px">🎯</span>'}<span>${esc(x)}</span></button>`;
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Quel gibier ?</h1><p class="mut sans" style="margin-top:-6px;padding-left:48px">${e?esc(e.title):""}</p>
+ <h2>Les plus courants</h2><div class="pkg">${commonSp().map(tile).join("")}</div>${Object.entries(visSp()).map(([g,a])=>`<h2>${esc(g)}</h2><div class="pkg">${a.map(tile).join("")}</div>`).join("")}<div style="height:40px"></div>`;
+ $("#bk2").onclick=()=>{if(pickCtx&&pickCtx.mode=="quick"){pickCtx=null;go("cal")}else go("fiche")};
+ document.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{const sp=b.dataset.pk,t={id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null,poste:curPoste(S.ev[fe])};
+  fd.tirs.unshift(t);if(pickCtx&&pickCtx.mode=="quick")quickTid=t.id;pickCtx=null;go("fiche")})}
+function posteModal(id){const e=S.ev[id];e.postes=e.postes||[];
+ const draw=()=>{modal(`<h2>Numéro de poste</h2><p class="mut sans" style="margin-top:-4px">${esc(e.title)}</p>
+ ${e.postes.length?`<div class="sans" style="margin-bottom:8px">${e.postes.map((x,i)=>`<span class="chip">N° ${esc(x.n)} <small class="mut">${esc(x.h||"")}</small><button data-px="${i}" aria-label="Retirer">✕</button></span>`).join("")}</div>`:""}
+ <label>Nouveau numéro de poste ce jour</label><div class="row"><input id="ps-n" inputmode="numeric" placeholder="ex. 7"><button class="p" id="ps-ok" style="flex:0 0 auto">Ajouter</button></div><p class="mut sans" style="font-size:.8rem">Les tirs encodés ensuite sont rattachés à ce poste.</p>`);
+  $("#ps-ok").onclick=()=>{const v=$("#ps-n").value.trim();if(!v)return;e.postes.push({n:v,h:new Date().toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"})});save();toast("Poste n° "+v+" enregistré.");closeM()};
+  $("#ps-n").onkeydown=ev=>{if(ev.key=="Enter")$("#ps-ok").click()};
+  document.querySelectorAll("[data-px]").forEach(b=>b.onclick=()=>{e.postes.splice(+b.dataset.px,1);save();draw()})};draw()}
+
+/* ---------- partage de la journée (image) ---------- */
+const LOGO_SVG='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#557a3a"/><stop offset="1" stop-color="#2b3f1e"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#lg)"/><g fill="none" stroke="#f3efe2" stroke-linecap="round"><circle cx="256" cy="256" r="152" stroke-width="24"/><circle cx="256" cy="256" r="90" stroke-width="20"/><path d="M256 62V150M256 362V450M62 256H150M362 256H450" stroke-width="22"/></g><circle cx="256" cy="256" r="34" fill="#e39a2d"/></svg>';
+const svgImg=svg=>new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=()=>r(null);i.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg)});
+const silSvg=(n,w)=>{const x=sil(n,w);return x?x.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" ').replace(/(<svg[^>]*>)/,"$1"+(window.DEFS||"")):""};
+async function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;const ks0=e.fiche.tirs.filter(q=>q.p).length,rows=Math.max(1,Math.ceil(Math.min(6,new Set(e.fiche.tirs.filter(q=>q.p).map(tname)).size)/3)),cardH=ks0?120+rows*210:200,H2=430+cardH+40+150+120;c.height=H2;const x=c.getContext("2d"),F=(w,z)=>`${w} ${z}px system-ui,-apple-system,"Segoe UI",sans-serif`;
+ const rr=(X,Y,w,h,r)=>{x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()};
+ const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,"#2a3d1e");g.addColorStop(.55,"#3f5a2b");g.addColorStop(1,"#263619");x.fillStyle=g;x.fillRect(0,0,W,H2);
+ const lg=await svgImg(LOGO_SVG);if(lg)x.drawImage(lg,70,64,84,84);x.font=F(800,60);x.fillStyle="#f3efe2";x.fillText("Chasse",174,128);x.fillStyle="#e8a032";x.fillText("Log",174+x.measureText("Chasse").width,128);
+ x.fillStyle="#f3efe2";x.font=F(800,68);let t=e.title,y=270;while(x.measureText(t).width>940&&t.length>4)t=t.slice(0,-2);if(t!=e.title)t=t.slice(0,-1)+"…";x.fillText(t,70,y);
+ x.font=F(500,34);x.fillStyle="#dcd8c6";const dl2=new Date(e.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});x.fillText(dl2+(e.mode?" · "+e.mode:""),70,y+56);
+ const pl=(typeof village=="function"?village(e):lieu(e.place))+((e.postes||[]).length?" · poste"+(e.postes.length>1?"s":"")+" "+e.postes.map(q=>q.n).join(", "):"");x.fillText("📍 "+pl,70,y+104);
+ rr(70,430,940,cardH,36);x.fillStyle="#f3efe2";x.fill();x.fillStyle="#25361a";x.font=F(800,40);x.fillText("Mes résultats",110,500);
+ const cnt={};f.tirs.forEach(q=>{if(q.p)cnt[tname(q)]=(cnt[tname(q)]||0)+q.p});const ks=Object.entries(cnt).slice(0,6);
+ if(ks.length){for(let i=0;i<ks.length;i++){const[k,v]=ks[i],cx=110+(i%3)*300,cy=540+Math.floor(i/3)*210,im=await svgImg(silSvg(k,180));if(im)x.drawImage(im,cx,cy,180,135);x.font=F(800,48);x.fillStyle="#25361a";x.fillText("× "+v,cx+180,cy+90);x.font=F(500,24);x.fillStyle="#4b5a3d";x.fillText(k.length>20?k.slice(0,19)+"…":k,cx,cy+170)}}
+ else{x.font=F(500,34);x.fillStyle="#4b5a3d";x.fillText("Journée sans prélèvement : la nature a gagné aujourd'hui.",110,620)}
+ const n=a.bn+a.cn,h=a.bh+a.ch,st=[[String(n),"tirs"],[n?Math.round(h/n*100)+" %":"–","précision"],[String(a.p),"prélèvements"],[String(a.m),"ratés"]];
+ const Y0=430+cardH+40;st.forEach(([v,l],i)=>{const X=70+i*240;rr(X,Y0,220,150,28);x.fillStyle="rgba(255,255,255,.12)";x.fill();x.fillStyle="#f3efe2";x.font=F(800,52);x.textAlign="center";x.fillText(v,X+110,Y0+73);x.font=F(500,26);x.fillStyle="#dcd8c6";x.fillText(l,X+110,Y0+118);x.textAlign="left"});
+ x.font=F(600,28);x.fillStyle="#dcd8c6";x.fillText("Encodé avec ChasseLog · chasselog-coder.github.io/ChasseLog",70,Y0+220);
+ const blob=await new Promise(r=>c.toBlob(r,"image/png")),file=new File([blob],"chasselog-"+e.date+".png",{type:"image/png"});
+ try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
+ const u=URL.createObjectURL(blob);modal(`<h2>Ma journée</h2><img src="${u}" alt="Image de ta journée" style="width:100%;border-radius:10px"><p class="mut sans">Le partage direct n'est pas disponible ici : télécharge l'image puis envoie-la.</p><a class="p" href="${u}" download="chasselog-${e.date}.png" style="display:block;text-align:center;background:var(--acc);color:var(--bg);border-radius:8px;padding:11px;text-decoration:none;font-family:system-ui">Télécharger l'image</a>`)}
 
 /* ---------- armes ---------- */
 const S_STD=".243 Win|6.5x55 SE|.270 Win|.308 Win|.30-06 Spr|8x57 IS|9.3x62",S_MAG=S_STD+"|.300 Win Mag|7mm Rem Mag",S_CM=".243 Win|6.5 Creedmoor|.270 Win|7mm-08 Rem|.308 Win|.30-06 Spr|.300 Win Mag",
@@ -291,7 +431,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-08c";
+const APP_V="2026-10-08d",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -323,13 +463,13 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-fb").onclick=()=>{shut();go("fb")};
+$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-bk").onclick=()=>{shut();bkSettings()};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
 $("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
 $("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
-$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,text/calendar,application/json">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
+$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,.txt,text/calendar,application/json,text/plain">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>`);
  $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
  $("#x-j").onclick=async()=>{dl("chasselog.json","application/json",await exportJSON());closeM()}};
@@ -346,18 +486,20 @@ function parseICS(txt){const t=txt.replace(/\r?\n[ \t]/g,""),out=[],un=x=>x.repl
   const desc=g("DESCRIPTION"),gs=[];desc.split("\n").forEach(l=>{const q=l.match(/^\s*Invit[ée]s?\s*:\s*(.+)$/i);if(q)q[1].split(/,| et /).forEach(n=>{n=n.trim();if(n)gs.push(n)})});
   out.push({title:g("SUMMARY")||"Évènement",date:ds,loc:g("LOCATION"),guests:gs,desc})});return out}
 async function importFile(f){if(!f)return;const t=await f.text();
- if(/\.json$/i.test(f.name)){try{S=Object.assign(S,JSON.parse(t));migrate();await migratePhotos();save();closeM();toast("Sauvegarde importée.");render()}catch(x){alert("Fichier invalide.")}return}
+ if(/\.(json|txt)$/i.test(f.name)||/^\s*\{/.test(t)){try{S=Object.assign(S,JSON.parse(t));migrate();await migratePhotos();save();closeM();toast("Sauvegarde importée.");render()}catch(x){alert("Fichier invalide.")}return}
  const a=parseICS(t).filter(x=>!evs().some(o=>o.date==x.date&&o.title==x.title));
  if(!a.length)return alert("Aucun nouvel évènement trouvé dans ce fichier.");if(!confirm("Importer "+a.length+" évènement(s) ?"))return;
  a.forEach((x,i)=>{const id="i"+Date.now()+i;S.ev[id]={id,date:x.date,title:x.title,mode:"",role:"part",guests:x.guests||[],host:"",place:{name:x.loc,lat:null,lng:null},desc:x.desc||""}});
  if(save()){cur=new Date(a[0].date+"T12:00");closeM();toast(a.length+" évènement(s) importé(s).");go("cal")}}
 
 /* ---------- calendrier ---------- */
+const evCls=(e,td)=>e.fiche?"ok":e.date<td?"todo":"";
+const wxCell=(ds,td)=>{const w=WXH&&ds>=td&&WXH.days[ds];return w?`<div class="wx">${WI(w.c)} ${Math.round(w.hi)}°</div>`:""};
 function monthP(d0){const y=d0.getFullYear(),m=d0.getMonth(),td=iso(new Date()),first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),rows=Math.ceil((first+n)/7);
  let h=`<div class="ttl">${MN[m].toUpperCase()} ${y}</div><div class="wd"><i></i>${["LUN.","MAR.","MER.","JEU.","VEN.","SAM.","DIM."].map((x,i)=>`<span class="${i==6?"su":""}">${x}</span>`).join("")}</div><div class="wks" style="--r:${rows}">`;
  for(let r=0;r<rows;r++){h+=`<div class="wr"><i class="wn">${isoWeek(new Date(y,m,1-first+r*7))}</i>`;
   for(let i=0;i<7;i++){const d=new Date(y,m,1-first+r*7+i),ds=iso(d),a=on(ds),show=ds==sel?a:a.slice(0,3);
-   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${show.map(e=>`<u class="${e.fiche?"ok":""}">${esc(e.title.replace(/^Chasse\s+/i,""))}</u>`).join("")}${a.length>show.length?`<small>+${a.length-show.length}</small>`:""}</div>`}
+   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${wxCell(ds,td)}${show.slice(0,2).map(e=>`<u class="ev${a.length>1?" ev2":""} ${evCls(e,td)}">${esc(e.title.replace(/^Chasse\s+(?:(?:du|de la|des|de|aux|au|à la|d')\s*)?/i,"")||e.title)}</u>`).join("")}${a.length>2?`<small>+${a.length-2}</small>`:""}</div>`}
   h+="</div>"}
  return h+"</div>"}
 function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${e.fiche?"ok":""}" data-ev="${e.id}">${esc(e.title)}</u>`;
@@ -370,7 +512,8 @@ function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="
  const a=on(iso(d));
  return `<div class="ttl">${esc(d.toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"}))}</div><div class="pd">`+(a.map(e=>`<div class="card" data-ev="${e.id}" style="cursor:pointer"><b>${esc(e.title)}</b><br><span class="sans mut">${esc(e.mode||"Type à préciser")} · ${roleTxt(e)}<br>📍 ${esc(lieu(e.place))}<br>${e.fiche?"Fiche remplie":"Fiche à remplir"}</span></div>`).join("")||'<p class="mut" style="text-align:center">Aucune journée de chasse ce jour.</p>')+"</div>"}
 function rCal(){const mo=cv=="month";
- $("#app").innerHTML=`<div class="hd"><button class="ib" id="mn" aria-label="Menu">☰</button><button class="ib tdy" id="tdy" aria-label="Aujourd'hui">${new Date().getDate()}</button></div><div class="vp${mo?" m":""}"><div class="trk">${[-1,0,1].map(k=>`<div class="pn${mo||cv=="year"?"":" sc"}">${panel(shifted(k))}</div>`).join("")}</div></div><button id="fab" aria-label="Ajouter une journée de chasse">+</button><button id="fab2" aria-label="Statistiques"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20v-7M2.5 20h19"/></svg></button>`;
+ $("#app").innerHTML=`<div class="hd"><button class="ib" id="mn" aria-label="Menu">☰</button>${todayEvs().length?'<button id="pst" aria-label="Nouveau numéro de poste">N° de poste</button>':""}<button class="ib tdy" id="tdy" aria-label="Aujourd'hui">${new Date().getDate()}</button></div><div class="vp${mo?" m":""}"><div class="trk">${[-1,0,1].map(k=>`<div class="pn${mo||cv=="year"?"":" sc"}">${panel(shifted(k))}</div>`).join("")}</div></div><button id="fab" aria-label="Ajouter une journée de chasse">+</button><button id="fab2" aria-label="Statistiques"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V4M16 20v-7M2.5 20h19"/></svg></button>${todayEvs().length?`<button id="bang" aria-label="Encoder un tir">${BANG}</button>`:""}`;
+ if($("#bang")){$("#bang").onclick=()=>chooseEv(quickShot);$("#pst").onclick=()=>chooseEv(posteModal)}
  $("#mn").onclick=()=>document.body.classList.add("dr");
  $("#tdy").onclick=()=>{cur=new Date();sel=iso(cur);render()};
  $("#fab2").onclick=()=>go("stats");
@@ -453,7 +596,7 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
   const mode=$("#e-m").value,i=id||"e"+Date.now()+Math.floor(Math.random()*99);
   if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||mode||"Chasse",role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
   if(save()){sel=d;cur=new Date(d+"T12:00");closeF();render()}}
- full(`<h2 style="margin-top:0">${id?"Modifier l'évènement":"Nouvelle journée de chasse"}</h2><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
+ full(`<h2 style="margin-top:0">${id?"Modifier l'évènement":"Nouvelle journée de chasse"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse">
  <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><label>Type de chasse</label><select id="e-m">${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
  ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
  <label>Rôle</label><select id="e-r"><option value="part" ${e.role!="guest"?"selected":""}>Actionnaire</option><option value="guest" ${e.role=="guest"?"selected":""}>Invité</option></select>
@@ -468,7 +611,8 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
  $("#e-gb").onclick=()=>{$("#e-gb").style.display="none";$("#e-gr").style.display="flex";$("#e-gi").focus()};
  $("#e-ga").onclick=()=>{const v=$("#e-gi").value.trim();if(v){fg.push(v);gl()}hideG()};
  $("#e-gc").onclick=hideG;
- $("#e-l").onclick=()=>pickLoc(fl,p=>{fl=p;rl()})}
+ const su=()=>sunBand($("#e-sun"),$("#e-d").value,fl);su();$("#e-d").addEventListener("change",su);
+ $("#e-l").onclick=()=>pickLoc(fl,p=>{fl=p;rl();su()})}
 
 /* ---------- fiche : édition ---------- */
 let fdClean="";
@@ -481,10 +625,12 @@ function fbar(back,sv){const b=document.createElement("div");b.id="fb2";b.classN
  if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);b._f=fit}
  $("#b-r").onclick=back;if(sv)$("#b-s").onclick=sv;else $("#b-s").remove()}
 function saveFiche(){sync();S.ev[fe].fiche=fd;if(save()){go("sum");gc()}}
-function backFiche(){sync();const to=S.ev[fe].fiche?"sum":"cal";if(fkey()==fdClean)return go(to);
+function backFiche(){if(quickTid){modal(`<h2>Abandonner ce tir ?</h2><p class="sans">Il n'a pas encore été enregistré.</p><div class="row"><button class="s" id="q-k">Continuer</button><button class="p" id="q-a" style="background:var(--acc2)">Abandonner</button></div>`);$("#q-k").onclick=()=>closeM();$("#q-a").onclick=()=>{closeM();quickTid=null;go("cal")};return}
+ sync();const to=S.ev[fe].fiche?"sum":"cal";if(fkey()==fdClean)return go(to);
  modal(`<h2>Enregistrer la saisie ?</h2><p class="sans">Tu as modifié cette fiche sans l'enregistrer.</p><div class="row"><button class="s" id="q-n">Annuler</button><button class="p" id="q-y">Enregistrer</button></div><p class="mut sans">« Annuler » quitte la fiche sans enregistrer ta saisie.</p>`);
  $("#q-y").onclick=()=>{closeM();saveFiche()};$("#q-n").onclick=()=>{closeM();go(to)}}
-function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).reduce((a,b)=>a+b,0):0;
+function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).reduce((a,b)=>a+b,0):0,Q=quickTid&&fd.tirs.find(t=>t.id==quickTid);
+ if(quickTid&&!Q){quickTid=null;setTimeout(()=>go("cal"));return}
  const detail=t=>{const k=t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null;if(!k||!t.p)return"";t[k]=t[k]||[];
   return `<div class="det"><span class="mut sans">${k=="w"?"Poids (kg)":"Nombre de cors"}</span>${Array.from({length:t.p},(_,i)=>`<label class="dl sans"><span>${k=="w"?"Sanglier":"Mâle"} ${i+1}</span><input type="number" min="0" step="${k=="w"?"0.5":"1"}" inputmode="${k=="w"?"decimal":"numeric"}" data-dk="${t.id}|${k}|${i}" value="${esc(t[k][i]??"")}" placeholder="${k=="w"?"kg":"cors"}"></label>`).join("")}</div>`};
  const card=t=>{const nm=tname(t),isCl=!!CLS[t.sp];
@@ -496,14 +642,16 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
   <button class="s sans" data-l="${t.id}" style="width:100%;margin-top:10px;text-align:left">📍 ${t.loc?"Lieu du tir":"Lieu de RDV"} : ${esc(lieu(t.loc||e.place))} · modifier</button></div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
  <h2>Tirs</h2>
- <div class="row"><select id="a-sp">${Object.entries(all).map(([g,a])=>`<optgroup label="${g}">${a.map(s=>`<option>${esc(s)}</option>`).join("")}</optgroup>`).join("")}</select><button class="p" id="a-b" style="flex:0 0 auto">Ajouter un tir</button></div>
+ <button class="p" id="a-b" style="width:100%">+ Ajouter un tir</button>
  <div style="margin-top:12px">${fd.tirs.map(card).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
  <h2>Photos</h2><div class="ph">${fd.photos.map((p,i)=>`<div><img data-pid="${p}" alt="Photo ${i+1}"><button class="d" data-rp="${i}">Retirer</button></div>`).join("")}</div><input type="file" accept="image/*" multiple id="f-ph" style="margin-top:8px">
  <label>Notes</label><textarea id="f-notes" rows="3">${esc(fd.notes)}</textarea>
  <button class="s" id="tb" style="width:100%;margin-top:14px">Encoder le tableau final${nt?` (${nt} pièce${nt>1?"s":""})`:""}</button><div style="height:90px"></div>`;
- fbar(backFiche,saveFiche);
+ if(Q){Q.ok=false;$("#app").classList.add("quick");$("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Encoder un tir</h1><p class="mut sans" style="margin-top:-6px;padding-left:48px">${esc(e.title)} · ${fmt(e.date)}${curPoste(e)!=null?" · poste n° "+esc(curPoste(e)):""}</p>${card(Q)}<div style="height:110px"></div><button id="okq" aria-label="Valider le tir">✓</button>`;
+  $("#bk2").onclick=backFiche;$("#okq").onclick=()=>{Q.ok=true;S.ev[fe].fiche=fd;quickTid=null;if(save()){toast("Tir enregistré.");go("cal");gc()}}}
+ else fbar(backFiche,saveFiche);
  const T=id=>fd.tirs.find(t=>t.id==id);
- $("#a-b").onclick=()=>{sync();const sp=$("#a-sp").value;if(!sp)return;fd.tirs.unshift({id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null});render()};
+ if($("#a-b"))$("#a-b").onclick=()=>{sync();pickCtx={mode:"fiche"};go("pick")};
  document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.v).ok=true;render()});
  document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{sync();T(b.dataset.o).ok=false;render()});
  document.querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{sync();const[id,x]=b.dataset.sx.split(":"),t=T(id);t.sx=CLS[t.sp]?x:(t.sx==x?null:x);render()});
@@ -522,8 +670,8 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
  document.querySelectorAll("[data-gn]").forEach(x=>x.onchange=()=>{sync();const t=T(x.dataset.gn);t.gun=x.value||null;if(t.gun)S.lastGun=t.gun;save()});
  document.querySelectorAll("[data-tph]").forEach(i=>i.onchange=async ev=>{sync();const t=T(i.dataset.tph);t.ph=t.ph||[];for(const f of ev.target.files)t.ph.push(await addPhoto(f));render()});
  document.querySelectorAll("[data-rtp]").forEach(b=>b.onclick=()=>{sync();const[id,i]=b.dataset.rtp.split("|");T(id).ph.splice(+i,1);render()});
- $("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
- $("#tb").onclick=()=>{sync();openTab()}}
+ if($("#f-ph"))$("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
+ if($("#tb"))$("#tb").onclick=()=>{sync();openTab()}}
 function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const k=Math.min(1,720/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.6))};i.src=URL.createObjectURL(f)})}
 function openTab(){let tmp=Object.assign({},fd.tab);if(!fd.tab)fd.tirs.forEach(t=>{if(t.p)tmp[tname(t)]=(tmp[tname(t)]||0)+t.p});
  const th=p=>`<img data-pid="${p}" alt="Tableau" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px">`,ents=Object.entries(visTab()),gs=i=>ents[i][1].reduce((a,s)=>a+(tmp[s]||0),0);
@@ -541,7 +689,7 @@ const GC={br:["#d49a62","#94602f","#53321a"],tn:["#e8b678","#bc7d40","#7d4c25"],
 (function(){let d="";for(const k in GC){const[l,b,e]=GC[k];d+=`<radialGradient id="g${k}" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="${l}"/><stop offset=".5" stop-color="${b}"/><stop offset="1" stop-color="${e}"/></radialGradient>`}
  const lin=(id,c)=>`<linearGradient id="${id}" x1="0" x2="1" y1="0" y2="0">${c.map((x,i)=>`<stop offset="${i/(c.length-1)}" stop-color="${x}"/>`).join("")}</linearGradient>`;
  d+=lin("lcu",["#6b3a1c","#f6b680","#c4793f","#6b3a1c"])+lin("lbr",["#7a5714","#ffe48a","#c9982b","#6b4a0e"])+lin("lsh",["#6e0f0f","#ff7566","#d02424","#6a0c0c"]);
- document.body.insertAdjacentHTML("afterbegin",`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${d}</defs></svg>`)})();
+ window.DEFS=`<defs>${d}</defs>`;document.body.insertAdjacentHTML("afterbegin",`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>${d}</defs></svg>`)})();
 const Fl=c=>`fill="url(#g${c})"`,Ey=(x,y,r=1)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#15110d"/><circle cx="${x-r*.3}" cy="${y-r*.35}" r="${r*.38}" fill="#fff"/>`,SH='<ellipse cx="32" cy="45" rx="21" ry="2.2" fill="#000" opacity=".15"/>';
 const legs=(xs,y1,y2,c,w)=>xs.map(x=>`<rect x="${x}" y="${y1}" width="${w}" height="${y2-y1}" rx="1.4" ${Fl(c)}/><rect x="${x-.2}" y="${y2-1.6}" width="${w+.4}" height="2" rx="1" fill="#1b1410"/>`).join("");
 const bone=(d,w)=>`<path d="${d}" fill="none" stroke="#7a5d2c" stroke-width="${w+1.2}" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#f0dfb0" stroke-width="${w}" stroke-linecap="round"/>`;
@@ -586,13 +734,14 @@ function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};
  if(a.m)row("Ratés",a.m);
  if(a.bn){row("Balles tirées",a.bn,ic("b",26));if(a.bh)row("Balles ayant touché",a.bh);pr("Précision balles",a.bh,a.bn)}
  if(a.cn){row("Cartouches tirées",a.cn,ic("c",26));if(a.ch)row("Cartouches ayant touché",a.ch);pr("Précision cartouches",a.ch,a.cn)}
- $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(e.mode||"type à préciser")}<br>📍 ${esc(lieu(e.place))} ${link(e.place)}</p>
+ $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(e.mode||"type à préciser")}<br>📍 ${esc(lieu(e.place))} ${link(e.place)}${(e.postes||[]).length?`<br>Poste${e.postes.length>1?"s":""} : ${e.postes.map(x=>"n° "+esc(x.n)).join(" · ")}`:""}</p>
  <h2 style="margin-top:14px">Mes résultats</h2>${Object.keys(cnt).length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<button class="tl" data-rs="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche un résultat pour voir le détail du tir.</p>`:'<p class="mut sans">Aucun gibier prélevé par toi.</p>'}
  ${R.length?`<h2>Statistiques</h2><div class="card sans">${R.join("")}</div>`:""}
  <h2>Tableau de la journée</h2>${Object.keys(tabC).length?`<div class="tls">${Object.entries(tabC).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut sans">Tableau final non encodé.</p>'}${(f.tabPhotos||[]).length?`<div class="ph">${f.tabPhotos.map(p=>`<img data-pid="${p}" alt="Tableau de chasse">`).join("")}</div>`:''}
  ${f.photos.length?`<button class="s" id="sh-ph" style="width:100%;margin-top:10px">📷 Afficher les photos (${f.photos.length})</button>`:""}
  ${f.notes?`<h2>Notes</h2><div class="card">${esc(f.notes)}</div>`:""}
- <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
+ <button class="s" id="sh-day" style="width:100%;margin-top:14px;font-weight:600">Partager ma journée</button><div class="row" style="margin-top:10px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
+ $("#sh-day").onclick=()=>shareDay(fe);
  $("#bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");$("#md").onclick=()=>openFiche(fe);
  if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
  document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&(tname(t)==k||k.startsWith(t.sp)));
@@ -660,6 +809,8 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([seas
   return `<div class="card sans" style="margin-bottom:8px"><div style="display:flex;align-items:center;gap:10px">${gunIc(22,gg?gg.type:"carabine")}<div style="flex:1;min-width:0"><b>${gg?esc([gg.brand,gg.model].filter(Boolean).join(" ")):"Arme non précisée"}</b>${gg?`<br><span class="mut">${gg.type=="fusil"?"Fusil":"Carabine"} · ${esc(gg.cal)}</span>`:""}</div></div>
   <div class="kp" style="margin-top:8px;grid-template-columns:repeat(3,1fr)"><div class="sc2"><b>${g.n}</b><span>${u} tiré${g.n>1?"es":""}</span></div><div class="sc2"><b>${g.p}</b><span>prélèvements</span></div><div class="sc2"><b>${g.days.size}</b><span>journée${g.days.size>1?"s":""}</span></div></div>
   <div class="sr"><span class="lb">${g.h} touché${g.h>1?"es":""} · ${g.m} raté${g.m>1?"s":""}</span>${pp==null?"":`<span style="display:flex;align-items:center;gap:8px">${gauge(pp)}<b>${pp}%</b></span>`}</div></div>`}).join("");
+ const PS={};L.forEach(e=>{const one=e.postes&&e.postes.length==1?e.postes[0].n:null;(e.postes||[]).forEach(x=>{(PS[x.n]=PS[x.n]||{p:0,d:new Set()}).d.add(e.id)});e.fiche.tirs.forEach(t=>{const k=t.poste??one;if(k!=null&&t.p){(PS[k]=PS[k]||{p:0,d:new Set()}).p+=t.p;PS[k].d.add(e.id)}})});
+ const lucky=Object.entries(PS).filter(([k,v])=>v.p>0).sort((x,y)=>y[1].p-x[1].p||y[1].d.size-x[1].d.size)[0];
  const rat={};Object.keys(bySec).forEach(k=>rat[k]=Math.round(bySec[k]/cnt[k]*10)/10);
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Statistiques</h1>
  <div class="chips2"><button class="fc${seasonF=="all"?" on":""}" data-sf="all">Toutes</button>${seasons.map(x=>`<button class="fc${x==seasonF?" on":""}" data-sf="${x}">${x}</button>`).join("")}</div>
@@ -669,6 +820,7 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([seas
  ${a.bn||a.cn?`<h2>Précision</h2><div class="pg2">${gb(a.bn,a.bh,"b","Balles")}${gb(a.cn,a.ch,"c","Cartouches")}</div>`:""}
  ${Object.keys(bySp).length?`<h2 id="tbc">Tableau de chasse</h2><div class="tls">${Object.entries(bySp).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
  ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cervidé – mâle",56)}<b>${hc}</b><span>cors max (cervidé)</span></div>`:""}${hb?`<div class="sc2">${sil("Chevreuil – brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
+ ${lucky?`<h2>Poste porte-bonheur</h2><div class="card sans" style="text-align:center">Ton numéro de poste porte-bonheur est le <b style="font-size:1.5rem;color:var(--acc)">${esc(lucky[0])}</b><br><span class="mut">${lucky[1].p} prélèvement${lucky[1].p>1?"s":""} · ${lucky[1].d.size} journée${lucky[1].d.size>1?"s":""} à ce poste</span></div>`:""}
  ${gunStats?`<h2>Par arme</h2>${gunStats}`:""}
  <h2>Par saison</h2><div class="card">${bars2(bySea,"sea",seasonF)}</div>
  <h2>Par lieu de chasse</h2><div class="card">${bars2(bySec,"pl")}</div><p class="mut sans">Touche une barre pour filtrer ou voir les journées.</p>

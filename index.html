@@ -188,7 +188,7 @@ html.in-on,html.in-on body{overflow:hidden}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09g<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09h<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -564,11 +564,11 @@ function quickShot(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:
 function commonSp(){const vis=Object.values(visSp()).flat(),cnt={};evs().forEach(e=>e.fiche&&e.fiche.tirs.forEach(t=>cnt[t.sp]=(cnt[t.sp]||0)+1));
  const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cerf élaphe","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
  return[...new Set([...used,...def])].slice(0,6)}
-function rPick(){const e=S.ev[fe],tile=x=>`<button class="pk" data-pk="${esc(x)}">${sil(x,64)||'<span style="font-size:1.8rem;line-height:48px">🎯</span>'}<span>${esc(x)}</span></button>`;
+function rPick(){const e=S.ev[fe],qk=pickCtx&&pickCtx.mode=="quick",one=x=>`<button class="pk" data-pk="${esc(x)}">${sil(x,64)||'<span style="font-size:1.8rem;line-height:48px">🎯</span>'}<span>${esc(x)}</span></button>`,tile=x=>!qk&&CLS[x]&&XT[x]?XT[x].map(one).join(""):one(x);
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Quel gibier ?</h1><p class="mut sans" style="margin-top:-6px;padding-left:48px">${e?esc(e.title):""}</p>
  <h2>Les plus courants</h2><div class="pkg">${commonSp().map(tile).join("")}</div>${Object.entries(visSp()).map(([g,a])=>`<h2>${esc(g)}</h2><div class="pkg">${a.map(tile).join("")}</div>`).join("")}<div style="height:40px"></div>`;
  $("#bk2").onclick=()=>{if(pickCtx&&pickCtx.mode=="quick"){pickCtx=null;go("cal")}else go("fiche")};
- document.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{const sp=b.dataset.pk,t={id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null,poste:curPoste(S.ev[fe])};
+ document.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{let sp=b.dataset.pk,sx=null;const fam=Object.keys(XT).find(f=>CLS[f]&&XT[f].includes(sp));if(fam){sx="mfj"[XT[fam].indexOf(sp)];sp=fam}const t={id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null,poste:curPoste(S.ev[fe])};
   fd.tirs.unshift(t);if(pickCtx&&pickCtx.mode=="quick")quickTid=t.id;pickCtx=null;go("fiche")})}
 function posteModal(id){const e=S.ev[id];e.postes=e.postes||[];
  const draw=()=>{modal(`<h2>Numéro de poste</h2><p class="mut sans" style="margin-top:-4px">${esc(e.title)}</p>
@@ -753,7 +753,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-09g",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-09h",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1011,7 +1011,7 @@ function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).r
  if($("#f-ph"))$("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
  if($("#tb"))$("#tb").onclick=()=>{sync();openTab()}}
 function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const k=Math.min(1,720/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.6))};i.src=URL.createObjectURL(f)})}
-function openTab(){let tmp=Object.assign({},fd.tab);if(!fd.tab)fd.tirs.forEach(t=>{if(t.p)tmp[tname(t)]=(tmp[tname(t)]||0)+t.p});
+function openTab(){let tmp=Object.assign({},fd.tab);if(!fd.tab)fd.tirs.forEach(t=>{if(t.p&&!(CLS[t.sp]&&!t.sx))tmp[tname(t)]=(tmp[tname(t)]||0)+t.p});
  const th=p=>`<img data-pid="${p}" alt="Tableau" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px">`,ents=Object.entries(visTab()),gs=i=>ents[i][1].reduce((a,s)=>a+(tmp[s]||0),0);
  modal(`<h2>Tableau final</h2><p class="mut sans">Ouvre une catégorie puis indique la quantité par espèce. Pré-rempli avec les pièces prélevées de tes tirs.</p>
  ${ents.map(([g,a],i)=>`<details class="dt"><summary><span>${g}</span><span class="bg" data-bg="${i}">${gs(i)||""}</span></summary><div class="in">${a.map(s=>`<div class="row sans" style="padding:4px 0"><span>${esc(s)}</span><span class="st" style="flex:0 0 125px;justify-content:flex-end"><button data-s="${esc(s)}" data-gi="${i}" data-n="-1">−</button><b>${tmp[s]||0}</b><button data-s="${esc(s)}" data-gi="${i}" data-n="1">+</button></span></div>`).join("")}</div></details>`).join("")}
@@ -1084,7 +1084,9 @@ function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};
  ${f.photos.length?`<button class="s" id="sh-ph" style="width:100%;margin-top:10px">📷 Afficher les photos (${f.photos.length})</button>`:""}
  ${f.notes?`<h2>Notes</h2><div class="card">${esc(f.notes)}</div>`:""}
  <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
- $("#sh-day").onclick=()=>shareDay(fe);
+ $("#sh-day").onclick=()=>{const u=(S.ev[fe].fiche.tirs||[]).filter(t=>t.p&&CLS[t.sp]&&!t.sx);if(!u.length)return shareDay(fe);
+  modal(`<h2 style="margin-top:0">Précise d'abord ton tableau</h2><p class="sans" style="line-height:1.5">Avant de partager ta journée, indique s'il s'agit d'un mâle, d'une femelle ou d'un jeune pour : <b>${[...new Set(u.map(t=>t.sp))].map(esc).join(", ")}</b>.</p><button class="p li" id="sh-fx">Préciser maintenant</button>`);
+  $("#sh-fx").onclick=()=>{const id=fe;closeM();openFiche(id);fd.tirs.forEach(t=>{if(t.p&&CLS[t.sp]&&!t.sx)t.ok=false});render()}};
  $("#bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");$("#md").onclick=()=>openFiche(fe);
  if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
  document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&(tname(t)==k||k.startsWith(t.sp)));

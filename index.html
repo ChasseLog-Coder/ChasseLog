@@ -182,13 +182,39 @@ html.in-on,html.in-on body{overflow:hidden}
 .smap{height:300px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);margin-top:8px}.smap.big{height:68vh}.slg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 2px 0;font:.8rem system-ui;color:var(--mut)}.slg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:2px solid #fff;box-shadow:0 0 0 1px #0003}
 .leaflet-popup-content{font:.86rem/1.4 system-ui;margin:10px 12px}.leaflet-popup-content a.sgo{display:inline-block;margin-top:6px;font-weight:700;color:var(--acc)}
 .wrdv{flex:1 1 100%;margin-top:2px;padding:7px 10px;border-radius:9px;background:#3f5a2b18;font:600 .85rem/1.35 system-ui;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}.wrdv b{width:100%}.wrdv span{white-space:nowrap}.wrdv svg{vertical-align:-3px}
+#setup{position:fixed;inset:0;z-index:1090;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#setup.dk{background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6}
+.su-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}.su-pg{flex:1;display:flex;gap:5px}.su-pg i{flex:1;height:5px;border-radius:3px;background:var(--line)}.su-pg i.on{background:var(--acc)}
+#setup.dk .su-pg i{background:#ffffff2e}#setup.dk .su-pg i.on{background:#f5b83d}
+.su-sk{border:0;background:none;color:var(--mut);font:600 .9rem system-ui;padding:6px 4px}
+.su-bd{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+.su-bd h1{margin:0 0 6px;font:800 1.55rem/1.2 system-ui}.su-sub{margin:0 0 14px;font:.95rem/1.45 system-ui;color:var(--mut)}
+.su-cal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 10px 6px}
+.su-mh{display:flex;justify-content:space-between;align-items:center;font:700 1rem system-ui;margin-bottom:6px}.su-mh button{border:0;background:none;color:var(--acc);font:700 1.4rem system-ui;padding:2px 12px}
+.su-g{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}.su-g b{font:700 .7rem system-ui;color:var(--mut);padding:3px 0}
+.su-g button{border:0;background:none;color:var(--ink);font:500 .95rem system-ui;height:40px;border-radius:50%;padding:0}.su-g button.o{visibility:hidden}.su-g button.t{box-shadow:inset 0 0 0 2px var(--acc)}.su-g button.s{background:var(--acc);color:#fff;font-weight:800}
+.su-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.su-ch span{background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc);border-radius:99px;padding:6px 11px;font:600 .82rem system-ui}
+.su-c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
+.su-d{display:flex;justify-content:space-between;align-items:center;font:700 1rem system-ui;margin-bottom:8px}.su-d em{font:600 .75rem system-ui;font-style:normal;color:var(--acc)}
+.su-md{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px}.su-md button{flex:0 0 auto;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:7px 12px;font:600 .82rem system-ui}.su-md button.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.su-sg{display:flex;background:var(--line);border-radius:10px;padding:3px;gap:3px;margin:8px 0}.su-sg button{flex:1;border:0;background:none;color:var(--ink);border-radius:8px;padding:8px 4px;font:600 .85rem system-ui}.su-sg button.on{background:var(--acc);color:#fff}
+.su-c input{width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;padding:10px 11px;font:.95rem system-ui;background:var(--bg);color:var(--ink)}
+.su-l{font:600 .78rem system-ui;color:var(--mut);margin:4px 0}.su-r{display:flex;gap:8px}.su-r input{flex:1;min-width:0}
+.su-ct{flex:0 0 46px;border:1.5px solid color-mix(in srgb,var(--acc) 40%,transparent);background:color-mix(in srgb,var(--acc) 10%,transparent);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--acc)}
+.su-gu{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}.su-gu button{border:0;background:#e8a03226;color:#7a4b06;border-radius:99px;padding:6px 10px;font:600 .82rem system-ui}
+.su-cp{display:block;width:100%;border:2px dashed color-mix(in srgb,var(--acc) 45%,transparent);background:none;color:var(--acc);border-radius:12px;padding:11px;font:700 .9rem system-ui;margin:0 0 10px}
+.su-ft{display:flex;gap:8px;margin-top:10px}.su-ft button{border:0;border-radius:16px;padding:15px;font:800 1.02rem system-ui}.su-bk{flex:0 0 auto;background:var(--line);color:var(--ink);padding:15px 18px!important}.su-go{flex:1;background:var(--acc);color:#fff}.su-go:disabled{opacity:.4}.su-y{flex:1;background:#f5b83d!important;color:#2a1c05!important}
+.su-big{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}.su-big img{width:96px;height:96px;border-radius:22px;box-shadow:0 8px 24px #0006}.su-big h1{margin:0;font:800 1.7rem system-ui;color:#fff}
+.su-sum{background:#ffffff14;border-radius:16px;padding:14px;width:100%;text-align:left;font:.98rem/1.6 system-ui;color:#eef2e6}.su-sum b{color:#f5b83d}
+.su-tip{display:flex;gap:10px;text-align:left;font:.9rem/1.4 system-ui;color:#dfe6d2;width:100%}
+.su-lt{border:0;background:none;color:#b9c3aa;text-decoration:underline;font:.85rem system-ui;padding:10px;margin-top:4px}
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-setup" style="font-weight:700;color:var(--acc)">📅 Prépare ta saison</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09i<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09j<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -237,7 +263,7 @@ function modal(h,l=""){closeM(l);const m=document.createElement("div");m.id="mo"
 function closeM(l=""){const m=$("#mo"+l);if(m)m.remove()}
 let vst=[];
 function go(v){if(v!=view){if(v=="cal")vst=[];else if(vst.length&&vst[vst.length-1]==v)vst.pop();else if(!(v=="sum"&&view=="fiche"))vst.push(view)}const ch=v!=view;view=v;render();if(ch){window.scrollTo(0,0);$("#app").scrollTop=0}}
-function hwBack(){if($("#tour")){$("#tour .to-x").click();return true}if(document.body.classList.contains("dr")){shut();return true}
+function hwBack(){if($("#setup")){$("#setup")._back();return true}if($("#tour")){$("#tour .to-x").click();return true}if(document.body.classList.contains("dr")){shut();return true}
  for(const l of["3","2",""])if($("#mo"+l)){closeM(l);return true}
  if($("#ff")){closeF();return true}
  if(view=="fiche"){backFiche();return true}
@@ -317,7 +343,7 @@ function rFeedback(){const F=fbS;
 
 /* ---------- invitation à donner son avis (une seule fois, après quelques minutes d'utilisation) ---------- */
 const ASK_AFTER=180,NL_AFTER=600;// secondes d'utilisation cumulée : avis (3 min), inscription à la sortie (10 min)
-const popFree=()=>view=="cal"&&!$("#tour")&&!$("#inst")&&!$(".mo")&&!$("#ff")&&!document.body.classList.contains("dr");
+const popFree=()=>view=="cal"&&!$("#setup")&&!$("#tour")&&!$("#inst")&&!$(".mo")&&!$("#ff")&&!document.body.classList.contains("dr");
 setInterval(()=>{if(document.visibilityState!="visible"||(S.fbAsked&&S.nlAsked))return;S.useSec=(S.useSec||0)+15;if(S.useSec%60==0)save();
  if(!S.fbAsked&&S.useSec>=ASK_AFTER&&(S.tourAsked||!isSA())&&popFree()){S.fbAsked=true;save();
   modal(`<h2 style="margin-top:0">Ton avis compte !</h2><p class="sans" style="font-size:1.02rem;line-height:1.5">ChasseLog est en test et évolue grâce aux retours des chasseurs. Tu as deux minutes pour nous dire ce que tu en penses ?</p>
@@ -407,9 +433,9 @@ function startTour(){if($("#tour"))return;shut&&document.body.classList.contains
  const sleep=(ms,id)=>new Promise((res,rej)=>setTimeout(()=>id==run?res():rej(0),ms));
  function draw(){run++;const id=run;
   if(k>=N){o.innerHTML=`<div class="to-top"><div class="to-pg">${TOUR.map(()=>'<i class="on"></i>').join("")}</div><button class="to-x" id="to-x">Fermer</button></div>
-   <div class="to-end"><img src="icons/icon-192.png" alt=""><h2>À toi de jouer !</h2><p>Ajoute ta prochaine journée de chasse avec le bouton <b>+</b>.</p><p style="font-size:.88rem;color:#b9c3aa">Tu peux revoir cette visite quand tu veux : menu ☰ › <b>Découvre l'application</b>.</p></div>
-   <div class="to-bt"><button class="to-pv" id="to-p">‹</button><button class="to-nx" id="to-n">Commencer</button></div>`;
-   $("#to-x").onclick=close;$("#to-n").onclick=close;$("#to-p").onclick=()=>{k=N-1;draw()};return}
+   <div class="to-end"><img src="icons/icon-192.png" alt=""><h2>Tu as tout vu !</h2><p>Prends 1 minute pour préparer ta saison : tes journées de chasse, les lieux et tes invités.</p><p style="font-size:.85rem;color:#b9c3aa">La visite reste disponible dans le menu ☰ › <b>Découvre l'application</b>.</p></div>
+   <div class="to-bt"><button class="to-pv" id="to-p">‹</button><button class="to-nx" id="to-n">Je suis prêt</button></div><button class="su-lt" id="to-l" style="display:block;margin:6px auto 0">Plus tard, je préfère explorer seul</button>`;
+   $("#to-x").onclick=close;$("#to-l").onclick=close;$("#to-n").onclick=()=>{close();startSetup()};$("#to-p").onclick=()=>{k=N-1;draw()};return}
   const [ti,tx,acts]=TOUR[k];
   o.innerHTML=`<div class="to-top"><div class="to-pg">${TOUR.map((_,i)=>`<i class="${i<=k?"on":""}"></i>`).join("")}</div><span class="to-n">${k+1}/${N}</span><button class="to-x" id="to-x">Quitter</button></div>
   <div class="to-cap"><h2>${ti}</h2><p>${tx}</p><div class="to-note" id="to-no"></div></div>
@@ -431,7 +457,68 @@ function startTour(){if($("#tour"))return;shut&&document.body.classList.contains
    else if(c=="i"){const im=(await load(v)).cloneNode();const d=document.createElement("div");d.className="to-ov";d.appendChild(im);ph.appendChild(d);d.offsetWidth;d.classList.add("on");await sleep(700,id)}}
   f.classList.remove("on");if(id==run)$("#to-n").classList.add("go")}
  draw()}
-$("#m-tour").onclick=()=>{shut();startTour()};
+$("#m-tour").onclick=()=>{shut();startTour()};$("#m-setup").onclick=()=>{shut();startSetup()};
+/* ---------- assistant « Prépare ta saison » ---------- */
+const CONTACTS=("contacts" in navigator)&&("ContactsManager" in window);
+function deP(p){p=p.trim();const m=p.match(/^(les|le|la)\s+(.+)$/i)||p.match(/^(l['’])\s*(.+)$/i);if(m){const a=m[1].toLowerCase();return(a=="le"?"du ":a=="la"?"de la ":a=="les"?"des ":"de l'")+m[2]}return(/^[aeiouyhéèêâîôû]/i.test(p)?"d'":"de ")+p}
+function startSetup(){if($("#setup"))return;shut&&document.body.classList.contains("dr")&&shut();
+ const o=document.createElement("div");o.id="setup";document.body.appendChild(o);document.documentElement.classList.add("in-on");
+ const td=iso(new Date()),known=[];{const seen=new Set();evs().filter(e=>e.place&&e.place.name).sort((a,b)=>a.date<b.date?1:-1).forEach(e=>{const k=e.place.name.trim().toLowerCase();if(!seen.has(k)){seen.add(k);known.push(e.place)}})}
+ const M=visM().length?visM():MODES;let step=0,mon=new Date();mon.setDate(1);const chosen=new Set(),D={};
+ const day=ds=>D[ds]=D[ds]||{mode:M[0],place:"",role:"part",guests:[],host:""};
+ const fmtS=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"short",day:"numeric",month:"short"});
+ const fmtL=ds=>{const s=new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"});return s[0].toUpperCase()+s.slice(1)};
+ const close=()=>{o.remove();document.documentElement.classList.remove("in-on")};
+ const SIL='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10" cy="8" r="4"/><path d="M3 21c0-4 3.2-7 7-7s7 3 7 7"/><path d="M19 8v6M16 11h6"/></svg>';
+ const top=n=>`<div class="su-top"><div class="su-pg">${[0,1,2].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</div>${n<2?`<button class="su-sk" id="su-x">Passer</button>`:""}</div>`;
+ function draw(){o.className=step==2?"dk":"";const ds=[...chosen].sort();
+  if(step==0){const y=mon.getFullYear(),m=mon.getMonth(),first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();let g="<b>L</b><b>M</b><b>M</b><b>J</b><b>V</b><b>S</b><b>D</b>"+"<button class='o' tabindex='-1'></button>".repeat(first);
+   for(let k=1;k<=n;k++){const d=iso(new Date(y,m,k));g+=`<button data-d="${d}" class="${chosen.has(d)?"s":""}${d==td?" t":""}">${k}</button>`}
+   o.innerHTML=top(0)+`<div class="su-bd"><h1>Quand chasses-tu ?</h1><p class="su-sub">Touche toutes tes dates de chasse de la saison. Tu pourras en ajouter plus tard.</p>
+   <div class="su-cal"><div class="su-mh"><button id="su-pm" aria-label="Mois précédent">‹</button>${MN[m]} ${y}<button id="su-nm" aria-label="Mois suivant">›</button></div><div class="su-g">${g}</div></div>
+   <div class="su-ch">${ds.map(d=>`<span>${fmtS(d)}</span>`).join("")}</div></div>
+   <div class="su-ft"><button class="su-go" id="su-n" ${ds.length?"":"disabled"}>${ds.length?`Continuer · ${ds.length} journée${ds.length>1?"s":""}`:"Choisis au moins une date"}</button></div>`;
+   o.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{const d=b.dataset.d;chosen.has(d)?chosen.delete(d):chosen.add(d);draw()});
+   $("#su-pm").onclick=()=>{mon.setMonth(mon.getMonth()-1);draw()};$("#su-nm").onclick=()=>{mon.setMonth(mon.getMonth()+1);draw()};
+   $("#su-n").onclick=()=>{step=1;draw()}}
+  else if(step==1){const card=(d,i)=>{const x=day(d);return `<div class="su-c" data-c="${d}"><div class="su-d">${fmtL(d)}<em>${i+1}/${ds.length}</em></div>
+    <div class="su-md">${M.map(m=>`<button data-m="${esc(m)}" class="${x.mode==m?"on":""}">${esc(m)}</button>`).join("")}</div>
+    <input data-pl placeholder="📍 Lieu de rendez-vous" value="${esc(x.place)}" list="su-kp" autocomplete="off">
+    <div class="su-sg"><button data-r="part" class="${x.role=="part"?"on":""}">Actionnaire</button><button data-r="guest" class="${x.role=="guest"?"on":""}">Invité</button></div>
+    ${x.role=="part"?`<div class="su-l">Mes invités</div>${x.guests.length?`<div class="su-gu">${x.guests.map((g,j)=>`<button data-gx="${j}" aria-label="Retirer ${esc(g)}">👤 ${esc(g)} ✕</button>`).join("")}</div>`:""}<div class="su-r"><input data-gi placeholder="Nom de l'invité" enterkeyhint="done"><button class="${CONTACTS?"su-ct":"su-ct"}" data-ga aria-label="${CONTACTS?"Choisir dans mes contacts":"Ajouter"}">${CONTACTS?SIL:"+"}</button></div>`
+    :`<div class="su-l">Invité par</div><div class="su-r"><input data-h placeholder="Nom de la personne qui t'invite" value="${esc(x.host)}">${CONTACTS?`<button class="su-ct" data-hc aria-label="Choisir dans mes contacts">${SIL}</button>`:""}</div>`}</div>`};
+   o.innerHTML=top(1)+`<div class="su-bd"><h1>Où, comment, avec qui ?</h1><p class="su-sub">Le lieu de rendez-vous suffit. La position GPS est facultative.</p>
+   ${ds.length?card(ds[0],0):""}${ds.length>1?`<button class="su-cp" id="su-cp">Même chose pour ${ds.length==2?"l'autre journée":`les ${ds.length-1} autres journées`}</button>`:""}${ds.slice(1).map((d,i)=>card(d,i+1)).join("")}
+   <datalist id="su-kp">${known.map(p=>`<option value="${esc(p.name)}">`).join("")}</datalist><div style="height:10px"></div></div>
+   <div class="su-ft"><button class="su-bk" id="su-b">‹</button><button class="su-go" id="su-n">Créer mes ${ds.length} journée${ds.length>1?"s":""}</button></div>`;
+   o.querySelectorAll("[data-c]").forEach(c=>{const d=c.dataset.c,x=day(d);
+    c.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{x.mode=b.dataset.m;c.querySelectorAll("[data-m]").forEach(z=>z.classList.toggle("on",z==b))});
+    c.querySelector("[data-pl]").oninput=e=>x.place=e.target.value;
+    c.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{x.role=b.dataset.r;keep(draw)});
+    const gi=c.querySelector("[data-gi]"),addG=()=>{const v=gi.value.trim();gi.value="";if(v&&!x.guests.includes(v)){x.guests.push(v);keep(draw,d)}};
+    if(gi){gi.onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();addG()}};gi.onblur=()=>{if(gi.value.trim())addG()}}
+    const ga=c.querySelector("[data-ga]");if(ga)ga.onclick=async()=>{if(gi.value.trim())return addG();if(!CONTACTS){gi.focus();return}
+     try{const r=await navigator.contacts.select(["name"],{multiple:true});r.forEach(k=>{const n=(k.name&&k.name[0]||"").trim();if(n&&!x.guests.includes(n))x.guests.push(n)});keep(draw,d)}catch(e){}};
+    c.querySelectorAll("[data-gx]").forEach(b=>b.onclick=()=>{x.guests.splice(+b.dataset.gx,1);keep(draw,d)});
+    const h=c.querySelector("[data-h]");if(h)h.oninput=e=>x.host=e.target.value;
+    const hc=c.querySelector("[data-hc]");if(hc)hc.onclick=async()=>{try{const r=await navigator.contacts.select(["name"],{multiple:false});const n=r[0]&&r[0].name&&r[0].name[0];if(n){x.host=n.trim();keep(draw,d)}}catch(e){}}});
+   if($("#su-cp"))$("#su-cp").onclick=()=>{const a=day(ds[0]);ds.slice(1).forEach(d=>D[d]={mode:a.mode,place:a.place,role:a.role,guests:[...a.guests],host:a.host});keep(draw);toast("Recopié sur toutes les journées.")};
+   $("#su-b").onclick=()=>{step=0;draw()};$("#su-n").onclick=create}
+  else{const made=o._made||[],nx=made.filter(e=>e.date>=td).sort((a,b)=>a.date<b.date?-1:1)[0];
+   o.innerHTML=top(2)+`<div class="su-big"><img src="icons/icon-192.png" alt=""><h1>C'est prêt !</h1>
+   <div class="su-sum"><b>${made.length} journée${made.length>1?"s":""}</b> ajoutée${made.length>1?"s":""} à ton calendrier${nx?`<br>Prochaine : <b>${esc(fmtL(nx.date).toLowerCase())}</b> · ${esc(nx.title)}${nx.guests&&nx.guests.length?", avec "+esc(nx.guests.map(g=>g.split(" ")[0]).join(" et ")):""}`:""}</div>
+   <div class="su-tip"><span>💥</span><span>Le jour J, le bouton <b style="color:#fff">BANG</b> apparaît : un tir s'encode en deux touches.</span></div>
+   <div class="su-tip"><span>🌤️</span><span>La météo et le soleil de chaque journée s'affichent automatiquement.</span></div></div>
+   <div class="su-ft"><button class="su-go su-y" id="su-n">Voir mon calendrier</button></div>`;
+   $("#su-n").onclick=()=>{close();const f=made.map(e=>e.date).sort().find(d=>d>=td)||made.map(e=>e.date).sort()[0];if(f){cur=new Date(f+"T12:00");sel=f}go("cal");render()}}
+  if($("#su-x"))$("#su-x").onclick=()=>{S.setupDone=true;save();close()}}
+ function keep(fn,focusDay){const bd=o.querySelector(".su-bd"),y=bd?bd.scrollTop:0;fn();const b2=o.querySelector(".su-bd");if(b2)b2.scrollTop=y;if(focusDay){const i=o.querySelector(`[data-c="${focusDay}"] [data-gi]`);if(i)i.focus()}}
+ function create(){const ds=[...chosen].sort(),made=[];ds.forEach((d,i)=>{const x=day(d),pn=x.place.trim(),kp=known.find(p=>p.name.trim().toLowerCase()==pn.toLowerCase()),id="s"+Date.now()+i;
+   const e={id,date:d,title:pn?x.mode+" "+deP(pn):x.mode,mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
+  S.setupDone=true;save();o._made=made;step=2;draw()}
+ o._back=()=>{if(step==1){step=0;draw()}else close()};
+ draw()}
+
 const isSA=()=>["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
 function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))return;if(!popFree()){setTimeout(tourAsk,4000);return}
  S.tourAsked=true;save();modal(`<div style="text-align:center"><img src="icons/icon-192.png" alt="" style="width:72px;height:72px;border-radius:16px;margin:4px auto 8px;display:block"><h2 style="margin:0 0 6px">Bienvenue dans ChasseLog !</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 16px">Découvre en 2 minutes comment encoder tes journées, tes tirs et suivre ta saison.</p>
@@ -755,7 +842,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-09i",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-09j",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));

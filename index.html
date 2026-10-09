@@ -188,19 +188,20 @@ html.in-on,html.in-on body{overflow:hidden}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09f<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-09g<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
-const G={"Grand gibier":["Cervidé","Chevreuil","Sanglier","Daim","Mouflon"],
+const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
 "Petit gibier":["Lièvre","Faisan","Perdrix grise","Bécasse des bois"],
 "Gibier d'eau":["Canard colvert","Bernache du Canada","Foulque macroule"],
 "Autre gibier":["Lapin de garenne","Pigeon ramier","Renard"]};
-const CLS={"Cervidé":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
-const CL={"Cervidé":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
-const XT={"Cervidé":["Cervidé – mâle","Cervidé – femelle","Cervidé – jeune"],"Chevreuil":["Chevreuil – brocard","Chevreuil – chevrette","Chevreuil – chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
+const CLS={"Cerf élaphe":["Mâle","Femelle","Jeune"],"Daim":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
+const CL={"Cerf élaphe":{m:"mâle",f:"femelle",j:"jeune"},"Daim":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
+const XT={"Cerf élaphe":["Cerf élaphe – mâle","Cerf élaphe – femelle","Cerf élaphe – jeune"],"Daim":["Daim – mâle","Daim – femelle","Daim – jeune"],"Chevreuil":["Chevreuil – brocard","Chevreuil – chevrette","Chevreuil – chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
+const COR=sp=>sp=="Cerf élaphe"||sp=="Chevreuil";
 const tname=t=>(t.sx&&CL[t.sp]&&CL[t.sp][t.sx])?t.sp+" – "+CL[t.sp][t.sx]:t.sp;
 const sxi=x=>x?`<span class="sxi ${x}">${x=="m"?"♂":"♀"}</span>`:"";
-const extra=t=>{const f=a=>(a||[]).slice(0,t.p).filter(x=>x!==""&&x!=null),w=f(t.w),c=f(t.c);return(t.sp=="Sanglier"&&w.length?" · "+w.join(", ")+" kg":"")+(c.length&&CLS[t.sp]&&t.sx=="m"?" · "+c.join(", ")+" cors":"")};
+const extra=t=>{const f=a=>(a||[]).slice(0,t.p).filter(x=>x!==""&&x!=null),w=f(t.w),c=f(t.c);return(t.sp=="Sanglier"&&w.length?" · "+w.join(", ")+" kg":"")+(c.length&&COR(t.sp)&&t.sx=="m"?" · "+c.join(", ")+" cors":"")};
 const MODES=["Battue","Approche","Affût","Poussée silencieuse","Chasse devant soi","Chasse à la passée","Chasse à la hutte","Chasse au chien d'arrêt","Chasse au terrier","Chasse à courre","Fauconnerie"];
 const MN=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 const UL={b:"Balles",c:"Cartouches"},UNIT=s=>(/^(Cerf|Cervid|Chevreuil|Sanglier|Daim|Mouflon|Renard)/.test(s))?"b":"c";
@@ -383,7 +384,7 @@ let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e
  $("#in-sk").onclick=()=>{try{sessionStorage.setItem("chasselog-skipinst","1")}catch(e){}o.remove();document.documentElement.classList.remove("in-on")}})();
 
 /* ---------- visite guidée « Découvre l'application » ---------- */
-const TAPS={"mn":[30,26],"ouv":[149.5,255.5],"om":[192.2,102.9],"fab":[344,796],"title":[195,190.8],"ta":[122.6,434.6],"save":[285.5,813],"pst":[195,26],"bang":[195,793],"psok":[330.8,762.3],"sang":[71.7,172.8],"plus":[112,311.2],"ok":[195,792],"cpl":[283.1,101.5],"sx":[81.4,251],"kg":[252,456],"photo":[167,555.3],"tb":[195,696.6],"tabplus":[344,549.2],"fsave":[285.5,813],"share":[195,152.3],"stats":[46,796],"sprev":[248,75.6]};
+const TAPS={"mn":[30,26],"ouv":[149.5,297.5],"om":[192.2,102.9],"fab":[344,796],"title":[195,190.8],"ta":[122.6,434.6],"save":[285.5,813],"pst":[195,26],"bang":[195,793],"psok":[330.8,762.3],"sang":[71.7,172.8],"plus":[112,311.2],"ok":[195,792],"cpl":[283.1,101.5],"sx":[81.4,251],"kg":[252,456],"photo":[167,555.3],"tb":[195,696.6],"tabplus":[344,549.2],"fsave":[285.5,813],"share":[195,152.3],"stats":[46,796],"sprev":[248,75.6]};
 // étapes : [titre, texte, actions]. Actions : ["s",écran] afficher, ["sl",écran] défiler, ["t",bouton] toucher, ["n",note] note jaune, ["w",ms] attendre, ["r",bouton] anneau, ["i",image] image par-dessus
 const TOUR=[
  ["Consulte les périodes d'ouverture","Les dates d'ouverture et de fermeture du gibier en Wallonie, selon ton mode de chasse.",[["s","cal0"],["w",1400],["t","mn"],["s","drawer"],["w",1500],["t","ouv"],["s","ouv0"],["n","Ce qui est ouvert aujourd'hui, avec la frise de la saison"],["w",3200],["t","om"],["s","ouv1"],["n","Choisis ton mode : battue, approche et affût, chasse à vol"],["w",2800],["sl","ouv2"],["w",1500]]],
@@ -470,12 +471,12 @@ function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||$("#mdb")||view!="cal")ret
  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">Sauvegarde prévue vers ${SVC[B.svc]}<br><small style="font-weight:400;color:var(--mut)">Dernière : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}</small></span><button class="p" style="padding:9px 12px">Sauvegarder</button><button aria-label="Plus tard" style="border:0;background:none;color:var(--mut);font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");b1.onclick=async()=>{if(await doBackup(prep))d.remove()};b2.onclick=()=>{B.snooze=Date.now()+864e5;save();d.remove()}}
-const needK=t=>t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null,missT=t=>{const k=needK(t);if(!k||!t.p)return false;const a=(t[k]||[]).slice(0,t.p);return a.length<t.p||a.some(v=>v===""||v==null)};
+const needK=t=>t.sp=="Sanglier"?"w":(COR(t.sp)&&t.sx=="m")?"c":null,missT=t=>{if(!t.p)return false;if(CLS[t.sp]&&!t.sx)return true;const k=needK(t);if(!k)return false;const a=(t[k]||[]).slice(0,t.p);return a.length<t.p||a.some(v=>v===""||v==null)};
 function missingDet(){const td=iso(new Date()),now=new Date(),sn=S.mdSn||{};return evs().filter(e=>{if(!e.fiche||e.nh||(sn[e.id]||0)>Date.now())return false;const age=(Date.parse(td)-Date.parse(e.date))/864e5;
  if(age<0||age>14||(age==0&&now.getHours()<18))return false;return e.fiche.tirs.some(missT)}).sort((a,b)=>a.date<b.date?1:-1)}
-function mdCheck(){if(view!="cal"||$("#mdb")||$("#bkb"))return;const e=missingDet()[0];if(!e)return;const k=e.fiche.tirs.filter(missT).map(needK);
+function mdCheck(){if(view!="cal"||$("#mdb")||$("#bkb"))return;const e=missingDet()[0];if(!e)return;const k=e.fiche.tirs.filter(missT).map(t=>CLS[t.sp]&&!t.sx?"x":needK(t));
  const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
- d.innerHTML=`<span style="flex:1">À compléter : ${k.includes("w")&&k.includes("c")?"poids et cors":k.includes("w")?"poids du sanglier":"nombre de cors"}<br><small style="font-weight:500">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}</small></span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .9rem system-ui;padding:9px 12px">Compléter</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.2rem;padding:4px">✕</button>`;
+ d.innerHTML=`<span style="flex:1">À compléter : ${[k.includes("x")?"mâle, femelle ou jeune":"",k.includes("w")?"poids du sanglier":"",k.includes("c")?"nombre de cors":""].filter(Boolean).join(" · ")}<br><small style="font-weight:500">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}</small></span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .9rem system-ui;padding:9px 12px">Compléter</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");
  b1.onclick=()=>{d.remove();openFiche(e.id);fd.tirs.forEach(t=>{if(missT(t))t.ok=false});render()};
  b2.onclick=()=>{S.mdSn=S.mdSn||{};S.mdSn[e.id]=Date.now()+864e5;save();d.remove()}}
@@ -561,13 +562,13 @@ const curPoste=e=>e&&e.postes&&e.postes.length?e.postes[e.postes.length-1].n:nul
 const todayPoste=()=>{let best=null;todayEvs().forEach(e=>(e.postes||[]).forEach((x,i)=>{const k=x.ts||i;if(!best||k>=best.k)best={k,n:x.n}}));return best?best.n:null};
 function quickShot(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();pickCtx={mode:"quick"};go("pick")}
 function commonSp(){const vis=Object.values(visSp()).flat(),cnt={};evs().forEach(e=>e.fiche&&e.fiche.tirs.forEach(t=>cnt[t.sp]=(cnt[t.sp]||0)+1));
- const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cervidé","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
+ const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cerf élaphe","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
  return[...new Set([...used,...def])].slice(0,6)}
 function rPick(){const e=S.ev[fe],tile=x=>`<button class="pk" data-pk="${esc(x)}">${sil(x,64)||'<span style="font-size:1.8rem;line-height:48px">🎯</span>'}<span>${esc(x)}</span></button>`;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Quel gibier ?</h1><p class="mut sans" style="margin-top:-6px;padding-left:48px">${e?esc(e.title):""}</p>
  <h2>Les plus courants</h2><div class="pkg">${commonSp().map(tile).join("")}</div>${Object.entries(visSp()).map(([g,a])=>`<h2>${esc(g)}</h2><div class="pkg">${a.map(tile).join("")}</div>`).join("")}<div style="height:40px"></div>`;
  $("#bk2").onclick=()=>{if(pickCtx&&pickCtx.mode=="quick"){pickCtx=null;go("cal")}else go("fiche")};
- document.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{const sp=b.dataset.pk,t={id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:CLS[sp]?"m":null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null,poste:curPoste(S.ev[fe])};
+ document.querySelectorAll("[data-pk]").forEach(b=>b.onclick=()=>{const sp=b.dataset.pk,t={id:"k"+Date.now(),sp,u:UNIT(sp),n:0,h:0,p:0,m:0,loc:null,ok:false,sx:null,w:[],c:[],gun:gunOf(S.lastGun)?S.lastGun:null,poste:curPoste(S.ev[fe])};
   fd.tirs.unshift(t);if(pickCtx&&pickCtx.mode=="quick")quickTid=t.id;pickCtx=null;go("fiche")})}
 function posteModal(id){const e=S.ev[id];e.postes=e.postes||[];
  const draw=()=>{modal(`<h2>Numéro de poste</h2><p class="mut sans" style="margin-top:-4px">${esc(e.title)}</p>
@@ -612,7 +613,7 @@ async function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,c=docum
 const CC="Uniquement sur les territoires des conseils cynégétiques agréés.";
 const OUV=[
  ["Grand gibier",[
-  {sp:"Cerf",img:"Cervidé – mâle",n:"Soumis au plan de tir.",rows:[
+  {sp:"Cerf",img:"Cerf élaphe – mâle",n:"Soumis au plan de tir.",rows:[
    {l:"Grands cerfs boisés",aa:[["09-21","12-31"]],tir:[["10-01","12-31"]],n:"Uniquement conseils cynégétiques agréés et Chasse royale de Ciergnon. Interdit ailleurs."},
    {l:"Petits cerfs",aa:[["09-21","01-31"]],tir:[["10-01","01-31"]],n:"Uniquement conseils cynégétiques agréés et Chasse royale de Ciergnon. Interdit ailleurs."},
    {l:"Biches, bichettes et faons",aa:[["09-21","01-31"]],tir:[["10-01","01-31"]]}]},
@@ -752,7 +753,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-09f",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-09g",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -794,7 +795,7 @@ $("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="m
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>`);
  $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
  $("#x-j").onclick=async()=>{dl("chasselog.json","application/json",await exportJSON());closeM()}};
-$("#m-mg").onclick=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n=="Cervidé"?"Cervidés":n)}</label>`;
+$("#m-mg").onclick=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n)}</label>`;
  modal(`<h2>Mes modes de chasse et espèces</h2><p class="mut sans">Décoche ce que tu ne chasses pas : ces choix disparaissent des listes d'encodage.</p><h3>Modes de chasse</h3>${MODES.map(m=>ck(m,"hm","m")).join("")}
  ${Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).map(([g,a])=>`<h3>${g}</h3>${a.map(s=>ck(s,"hs","s")).join("")}`).join("")}
  <h3>Ajouter une espèce</h3><div class="row"><input id="ns" placeholder="Nom de l'espèce"><button class="s" id="na" style="flex:0 0 90px">Ajouter</button></div>`);
@@ -966,13 +967,13 @@ function backFiche(){if(quickTid){modal(`<h2>Abandonner ce tir ?</h2><p class="s
  $("#q-y").onclick=()=>{closeM();saveFiche()};$("#q-n").onclick=()=>{closeM();go(to)}}
 function rFiche(){const e=S.ev[fe],all=visSp(),nt=fd.tab?Object.values(fd.tab).reduce((a,b)=>a+b,0):0,Q=quickTid&&fd.tirs.find(t=>t.id==quickTid);
  if(quickTid&&!Q){quickTid=null;setTimeout(()=>go("cal"));return}
- const detail=t=>{const k=t.sp=="Sanglier"?"w":(CLS[t.sp]&&t.sx=="m")?"c":null;if(!k||!t.p)return"";t[k]=t[k]||[];
+ const detail=t=>{const k=t.sp=="Sanglier"?"w":(COR(t.sp)&&t.sx=="m")?"c":null;if(!k||!t.p)return"";t[k]=t[k]||[];
   return `<div class="det"><span class="mut sans">${k=="w"?"Poids (kg)":"Nombre de cors"}</span>${Array.from({length:t.p},(_,i)=>`<label class="dl sans"><span>${k=="w"?"Sanglier":"Mâle"} ${i+1}</span><input type="number" min="0" step="${k=="w"?"0.5":"1"}" inputmode="${k=="w"?"decimal":"numeric"}" data-dk="${t.id}|${k}|${i}" value="${esc(t[k][i]??"")}" placeholder="${k=="w"?"kg":"cors"}"></label>`).join("")}</div>`};
  const card=t=>{const nm=tname(t),isCl=!!CLS[t.sp],qk=quickTid==t.id;
   if(t.ok!==false)return `<div class="card cd sans" data-o="${t.id}">${sil(nm,44)}<div style="flex:1;min-width:0"><b>${esc(nm)}</b> ${isCl?"":sxi(t.sx)}<br><span class="mut">Prélevé ${t.p} · Raté ${t.m} · Touché ${t.h} · ${t.n} ${UL[t.u].toLowerCase()}${esc(extra(t))}</span></div><span class="vk" aria-hidden="true">✓</span></div>`;
   const pick=isCl?`<div class="seg" style="margin-top:8px">${CLS[t.sp].map((l,i)=>`<button data-sx="${t.id}:${"mfj"[i]}" class="${t.sx=="mfj"[i]?"on":""}">${l}</button>`).join("")}</div>`:`<div class="row sans" style="gap:6px;margin-top:8px;justify-content:flex-start"><span class="mut" style="flex:0 0 auto">Sexe</span><button class="sx m${t.sx=="m"?" on":""}" data-sx="${t.id}:m" aria-label="Mâle" style="flex:0 0 auto">♂</button><button class="sx f${t.sx=="f"?" on":""}" data-sx="${t.id}:f" aria-label="Femelle" style="flex:0 0 auto">♀</button></div>`;
   return `<div class="card tc"><div class="tcm"><div class="row sans" style="gap:8px"><span style="flex:0 0 auto">${sil(nm,40)}</span><b>${esc(t.sp)}</b><button class="s" data-u="${t.id}" style="flex:0 0 auto">${UL[t.u]} ⇄</button><button class="d" data-x="${t.id}" style="flex:0 0 auto">${qk?"Annuler":"Retirer"}</button></div>${pick}
-  <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${qk?(t.p&&(t.sp=="Sanglier"||(CLS[t.sp]&&t.sx=="m"))?`<p class="mut sans" style="margin:8px 0 0;font-size:.85rem">${t.sp=="Sanglier"?"Le poids":"Le nombre de cors"} se complète plus tard dans la fiche.</p>`:""):detail(t)}
+  <div class="g4">${[["n",UL[t.u]+" tirées"],["h","Touché"],["p","Prélevé"],["m","Raté"]].map(([k,lb])=>`<div><span class="mut sans">${lb}</span><div class="st"><button data-t="${t.id}" data-k="${k}" data-n="-1">−</button><b>${t[k]}</b><button data-t="${t.id}" data-k="${k}" data-n="1">+</button></div></div>`).join("")}</div>${qk?(t.p&&(t.sp=="Sanglier"||(COR(t.sp)&&t.sx=="m"))?`<p class="mut sans" style="margin:8px 0 0;font-size:.85rem">${t.sp=="Sanglier"?"Le poids":"Le nombre de cors"} se complète plus tard dans la fiche.</p>`:""):detail(t)}
   ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16,"carabine")}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}${qk?"":`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:8px;color:var(--ink)">📷 Photo de l'animal<input type="file" accept="image/*" data-tph="${t.id}" hidden></label>`}
   <button class="s sans" data-gps="${t.id}" style="width:100%;margin-top:10px;text-align:left;${t.loc&&t.loc.gps?"border-color:var(--acc);color:var(--acc);font-weight:600":""}">📍 ${t.loc&&t.loc.gps?`Position du tir enregistrée ${t.loc.acc!=null?`(± ${Math.round(t.loc.acc)} m)`:"(ajustée sur la carte)"} · modifier`:"Enregistrer ma position (lieu du tir)"}</button>
   ${qk?"":`<button class="s sans" data-l="${t.id}" style="width:100%;margin-top:6px;text-align:left">🗺 ${t.loc?(t.loc.gps?"Lieu du tir":"Lieu du tir")+" : "+esc(lieu(t.loc)):"Lieu de RDV : "+esc(lieu(e.place))} · choisir sur la carte</button>`}</div><button class="vb" data-v="${t.id}" aria-label="Valider ce tir">✓</button></div>`};
@@ -1053,14 +1054,15 @@ const renard=`<g>${legs([17,21,37,41],34,44.5,"bk",2.8)}<ellipse cx="10" cy="31"
 const rongeur=(c,s)=>`<g transform="translate(32 44.5) scale(${s}) translate(-32 -44.5)"><path d="M11 37Q2 39 3 31Q4 27 8 29" fill="none" stroke="#33281e" stroke-width="2" stroke-linecap="round"/>${legs([20,40],38,44.5,"dk",4)}<ellipse cx="27" cy="33" rx="17.5" ry="10" ${Fl(c)}/><ellipse cx="45" cy="32" rx="8" ry="6" ${Fl(c)}/><circle cx="52.5" cy="33.5" r="1.7" fill="#1b1410"/><rect x="50.5" y="35.5" width="2.4" height="3" rx=".8" fill="#f09030"/><circle cx="43" cy="26.5" r="2.2" ${Fl(c)}/>${Ey(48.5,29.5,.9)}<path d="M52 33L58 31M52 34.5L58 35" stroke="#f5f0e4" stroke-width=".5"/></g>`;
 const ART={cerf:deer({c:"br",a:2,s:1}),biche:deer({c:"br",s:.93}),bichette:deer({c:"br",s:.8}),faon:deer({c:"br",s:.62,sp:1}),brocard:deer({c:"tn",a:1,r:1,s:.78}),chevrette:deer({c:"tn",r:1,s:.74}),chevrillard:deer({c:"tn",r:1,s:.55,sp:1}),daim:deer({c:"tn",a:3,sp:1,s:.88}),mouflon,sanglier:boar,lievre:hare(10,1),lapin:hare(5.5,.78),fcoq,fpoule,perdrix,becasse,pigeon,colvert:duck("gn","gy","br","bl"),chipeau:duck("g2","gy","bk","wh"),siffleur:duck("rs","gy","pk","gy"),souchet:duck("gn","rs","wh","bl"),pilet:duck("br","gy","wh","gn"),sarcelle:duck("rs","gy","tn","gn"),fuligule:duck("rs","bk","gy","gy"),oie,corbeau,pie,geai,renard,ragondin:rongeur("dk",1),rat:rongeur("bk",.7)};
 function silType(s){const n=s.toLowerCase();
- if(n=="cervidé"||n=="cervide")return "cervide";if(n=="chevreuil")return "chevreuil";
+ if(n=="cerf élaphe"||n=="cervidé"||n=="cervide")return "cervide";
+ if(n.startsWith("daim"))return /femelle|daine/.test(n)?"daimf":/jeune|faon/.test(n)?"daimj":/mâle|male/.test(n)?"daimm":"daim";if(n=="chevreuil")return "chevreuil";
  if(n.startsWith("mouflon"))return /femelle|brebis/.test(n)?"mouflonf":/agneau|jeune/.test(n)?"agneau":"mouflon";
  if(n.startsWith("cerf")||n.startsWith("cervid"))return /bichette/.test(n)?"bichette":/femelle|biche/.test(n)?"biche":/jeune|faon/.test(n)?"faon":"cerf";
  if(n.startsWith("chevreuil"))return /chevrette|femelle/.test(n)?"chevrette":/chevrillard|jeune/.test(n)?"chevrillard":"brocard";
  if(n.startsWith("faisan"))return /poule/.test(n)?"fpoule":"fcoq";
  const m=[["sanglier","sanglier"],["daim","daim"],["mouflon","mouflon"],["lièvre","lievre"],["lapin","lapin"],["perdrix","perdrix"],["bécasse","becasse"],["pigeon","pigeon"],["canard colvert","colvert"],["chipeau","chipeau"],["siffleur","siffleur"],["souchet","souchet"],["pilet","pilet"],["sarcelle","sarcelle"],["fuligule","fuligule"],["oie","oie"],["bernache","oie"],["ouette","oie"],["renard","renard"],["foulque","foulque"],["corneille","corbeau"],["corbeau","corbeau"],["pie ","pie"],["geai","geai"],["ragondin","ragondin"],["rat musqué","rat"]];
  for(const[k,v]of m)if(n.includes(k))return v;return null}
-const PIC=new Set("cerf biche faon bichette brocard chevrette chevrillard cervide chevreuil daim mouflon mouflonf agneau sanglier lievre lapin fcoq fpoule perdrix becasse oie colvert foulque pigeon renard".split(" "));
+const PIC=new Set("cerf biche faon bichette brocard chevrette chevrillard cervide chevreuil daim daimm daimf daimj mouflon mouflonf agneau sanglier lievre lapin fcoq fpoule perdrix becasse oie colvert foulque pigeon renard".split(" "));
 const sil=(s,w=56)=>{const t=silType(s);if(t&&PIC.has(t))return `<img src="animals/${t}.webp" width="${w}" height="${Math.round(w*.75)}" alt="" aria-hidden="true" decoding="async" style="flex:0 0 auto;object-fit:contain;width:${w}px;height:${Math.round(w*.75)}px">`;if(t=="foulque")return sil("Fuligule",w);return t?`<svg viewBox="0 0 64 48" width="${w}" height="${Math.round(w*.75)}" aria-hidden="true" style="flex:0 0 auto">${SH}${ART[t]}</svg>`:""};
 const ICO={b:'<svg viewBox="0 0 32 32"><g transform="translate(1.6 1.8) scale(.9) rotate(18 16 16)"><path d="M16 2C20 6 22.5 11 22.5 16.5V22H9.5V16.5C9.5 11 12 6 16 2Z" fill="url(#lcu)"/><path d="M12 9Q13 6 15.5 4" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".55"/><rect x="9.5" y="22" width="13" height="6" rx="1" fill="url(#lbr)"/><rect x="9.5" y="22" width="13" height="1.2" fill="#5a3a10" opacity=".5"/><rect x="8.6" y="27.5" width="14.8" height="2.2" rx="1" fill="url(#lbr)"/></g></svg>',
 c:'<svg viewBox="0 0 32 32"><g transform="translate(1.6 1.8) scale(.9) rotate(18 16 16)"><rect x="9" y="3" width="14" height="19" rx="2.2" fill="url(#lsh)"/><path d="M9 4.8Q16 7 23 4.8" stroke="#4a0808" stroke-width="1.2" fill="none" opacity=".6"/><path d="M12 7V20" stroke="#fff" stroke-width="1.1" opacity=".35" stroke-linecap="round"/><rect x="8.4" y="21" width="15.2" height="7" rx="1.4" fill="url(#lbr)"/><rect x="8" y="27.4" width="16" height="2.4" rx="1.1" fill="url(#lbr)"/><circle cx="16" cy="24.5" r="1.6" fill="#7a5714"/></g></svg>',
@@ -1086,7 +1088,7 @@ function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};
  $("#bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");$("#md").onclick=()=>openFiche(fe);
  if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
  document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&(tname(t)==k||k.startsWith(t.sp)));
-  const one=t=>{const u=UL[t.u].toLowerCase(),p=t.n?Math.round(t.h/t.n*100):0,ex=t.sp=="Sanglier"?(t.w||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" kg"):(CLS[t.sp]&&t.sx=="m")?(t.c||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" cors"):[];
+  const one=t=>{const u=UL[t.u].toLowerCase(),p=t.n?Math.round(t.h/t.n*100):0,ex=t.sp=="Sanglier"?(t.w||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" kg"):(COR(t.sp)&&t.sx=="m")?(t.c||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>x+" cors"):[];
    return `<div class="card sans"><div class="row" style="gap:10px;justify-content:flex-start">${sil(tname(t),48)}<div><b>${esc(tname(t))}</b> ${CLS[t.sp]?"":sxi(t.sx)}</div></div>
    <div class="sr"><span class="lb">${ic(t.u,26)}${UL[t.u]} tirées</span><b>${t.n}</b></div><div class="sr"><span class="lb">${UL[t.u]} ayant touché</span><b>${t.h}</b></div>
    ${t.n?`<div class="sr"><span class="lb">${ic("t",26)}Précision</span><span style="display:flex;align-items:center;gap:8px">${gauge(p)}<b>${p}%</b></span></div>`:""}
@@ -1142,7 +1144,7 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([seas
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});
  withF.forEach(e=>{const k=season(e.date);bySea[k]=(bySea[k]||0)+pt(e)});
- const mx=(k,sp)=>{let m=0;a.T.forEach(t=>{if(t.sp==sp&&(k=="w"||t.sx=="m"))(t[k]||[]).slice(0,t.p).forEach(v=>{if(+v>m)m=+v})});return m},hw=mx("w","Sanglier"),hc=mx("c","Cervidé"),hb=mx("c","Chevreuil");
+ const mx=(k,sp)=>{let m=0;a.T.forEach(t=>{if(t.sp==sp&&(k=="w"||t.sx=="m"))(t[k]||[]).slice(0,t.p).forEach(v=>{if(+v>m)m=+v})});return m},hw=mx("w","Sanglier"),hc=mx("c","Cerf élaphe"),hb=mx("c","Chevreuil");
  const gb=(n,h,u,lab)=>n?`<div class="sc2"><div class="lb" style="justify-content:center">${ic(u,26)}<span style="font:600 .9rem system-ui;color:var(--ink)">${lab}</span></div>${gauge(Math.round(h/n*100)).replace('width="60" height="36"','width="110" height="66"')}<b>${Math.round(h/n*100)}%</b><span>${n} tirées · ${h} touchées</span></div>`:"";
  const GS={};a.T.forEach(t=>{const k=gunOf(t.gun)?t.gun:"_";const g=GS[k]=GS[k]||{n:0,h:0,p:0,m:0,u:{},days:new Set()};g.n+=t.n;g.h+=t.h;g.p+=t.p;g.m+=t.m;g.u[t.u]=1});
  L.forEach(e=>e.fiche.tirs.forEach(t=>{const k=gunOf(t.gun)?t.gun:"_";if(GS[k]&&(t.n||t.p||t.m))GS[k].days.add(e.id)}));
@@ -1160,7 +1162,7 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([seas
  <div class="kp" style="margin-top:8px;grid-template-columns:1fr 1fr"><button class="sc2" data-kp="p"><b>${a.p}</b><span>prélèvements</span><i class="chev">›</i></button><button class="sc2" data-kp="r"><b>${a.m}</b><span>ratés</span><i class="chev">›</i></button></div>
  ${a.bn||a.cn?`<h2>Précision</h2><div class="pg2">${gb(a.bn,a.bh,"b","Balles")}${gb(a.cn,a.ch,"c","Cartouches")}</div>`:""}
  ${Object.keys(bySp).length?`<h2 id="tbc">Tableau de chasse</h2><div class="tls">${Object.entries(bySp).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
- ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cervidé – mâle",56)}<b>${hc}</b><span>cors max (cervidé)</span></div>`:""}${hb?`<div class="sc2">${sil("Chevreuil – brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
+ ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cerf élaphe – mâle",56)}<b>${hc}</b><span>cors max (cerf)</span></div>`:""}${hb?`<div class="sc2">${sil("Chevreuil – brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
  ${lucky?`<h2>Poste porte-bonheur</h2><div class="card sans" style="text-align:center">Ton numéro de poste porte-bonheur est le <b style="font-size:1.5rem;color:var(--acc)">${esc(lucky[0])}</b><br><span class="mut">${lucky[1].p} prélèvement${lucky[1].p>1?"s":""} · ${lucky[1].d.size} journée${lucky[1].d.size>1?"s":""} à ce poste</span></div>`:""}
  ${gunStats?`<h2>Par arme</h2>${gunStats}`:""}
  ${shotSec(L)}
@@ -1175,17 +1177,17 @@ function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([seas
  document.querySelectorAll("[data-sea]").forEach(b=>b.onclick=()=>{seasonF=seasonF==b.dataset.sea?"all":b.dataset.sea;render()});
  document.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{const k=b.dataset.sp,rows=[],ws=[],cs=[];let tot=0;
   L.forEach(e=>{const ts=e.fiche.tirs.filter(t=>tname(t)==k&&t.p);if(!ts.length)return;const q=ts.reduce((x,t)=>x+t.p,0);tot+=q;
-   ts.forEach(t=>{(t.w||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)ws.push(+v)});if(CLS[t.sp]&&t.sx=="m")(t.c||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)cs.push(+v)})});
+   ts.forEach(t=>{(t.w||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)ws.push(+v)});if(COR(t.sp)&&t.sx=="m")(t.c||[]).slice(0,t.p).forEach(v=>{if(v!==""&&v!=null)cs.push(+v)})});
    rows.push({e,txt:q+" prélèvement"+(q>1?"s":"")+esc(ts.map(extra).join(""))})});
   const av=x=>(x.reduce((u,v)=>u+v,0)/x.length).toFixed(1);
   drill(`${sil(k,56)}<span>${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${tot}</b><span>prélèvements</span></div><div class="sc2"><b>${rows.length}</b><span>journées</span></div>${ws.length?`<div class="sc2"><b>${av(ws)}</b><span>kg en moyenne</span></div>`:cs.length?`<div class="sc2"><b>${av(cs)}</b><span>cors en moyenne</span></div>`:""}</div>`,rows)});
  document.querySelectorAll("[data-pl]").forEach(b=>b.onclick=()=>{const k=b.dataset.pl,es=L.filter(e=>place(e)==k);
   drill(`<span>📍 ${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${es.length}</b><span>journées</span></div><div class="sc2"><b>${bySec[k]}</b><span>prélèvements</span></div></div>`,es.map(e=>({e,txt:pt(e)+" prélèvement"+(pt(e)>1?"s":"")})))})}
-function migrate(){const OLD="Cerf élaphe",mp={cerf:"m",biche:"f",bichette:"j",faon:"j",brocard:"m",chevrette:"f",chevrillard:"j",coq:"m",poule:"f"},tn={cerf:"mâle",biche:"femelle",bichette:"jeune",faon:"jeune"};
- S.hs=(S.hs||[]).map(x=>x==OLD?"Cervidé":x);
+function migrate(){const NEW="Cerf élaphe",mp={cerf:"m",biche:"f",bichette:"j",faon:"j",brocard:"m",chevrette:"f",chevrillard:"j",coq:"m",poule:"f","mâle":"m",femelle:"f",jeune:"j"},tn={cerf:"mâle",biche:"femelle",bichette:"jeune",faon:"jeune"};
+ S.hs=(S.hs||[]).map(x=>x=="Cerv"+"idé"?NEW:x);
  evs().forEach(e=>{const f=e.fiche;if(!f)return;
-  (f.tirs||[]).forEach(t=>{const m=String(t.sp).match(/^(Cerf élaphe|Cervidé|Chevreuil|Faisan) – (.+)$/);if(m){t.sp=m[1]==OLD?"Cervidé":m[1];t.sx=mp[m[2]]||t.sx||null}else if(t.sp==OLD)t.sp="Cervidé"});
-  if(f.tab){const n={};Object.entries(f.tab).forEach(([k,v])=>{const m=k.match(/^(?:Cerf élaphe|Cervidé)(?: – (.+))?$/);if(m)k="Cervidé"+(m[1]?" – "+(tn[m[1]]||m[1]):"");n[k]=(n[k]||0)+v});f.tab=n}});save()}
+  (f.tirs||[]).forEach(t=>{const m=String(t.sp).match(/^(Cerf élaphe|Cerv[i]dé|Chevreuil|Faisan|Daim) – (.+)$/);if(m){t.sp=/^Cerv/.test(m[1])?NEW:m[1];t.sx=mp[m[2]]||t.sx||null}else if(/^Cerv[i]dé$/.test(t.sp))t.sp=NEW});
+  if(f.tab){const n={};Object.entries(f.tab).forEach(([k,v])=>{const m=k.match(/^(?:Cerf élaphe|Cerv[i]dé)(?: – (.+))?$/);if(m)k=NEW+(m[1]?" – "+(tn[m[1]]||m[1]):"");n[k]=(n[k]||0)+v});f.tab=n}});save()}
 applyTheme();migrate();
 go("cal");
 migratePhotos().then(c=>{if(c)render()}).catch(()=>{});

@@ -216,7 +216,7 @@ html.in-on,html.in-on body{overflow:hidden}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10d<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10e<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -525,7 +525,7 @@ function startSetup(){if($("#setup"))return;shut&&document.body.classList.contai
   if($("#su-x"))$("#su-x").onclick=()=>{S.setupDone=true;save();close()}}
  function keep(fn,focusDay){const bd=o.querySelector(".su-bd"),y=bd?bd.scrollTop:0;fn();const b2=o.querySelector(".su-bd");if(b2)b2.scrollTop=y;if(focusDay){const i=o.querySelector(`[data-c="${focusDay}"] [data-gi]`);if(i)i.focus()}}
  function create(){const ds=[...chosen].sort(),made=[];ds.forEach((d,i)=>{const x=day(d),pn=x.place.trim(),kp=known.find(p=>p.name.trim().toLowerCase()==pn.toLowerCase()),id="s"+Date.now()+i;
-   const e={id,date:d,title:pn?x.mode+" "+deP(pn):x.mode,mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
+   const cg=smartCoord(pn),isC=Array.isArray(cg);const e={id,date:d,title:pn&&!isC?x.mode+" "+deP(pn):x.mode,mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:isC?{name:"",lat:cg[0],lng:cg[1]}:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
   S.setupDone=true;save();o._made=made;step=2;draw()}
  o._back=()=>{if(step==1){step=0;draw()}else close()};
  draw()}
@@ -881,7 +881,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-10d",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-10e",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1000,9 +1000,41 @@ function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
  $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};if($("#o-cl"))$("#o-cl").onclick=()=>{e.fiche=e.fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]};e.closed=true;save();closeM();toast("Journée clôturée. Bonne fin de journée !");render()};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
  $("#o-x").onclick=()=>{modal(`<h2>Supprimer cet évènement ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?"<br>La fiche de chasse associée sera aussi supprimée.":""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
 
+/* ---------- coordonnées collées (Google Maps, GPS, plus codes) ---------- */
+const OLC="23456789CFGHJMPQRVWX",OLR=[20,1,.05,.0025,.000125];
+function olcDec(code){code=code.toUpperCase().replace("+","").replace(/0+$/,"");let la=-90,ln=-180,p=0;
+ for(;p<5&&p*2+1<code.length;p++){const a=OLC.indexOf(code[p*2]),b=OLC.indexOf(code[p*2+1]);if(a<0||b<0)return null;la+=a*OLR[p];ln+=b*OLR[p]}
+ let rl=OLR[p-1],rg=OLR[p-1];for(let i=10;i<code.length;i++){const d=OLC.indexOf(code[i]);if(d<0)return null;rl/=5;rg/=4;la+=Math.floor(d/4)*rl;ln+=(d%4)*rg}
+ return[la+rl/2,ln+rg/2]}
+function olcEnc(la,ln){la=Math.min(89.99999,Math.max(-90,la))+90;ln=((ln+180)%360+360)%360;let s="";for(let p=0;p<5;p++){const d=OLR[p],a=Math.floor(la/d),b=Math.floor(ln/d);la-=a*d;ln-=b*d;s+=OLC[a]+OLC[b]}return s.slice(0,8)+"+"+s.slice(8)}
+function olcRecover(short,rla,rln){const sep=short.indexOf("+"),pad=8-sep;if(pad<=0)return olcDec(short);const res=Math.pow(20,2-pad/2),h=res/2,full=olcEnc(rla,rln).slice(0,pad)+short.toUpperCase(),c=olcDec(full);if(!c)return null;let[la,ln]=c;
+ if(rla+h<la&&la-res>=-90)la-=res;else if(rla-h>la&&la+res<=90)la+=res;if(rln+h<ln)ln-=res;else if(rln-h>ln)ln+=res;return[la,ln]}
+const okLL=(a,b)=>isFinite(a)&&isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180&&!(a==0&&b==0);
+// renvoie [lat,lng], {plus:code court, place:texte} ou null
+function smartCoord(t){t=String(t||"").trim();if(!t)return null;let m;
+ // liens Google Maps
+ if((m=t.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/))&&okLL(+m[1],+m[2]))return[+m[1],+m[2]];
+ if((m=t.match(/[?&](?:q|query|ll|destination|center)=(-?\d+\.\d+)(?:,|%2C)\s*(-?\d+\.\d+)/i))&&okLL(+m[1],+m[2]))return[+m[1],+m[2]];
+ if((m=t.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/))&&okLL(+m[1],+m[2]))return[+m[1],+m[2]];
+ // degrés minutes secondes : 50°14'11.8"N 4°14'15.4"E (ou N 50° 14.197' E 4° 14.256')
+ const D="(\\d{1,3})\\s*[°º]\\s*(?:(\\d{1,2}(?:[.,]\\d+)?)\\s*['′’]\\s*)?(?:(\\d{1,2}(?:[.,]\\d+)?)\\s*(?:[\"″”]|''))?";
+ for(const re of[new RegExp(D+"\\s*([NSEWO])","gi"),new RegExp("([NSEWO])\\s*"+D,"gi")]){const ms=[...t.matchAll(re)];if(ms.length<2)continue;
+  const v=ms.slice(0,2).map(x=>{const pre=/^[NSEWO]$/i.test(x[1]),h=(pre?x[1]:x[4]).toUpperCase(),g=pre?x.slice(2,5):x.slice(1,4);let d=+g[0]+(g[1]?+g[1].replace(",",".")/60:0)+(g[2]?+g[2].replace(",",".")/3600:0);return{h,d:"SWO".includes(h)?-d:d}});
+  const la=v.find(x=>x.h=="N"||x.h=="S"),ln=v.find(x=>"EWO".includes(x.h));if(la&&ln&&okLL(la.d,ln.d))return[la.d,ln.d]}
+ // plus codes : 9F25GGQV+X2 (complet) ou GGQV+X2 Beaumont (court)
+ if((m=t.match(/\b([23456789CFGHJMPQRVWX]{8}\+[23456789CFGHJMPQRVWX]{0,7})\b/i))){const c=olcDec(m[1]);if(c&&okLL(c[0],c[1]))return c}
+ if((m=t.match(/\b([23456789CFGHJMPQRVWX]{2,6}\+[23456789CFGHJMPQRVWX]{2,7})\b/i)))return{plus:m[1],place:t.replace(m[0],"").replace(/^[\s,]+|[\s,]+$/g,"")};
+ // décimal : 50.2366, 4.2376 · 50.2366 4.2376 · 50,2366 4,2376 · 50,2366;4,2376
+ if((m=t.match(/(-?\d{1,2}\.\d+)\s*[,;\s]\s*(-?\d{1,3}\.\d+)/))&&okLL(+m[1],+m[2]))return[+m[1],+m[2]];
+ if((m=t.match(/(-?\d{1,2},\d{3,})\s*[;\s]\s*(-?\d{1,3},\d{3,})/))){const a=+m[1].replace(",","."),b=+m[2].replace(",",".");if(okLL(a,b))return[a,b]}
+ return null}
+async function smartCoordAsync(t,ref){const c=smartCoord(t);if(!c||Array.isArray(c))return c;
+ let r=ref;if(c.place){try{const j=await(await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&accept-language=fr&q="+encodeURIComponent(c.place))).json();if(j[0])r=[+j[0].lat,+j[0].lon]}catch(e){}}
+ if(!r)r=[50.4,4.6];return olcRecover(c.plus,r[0],r[1])}
+
 /* ---------- lieu + formulaire ---------- */
 function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.name||"";
- modal(`<h2>Emplacement</h2><div style="display:flex;gap:6px"><input id="p-q" type="search" style="flex:1;margin:0" placeholder="Rechercher sur la carte (village, lieu-dit…)"><button class="s" id="p-s">🔍</button></div>
+ modal(`<h2>Emplacement</h2><div style="display:flex;gap:6px"><input id="p-q" type="search" style="flex:1;margin:0" placeholder="Village, lieu-dit ou coordonnées Google"><button class="s" id="p-s">🔍</button></div>
  <div id="p-res" class="sans" style="margin:6px 0"></div>${nm?`<p class="mut sans" id="p-nm" style="margin:4px 0">📌 ${esc(nm)}</p>`:'<p id="p-nm" class="mut sans" style="margin:4px 0"></p>'}
  <div id="pmap"></div><p class="mut sans" id="pmsg" style="margin:0 0 8px"></p>
  <button class="s" id="p-g" style="width:100%">📍 Utiliser ma position</button>
@@ -1021,9 +1053,12 @@ function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.n
   map.on("click",e=>put(e.latlng.lat,e.latlng.lng,{write:true}));
   if(c0)put(c0[0],c0[1]);else gps((la,ln)=>map.setView([la,ln],16));
   setTimeout(()=>map.invalidateSize(),200);
-  inp.oninput=()=>{const c=parseCoord(inp.value);if(c)put(c[0],c[1],{fly:true})}}catch(x){map=null;$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Erreur : '+esc(String(x))+'</div>'}
+  inp.oninput=()=>{const c=smartCoord(inp.value);if(Array.isArray(c))put(c[0],c[1],{fly:true})};inp.onchange=()=>{const c=smartCoord(inp.value);if(Array.isArray(c)){inp.value=c[0].toFixed(5)+", "+c[1].toFixed(5);put(c[0],c[1],{fly:true})}}}catch(x){map=null;$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Erreur : '+esc(String(x))+'</div>'}
  }else{$("#pmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b>Le module de carte n\'est pas chargé (fichiers lib/leaflet absents ?).<br>Utilise ta position GPS ou saisis les coordonnées.</div>'}
  const search=async()=>{const q=$("#p-q").value.trim(),r=$("#p-res");if(!q)return;r.textContent="Recherche…";
+  if(/(maps\.app\.goo\.gl|goo\.gl\/maps)/i.test(q)&&!smartCoord(q)){r.innerHTML="Ce lien court Google ne contient pas les coordonnées.<br>Dans Google Maps, touche longuement l'endroit : les coordonnées s'affichent en haut (ex. <b>50.23662, 4.23764</b>). Copie-les et colle-les ici.";return}
+  const cc=await smartCoordAsync(q,map?[map.getCenter().lat,map.getCenter().lng]:null);
+  if(cc){r.textContent="📍 Coordonnées reconnues.";put(cc[0],cc[1],{write:true,fly:true,z:16});return}
   try{const j=await (await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&accept-language=fr&countrycodes=be,fr,lu,de,nl&q="+encodeURIComponent(q))).json();
    if(!j.length){r.textContent="Aucun résultat.";return}
    r.innerHTML=j.map((x,i)=>`<button class="s" data-i="${i}" style="display:block;width:100%;text-align:left;margin:3px 0">${esc(x.display_name)}</button>`).join("");

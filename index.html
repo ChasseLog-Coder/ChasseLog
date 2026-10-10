@@ -210,13 +210,15 @@ html.in-on,html.in-on body{overflow:hidden}
 .su-sum{background:#ffffff14;border-radius:16px;padding:14px;width:100%;text-align:left;font:.98rem/1.6 system-ui;color:#eef2e6}.su-sum b{color:#f5b83d}
 .su-tip{display:flex;gap:10px;text-align:left;font:.9rem/1.4 system-ui;color:#dfe6d2;width:100%}
 .su-lt{border:0;background:none;color:#b9c3aa;text-decoration:underline;font:.85rem system-ui;padding:10px;margin-top:4px}
+.dth{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg);border:1px solid var(--line)}.dth.em{display:flex;align-items:center;justify-content:center;font-size:1.8rem}.dth.pdf{display:flex;align-items:center;justify-content:center;font:800 .9rem system-ui;color:#fff;background:#b3261e;border:0}
+#dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;border:0;background:#fff3;color:#fff;font:700 1.2rem system-ui}
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-doc">Mes documents</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10f<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10g<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -278,7 +280,7 @@ function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFu
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,fb:rFeedback,pick:rPick,ouv:rOuv})[view]();hydrate()}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,fb:rFeedback,pick:rPick,ouv:rOuv})[view]();hydrate()}
 function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 function agg(L){const T=L.flatMap(e=>e.fiche.tirs),s=(a,k)=>a.reduce((x,t)=>x+t[k],0),B=T.filter(t=>t.u=="b"),C=T.filter(t=>t.u=="c");return{T,B,C,p:s(T,"p"),m:s(T,"m"),bn:s(B,"n"),bh:s(B,"h"),cn:s(C,"n"),ch:s(C,"h"),bp:s(B,"p"),cp:s(C,"p")}}
 const pc=(h,n)=>n?Math.round(h/n*100)+"%":"–";
@@ -861,6 +863,36 @@ const gunIc=(h=18,type="carabine")=>`<img src="weapons/${type=="fusil"?"fusil":"
 const gl=g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" ("+g.cal+")":"");
 const gunOf=id=>(S.guns||[]).find(g=>g.id==id);
 let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};
+/* ---------- mes documents (stockés uniquement sur le téléphone) ---------- */
+const DOCS=[["permis","Permis / licence de chasse","📜",true],["assur","Attestation d'assurance","🛡️",true],["idr","Carte d'identité – recto","🪪",false],["idv","Carte d'identité – verso","🪪",false]];
+const docKey=k=>"_doc:"+k;
+function rDocs(){S.docs=S.docs||{};const td=iso(new Date());
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes documents</h1><p class="mut sans" style="margin-top:-6px">Toujours sous la main, même sans réseau. Ils restent uniquement sur ton téléphone.</p>
+ ${DOCS.map(([k,lab,ic,exp])=>{const d=S.docs[k],late=d&&d.exp&&d.exp<td;return `<div class="card sans dcard" style="margin-bottom:10px">
+  <div style="display:flex;align-items:center;gap:12px">${d?(d.type=="application/pdf"?`<div class="dth pdf">PDF</div>`:`<img class="dth" data-dk="${k}" alt="">`):`<div class="dth em">${ic}</div>`}
+  <div style="flex:1;min-width:0"><b>${lab}</b><br><span class="mut" style="font-size:.85rem">${d?esc(d.name||"Document")+" · ajouté le "+d.date.split("-").reverse().join("/"):"Pas encore ajouté"}</span>
+  ${d&&exp?`<br><span style="font-size:.85rem;${late?"color:var(--acc2);font-weight:700":""}">${d.exp?(late?"⚠️ Expiré le ":"Valable jusqu'au ")+d.exp.split("-").reverse().join("/"):""}</span>`:""}</div></div>
+  <div class="row" style="gap:6px;margin-top:10px;flex-wrap:wrap">${d?`<button class="p" data-dv="${k}" style="flex:1">Voir</button><button class="s" data-ds="${k}" style="flex:1">Partager</button><button class="s" data-da="${k}" style="flex:1">Remplacer</button><button class="s" data-dx="${k}" style="flex:0 0 auto;color:var(--acc2)" aria-label="Supprimer">🗑</button>`:`<button class="p" data-da="${k}" style="flex:1">+ Ajouter (photo ou fichier)</button>`}</div>
+  ${d&&exp?`<label style="margin-top:8px">Date de fin de validité (facultatif)</label><input type="date" data-de="${k}" value="${d.exp||""}">`:""}</div>`}).join("")}
+ <p class="mut sans" style="font-size:.8rem">Ces documents ne sont pas inclus dans la sauvegarde ni envoyés nulle part. Garde les originaux en lieu sûr.</p><div style="height:60px"></div>
+ <input type="file" id="dfi" accept="image/*,application/pdf" style="display:none">`;
+ $("#bk2").onclick=backTo;
+ document.querySelectorAll("img[data-dk]").forEach(async i=>{try{const b=await DB.get(docKey(i.dataset.dk));if(b)i.src=URL.createObjectURL(b)}catch(e){}});
+ let cur=null;const fi=$("#dfi");
+ document.querySelectorAll("[data-da]").forEach(b=>b.onclick=()=>{cur=b.dataset.da;fi.value="";fi.click()});
+ fi.onchange=async()=>{const f=fi.files[0];if(!f||!cur)return;if(f.size>25e6)return toast("Fichier trop lourd (25 Mo maximum).");
+  let blob=f;try{if(f.type.startsWith("image/")&&f.size>1.2e6)blob=await compress(f,2400,.88)}catch(e){blob=f}
+  try{await DB.put(docKey(cur),blob);S.docs[cur]={name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:(S.docs[cur]||{}).exp||""};save();toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
+ document.querySelectorAll("[data-dv]").forEach(b=>b.onclick=async()=>{const k=b.dataset.dv,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return toast("Document introuvable.");const u=URL.createObjectURL(bl);
+  if(d.type=="application/pdf"){const w=window.open(u,"_blank");if(!w)location.href=u;return}
+  const o=document.createElement("div");o.id="dview";o.innerHTML=`<img src="${u}" alt=""><button aria-label="Fermer">✕</button>`;document.body.appendChild(o);o.onclick=e=>{if(e.target.tagName!="IMG"||e.target==o)o.remove()};o.querySelector("button").onclick=()=>o.remove()});
+ document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=async()=>{const k=b.dataset.ds,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return;const lab=DOCS.find(x=>x[0]==k)[1],ext=d.type=="application/pdf"?"pdf":"jpg",file=new File([bl],lab.replace(/[^\wÀ-ÿ -]/g,"").trim()+"."+ext,{type:d.type});
+  try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:lab});return}}catch(e){if(e&&e.name=="AbortError")return}
+  const a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download=file.name;a.click()});
+ document.querySelectorAll("[data-dx]").forEach(b=>b.onclick=()=>{const k=b.dataset.dx;modal(`<h2>Supprimer ce document ?</h2><p class="sans">${DOCS.find(x=>x[0]==k)[1]}</p><div class="row"><button class="s" id="dx-n">Annuler</button><button class="p" id="dx-y" style="background:var(--acc2)">Supprimer</button></div>`);
+  $("#dx-n").onclick=()=>closeM();$("#dx-y").onclick=async()=>{closeM();try{await DB.del(docKey(k))}catch(e){}delete S.docs[k];save();render()}});
+ document.querySelectorAll("[data-de]").forEach(i=>i.onchange=()=>{const d=S.docs[i.dataset.de];if(d){d.exp=i.value;save();render()}})}
+
 function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO=ag.brand=="__o",models=cat&&ag.brand&&!brandO&&cat[ag.brand]?Object.keys(cat[ag.brand]):[],modelO=ag.model=="__o",cals=models.length&&ag.model&&!modelO&&cat[ag.brand][ag.model]?cat[ag.brand][ag.model].split("|"):[];
  const opt=(arr,v,ph)=>`<option value="">${ph}</option>${arr.map(x=>`<option ${x==v?"selected":""}>${esc(x)}</option>`).join("")}<option value="__o" ${v=="__o"?"selected":""}>Autre…</option>`;
  const brand=brandO?ag.ob:ag.brand,model=(brandO||modelO)?ag.om:ag.model,cal=(brandO||modelO||ag.cal=="__o")?ag.oc:ag.cal,okAdd=ag.type&&brand&&cal;
@@ -881,7 +913,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-10f",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-10g",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -913,7 +945,7 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-nl").onclick=()=>{shut();nlModal(false)};$("#m-bk").onclick=()=>{shut();bkSettings()};
+$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-doc").onclick=()=>{shut();go("docs")};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-nl").onclick=()=>{shut();nlModal(false)};$("#m-bk").onclick=()=>{shut();bkSettings()};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();

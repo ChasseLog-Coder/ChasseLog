@@ -216,7 +216,7 @@ html.in-on,html.in-on body{overflow:hidden}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-rm">Paramètres de rappels</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-10b<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -386,7 +386,7 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
 let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;const b=document.getElementById("in-go");if(b)b.hidden=false});
 (()=>{const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
  const sa=["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
- if(q==null){if(sa||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
+ if(q==null){if(sa||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}if(typeof S!="undefined"&&S.noInstall)return}
  let ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
  if(q=="ios"||q=="ios26"){ios=true;and=false}else if(q=="android"){and=true;ios=false}
  if(!ios&&!and)return;
@@ -404,10 +404,11 @@ let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e
  ${warn}<button class="in-b in-go" id="in-go" hidden>Installer ChasseLog</button>
  ${keep}<div id="in-ss">${steps}</div>
  <p class="in-i in-sm">Déjà installée ? Ouvre-la depuis l'icône ChasseLog de ton écran d'accueil.</p>${and?`<details class="in-hp"><summary>Je ne trouve pas « Installer » dans le menu</summary><ol>
- <li><b>Xiaomi, Redmi, Poco :</b> Paramètres › Applications › Gérer les applications › <b>Chrome</b> › Autres autorisations › <b>Raccourcis sur l'écran d'accueil</b> › Autoriser. Ferme Chrome complètement puis rouvre ce lien.</li>
+ <li><b>Xiaomi, Redmi, Poco :</b> Paramètres › Applications › Gérer les applications › <b>Chrome</b> › Autres autorisations › <b>Raccourcis sur l'écran d'accueil</b> › Autoriser. Ferme Chrome complètement puis rouvre ce lien. <i>L'option n'existe pas ou reste grisée ? Passe directement à la solution 4.</i></li>
  <li><b>Mets Chrome à jour</b> dans le Play Store, puis réessaie.</li>
  <li>Si tu utilises un autre écran d'accueil (launcher) que celui d'origine, repasse temporairement sur celui du téléphone.</li>
- <li><b>Toujours rien ?</b> Installe <b>Firefox</b> depuis le Play Store, ouvre ce lien dedans, puis menu ⋮ › <b>Installer</b> (ou « Ajouter à l'écran d'accueil »).</li></ol></details>`:""}
+ <li><b>Toujours rien ?</b> Installe <b>Firefox</b> depuis le Play Store, ouvre ce lien dedans, puis menu ⋮ › <b>Installer</b> (ou « Ajouter à l'écran d'accueil »).</li>
+ <li><b>Ou utilise ChasseLog directement dans Chrome :</b> tout fonctionne aussi, et tes données restent sur ton téléphone. Ajoute simplement la page à tes favoris ★ pour la retrouver.<button class="in-b" id="in-nc" style="margin:8px 0 0">Utiliser ChasseLog dans Chrome</button></li></ol></details>`:""}
  <button class="in-sk" id="in-sk">Continuer dans le navigateur</button></div>
  ${and&&chrome?`<div class="in-ar" aria-hidden="true"><span>Touche les 3 points ⋮ ici</span><svg viewBox="0 0 40 60" width="30" height="46"><path d="M20 56V10M6 24L20 8l14 16" fill="none" stroke="#f5b83d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`:""}`;
  document.body.appendChild(o);document.documentElement.classList.add("in-on");
@@ -415,6 +416,7 @@ let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e
  if(BIP)$("#in-go").hidden=false;
  $("#in-go").onclick=async()=>{if(!BIP)return;try{BIP.prompt();const r=await BIP.userChoice;if(r&&r.outcome=="accepted")done()}catch(e){}BIP=null;$("#in-go").hidden=true};
  addEventListener("appinstalled",done);
+ if($("#in-nc"))$("#in-nc").onclick=()=>{S.noInstall=true;save();o.remove();document.documentElement.classList.remove("in-on");toast("C'est noté : ChasseLog s'ouvrira directement dans Chrome.")};
  $("#in-sk").onclick=()=>{try{sessionStorage.setItem("chasselog-skipinst","1")}catch(e){}o.remove();document.documentElement.classList.remove("in-on")}})();
 
 /* ---------- visite guidée « Découvre l'application » ---------- */
@@ -879,7 +881,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-10a",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-10b",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));

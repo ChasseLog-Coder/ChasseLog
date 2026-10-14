@@ -1,0 +1,12 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Chasse interdite mardi et vendredi (sauf fériés, gibier d'eau et sanglier).","sp":{
+"Perdrix":{"g":[["2026-09-20","2027-01-10"]]},
+"Faisan":{"g":[["2026-09-20","2027-01-10"]],"n":"Poule faisane interdite à Erdeven et Pleugriffet. Îles : jusqu'au 31/1."},
+"Lapin":{"g":[["2026-09-20","2026-12-06"]],"n":"1 par jour. Certaines communes littorales : jusqu'au 10/1 ; Belle-Île : jusqu'au 31/1."},
+"Lièvre":{"g":[["2026-10-18","2026-12-06"]],"n":"Plan de chasse obligatoire. Îles : du 4/10 au 18/10."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au sanglier ou au chevreuil."},
+"Bécasse":{"g":[["2026-09-20","2027-02-20"]],"n":"30 par saison, 3 par semaine. Passée et croule interdites."},
+"Pigeon ramier":{"g":[["2026-09-20","2027-02-20"]],"n":"20 par jour. Du 11 au 20/2 : poste fixe uniquement."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Battue de 6 armes minimum. Avant le 15/8 et du 1/4 au 31/5 : sur autorisation (semis)."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : tir de sélection sur autorisation, balle avec lunette ou arc."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Du 1/9 à l'ouverture : autorisation individuelle."}}}

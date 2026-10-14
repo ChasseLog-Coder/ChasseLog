@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Du 13 septembre au 11 octobre : jours de chasse limités (sauf sanglier, grand gibier en plan de chasse et ESOD).","sp":{
+"Perdrix":{"g":[["2026-09-13","2026-12-06"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]]},
+"Lièvre":{"g":[["2026-09-13","2027-01-10"]]},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]],"n":"Furet possible."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Battue : carnet obligatoire."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : individuel, sur autorisation."},
+"Chamois":{"aa":[["2026-09-01","2027-02-28"]],"n":"Plan de chasse qualitatif individuel."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Été et avril-mai : conditions particulières (art. 3). Points noirs : affût tous les jours."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : lors de la chasse du chevreuil ou du sanglier."},
+"Bécasse":{"n":"3 par jour, 30 par an. Interdite avant 8 h et après 17 h."}}}

@@ -1,0 +1,10 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Chasse suspendue le vendredi. Grand gibier : jeudi, samedi, dimanche et fériés (approche/affût aussi lundi à mercredi pour cerf, chevreuil, chamois).","sp":{
+"Lièvre":{"g":[["2026-10-18","2026-12-06"]],"n":"Plan de gestion obligatoire."},
+"Perdrix":{"g":[["2026-09-13","2027-01-31"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-31"]],"n":"Unité VD3 : du 27/9 au 28/10, 2 faisans par an."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : avec attribution tir d'été. Fermé dans la zone de protection (campagnol)."},
+"Chevreuil":{"aa":[["2026-06-01","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]],"n":"Avant l'ouverture : approche ou affût sans chien, avec attribution tir d'été."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : sur autorisation de la DDT."},
+"Sanglier":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Été : affût avec tir d'été ; battue jeudi et samedi (sur autorisation jusqu'au 14/8)."},
+"Chamois":{"aa":[["2026-09-14","2027-01-27"]],"n":"Approche ou affût uniquement, sans chien."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"3 par jour, 6 par semaine ; 1 par semaine dès février."}}}

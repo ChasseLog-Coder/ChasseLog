@@ -1,0 +1,12 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Petit gibier : de 8 h (9 h à partir du 1/12) jusqu'à la nuit.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : approche ou affût sans chien."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : approche ou affût sans chien."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-08-01","2027-03-31"]],"n":"Du 1/4 au 31/5 : approche/affût pour protéger les semis, sur autorisation."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : approche ou affût sans chien. Cerf sika : dès le 20/9."},
+"Chamois":{"aa":[["2026-09-01","2027-02-28"]],"n":"Approche ou affût sans chien uniquement."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Lièvre":{"g":[["2026-09-20","2026-12-06"]],"n":"Plan de gestion par entité petit gibier ; déclaration obligatoire."},
+"Perdrix":{"g":[["2026-09-20","2027-01-31"]]},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]]},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier."}}}

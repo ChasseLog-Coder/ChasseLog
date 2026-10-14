@@ -1,0 +1,12 @@
+{"ouv":"2026-09-27","clo":"2027-02-28","sp":{
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : mâles seuls, sur autorisation individuelle."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : mâles (et femelles blessées non suitées), sur autorisation."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : mâles seuls, sur autorisation."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : mâles seuls, sur autorisation."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Du 1/6 au 14/8 : sur autorisation. Du 1/4 au 31/5 : protection des semis."},
+"Faisan":{"g":[["2026-09-27","2027-01-17"]],"n":"Poule faisane interdite dans 128 communes. Prolongé au 31/1 dans 14 communes de Sologne."},
+"Lapin":{"g":[["2026-09-27","2027-02-28"]]},
+"Perdrix":{"g":[["2026-09-27","2026-11-29"]]},
+"Lièvre":{"g":[["2026-10-11","2026-12-13"]]},
+"Bécasse":{"n":"30 par saison, 3 par semaine, 2 par jour."}}}

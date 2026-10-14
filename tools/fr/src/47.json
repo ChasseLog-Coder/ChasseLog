@@ -1,0 +1,10 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Petit gibier : plan de gestion, jours limités selon les communes ; 3 pièces max. par jour (lièvre, perdrix, faisan cumulés).","sp":{
+"Lapin":{"g":[["2026-09-13","2027-01-31"]],"n":"Jusqu'au 28/2, tous les jours, dans quelques communes de la vallée de la Garonne."},
+"Lièvre":{"g":[["2026-09-13","2026-12-13"]],"n":"1 par jour, 3 par saison (2 à 4 selon les communes). Certaines communes : du 4/10 au 1/1."},
+"Perdrix":{"g":[["2026-09-13","2026-11-11"]],"n":"Perdrix rouge : mercredi, dimanche et fériés ; 2 par jour."},
+"Faisan":{"g":[["2026-09-13","2027-01-31"]],"n":"Mercredi, dimanche et fériés. Poule faisane interdite dès le 2/1. Quelques communes : jusqu'au 11/11."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : approche ou affût sur autorisation (plan de chasse)."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Zone de présence du cerf : à partir du 4/10."},
+"Sanglier":{"aa":[["2026-09-13","2027-05-31"]],"bat":[["2026-09-13","2027-03-31"]],"n":"Du 1/4 au 31/5 : semis, sur autorisation (5 battues par mois max.)."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil."}}}

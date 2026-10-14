@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Marquage du lièvre obligatoire dans tout le département.","sp":{
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Perdrix":{"g":[["2026-10-04","2026-12-10"]],"n":"Perdrix grise : sur les territoires en plan de gestion."},
+"Lièvre":{"g":[["2026-10-04","2026-12-10"]]},
+"Faisan":{"g":[["2026-10-04","2027-01-10"]],"n":"Faisan commun : tir de la poule interdit sauf unités 90 et 91."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : brocards à l'approche ou à l'affût. Aussi à partir du 1/6/2027."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/9–19/9 : cerf mâle à l'approche/affût. Biche à partir du 1/11."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Plan de gestion. 1/6–14/8 : sur arrêté fédéral. Du 1/4 au 31/5 : sur autorisation préfectorale."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Pigeon ramier":{"g":[["2026-09-20","2027-02-20"]],"n":"Du 11 au 20/02 : à poste fixe uniquement."}}}

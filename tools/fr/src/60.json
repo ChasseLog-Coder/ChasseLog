@@ -1,0 +1,11 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : mâle, approche ou affût."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Du 1/9 au 19/9 : cerf mâle seul. Cerf mulet interdit."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Mouflon":{"aa":[["2026-09-20","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]]},
+"Lièvre":{"g":[["2026-09-20","2026-12-31"]],"n":"Voir article 6 (plans de gestion)."},
+"Perdrix":{"g":[["2026-09-20","2027-02-28"]],"n":"Perdrix grise : jusqu'au 31/12."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Selon le niveau de plan de gestion (jusqu'au 28/2 ailleurs)."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Plan de gestion obligatoire. Du 1/6 au 14/8 : sur autorisation. Du 1/4 au 31/5 : affût/approche."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : dans les mêmes conditions que le chevreuil et le sanglier."}}}

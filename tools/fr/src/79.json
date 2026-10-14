@@ -1,0 +1,10 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Commune de Niort : ouverture le 27 septembre 2026.","sp":{
+"Lièvre":{"g":[["2026-09-27","2026-12-13"]],"n":"Plan de chasse. Certaines communes du nord : à partir du 18/10."},
+"Perdrix":{"g":[["2026-09-13","2026-11-29"]],"n":"3 par jour ; perdrix grise en plan de gestion."},
+"Faisan":{"g":[["2026-09-13","2027-01-17"]],"n":"Plan de gestion (2 zones)."},
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Avant le 15/8 et en juin 2027 : sur autorisation. Du 1/4 au 31/5 : semis."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture et en juin 2027 : approche ou affût sur décision préfectorale."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Renard":{"aa":[["2026-07-01","2027-02-28"]],"bat":[["2026-07-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Caille":{"g":[["2026-08-29","2027-02-20"]]}}}

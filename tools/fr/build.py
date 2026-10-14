@@ -35,6 +35,7 @@ for code,nom,_ in deps:
         o={}
         for m in ("aa","bat","g"):
             if v.get(m): chk(code,k,v[m]);o[m]=v[m]
+        if v.get("x"): o={"g":[]}  # espèce interdite cette saison
         if not o:  # oiseaux de passage sans dates : dates nationales
             if k=="Bécasse": o["g"]=[[d["ouv"],f"{y+1}-02-20"]]
             elif k=="Pigeon ramier": o["g"]=[[d["ouv"],f"{y+1}-02-10"]]

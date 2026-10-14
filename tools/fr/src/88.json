@@ -1,0 +1,12 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Grand gibier : réservé aux bénéficiaires d'un plan de chasse ou de gestion sanglier.","sp":{
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-10-01","2027-02-28"]],"n":"Chasse individuelle et silencieuse jusqu'au 30/9, battue à partir du 1/10."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–14/8 : brocard uniquement ; 15/8–19/9 : tous chevreuils, chasse individuelle."},
+"Chamois":{"aa":[["2026-09-01","2027-02-28"]],"n":"Chasse individuelle et silencieuse uniquement."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-08-01","2027-03-31"]],"n":"Août : battue de 5 tireurs min. en plaine seulement. Du 1/4 au 31/5 : protection des semis sur autorisation."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Mouflon":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Lièvre":{"g":[["2026-10-10","2026-11-01"]]},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Perdrix":{"g":[["2026-09-20","2027-01-31"]],"n":"Perdrix rouge. Perdrix grise : jusqu'au 30/09."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Poule : jusqu'au 30/09 seulement."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant l'ouverture : avec une notification chevreuil ou sanglier."}}}

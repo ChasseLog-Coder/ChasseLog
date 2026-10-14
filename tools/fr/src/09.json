@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Zone de montagne : ouverture le 20 septembre 2026.","sp":{
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-16","2027-02-28"]],"n":"Avant l'ouverture : avec autorisation chevreuil, ou lors des battues au sanglier (dès le 16/8 en plaine, 30/8 en montagne)."},
+"Lapin":{"g":[["2026-09-13","2027-01-03"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-03"]]},
+"Lièvre":{"g":[["2026-09-13","2026-12-13"]],"n":"Plan de chasse légal sur les communes de l'annexe II."},
+"Perdrix":{"g":[["2026-09-13","2026-11-29"]]},
+"Sanglier":{"aa":[["2026-08-16","2027-02-28"]],"bat":[["2026-08-16","2027-02-28"]],"n":"Montagne : dès le 30/8. Battue : mercredi, samedi, dimanche et jours fériés."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : autorisation individuelle, sans chien."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : autorisation individuelle, sans chien."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche ou affût uniquement, sans chien."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Chamois":{"aa":[["2026-10-04","2026-11-08"]],"n":"Isard : approche ou affût, mercredi, samedi, dimanche et fériés. Lots ONF : du 1/9 au 30/11."}}}

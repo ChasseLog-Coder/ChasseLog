@@ -1,0 +1,15 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Chasse dans les vignes à partir du 11 octobre (sauf sangliers).","sp":{
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Battue : 5 participants min., mercredi, samedi, dimanche et fériés. Du 1/4 au 31/5 : affût pour les semis."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"n":"Approche ou affût uniquement, sans chien."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Jusqu'au 12/9 : brocard seul (bracelet CHI APP). Battue : mercredi, samedi, dimanche et fériés."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-01","2027-02-28"]],"n":"Battue : mercredi, samedi, dimanche et fériés."},
+"Chamois":{"aa":[["2026-09-13","2027-02-28"]],"n":"Isard : approche ou affût, plan de chasse."},
+"Perdrix":{"g":[["2026-09-13","2026-12-13"]],"n":"Samedi, dimanche et fériés. Grise en zone 1 : du 4 au 25/10. PMA 2 par jour."},
+"Lièvre":{"g":[["2026-10-11","2026-12-20"]],"n":"Zone A : du 13/9 au 11/11. 1 par jour, 8 par saison."},
+"Lapin":{"g":[["2026-09-13","2027-01-31"]],"n":"Sauf mardi et vendredi. Furet interdit."},
+"Faisan":{"g":[["2026-09-13","2027-02-28"]],"n":"Sauf mardi et vendredi."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"3 par jour, 30 par saison. Au chien d'arrêt ou leveur."},
+"Caille":{"g":[["2026-08-29","2027-02-20"]],"n":"Avec chien d'arrêt ou leveur uniquement."},
+"Pigeon ramier":{"g":[["2026-09-13","2027-02-20"]],"n":"Du 10 au 20/2 : poste fixe uniquement."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : dans les conditions de la chasse du sanglier ou du chevreuil."}}}

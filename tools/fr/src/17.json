@@ -1,0 +1,13 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Île d'Aix : ouverture le 20 septembre 2026.","sp":{
+"Lièvre":{"g":[["2026-10-18","2026-12-20"]],"n":"Dimanche uniquement, dates selon le territoire (plan de gestion)."},
+"Perdrix":{"g":[["2026-09-13","2026-11-29"]],"n":"Dimanche, mercredi et fériés."},
+"Faisan":{"g":[["2026-09-13","2027-01-31"]],"n":"Dimanche, mercredi et fériés."},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]],"n":"Jusqu'au 24/10 : dimanche et mercredi."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Cerf":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Dès le 13/9 en forêt domaniale, parcs et secteurs C et J ; ailleurs dès le 10/10."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/6 au 12/9 : brocard seul, sur autorisation."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Plan de chasse. Du 1/6 au 14/8 : sur autorisation. Du 1/4 au 31/5 : semis."},
+"Caille":{"g":[["2026-08-29","2027-02-20"]],"n":"10 par jour."},
+"Pigeon ramier":{"g":[["2026-09-13","2027-02-20"]],"n":"Du 11 au 20/2 : poste fixe."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"2 par jour. Jusqu'au 24/10 : dimanche et mercredi."}}}

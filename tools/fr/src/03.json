@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Du 1/6 à l'ouverture : brocard seul, sans chien, détenteurs du plan de chasse."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Du 1/6 à l'ouverture : sans chien, détenteurs du plan de chasse."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-07-15","2027-03-31"]],"n":"Plan de chasse. Du 1/6 au 14/7 : détenteurs du plan. Du 1/4 au 31/5 : protection des semis."},
+"Cerf":{"aa":[["2026-09-26","2027-02-28"]],"bat":[["2026-09-26","2027-02-28"]]},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Lièvre":{"g":[["2026-09-20","2026-11-11"]],"n":"GIC Limagne bourbonnaise : 10/10 au 11/11. GIC Sonnante et Luzeray : 3/10 au 25/10."},
+"Faisan":{"g":[["2026-09-20","2027-01-24"]]},
+"Perdrix":{"g":[["2026-09-20","2026-12-06"]]},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]]}}}

@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Perdrix":{"g":[["2026-09-13","2026-11-15"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-17"]]},
+"Lièvre":{"g":[["2026-10-04","2026-12-20"]],"n":"Plan de gestion cynégétique."},
+"Lapin":{"g":[["2026-09-13","2027-01-31"]]},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Du 1/6 au 14/8 et du 1/4 au 31/5 : sur autorisation préfectorale."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : sur autorisation."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : sur autorisation préfectorale."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Plan de chasse dans les enclos."},
+"Chamois":{"aa":[["2026-09-13","2027-02-28"]],"n":"Isard : plan de chasse, battue interdite."}}}

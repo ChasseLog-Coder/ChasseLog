@@ -17,3 +17,4 @@ Les dates d'ouverture françaises affichées dans l'app viennent de `data/ouv-fr
 3. Lancer `python3 tools/fr/build.py --saison AAAA-AAAA` : aucune erreur ne doit rester.
 4. Vérifier visuellement quelques départements dans l'app (☰ › Périodes d'ouverture).
 5. Pousser sur une branche `maj-dates-fr-AAAA` et prévenir le propriétaire pour validation. Ne pas pousser directement sur `main`.
+- `"x": true` sur une espèce = tir interdit cette saison (affiché « Interdit »).

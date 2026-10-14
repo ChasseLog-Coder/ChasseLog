@@ -21,6 +21,6 @@ jobs:
           [ -f probe/index.tsv ] || cat probe/txt/*.row > probe/index.tsv 2>/dev/null; rm -f probe/txt/*.row
           mv probe /tmp/probe
           git fetch -q origin arretes-fr; git checkout -B arretes-fr origin/arretes-fr
-          rm -rf probe; cp -r /tmp/probe probe
+          mkdir -p probe/txt; cp /tmp/probe/txt/* probe/txt/ 2>/dev/null; cat /tmp/probe/index.tsv >> probe/index.tsv
           git add probe; git commit -qm "Arrêtés manquants $(date -u +%F)" || exit 0
           for i in 1 2 3; do git push -q origin arretes-fr && break; git pull -q --rebase origin arretes-fr; done

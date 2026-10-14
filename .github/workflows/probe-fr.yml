@@ -1,0 +1,26 @@
+name: Recherche arrêtés manquants France
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/fr/probe.txt", "tools/fr/probe.sh", ".github/workflows/probe-fr.yml"]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd >/dev/null
+      - run: timeout 100m bash tools/fr/probe.sh || true
+      - name: Publier
+        if: always()
+        run: |
+          git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"
+          [ -f probe/index.tsv ] || cat probe/txt/*.row > probe/index.tsv 2>/dev/null; rm -f probe/txt/*.row
+          mv probe /tmp/probe
+          git fetch -q origin arretes-fr; git checkout -B arretes-fr origin/arretes-fr
+          rm -rf probe; cp -r /tmp/probe probe
+          git add probe; git commit -qm "Arrêtés manquants $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git push -q origin arretes-fr && break; git pull -q --rebase origin arretes-fr; done

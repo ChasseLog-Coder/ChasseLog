@@ -267,7 +267,7 @@ html.in-on,html.in-on body{overflow:hidden}
 .su-sum{background:#ffffff14;border-radius:16px;padding:14px;width:100%;text-align:left;font:.98rem/1.6 system-ui;color:#eef2e6}.su-sum b{color:#f5b83d}
 .su-tip{display:flex;gap:10px;text-align:left;font:.9rem/1.4 system-ui;color:#dfe6d2;width:100%}
 .su-lt{border:0;background:none;color:#b9c3aa;text-decoration:underline;font:.85rem system-ui;padding:10px;margin-top:4px}
-.dth{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg);border:1px solid var(--line)}.dth.em{display:flex;align-items:center;justify-content:center;font-size:1.8rem}.dth.pdf{display:flex;align-items:center;justify-content:center;font:800 .9rem system-ui;color:#fff;background:#b3261e;border:0}
+.dtag{display:inline-block;font-size:.75rem;font-weight:700;color:var(--mut);letter-spacing:.02em}.dplus{flex:0 0 auto;align-self:flex-start;border:0;background:none;color:var(--acc);padding:0;display:flex;flex-direction:column;align-items:center;gap:3px}.dplus b{width:40px;height:40px;border-radius:50%;border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font:700 1.5rem/1 system-ui;padding-bottom:3px;box-sizing:border-box}.dplus small{font:700 .68rem system-ui;white-space:nowrap}.pxl{display:flex;flex-wrap:wrap;gap:6px}.pxc{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 11px;font:600 .9rem system-ui;display:flex;align-items:center;gap:6px}.pxc.on{border-color:var(--acc);background:var(--acc);color:#fff}.pxc small{font-size:.7rem;font-weight:700;opacity:.8;text-transform:uppercase;margin-left:2px}.dth{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg);border:1px solid var(--line)}.dth.em{display:flex;align-items:center;justify-content:center;font-size:1.8rem}.dth.pdf{display:flex;align-items:center;justify-content:center;font:800 .9rem system-ui;color:#fff;background:#b3261e;border:0}
 #dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:48px;height:48px;border-radius:50%;border:3px solid #fff;background:#d32f2f;color:#fff;font:800 1.3rem system-ui;box-shadow:0 4px 14px #000a;z-index:2}
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
@@ -1135,32 +1135,59 @@ let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};
 /* ---------- mes documents (stockés uniquement sur le téléphone) ---------- */
 const DOCS=[["permis","Permis / licence de chasse","📜",true],["assur","Attestation d'assurance","🛡️",true],["idr","Carte d'identité – recto","🪪",false],["idv","Carte d'identité – verso","🪪",false]];
 const docKey=k=>"_doc:"+k;
-function rDocs(){S.docs=S.docs||{};const td=iso(new Date());
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes documents</h1><p class="mut sans" style="margin-top:-6px">Toujours sous la main, même sans réseau. Ils restent uniquement sur ton téléphone.</p>
- ${DOCS.map(([k,lab,ic,exp])=>{const d=S.docs[k],late=d&&d.exp&&d.exp<td;return `<div class="card sans dcard" style="margin-bottom:10px">
+/* permis étrangers : clés « px… » dans S.docs, avec pays (cc) et type de document (doc) */
+const PCC=[["fr","France","🇫🇷"],["be","Belgique – Wallonie","🇧🇪"],["fl","Belgique – Flandre","🇧🇪"],["lu","Luxembourg","🇱🇺"],["de","Allemagne","🇩🇪"],["nl","Pays-Bas","🇳🇱"],["es","Espagne","🇪🇸"],["xx","Autre pays","🌍"]];
+const PTY={fr:["Permis de chasser","Validation annuelle","Autorisation de chasser (non-résident)"],be:["Licence de chasse (non-résident)","Permis de chasse"],fl:["Jachtverlof (permis de chasse)"],lu:["Permis de chasse"],de:["Jagdschein (permis de chasse)"],nl:["Jachtakte (permis de chasse)"],es:["Licencia de caza (permis de chasse)"],xx:["Permis de chasse"]};
+const pcc=c=>PCC.find(x=>x[0]==c)||PCC[7];
+const homeCC=()=>S.reg=="fr"?"fr":S.reg=="xx"?"":"be";
+const permLbl=()=>S.reg=="fr"?"Permis de chasser + validation":"Permis de chasse";
+const docLab=k=>{const d=S.docs[k];if(k.startsWith("px")&&d)return d.doc+" – "+(d.cc=="xx"&&d.ccn?d.ccn:pcc(d.cc)[1]);if(k=="permis")return permLbl();const x=DOCS.find(x=>x[0]==k);return x?x[1]:"Document"};
+function rDocs(){S.docs=S.docs||{};const td=iso(new Date()),hc=homeCC();
+ const card=(k,lab,ic,exp,tag,plus)=>{const d=S.docs[k],late=d&&d.exp&&d.exp<td;return `<div class="card sans dcard" style="margin-bottom:10px">
   <div style="display:flex;align-items:center;gap:12px">${d?(d.type=="application/pdf"?`<div class="dth pdf">PDF</div>`:`<img class="dth" data-dk="${k}" alt="">`):`<div class="dth em">${ic}</div>`}
-  <div style="flex:1;min-width:0"><b>${lab}</b><br><span class="mut" style="font-size:.85rem">${d?esc(d.name||"Document")+" · ajouté le "+d.date.split("-").reverse().join("/"):"Pas encore ajouté"}</span>
-  ${d&&exp?`<br><span style="font-size:.85rem;${late?"color:var(--acc2);font-weight:700":""}">${d.exp?(late?"⚠️ Expiré le ":"Valable jusqu'au ")+d.exp.split("-").reverse().join("/"):""}</span>`:""}</div></div>
+  <div style="flex:1;min-width:0">${tag?`<span class="dtag">${tag}</span><br>`:""}<b>${esc(lab)}</b><br><span class="mut" style="font-size:.85rem">${d?esc(d.name||"Document")+" · ajouté le "+d.date.split("-").reverse().join("/"):"Pas encore ajouté"}</span>
+  ${d&&exp?`<br><span style="font-size:.85rem;${late?"color:var(--acc2);font-weight:700":""}">${d.exp?(late?"⚠️ Expiré le ":"Valable jusqu'au ")+d.exp.split("-").reverse().join("/"):""}</span>`:""}</div>
+  ${plus?`<button class="dplus" id="dp-add" aria-label="Ajouter un permis étranger"><b>+</b><small>autre pays</small></button>`:""}</div>
   <div class="row" style="gap:6px;margin-top:10px;flex-wrap:wrap">${d?`<button class="p" data-dv="${k}" style="flex:1">Voir</button><button class="s" data-ds="${k}" style="flex:1">Partager</button><button class="s" data-da="${k}" style="flex:1">Remplacer</button><button class="s" data-dx="${k}" style="flex:0 0 auto;color:var(--acc2)" aria-label="Supprimer">🗑</button>`:`<button class="p" data-da="${k}" style="flex:1">+ Ajouter (photo ou fichier)</button>`}</div>
-  ${d&&exp?`<label style="margin-top:8px">Date de fin de validité (facultatif)</label><input type="date" data-de="${k}" value="${d.exp||""}">`:""}</div>`}).join("")}
+  ${d&&exp?`<label style="margin-top:8px">Date de fin de validité (facultatif)</label><input type="date" data-de="${k}" value="${d.exp||""}">`:""}</div>`};
+ const px=Object.keys(S.docs).filter(k=>k.startsWith("px")).sort();
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes documents</h1><p class="mut sans" style="margin-top:-6px">Toujours sous la main, même sans réseau. Ils restent uniquement sur ton téléphone.</p>
+ ${card("permis",permLbl(),"📜",true,hc?pcc(hc)[2]+" "+(hc=="fr"?"France":"Wallonie"):"",true)}
+ ${px.map(k=>{const d=S.docs[k],c=pcc(d.cc);return card(k,d.doc,"📜",true,c[2]+" "+esc(d.cc=="xx"&&d.ccn?d.ccn:c[1]),false)}).join("")}
+ ${DOCS.slice(1).map(([k,lab,ic,exp])=>card(k,lab,ic,exp)).join("")}
  <p class="mut sans" style="font-size:.8rem">Ces documents ne sont pas inclus dans la sauvegarde ni envoyés nulle part. Garde les originaux en lieu sûr.</p><div style="height:60px"></div>
  <input type="file" id="dfi" accept="image/*,application/pdf" style="display:none">`;
  $("#bk2").onclick=backTo;
  document.querySelectorAll("img[data-dk]").forEach(async i=>{try{const b=await DB.get(docKey(i.dataset.dk));if(b)i.src=URL.createObjectURL(b)}catch(e){}});
- let cur=null;const fi=$("#dfi");
- document.querySelectorAll("[data-da]").forEach(b=>b.onclick=()=>{cur=b.dataset.da;fi.value="";fi.click()});
+ let cur=null,meta=null;const fi=$("#dfi");
+ document.querySelectorAll("[data-da]").forEach(b=>b.onclick=()=>{cur=b.dataset.da;meta=null;fi.value="";fi.click()});
+ {const b=$("#dp-add");if(b)b.onclick=()=>pxModal(m=>{cur="px"+Date.now().toString(36);meta=m;fi.value="";fi.click()})}
  fi.onchange=async()=>{const f=fi.files[0];if(!f||!cur)return;if(f.size>25e6)return toast("Fichier trop lourd (25 Mo maximum).");
   let blob=f;try{if(f.type.startsWith("image/")&&f.size>1.2e6)blob=await compress(f,2400,.88)}catch(e){blob=f}
-  try{await DB.put(docKey(cur),blob);S.docs[cur]={name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:(S.docs[cur]||{}).exp||""};save();track("doc_added",{doc:cur});toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
+  try{await DB.put(docKey(cur),blob);const old=S.docs[cur]||{};S.docs[cur]=Object.assign({},old,meta||{},{name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:old.exp||""});save();track("doc_added",cur.startsWith("px")?{doc:"permis_etranger",cc:S.docs[cur].cc}:{doc:cur});toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
  document.querySelectorAll("[data-dv]").forEach(b=>b.onclick=async()=>{const k=b.dataset.dv,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return toast("Document introuvable.");const u=URL.createObjectURL(bl);
   if(d.type=="application/pdf"){const w=window.open(u,"_blank");if(!w)location.href=u;return}
   const o=document.createElement("div");o.id="dview";o.innerHTML=`<img src="${u}" alt=""><button aria-label="Fermer">✕</button>`;document.body.appendChild(o);o.onclick=e=>{if(e.target.tagName!="IMG"||e.target==o)o.remove()};o.querySelector("button").onclick=()=>o.remove()});
- document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=async()=>{const k=b.dataset.ds,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return;const lab=DOCS.find(x=>x[0]==k)[1],ext=d.type=="application/pdf"?"pdf":"jpg",file=new File([bl],lab.replace(/[^\wÀ-ÿ -]/g,"").trim()+"."+ext,{type:d.type});
+ document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=async()=>{const k=b.dataset.ds,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return;const lab=docLab(k),ext=d.type=="application/pdf"?"pdf":"jpg",file=new File([bl],lab.replace(/[^\wÀ-ÿ -]/g,"").trim()+"."+ext,{type:d.type});
   try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:lab});return}}catch(e){if(e&&e.name=="AbortError")return}
   const a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download=file.name;a.click()});
- document.querySelectorAll("[data-dx]").forEach(b=>b.onclick=()=>{const k=b.dataset.dx;modal(`<h2>Supprimer ce document ?</h2><p class="sans">${DOCS.find(x=>x[0]==k)[1]}</p><div class="row"><button class="s" id="dx-n">Annuler</button><button class="p" id="dx-y" style="background:var(--acc2)">Supprimer</button></div>`);
+ document.querySelectorAll("[data-dx]").forEach(b=>b.onclick=()=>{const k=b.dataset.dx;modal(`<h2>Supprimer ce document ?</h2><p class="sans">${esc(docLab(k))}</p><div class="row"><button class="s" id="dx-n">Annuler</button><button class="p" id="dx-y" style="background:var(--acc2)">Supprimer</button></div>`);
   $("#dx-n").onclick=()=>closeM();$("#dx-y").onclick=async()=>{closeM();try{await DB.del(docKey(k))}catch(e){}delete S.docs[k];save();render()}});
  document.querySelectorAll("[data-de]").forEach(i=>i.onchange=()=>{const d=S.docs[i.dataset.de];if(d){d.exp=i.value;save();render()}})}
+/* choix du pays et du type de permis étranger */
+function pxModal(onOk){const hc=homeCC(),main=hc=="fr"?"be":"fr";const L=[pcc(main)].concat(PCC.filter(x=>x[0]!=main&&x[0]!=hc));let cc=main,ty=PTY[main][0],ccn="",oth="";
+ const draw=()=>{const tys=PTY[cc]||PTY.xx;return `<h2 style="margin-bottom:4px">Ajouter un permis étranger</h2><p class="mut sans" style="margin:0 0 12px;font-size:.9rem">Pour chasser dans un autre pays, garde aussi ce permis sous la main.</p>
+  <label>Pays</label><div class="pxl">${L.map(x=>`<button class="pxc${x[0]==cc?" on":""}" data-pc="${x[0]}"><span>${x[2]}</span>${x[1]}${x[0]==main?'<small>suggéré</small>':""}</button>`).join("")}</div>
+  ${cc=="xx"?`<input id="px-ccn" placeholder="Quel pays ?" value="${esc(ccn)}" style="margin-top:8px">`:""}
+  <label style="margin-top:12px">Document</label><div class="pxl">${tys.concat(["Autre document…"]).map(t=>`<button class="pxc${t==ty?" on":""}" data-pt="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+  ${ty=="Autre document…"?`<input id="px-oth" placeholder="Nom du document" value="${esc(oth)}" style="margin-top:8px">`:""}
+  <button class="p" id="px-ok" style="width:100%;margin-top:16px">Choisir la photo ou le fichier</button>`};
+ const m=modal(draw());const wire=()=>{
+  m.querySelectorAll("[data-pc]").forEach(b=>b.onclick=()=>{cc=b.dataset.pc;ty=(PTY[cc]||PTY.xx)[0];redraw()});
+  m.querySelectorAll("[data-pt]").forEach(b=>b.onclick=()=>{ty=b.dataset.pt;redraw()});
+  const a=$("#px-ccn");if(a)a.oninput=()=>ccn=a.value;const o=$("#px-oth");if(o)o.oninput=()=>oth=o.value;
+  $("#px-ok").onclick=()=>{const doc=ty=="Autre document…"?(oth.trim()||"Document"):ty;if(cc=="xx"&&!ccn.trim())return toast("Indique le pays.");closeM();onOk({cc,ccn:cc=="xx"?ccn.trim():"",doc})}};
+ const redraw=()=>{const sh=m.firstElementChild,x=sh.querySelector(".x");sh.innerHTML='<div class="grab"></div>';sh.appendChild(x);sh.insertAdjacentHTML("beforeend",draw());wire()};wire()}
 
 function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO=ag.brand=="__o",models=cat&&ag.brand&&!brandO&&cat[ag.brand]?Object.keys(cat[ag.brand]):[],modelO=ag.model=="__o",cals=models.length&&ag.model&&!modelO&&cat[ag.brand][ag.model]?cat[ag.brand][ag.model].split("|"):[];
  const opt=(arr,v,ph)=>`<option value="">${ph}</option>${arr.map(x=>`<option ${x==v?"selected":""}>${esc(x)}</option>`).join("")}<option value="__o" ${v=="__o"?"selected":""}>Autre…</option>`;

@@ -14,7 +14,7 @@ set -u; OUT=${OUT:-probe}; mkdir -p "$OUT/txt"
 UA="Mozilla/5.0 (X11; Linux x86_64) ChasseLog-bot (contact.chasselog@gmail.com)"
 txt1(){ np=$(pdfinfo "$1" 2>/dev/null | awk '/^Pages:/{print $2}'); [ -z "$np" ] && np=0; [ "$np" -gt 14 ] && np=14
   for p in $(seq 1 $np); do echo "=== page $p"; t=$(pdftotext -layout -f $p -l $p "$1" - 2>/dev/null)
-    if [ $(echo "$t" | tr -d ' \n' | wc -c) -gt 400 ]; then echo "$t"; else d=$(mktemp -d); pdftoppm -r 300 -gray -png -f $p -l $p "$1" "$d/p"; for im in "$d"/p*.png; do ocrpage "$im"; done; rm -rf "$d"; fi; done; }
+    if [ $(echo "$t" | grep -oiE "(^| )(de|la|le|les|du|des|et|chasse|au|en)( |$)" | wc -l) -ge 15 ]; then echo "$t"; else d=$(mktemp -d); pdftoppm -r 300 -gray -png -f $p -l $p "$1" "$d/p"; for im in "$d"/p*.png; do ocrpage "$im"; done; rm -rf "$d"; fi; done; }
 probe(){ code=$1; OUT=$2; UA="$3"
   nom=$(awk -F'\t' -v c="$code" '$1==c{print $2}' tools/fr/deps.tsv)
   b=$(echo "$nom" | iconv -f utf8 -t ascii//TRANSLIT | tr 'A-Z' 'a-z' | sed "s/[' ]/-/g; s/--*/-/g")

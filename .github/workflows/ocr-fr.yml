@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd >/dev/null
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd imagemagick >/dev/null
       - name: OCR
         run: |
           git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"

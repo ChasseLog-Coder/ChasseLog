@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd >/dev/null
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd imagemagick >/dev/null
       - run: timeout 100m bash tools/fr/probe.sh || true
       - name: Publier
         if: always()

@@ -2,11 +2,19 @@
 # Départements dont la page FNC n'a pas été trouvée : essaie les variantes d'adresse de la page
 # (de-, de-la-, du-, des-, d', de-l'), garde la page qui lie un arrêté FDC-XX*.pdf, puis extrait le texte
 # (OCR à 300 dpi des pages scannées). Résultats : probe/txt/XX.txt et probe/index.tsv.
+ocrpage(){ # $1 = image ; psm 1 (rotation auto) puis psm 3, garde le texte le plus « français »
+  sc(){ echo "$1" | grep -oiE "(^| )(de|la|le|les|du|des|et|chasse|au|en|ouverture|clôture)( |$)" | wc -l; }
+  t=$(timeout 240 tesseract "$1" - -l fra --psm 1 2>/dev/null); n=$(sc "$t")
+  u=$(timeout 240 tesseract "$1" - -l fra --psm 3 2>/dev/null); m=$(sc "$u"); [ "$m" -gt "$n" ] && { t=$u; n=$m; }
+  if [ "$n" -lt 15 ]; then for a in 90 270 180; do convert "$1" -rotate $a "$1.r.png" 2>/dev/null || continue
+    u=$(timeout 240 tesseract "$1.r.png" - -l fra --psm 3 2>/dev/null); m=$(sc "$u"); [ "$m" -gt "$n" ] && { t=$u; n=$m; }; done; fi
+  echo "$t"; }
+export -f ocrpage
 set -u; OUT=${OUT:-probe}; mkdir -p "$OUT/txt"
 UA="Mozilla/5.0 (X11; Linux x86_64) ChasseLog-bot (contact.chasselog@gmail.com)"
 txt1(){ np=$(pdfinfo "$1" 2>/dev/null | awk '/^Pages:/{print $2}'); [ -z "$np" ] && np=0; [ "$np" -gt 14 ] && np=14
   for p in $(seq 1 $np); do echo "=== page $p"; t=$(pdftotext -layout -f $p -l $p "$1" - 2>/dev/null)
-    if [ $(echo "$t" | tr -d ' \n' | wc -c) -gt 400 ]; then echo "$t"; else d=$(mktemp -d); pdftoppm -r 300 -gray -png -f $p -l $p "$1" "$d/p"; timeout 240 tesseract "$d"/p*.png - -l fra --psm 1 2>/dev/null; rm -rf "$d"; fi; done; }
+    if [ $(echo "$t" | tr -d ' \n' | wc -c) -gt 400 ]; then echo "$t"; else d=$(mktemp -d); pdftoppm -r 300 -gray -png -f $p -l $p "$1" "$d/p"; for im in "$d"/p*.png; do ocrpage "$im"; done; rm -rf "$d"; fi; done; }
 probe(){ code=$1; OUT=$2; UA="$3"
   nom=$(awk -F'\t' -v c="$code" '$1==c{print $2}' tools/fr/deps.tsv)
   b=$(echo "$nom" | iconv -f utf8 -t ascii//TRANSLIT | tr 'A-Z' 'a-z' | sed "s/[' ]/-/g; s/--*/-/g")

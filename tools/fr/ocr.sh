@@ -17,9 +17,9 @@ mkdir -p /tmp/o300
 ocr1(){ code=$1; url=$(awk -F'\t' -v c="$code" '$1==c{print $4}' /tmp/index.tsv); [ -z "$url" ] && return
   d=$(mktemp -d); curl -sL --max-time 120 -o "$d/a.pdf" "$url"
   np=$(pdfinfo "$d/a.pdf" 2>/dev/null | awk '/^Pages:/{print $2}'); [ -z "$np" ] && np=0; [ "$np" -gt 14 ] && np=14
-  echo "#v3"; for p in $(seq 1 $np); do echo "=== page $p"; t=$(pdftotext -layout -f $p -l $p "$d/a.pdf" - 2>/dev/null)
+  { echo "#v3"; for p in $(seq 1 $np); do echo "=== page $p"; t=$(pdftotext -layout -f $p -l $p "$d/a.pdf" - 2>/dev/null)
     if [ $(echo "$t" | grep -oiE "(^| )(de|la|le|les|du|des|et|chasse|au|en)( |$)" | wc -l) -ge 15 ]; then echo "$t"; else pdftoppm -r 300 -gray -png -f $p -l $p "$d/a.pdf" "$d/p$p"; for im in "$d"/p$p*.png; do ocrpage "$im"; done; fi
-  done > /tmp/o300/$code.txt; rm -rf "$d"; echo "$code ok $np"; }
+  done; } > /tmp/o300/$code.txt; rm -rf "$d"; echo "$code ok $np"; }
 export -f ocr1
 publish(){ git fetch -q origin +refs/heads/arretes-fr:refs/remotes/origin/arretes-fr; git checkout -q -B arretes-fr origin/arretes-fr; mkdir -p txt300; cp /tmp/o300/*.txt txt300/ 2>/dev/null
   git add txt300; git commit -qm "OCR 300 dpi (lot)" || return 0

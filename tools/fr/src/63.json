@@ -1,0 +1,13 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Perdrix":{"g":[["2026-09-13","2026-11-29"]],"n":"Territoires en plan de gestion : jusqu'au 6/12."},
+"Lièvre":{"g":[["2026-09-13","2026-11-29"]],"n":"En plan de gestion : à partir du 27/9, selon les communes et quotas."},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]],"n":"Furet autorisé."},
+"Faisan":{"g":[["2026-09-13","2027-01-31"]],"n":"Tir interdit dans les communes en plan de gestion."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant l'ouverture : lors du tir d'été du brocard ou de la chasse anticipée du sanglier."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir d'été : brocard seul, approche ou affût."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche uniquement."},
+"Chamois":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche uniquement."},
+"Cerf":{"aa":[["2026-10-17","2027-02-28"]],"bat":[["2026-10-17","2027-02-28"]],"n":"Femelles et jeunes dès le 13/9 dans certains secteurs."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Été : affût près des cultures ; battue du 1/8 au 14/8 sur autorisation. Mars : prolongation possible selon les dégâts."},
+"Bécasse":{"n":"3 par jour, 30 par saison. Passée interdite."}}}

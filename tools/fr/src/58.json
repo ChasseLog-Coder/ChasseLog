@@ -1,0 +1,11 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : approche ou affût, avec la décision d'attribution."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : sauf biches et faons."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Avant l'ouverture : détenteurs d'un plan de gestion. Du 1/4 au 31/5 : semis."},
+"Lièvre":{"g":[["2026-09-20","2026-11-22"]],"n":"Plan de gestion dans certaines communes."},
+"Perdrix":{"g":[["2026-09-20","2027-02-20"]]},
+"Faisan":{"g":[["2026-09-20","2027-02-20"]]},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Bécasse":{"n":"30 par saison. Passée et croule interdites."}}}

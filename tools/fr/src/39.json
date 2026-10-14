@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Chiens interdits le jeudi et le vendredi (sauf fériés).","sp":{
+"Perdrix":{"g":[["2026-09-13","2026-12-31"]]},
+"Faisan":{"g":[["2026-09-13","2026-12-24"]],"n":"Poule faisane interdite dans l'unité de gestion 9."},
+"Lièvre":{"g":[["2026-10-04","2026-12-31"]],"n":"Plan de chasse obligatoire, déclaration le jour même."},
+"Sanglier":{"aa":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"n":"Avant le 15/8 et en juin 2027 : sur autorisation. Battue : mercredi, samedi, dimanche, fériés (5 armes min. avant l'ouverture). Mars : affût/approche."},
+"Chamois":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche uniquement, sans rabatteur."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : sur autorisation, approche ou affût."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-01","2027-02-28"]]},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier. Interdit en réserve."},
+"Bécasse":{"n":"30 par saison, 6 par semaine."}}}

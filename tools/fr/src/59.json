@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","sp":{
+"Sanglier":{"aa":[["2026-06-01","2027-06-30"]],"bat":[["2026-08-15","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Avant l'ouverture et en juin 2027 : sur autorisation. Du 1/4 au 31/5 : semis."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Tir d'été sur autorisation spécifique."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Du 1/9 au 19/9 : tir d'été sur autorisation."},
+"Lièvre":{"g":[["2026-09-20","2026-12-06"]],"n":"Plan de gestion dans tout le département (marquage)."},
+"Perdrix":{"g":[["2026-09-20","2026-12-31"]],"n":"Perdrix grise en plan de gestion : jours imposés."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Coq ; poule selon le plan de gestion local."},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Bécasse":{"n":"3 par jour, 30 par saison."}}}

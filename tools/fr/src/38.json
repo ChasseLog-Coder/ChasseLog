@@ -1,0 +1,13 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir anticipé (avant le 13/9 et en juin 2027) : autorisation individuelle, sans chien."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir anticipé : autorisation individuelle, sans chien."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : autorisation individuelle, sans chien."},
+"Chamois":{"aa":[["2026-09-01","2027-02-28"]],"n":"Approche ou affût uniquement, sans chien, battue interdite."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"n":"Approche ou affût uniquement, sans chien, battue interdite."},
+"Sanglier":{"aa":[["2026-07-01","2026-08-13"],["2026-08-15","2027-06-30"]],"bat":[["2026-08-15","2027-03-31"]],"n":"Juillet-août et juin 2027 : sur autorisation, sans chien. Du 1/4 au 31/5 : protection des semis."},
+"Renard":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-16","2027-02-28"]],"n":"Avant l'ouverture : lors des tirs anticipés chevreuil ou sanglier."},
+"Lièvre":{"g":[["2026-10-04","2026-11-29"]],"n":"Unités soumises à plan de gestion : dates propres."},
+"Lapin":{"g":[["2026-09-13","2027-01-10"]],"n":"Jusqu'au 28/2 dans certaines communes du Grésivaudan."},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]]},
+"Perdrix":{"g":[["2026-09-13","2027-01-10"]]},
+"Bécasse":{"n":"3 par jour et 6 par semaine jusqu'au 10/1, puis 1 par semaine."}}}

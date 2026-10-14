@@ -1,8 +1,8 @@
 // Service worker : met l'application en cache pour qu'elle fonctionne sans connexion.
 // Les fonds de carte (OpenStreetMap) ne sont volontairement PAS mis en cache.
-const V = "carnet-v52";
+const V = "carnet-v53";
 const FILES = [
-  "./", "index.html", "manifest.webmanifest",
+  "./", "index.html", "manifest.webmanifest", "data/ouv-fr.json",
   "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "icons/apple-touch-icon.png",
   "lib/leaflet/leaflet.js", "lib/leaflet/leaflet.css",
   "lib/leaflet/images/marker-icon.png", "lib/leaflet/images/marker-icon-2x.png",
@@ -23,6 +23,11 @@ self.addEventListener("fetch", e => {
     // En ligne : version la plus récente. Hors ligne : version en cache.
     e.respondWith(fetch(r).then(x => { const y = x.clone(); caches.open(V).then(c => c.put("index.html", y)); return x; })
       .catch(() => caches.match("index.html")));
+    return;
+  }
+  if (u.pathname.includes("/data/")) {
+    // Données (dates d'ouverture) : réseau d'abord pour recevoir les mises à jour, cache hors ligne.
+    e.respondWith(fetch(r).then(x => { const y = x.clone(); caches.open(V).then(c => c.put(r, y)); return x; }).catch(() => caches.match(r)));
     return;
   }
   e.respondWith(caches.match(r).then(m => m || fetch(r).then(x => { const y = x.clone(); caches.open(V).then(c => c.put(r, y)); return x; })));

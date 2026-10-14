@@ -1,0 +1,14 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/6 au 12/9 : mâles seuls, sur autorisation individuelle."},
+"Daim":{"aa":[["2026-08-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/8 au 12/9 : mâles seuls, sur autorisation individuelle."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-10-15","2027-02-28"]],"n":"Jusqu'au 14/10 : mâles seuls, approche ou affût."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-08-01","2027-03-31"]],"n":"Avant le 15/8 : sur autorisation. Du 1/4 au 31/5 : protection des semis. Plan de gestion."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Lièvre":{"g":[["2026-09-13","2027-01-31"]],"n":"Plan de gestion, jours restreints selon les unités."},
+"Lapin":{"g":[["2026-09-13","2027-01-31"]]},
+"Faisan":{"g":[["2026-09-13","2027-02-28"]]},
+"Perdrix":{"g":[["2026-09-13","2027-02-28"]]},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"30 par an, 3 par jour."},
+"Pigeon ramier":{"g":[["2026-09-13","2027-02-10"]]},
+"Caille":{"g":[["2026-08-29","2027-02-20"]]}}}

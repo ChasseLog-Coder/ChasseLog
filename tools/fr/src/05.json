@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-01-10","n":"Chasse interdite le vendredi, partout et pour toutes les espèces.","sp":{
+"Chamois":{"aa":[["2026-09-01","2026-11-30"]],"n":"Pays ongulés de montagne 14, 15, 17, 18, 19 : du 1/10 au 10/1. Affût ou approche."},
+"Mouflon":{"aa":[["2026-09-01","2026-11-30"]],"n":"Pays 14, 15, 17, 18, 19 : du 1/10 au 10/1. Affût ou approche."},
+"Chevreuil":{"aa":[["2026-07-01","2026-08-31"],["2026-09-01","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]],"n":"Juillet-août : brocard seul ; du 1/9 au 12/9 : brocard et chevrillard."},
+"Cerf":{"aa":[["2026-09-01","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]]},
+"Daim":{"aa":[["2026-09-13","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-01-31"],["2027-03-01","2027-03-31"]],"bat":[["2026-08-15","2027-02-28"]],"n":"Avant le 13/9 : sur autorisation (battue mercredi, samedi, dimanche). Février : battue dans certains pays cervidés. Mars : affût sur autorisation."},
+"Lièvre":{"g":[["2026-09-13","2026-12-20"]]},
+"Lapin":{"g":[["2026-09-13","2026-12-06"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]]},
+"Perdrix":{"g":[["2026-09-13","2026-11-11"]],"n":"Lundi, mercredi, samedi, dimanche."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"3 par jour, 30 par saison. Après le 10/1 : bois de plus de 3 ha, avec chien d'arrêt."}}}

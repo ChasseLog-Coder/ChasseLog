@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Chasse interdite le vendredi (sauf fériés). Petit gibier : lundi ou jeudi, samedi, dimanche et fériés.","sp":{
+"Cerf":{"aa":[["2026-10-17","2027-02-28"]],"bat":[["2026-10-17","2027-02-28"]]},
+"Chamois":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche ou affût uniquement."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"n":"Approche ou affût uniquement."},
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Avant le 13/9 et en juin 2027 : organisée par le détenteur du droit de chasse. Du 1/4 au 31/5 : protection des semis."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Hors période générale : approche ou affût, sur autorisation individuelle."},
+"Lapin":{"g":[["2026-09-13","2026-12-13"]]},
+"Lièvre":{"g":[["2026-09-13","2026-12-13"]],"n":"Jusqu'à 13 heures uniquement."},
+"Faisan":{"g":[["2026-09-13","2026-12-13"]]},
+"Perdrix":{"g":[["2026-09-13","2026-12-13"]],"n":"Interdite sur les communes du GIC de la Planèze."},
+"Renard":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Bécasse":{"n":"3 par jour, carnet de prélèvement."}}}

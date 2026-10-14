@@ -119,8 +119,33 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .shtg{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line);font:500 .92rem system-ui;cursor:pointer}.shtg small{display:block;color:var(--mut);font-size:.75rem}
 .shtg input{display:none}.shtg i{flex:0 0 auto;width:42px;height:24px;border-radius:99px;background:#c9c5b5;position:relative;transition:background .2s}.shtg i:after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s}
 .shtg input:checked+i{background:var(--acc)}.shtg input:checked+i:after{left:21px}
+#onb{position:fixed;inset:0;z-index:1100;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(16px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#onb.wl{background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%)}
+#onb h1{font:800 1.6rem/1.2 system-ui;margin:0 0 8px}.ob-sub{font:.98rem/1.45 system-ui;color:#cfd8c0;margin:0 0 16px}.ob-sub b{color:#f4f1e6}
+.ob-pg{display:flex;gap:5px;margin-bottom:8px}.ob-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e}.ob-pg i.on{background:#f5b83d}
+.ob-tp{display:flex;justify-content:space-between;align-items:center;font:600 .82rem system-ui;color:#cfd8c0;margin-bottom:12px;min-height:30px}.ob-sk{border:0;background:none;color:#cfd8c0;font:600 .9rem system-ui;padding:6px 0}
+.ob-bd{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px 10px}
+.ob-c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 8px}.ob-c p{font:1.02rem/1.5 system-ui;color:#dfe6d2;margin:0 0 10px;max-width:340px}
+.ob-lg{width:96px;height:96px;border-radius:24px;box-shadow:0 10px 30px #0007;margin-bottom:18px}.ob-ic{font-size:2.6rem;line-height:1;margin:4px 0 10px}
+.ob-go{border:0;border-radius:14px;background:#e8a032;color:#2a1c05;font:800 1.08rem system-ui;padding:16px;width:100%;margin-top:10px}.ob-go:disabled{opacity:.45}
+.ob-no{border:2px solid #ffffff30;border-radius:14px;background:none;color:#f4f1e6;font:600 1rem system-ui;padding:13px;width:100%;margin-top:10px}
+.ob-lt{border:0;background:none;color:#cfd8c0;font:500 .92rem system-ui;margin-top:10px;padding:8px;text-decoration:underline;width:100%}
+.ob-nt{font:.86rem/1.45 system-ui;color:#b9c3aa;background:#00000026;border-radius:12px;padding:10px 12px}
+.ob-gr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ob-sp{background:#ffffff12;border:2px solid #ffffff22;border-radius:14px;padding:6px 4px 8px;color:#f4f1e6;font:600 .78rem system-ui;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px}
+.ob-sp.on{border-color:#e8a032;background:#e8a03228}.ob-sp.on:after{content:"✓";position:absolute;top:4px;right:5px;background:#e8a032;color:#2a1c05;border-radius:50%;width:18px;height:18px;font:900 .72rem/18px system-ui}
+.ob-ch{display:flex;flex-wrap:wrap;gap:8px}.ob-ch button{border:2px solid #ffffff2e;border-radius:99px;padding:10px 15px;font:600 .92rem system-ui;background:#ffffff10;color:#f4f1e6}.ob-ch button.on{background:#e8a032;border-color:#e8a032;color:#2a1c05}
+.ob-cd{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:#ffffff14;border:2px solid #ffffff26;border-radius:16px;padding:14px;margin-bottom:10px;color:#f4f1e6;font:1rem system-ui}.ob-cd>span{font-size:1.7rem}.ob-cd small{display:block;font:.82rem/1.35 system-ui;color:#cfd8c0;margin-top:3px}
+.ob-hp{font:.84rem/1.45 system-ui;color:#cfd8c0;margin-top:6px}.ob-hp summary{text-decoration:underline;cursor:pointer}.ob-hp p{margin:8px 0 0}
+.ob-ev{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#ffffff12;border:0;border-radius:12px;padding:10px 12px;margin-bottom:7px;color:#f4f1e6;font:600 .92rem system-ui}.ob-ev i{width:22px;height:22px;border-radius:6px;background:#ffffff26;flex:0 0 auto;color:#2a1c05;font:900 .8rem/22px system-ui;text-align:center;font-style:normal}.ob-ev.on i{background:#e8a032}.ob-ev small{display:block;font:400 .78rem system-ui;color:#cfd8c0}
+.ob-sm{width:100%;max-width:340px;text-align:left;margin-top:10px}.ob-sm div{font:600 1rem system-ui;padding:10px 0;border-bottom:1px solid #ffffff1c}.ob-ft{text-align:center;font:.86rem system-ui;color:#cfd8c0;margin:10px 0 0}
+#onb .rgb button{background:#ffffff14;border-color:#ffffff30;color:#f3efe2}#onb .rgb button small{color:#cfd8c0}#onb .rgb button.on{border-color:#e8a032;background:#e8a03230}#onb .rgsel{background:#1d2f18;color:#f3efe2;border-color:#e8a032}#onb .rgx{color:#cfd8c0}
 #welc{position:fixed;inset:0;z-index:80;background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%);color:#f3efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px calc(30px + env(safe-area-inset-bottom,0px));font-family:system-ui}
-#welc img{width:110px;height:110px;border-radius:26px;box-shadow:0 10px 30px #0007;margin-bottom:22px}#welc h1{font-size:2rem;margin:0 0 10px}#welc p{font-size:1.05rem;line-height:1.5;opacity:.9;margin:0 0 30px;max-width:340px}
+.rgw{margin:0}.rgb{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rgb button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:12px 8px;font:700 1rem system-ui;display:flex;flex-direction:column;align-items:center;gap:2px}.rgb button span{font-size:1.9rem;line-height:1.1}.rgb button small{font:500 .78rem system-ui;color:var(--mut)}.rgb button.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--card))}
+.rgd{margin-top:10px}.rgsel{width:100%;font:600 1rem system-ui;padding:12px;border-radius:12px;border:2px solid var(--acc);background:var(--card);color:var(--ink)}.rgx{display:block;margin:10px auto 0;border:0;background:none;color:var(--mut);font:500 .85rem system-ui;text-decoration:underline}
+.rgbar{display:flex;align-items:center;gap:8px;width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;font:.95rem system-ui;margin:8px 0 4px;text-align:left}.rgbar span{font-size:1.3rem}.rgbar b{flex:1}.rgbar i{font-style:normal;color:var(--acc);font-weight:700;font-size:.85rem}
+.frg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.frg div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-family:system-ui}.frg small{display:block;color:var(--mut);font-size:.72rem}.frg b{font-size:.95rem}
+#welc .rgw{width:100%;max-width:340px;margin:0 0 22px}#welc .rgq{font:700 1rem system-ui;margin:0 0 10px;opacity:1}#welc .rgb button{background:#ffffff14;border-color:#ffffff30;color:#f3efe2}#welc .rgb button small{color:#cfd8c0}#welc .rgb button.on{border-color:#e8a032;background:#e8a03230}#welc .rgsel{background:#1d2f18;color:#f3efe2;border-color:#e8a032}#welc .rgx{color:#cfd8c0}
+#welc img{width:96px;height:96px;border-radius:24px;box-shadow:0 10px 30px #0007;margin-bottom:18px}#welc h1{font-size:2rem;margin:0 0 10px}#welc p{font-size:1.02rem;line-height:1.5;opacity:.9;margin:0 0 22px;max-width:340px}
 #welc .go{width:100%;max-width:340px;border:0;border-radius:14px;background:#e8a032;color:#2a1c05;font:800 1.1rem system-ui;padding:16px}#welc .lt{border:0;background:none;color:#cfd8c0;font:500 .95rem system-ui;margin-top:16px;padding:8px;text-decoration:underline}
 
 .dc u.nh,.wk u.nh{background:#5d6d7e;color:#fff}.dc u.ev b{display:block;font-weight:800}
@@ -253,8 +278,8 @@ html.in-on,html.in-on body{overflow:hidden}
 <button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-14c<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
-const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
-"Petit gibier":["Lièvre","Faisan","Perdrix grise","Bécasse des bois"],
+const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon","Chamois"],
+"Petit gibier":["Lièvre","Faisan","Perdrix grise","Perdrix rouge","Bécasse des bois"],
 "Gibier d'eau":["Canard colvert","Bernache du Canada","Foulque macroule"],
 "Autre gibier":["Lapin de garenne","Pigeon ramier","Renard"]};
 const CLS={"Cerf élaphe":["Cerf mâle","Biche","Bichette","Faon"],"Daim":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
@@ -482,7 +507,7 @@ let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e
 const TAPS={"mn":[30.0,26.0],"ouv":[149.5,297.5],"om":[192.2,102.9],"fab":[344.0,796.0],"title":[195.0,190.8],"ta":[122.6,434.6],"save":[285.5,813.0],"pst":[195.0,26.0],"bang":[195.0,793.0],"psok":[330.8,762.3],"sang":[71.7,172.8],"plus":[80.7,200.5],"ok":[261.3,813.9],"cpl":[283.1,101.5],"sx":[308.0,689.3],"kg":[308.0,689.3],"photo":[195.0,788.6],"tb":[195.0,651.9],"tabplus":[344.0,591.2],"fsave":[261.3,804.8],"share":[195.0,152.3],"stats":[46.0,796.0],"sprev":[248.0,75.6],"mdoc":[149.5,443.5],"dadd":[195,214.6],"dvid":[73.3,683.6],"tok":[195.0,1091.9],"muok":[285.0,807.0]};
 // étapes : [titre, texte, actions]. Actions : ["s",écran] afficher, ["sl",écran] défiler, ["t",bouton] toucher, ["n",note] note jaune, ["w",ms] attendre, ["r",bouton] anneau, ["i",image] image par-dessus
 const TOUR=[
- ["Consulte les périodes d'ouverture","Les dates d'ouverture et de fermeture du gibier en Wallonie, selon ton mode de chasse.",[["s","cal0"],["w",1400],["t","mn"],["s","drawer"],["w",1500],["t","ouv"],["s","ouv0"],["n","Ce qui est ouvert aujourd'hui, avec la frise de la saison"],["w",3200],["t","om"],["s","ouv1"],["n","Choisis ton mode : battue, approche et affût, chasse à vol"],["w",2800],["sl","ouv2"],["w",1500]]],
+ ["Consulte les périodes d'ouverture","Les dates d'ouverture et de fermeture du gibier dans ta région (Wallonie ou ton département en France), selon ton mode de chasse.",[["s","cal0"],["w",1400],["t","mn"],["s","drawer"],["w",1500],["t","ouv"],["s","ouv0"],["n","Ce qui est ouvert aujourd'hui, avec la frise de la saison"],["w",3200],["t","om"],["s","ouv1"],["n","Choisis ton mode : battue, approche et affût, chasse à vol"],["w",2800],["sl","ouv2"],["w",1500]]],
  ["Ajoute une journée de chasse","Touche + pour créer ta journée : titre, type de chasse, heure de rendez-vous et lieu.",[["s","cal0"],["w",1300],["t","fab"],["s","form0"],["n","La météo et les heures de lever et coucher du soleil s'affichent"],["w",3000],["t","title"],["s","form1"],["n","Le lieu se remplit tout seul si tu l'as déjà utilisé"],["w",3000],["t","save"],["s","calday"],["w",1500]]],
  ["Le jour J, le bouton BANG apparaît","Le jour de ta chasse, un gros bouton BANG s'affiche en bas du calendrier.",[["s","calday"],["w",900],["r","bang"],["w",3500]]],
  ["Encode ton numéro de poste","Touche « N° de poste » en haut de l'écran. Il reste affiché toute la journée.",[["s","calday"],["w",1200],["t","pst"],["s","poste"],["n","Tape ton numéro, puis valide"],["w",2600],["t","psok"],["s","calposte"],["n","« Poste n° 7 » reste affiché jusqu'au soir"],["w",2500]]],
@@ -492,18 +517,18 @@ const TOUR=[
  ["Consulte tes statistiques","La saison en cours et les saisons passées : réussite, prélèvements, records, poste porte-bonheur…",[["s","cal2"],["w",1200],["t","stats"],["s","stats0"],["n","Journées, prélèvements et réussite"],["w",3500],["sl","stats1"],["n","Tes records, ton poste porte-bonheur, tes résultats par arme"],["w",3800],["sl","stats3"],["n","Compare tes saisons et tes lieux de chasse"],["w",3500],["s","stats0"],["w",1000],["t","sprev"],["s","statsP"],["n","Revois une saison passée"],["w",3000]]],
  ["Tes documents toujours à portée de main","Ajoute ton permis de chasse, ton attestation d'assurance et ta carte d'identité : tout est dans ton téléphone, même sans réseau.",[["s","cal0"],["w",1200],["t","mn"],["s","drawer"],["w",1300],["t","mdoc"],["s","docs0"],["n","Prends une photo ou choisis un fichier"],["w",2600],["t","dadd"],["s","docs1"],["n","Indique la date de fin de validité de ton permis et de ton assurance"],["w",3200],["t","dvid"],["s","docs2"],["n","Montre-les en un geste lors d'un contrôle"],["w",3000]]]
 ];
-function startTour(){if($("#tour"))return;track("tour_started");shut&&document.body.classList.contains("dr")&&shut();
+function startTour(onEnd){if($("#tour"))return;track("tour_started");shut&&document.body.classList.contains("dr")&&shut();
  const o=document.createElement("div");o.id="tour";document.body.appendChild(o);document.documentElement.classList.add("in-on");
  const N=TOUR.length;let k=0,run=0;const pre={};
  const load=n=>pre[n]||(pre[n]=new Promise(r=>{const i=new Image();i.onload=i.onerror=()=>r(i);i.src="tour/"+n+".webp"}));
  TOUR.forEach(st=>st[2].forEach(a=>{if(a[0]=="s"||a[0]=="sl"||a[0]=="i")load(a[1])}));
- const close=()=>{run++;o.remove();document.documentElement.classList.remove("in-on")};
+ const close=()=>{run++;o.remove();document.documentElement.classList.remove("in-on");if(onEnd){const f=onEnd;onEnd=null;f()}};
  const sleep=(ms,id)=>new Promise((res,rej)=>setTimeout(()=>id==run?res():rej(0),ms));
  function draw(){run++;const id=run;
   if(k>=N){o.innerHTML=`<div class="to-top"><div class="to-pg">${TOUR.map(()=>'<i class="on"></i>').join("")}</div><button class="to-x" id="to-x">Fermer</button></div>
-   <div class="to-end"><img src="icons/icon-192.png" alt=""><h2>Tu as tout vu !</h2><p>${S.setupDone?"Ajoute ta prochaine journée de chasse avec le bouton <b>+</b> du calendrier.":"Prends 1 minute pour préparer ta saison : tes journées de chasse, les lieux et tes invités."}</p><p style="font-size:.85rem;color:#b9c3aa">La visite reste disponible dans le menu ☰ › <b>Découvre l'application</b>.</p></div>
-   <div class="to-bt"><button class="to-pv" id="to-p">‹</button><button class="to-nx" id="to-n">${S.setupDone?"Fermer":"Je suis prêt"}</button></div>${S.setupDone?"":`<button class="su-lt" id="to-l" style="display:block;margin:6px auto 0">Plus tard, je préfère explorer seul</button>`}`;
-   $("#to-x").onclick=close;if($("#to-l"))$("#to-l").onclick=()=>{S.setupDone=true;save();close()};$("#to-n").onclick=()=>{close();if(!S.setupDone)startSetup()};$("#to-p").onclick=()=>{k=N-1;draw()};return}
+   <div class="to-end"><img src="icons/icon-192.png" alt=""><h2>Tu as tout vu !</h2><p>${onEnd?"Dernière étape : tes journées de chasse.":S.setupDone?"Ajoute ta prochaine journée de chasse avec le bouton <b>+</b> du calendrier.":"Prends 1 minute pour préparer ta saison : tes journées de chasse, les lieux et tes invités."}</p><p style="font-size:.85rem;color:#b9c3aa">La visite reste disponible dans le menu ☰ › <b>Découvre l'application</b>.</p></div>
+   <div class="to-bt"><button class="to-pv" id="to-p">‹</button><button class="to-nx" id="to-n">${onEnd?"Continuer":S.setupDone?"Fermer":"Je suis prêt"}</button></div>${S.setupDone||onEnd?"":`<button class="su-lt" id="to-l" style="display:block;margin:6px auto 0">Plus tard, je préfère explorer seul</button>`}`;
+   $("#to-x").onclick=close;if($("#to-l"))$("#to-l").onclick=()=>{S.setupDone=true;save();close()};$("#to-n").onclick=()=>{const w=!!onEnd;close();if(!w&&!S.setupDone)startSetup()};$("#to-p").onclick=()=>{k=N-1;draw()};return}
   const [ti,tx,acts]=TOUR[k];
   o.innerHTML=`<div class="to-top"><div class="to-pg">${TOUR.map((_,i)=>`<i class="${i<=k?"on":""}"></i>`).join("")}</div><span class="to-n">${k+1}/${N}</span><button class="to-x" id="to-x">Quitter</button></div>
   <div class="to-cap"><h2>${ti}</h2><p>${tx}</p><div class="to-note" id="to-no"></div></div>
@@ -607,7 +632,7 @@ async function phFlush(){if(phBusy||!phOn()||!(S.phq||[]).length||!navigator.onL
  try{const r=await fetch(PH_HOST+"/batch/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({api_key:PH_KEY,batch}),keepalive:true});if(r.ok){S.phq=S.phq.slice(batch.length);save()}}catch(e){}phBusy=false}
 addEventListener("online",phFlush);
 /* le popup passe après tous les autres : accueil, visite, configuration, note de mise à jour, nouveauté documents */
-const popPend=()=>firstRunPending()||(!S.tourAsked&&isSA())||(S.upNote!=UPN&&(evs().length||S.tourAsked))||(!S.newsDocs&&!(S.docs&&Object.keys(S.docs).length));
+const popPend=()=>firstRunPending()||(!S.reg&&!S.regAsked)||(!S.tourAsked&&isSA())||(S.upNote!=UPN&&(evs().length||S.tourAsked))||(!S.newsDocs&&!(S.docs&&Object.keys(S.docs).length));
 let stFree=0;
 function statsAsk(){if(!PH_KEY||S.stats!==undefined)return;if(popPend()||!popFree()){stFree=0;setTimeout(statsAsk,2000);return}if(++stFree<2){setTimeout(statsAsk,1500);return}
  modal(`<div style="text-align:center"><div style="font-size:2.4rem;line-height:1;margin:4px 0 8px">📊</div><h2 style="margin:0 0 8px">Aide-nous à améliorer ChasseLog</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 10px">Accepte-tu de partager des <b>statistiques d'utilisation anonymes</b> ? Par exemple : « une journée a été créée », « BANG a été utilisé ».</p><p class="mut sans" style="font-size:.88rem;margin:0 0 16px">🔒 Jamais tes tirs, tes lieux, tes positions GPS ni tes documents. Si tu refuses, on note seulement « un refus », sans rien d'autre. Tu peux changer d'avis à tout moment dans le menu.</p>
@@ -615,16 +640,131 @@ function statsAsk(){if(!PH_KEY||S.stats!==undefined)return;if(popPend()||!popFre
  $("#st-y").onclick=()=>{S.stats=true;save();closeM();track("stats_optin");track("app_open",appOpenProps())};$("#st-n").onclick=()=>{S.stats=false;S.phq=[];save();closeM();phOptout()}}
 /* refus : un seul compteur anonyme, sans identifiant de l'appareil (identifiant jetable), puis plus rien */
 function phOptout(){try{fetch(PH_HOST+"/batch/",{method:"POST",headers:{"Content-Type":"application/json"},keepalive:true,body:JSON.stringify({api_key:PH_KEY,batch:[{event:"stats_optout",distinct_id:"x"+Math.random().toString(36).slice(2,12),timestamp:new Date().toISOString(),properties:{app_version:APP_V,$process_person_profile:false}}]})}).catch(()=>{})}catch(e){}}
-const firstRunPending=()=>!!$("#welc")||!!$("#tour")||!!$("#setup");
-const appOpenProps=()=>({days:evs().filter(e=>!e.nh).length,guns:(S.guns||[]).length,docs:Object.keys(S.docs||{}).length,favs:(S.favs||[]).length});
+const firstRunPending=()=>!!$("#welc")||!!$("#onb")||!!$("#tour")||!!$("#setup");
+const appOpenProps=()=>({reg:S.reg||"",dep:S.reg=="fr"?S.dep||"":"",days:evs().filter(e=>!e.nh).length,guns:(S.guns||[]).length,docs:Object.keys(S.docs||{}).length,favs:(S.favs||[]).length});
 setTimeout(statsAsk,2500);setTimeout(()=>{if(phOn()){const t=iso(new Date());track("app_open",Object.assign(appOpenProps(),{first_today:S.phDay!=t}));S.phDay=t;save()}},6000);
 const UPN="2026-10-12";
+/* ---------- région de chasse : Wallonie ou France (département) ---------- */
+const FRD=[["01","Ain"],["02","Aisne"],["03","Allier"],["04","Alpes-de-Haute-Provence"],["05","Hautes-Alpes"],["06","Alpes-Maritimes"],["07","Ardèche"],["08","Ardennes"],["09","Ariège"],["10","Aube"],["11","Aude"],["12","Aveyron"],["13","Bouches-du-Rhône"],["14","Calvados"],["15","Cantal"],["16","Charente"],["17","Charente-Maritime"],["18","Cher"],["19","Corrèze"],["2A","Corse-du-Sud"],["2B","Haute-Corse"],["21","Côte-d'Or"],["22","Côtes-d'Armor"],["23","Creuse"],["24","Dordogne"],["25","Doubs"],["26","Drôme"],["27","Eure"],["28","Eure-et-Loir"],["29","Finistère"],["30","Gard"],["31","Haute-Garonne"],["32","Gers"],["33","Gironde"],["34","Hérault"],["35","Ille-et-Vilaine"],["36","Indre"],["37","Indre-et-Loire"],["38","Isère"],["39","Jura"],["40","Landes"],["41","Loir-et-Cher"],["42","Loire"],["43","Haute-Loire"],["44","Loire-Atlantique"],["45","Loiret"],["46","Lot"],["47","Lot-et-Garonne"],["48","Lozère"],["49","Maine-et-Loire"],["50","Manche"],["51","Marne"],["52","Haute-Marne"],["53","Mayenne"],["54","Meurthe-et-Moselle"],["55","Meuse"],["56","Morbihan"],["57","Moselle"],["58","Nièvre"],["59","Nord"],["60","Oise"],["61","Orne"],["62","Pas-de-Calais"],["63","Puy-de-Dôme"],["64","Pyrénées-Atlantiques"],["65","Hautes-Pyrénées"],["66","Pyrénées-Orientales"],["67","Bas-Rhin"],["68","Haut-Rhin"],["69","Rhône"],["70","Haute-Saône"],["71","Saône-et-Loire"],["72","Sarthe"],["73","Savoie"],["74","Haute-Savoie"],["75","Paris"],["76","Seine-Maritime"],["77","Seine-et-Marne"],["78","Yvelines"],["79","Deux-Sèvres"],["80","Somme"],["81","Tarn"],["82","Tarn-et-Garonne"],["83","Var"],["84","Vaucluse"],["85","Vendée"],["86","Vienne"],["87","Haute-Vienne"],["88","Vosges"],["89","Yonne"],["90","Territoire de Belfort"],["91","Essonne"],["92","Hauts-de-Seine"],["93","Seine-Saint-Denis"],["94","Val-de-Marne"],["95","Val-d'Oise"]];
+const frNom=c=>(FRD.find(d=>d[0]==c)||[])[1]||"";
+const regLbl=()=>S.reg=="fr"?(S.dep?frNom(S.dep)+" ("+S.dep+")":"France"):S.reg=="xx"?"Autre pays":"Wallonie";
+const regFlag=()=>S.reg=="fr"?"🇫🇷":S.reg=="xx"?"🌍":"🇧🇪";
+let FRO=null;async function frData(){if(FRO)return FRO;try{const r=await fetch("data/ouv-fr.json");if(r.ok)FRO=await r.json()}catch(e){}return FRO}
+function regSet(reg,dep){S.reg=reg;S.dep=reg=="fr"?dep:null;S.regAsked=true;save();track("region_set",{reg,dep:reg=="fr"?dep:null});if(reg=="fr")frData()}
+const depSel=(id,v)=>`<select id="${id}" class="rgsel"><option value="">Choisis ton département…</option>${FRD.map(([c,n])=>`<option value="${c}"${v==c?" selected":""}>${c} · ${esc(n)}</option>`).join("")}</select>`;
+/* bloc de choix réutilisable (accueil, popup, réglage) */
+function regBlock(p){const r=S.reg||"",d=S.dep||"";return `<div class="rgw" id="${p}-w"><div class="rgb">
+ <button data-rg="be" class="${r=="be"?"on":""}"><span>🇧🇪</span>Belgique<small>Wallonie</small></button>
+ <button data-rg="fr" class="${r=="fr"?"on":""}"><span>🇫🇷</span>France<small>par département</small></button></div>
+ <div class="rgd" id="${p}-d" ${r=="fr"?"":"hidden"}>${depSel(p+"-s",d)}</div>
+ <button class="rgx" data-rg="xx">${r=="xx"?"✓ ":""}Je chasse dans un autre pays</button></div>`}
+function regWire(p,onDone){let r=S.reg||"",d=S.dep||"";const w=$("#"+p+"-w");if(!w)return;
+ const upd=()=>{w.querySelectorAll("[data-rg]").forEach(b=>b.classList.toggle("on",b.dataset.rg==r));$("#"+p+"-d").hidden=r!="fr"};
+ w.querySelectorAll("[data-rg]").forEach(b=>b.onclick=()=>{r=b.dataset.rg;upd();if(r=="fr"){if(d)onDone(r,d);else setTimeout(()=>{try{$("#"+p+"-s").focus()}catch(e){}},50)}else onDone(r,null)});
+ $("#"+p+"-s").onchange=e=>{d=e.target.value;if(d)onDone("fr",d)}}
+function regModal(first){modal(`<div style="text-align:center"><div style="font-size:2.3rem;line-height:1;margin:2px 0 8px">📍</div><h2 style="margin:0 0 6px">Où chasses-tu ?</h2><p class="sans" style="font-size:.98rem;line-height:1.5;margin:0 0 14px">${first?"ChasseLog arrive en France ! ":""}Indique où tu chasses : ChasseLog te donnera les <b>dates d'ouverture les plus justes</b> pour ta région.</p></div>
+ ${regBlock("rgm")}<p class="mut sans" style="font-size:.8rem;text-align:center;margin:12px 0 0">Tu peux le changer à tout moment dans ☰ › Périodes d'ouverture.</p>`);
+ regWire("rgm",(r,d)=>{regSet(r,d);closeM();toast(r=="fr"?"C'est noté : "+frNom(d)+" ("+d+").":r=="be"?"C'est noté : Wallonie.":"C'est noté.");if(view=="ouv")render()})}
+/* demande unique aux utilisateurs existants, après les autres popups */
+function regAsk(){if(S.reg||S.regAsked)return;if(firstRunPending()||(!S.tourAsked&&isSA())||(S.upNote!=UPN&&(evs().length||S.tourAsked))||(!S.newsDocs&&!(S.docs&&Object.keys(S.docs).length))||!popFree()){setTimeout(regAsk,2500);return}
+ S.regAsked=true;save();regModal(true)}
+setTimeout(regAsk,2200);
+const regBar=()=>`<button class="rgbar" id="rg-ch"><span>${regFlag()}</span><b>${esc(regLbl())}</b><i>Changer</i></button>`;
+const regBind=()=>{if($("#rg-ch"))$("#rg-ch").onclick=()=>regModal(false)};
+function rOuvXX(){$("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Périodes d'ouverture</h1>${regBar()}
+ <div class="card sans" style="line-height:1.5;margin-top:12px">Les périodes d'ouverture ne sont pas encore disponibles pour ton pays. ChasseLog couvre aujourd'hui la <b>Wallonie</b> et la <b>France</b>.<br><br>Dis-nous où tu chasses via ☰ › <b>« Envoyez-nous un commentaire ! »</b> : ton pays arrivera peut-être bientôt !</div><button class="p" id="xx-fb" style="width:100%;margin-top:10px">Dire où je chasse</button>`;$("#bk2").onclick=backTo;regBind();$("#xx-fb").onclick=()=>go("fb")}
+
+/* France : périodes en dates complètes (la saison peut aller de juin à juin) */
+const fDays=(a,b)=>Math.round((new Date(b+"T12:00")-new Date(a+"T12:00"))/864e5);
+const fFmt=d=>d.slice(8,10)+"/"+d.slice(5,7)+(d.slice(5,7)=="06"?"/"+d.slice(2,4):"");/* juin existe deux fois dans la fenêtre : on précise l'année */
+function fStat(rs){if(!rs||!rs.length)return{c:"x",t:"Interdit"};const t=iso(new Date());
+ const cur=rs.find(([a,b])=>a<=t&&t<=b);if(cur){const left=fDays(t,cur[1]);return{c:"o",t:"Ouvert",d:"jusqu'au "+fFmt(cur[1])+(left<=14?` (plus que ${left} j)`:"")}}
+ const nx=rs.filter(([a])=>a>t).sort()[0];return{c:"f",t:"Fermé",d:nx?"ouverture le "+fFmt(nx[0]):"saison terminée"}}
+function fBar(rs){const W=FRO.win,N=fDays(W[0],W[1])+1,t=iso(new Date()),p=d=>Math.max(0,Math.min(N,fDays(W[0],d)))/N*100;
+ const ms=[];for(let d=new Date(W[0]+"T12:00");iso(d)<=W[1];d.setMonth(d.getMonth()+1))ms.push("JFMAMJJASOND"[d.getMonth()]);
+ return `<div class="tlb">${(rs||[]).map(([a,b])=>`<i style="left:${p(a)}%;width:${p(b)-p(a)+100/N}%"></i>`).join("")}${t>=W[0]&&t<=W[1]?`<u style="left:${p(t)}%"></u>`:""}</div><div class="tlm">${ms.map(x=>`<span>${x}</span>`).join("")}</div>`}
+function fRow(l,rs,n){const st=fStat(rs);return `<div class="orow"><div class="ol"><span>${l?esc(l):""}</span><span class="bdg ${st.c}">${st.t}</span></div>
+ ${rs&&rs.length?`<div class="ol" style="margin-top:3px"><span class="od">${rs.map(([a,b])=>fFmt(a)+" → "+fFmt(b)).join(" · ")}</span><span class="mut" style="font-size:.78rem;text-align:right">${st.d||""}</span></div>${fBar(rs)}`:""}${n?`<div class="onote">${esc(n)}</div>`:""}</div>`}
+/* France : affichage par département */
+const FRG=[["Grand gibier",["Cerf","Chevreuil","Daim","Mouflon","Chamois","Sanglier"]],["Petit gibier",["Lièvre","Lapin","Faisan","Perdrix","Caille"]],["Oiseaux de passage",["Bécasse","Pigeon ramier","Grives"]],["Autre gibier",["Renard"]]];
+const FRIMG={Cerf:"Cerf mâle",Chevreuil:"Brocard",Faisan:"Faisan – coq",Lapin:"Lapin de garenne",Perdrix:"Perdrix grise",Grives:"Pigeon ramier"};
+const FRM=[["bat","Battue"],["aa","Approche et affût"]];let ouvF="bat";
+const frRows=(it,M)=>it.rows?it.rows.map(r=>({l:r.l,rs:r[M]||r.g,n:r.n})).filter(r=>r.rs):[{l:"",rs:it[M]||it.g,n:it.n}].filter(r=>r.rs);
+function rOuvFR(){const td=new Date().toLocaleDateString("fr-BE",{day:"numeric",month:"long"});
+ const head=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Périodes d'ouverture</h1>`;
+ if(!S.dep){$("#app").innerHTML=head+regBar()+`<div class="card sans" style="margin-top:12px">Choisis ton département pour voir ses dates d'ouverture.</div>`;$("#bk2").onclick=backTo;regBind();return}
+ if(!FRO){$("#app").innerHTML=head+regBar()+`<p class="mut sans">Chargement des dates…</p>`;$("#bk2").onclick=backTo;regBind();frData().then(x=>{if(view=="ouv")render();if(!x&&$("#app"))$("#app").insertAdjacentHTML("beforeend",'<div class="card sans">Impossible de charger les dates (pas de connexion ?). Réessaie plus tard.</div>')});return}
+ const D=FRO.dep[S.dep],M=ouvF;
+ if(!D){$("#app").innerHTML=head+regBar()+`<div class="card sans" style="margin-top:12px">📅 Les dates de ce département pour la saison ${FRO.saison} arrivent très bientôt dans ChasseLog. En attendant, consulte l'arrêté préfectoral de ton département ou ta fédération départementale des chasseurs.</div>`;$("#bk2").onclick=backTo;regBind();return}
+ let nOpen=0;const body=FRG.map(([g,L])=>{const its=L.filter(k=>D.sp[k]).map(k=>{const it=D.sp[k],rows=frRows(it,M);if(!rows.length)return"";rows.forEach(r=>{if(fStat(r.rs).c=="o")nOpen++});
+  return `<div class="ob"><div class="oh">${sil(FRIMG[k]||k,56)}<div class="on2"><b>${esc(k)}</b>${it.n&&it.rows?`<div class="onote" style="margin:0">${esc(it.n)}</div>`:""}</div></div>${rows.map(r=>fRow(r.l,r.rs,it.rows?r.n:r.n)).join("")}</div>`}).join("");return its?`<h2>${g}</h2>`+its:""}).join("");
+ const nat=FRO.nat?`<h2>Gibier d'eau</h2><div class="ob">${FRO.nat.map(r=>fRow(r.l,r.r,r.n)).join("")}</div>`:"";
+ $("#app").innerHTML=`${head}<p class="mut sans" style="margin-top:-6px">Saison ${FRO.saison} · aujourd'hui ${td}</p>${regBar()}
+ <div class="frg"><div><small>Ouverture générale</small><b>${fmtL2(D.ouv)}</b></div><div><small>Clôture générale</small><b>${fmtL2(D.clo)}</b></div></div>${D.n?`<p class="sans" style="font-size:.85rem;margin:2px 0 8px">ℹ️ ${esc(D.n)}</p>`:""}
+ <div class="chips2">${FRM.map(([k,l])=>`<button class="fc${M==k?" on":""}" data-of="${k}">${l}</button>`).join("")}</div>
+ <p class="sans" style="margin:10px 0 0"><b>${nOpen}</b> ${nOpen>1?"périodes ouvertes":"période ouverte"} aujourd'hui · ${M=="bat"?"battue et chasse collective":"approche et affût"}</p>
+ ${body}${nat}
+ <p class="mut sans" style="font-size:.78rem;margin-top:14px">Source : <a href="${esc(D.src)}" target="_blank" rel="noopener">arrêté préfectoral ${esc(frNom(S.dep))} ${FRO.saison}</a>${FRO.nat?" et arrêtés ministériels (gibier d'eau)":""}. Information indicative : vérifie toujours l'arrêté, ton plan de chasse et les règles de ton territoire (jours de chasse, horaires, arrêtés complémentaires).</p><div style="height:40px"></div>`;
+ $("#bk2").onclick=backTo;regBind();document.querySelectorAll("[data-of]").forEach(b=>b.onclick=()=>{ouvF=b.dataset.of;render();window.scrollTo(0,0)})}
+const fmtL2=ds=>ds?new Date(ds+"T12:00").toLocaleDateString("fr-BE",{day:"numeric",month:"long",year:"numeric"}):"—";
+
+
 /* premier lancement : écran d'accueil plein écran, avant le calendrier */
+/* ---------- assistant de démarrage plein écran (première ouverture) ----------
+   bienvenue → statistiques anonymes → région → espèces → modes → visite guidée → journées (agenda .ics ou calendrier) → prêt */
+const ONB_KW=/chass|battue|traque|affût|affut|approche|poste|tableau|brocard|sanglier|chevreuil|saint[- ]hubert|rdv|rendez/i;
+function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#onb"))return;
+ const o=document.createElement("div");o.id="onb";document.body.appendChild(o);document.documentElement.classList.add("in-on");
+ const ALL=Object.values(G).flat(),SPM=["Chevreuil","Sanglier","Cerf élaphe","Daim","Mouflon","Chamois","Renard","Lièvre","Faisan","Perdrix grise","Perdrix rouge","Bécasse des bois","Canard colvert","Pigeon ramier","Lapin de garenne","Bernache du Canada","Foulque macroule"];
+ const R={sp:new Set(ALL.filter(x=>!S.hs.includes(x)).length<ALL.length?ALL.filter(x=>!S.hs.includes(x)):["Chevreuil","Sanglier"]),md:new Set(visM().length<MODES.length?visM():["Battue","Approche","Affût"]),imp:0,tour:false};
+ let st=0,icsL=null;const N=6;
+ const bar=k=>`<div class="ob-pg">${[...Array(N)].map((_,i)=>`<i class="${i<k?"on":""}"></i>`).join("")}</div><div class="ob-tp"><span>Étape ${k} sur ${N}</span>${k>=2&&k<=4||k==6?`<button class="ob-sk" data-skip>Passer</button>`:""}</div>`;
+ const end=()=>{o.remove();document.documentElement.classList.remove("in-on")};
+ const finish=()=>{S.setupDone=true;save();track("onboarding_done",{reg:S.reg||"",dep:S.reg=="fr"?S.dep||"":"",species:ALL.filter(x=>!S.hs.includes(x)).join(","),nsp:ALL.filter(x=>!S.hs.includes(x)).length,modes:visM().join(","),imported:R.imp,tour:R.tour});};
+ const spCard=n=>{const im=sil(n,72);return `<button class="ob-sp${R.sp.has(n)?" on":""}" data-sp="${esc(n)}">${im||'<span style="font-size:2rem;line-height:54px">🐐</span>'}<span>${esc(n.replace(" de garenne","").replace(" des bois","").replace(" élaphe","").replace("Canard colvert","Canard"))}</span></button>`};
+ function draw(){let h="";
+  if(st==0)h=`<div class="ob-c ob-wl"><img class="ob-lg" src="icons/icon-192.png" alt=""><h1>Bienvenue dans ChasseLog !</h1><p>Ton carnet de chasse : tes journées, tes tirs et ta saison, toujours dans ta poche.</p><p>On prépare tout ensemble en 2 minutes.</p></div><button class="ob-go" id="ob-n">Commencer</button>`;
+  else if(st==1)h=bar(1)+`<div class="ob-bd"><div class="ob-ic">📊</div><h1>Aide-nous à améliorer ChasseLog</h1><p class="ob-sub">Partages-tu des statistiques d'utilisation <b>anonymes</b> ? Par exemple : « une journée a été créée », ta région, tes espèces préférées.</p><div class="ob-nt">🔒 Jamais tes tirs, tes lieux, tes positions GPS ni tes documents. Si tu refuses, on note seulement « un refus ». Modifiable à tout moment dans le menu.</div></div><button class="ob-go" id="ob-y">Oui, j'aide ChasseLog</button><button class="ob-no" id="ob-no">Non merci</button>`;
+  else if(st==2)h=bar(2)+`<div class="ob-bd"><div class="ob-ic">📍</div><h1>Où chasses-tu ?</h1><p class="ob-sub">Pour te donner les dates d'ouverture les plus justes.</p>${regBlock("ob")}</div><button class="ob-go" id="ob-n" ${S.reg&&(S.reg!="fr"||S.dep)?"":"disabled"}>Continuer</button>`;
+  else if(st==3){const L=SPM.filter(x=>ALL.includes(x));h=bar(3)+`<div class="ob-bd"><h1>Tes espèces</h1><p class="ob-sub">Touche celles que tu chasses : elles te seront proposées en premier. <b>Tout est modifiable ensuite</b> dans ☰ › Gérer mes espèces et modes de chasse.</p><div class="ob-gr">${L.map(spCard).join("")}</div></div><button class="ob-go" id="ob-n">${R.sp.size?"Continuer · "+R.sp.size+" espèce"+(R.sp.size>1?"s":""):"Continuer"}</button>`}
+  else if(st==4)h=bar(4)+`<div class="ob-bd"><div class="ob-ic">🎯</div><h1>Comment chasses-tu ?</h1><p class="ob-sub">Choisis tes modes de chasse. <b>Modifiable ensuite</b> dans les paramètres.</p><div class="ob-ch">${MODES.map(m=>`<button class="${R.md.has(m)?"on":""}" data-md="${esc(m)}">${esc(m)}</button>`).join("")}</div></div><button class="ob-go" id="ob-n">Continuer</button>`;
+  else if(st==5)h=bar(5)+`<div class="ob-c"><div class="ob-ic" style="font-size:4rem">🧭</div><h1>Découvre ChasseLog en 2 minutes</h1><p class="ob-sub">Encoder une journée, faire BANG, partager ton tableau, consulter tes stats et tes documents.</p></div><button class="ob-go" id="ob-t">Lancer la visite guidée</button><button class="ob-lt" id="ob-n">Plus tard (☰ › Découvre l'application)</button>`;
+  else if(st==6)h=bar(6)+`<div class="ob-bd"><div class="ob-ic">📅</div><h1>Tes journées de chasse</h1><p class="ob-sub">Comment veux-tu ajouter les dates de ta saison ?</p>
+   <button class="ob-cd" id="ob-ics"><span>📥</span><div><b>Importer mon agenda</b><small>Google Agenda, Outlook, Calendrier iPhone (fichier .ics) : on repère les événements « chasse », « battue », « traque »…</small></div></button>
+   <button class="ob-cd" id="ob-cal"><span>👆</span><div><b>Je les sélectionne sur un calendrier</b><small>touche tes dates, puis lieu et invités</small></div></button>
+   <input type="file" id="ob-f" accept=".ics,text/calendar" hidden><details class="ob-hp"><summary>Comment obtenir le fichier .ics ?</summary><p><b>Google Agenda</b> (sur ordinateur) : Paramètres › Importer et exporter › Exporter, puis décompresse le .zip.<br><b>iPhone</b> : partage ton calendrier ou exporte-le depuis iCloud.com.<br><b>Outlook</b> : Calendrier › Partager › Publier, puis « ICS ».</p></details></div><button class="ob-lt" id="ob-n">Plus tard</button>`;
+  else if(st==7){const L=icsL,k=L.filter(x=>x.on).length;h=`<div class="ob-tp"><button class="ob-sk" id="ob-b">‹ Retour</button><span></span></div><div class="ob-bd"><h1>${L.filter(x=>x.m).length} journée${L.filter(x=>x.m).length>1?"s":""} trouvée${L.filter(x=>x.m).length>1?"s":""} 🎉</h1><p class="ob-sub">Dans ton agenda, avec les mots « chasse », « battue », « traque »… Décoche celles à ignorer.</p>
+   ${L.map((x,i)=>x.m||x.on||icsL.all?`<button class="ob-ev${x.on?" on":""}" data-ev="${i}"><i>${x.on?"✓":""}</i><div>${esc(x.title)}<small>${new Date(x.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"short",day:"numeric",month:"short",year:"numeric"})}${x.loc?" · "+esc(x.loc):""}</small></div></button>`:"").join("")}
+   ${!icsL.all&&L.some(x=>!x.m)?`<button class="ob-lt" id="ob-all">${L.filter(x=>!x.m).length>1?"Voir aussi les "+L.filter(x=>!x.m).length+" autres événements":"Voir aussi l'autre événement"}</button>`:""}</div><button class="ob-go" id="ob-add" ${k?"":"disabled"}>Ajouter ${k} journée${k>1?"s":""}</button>`}
+  else if(st==8){const ns=ALL.filter(x=>!S.hs.includes(x)).length;h=`<div class="ob-c ob-wl"><div class="ob-ic" style="font-size:4rem">🎯</div><h1>Tout est prêt !</h1><p>Bonne saison, et que ton tableau soit beau 🦌</p><div class="ob-sm"><div>📍 ${esc(regLbl())}</div><div>🦌 ${ns} espèce${ns>1?"s":""} · ${visM().length} mode${visM().length>1?"s":""} de chasse</div>${R.imp?`<div>📅 ${R.imp} journée${R.imp>1?"s":""} ajoutée${R.imp>1?"s":""}</div>`:""}<div>📊 Statistiques anonymes : ${S.stats?"oui":"non"}</div></div></div><button class="ob-go" id="ob-n">Ouvrir mon carnet</button><p class="ob-ft">Tout se modifie dans le menu ☰</p>`}
+  o.className=st==0||st==8?"wl":"";o.innerHTML=h;bind()}
+ const next=()=>{st++;draw()};
+ function bind(){const q=x=>o.querySelector(x);
+  o.querySelectorAll("[data-skip]").forEach(b=>b.onclick=()=>{if(st==6){st=8;finish();draw()}else next()});
+  if(st==0)q("#ob-n").onclick=next;
+  if(st==1){q("#ob-y").onclick=()=>{S.stats=true;save();track("stats_optin");next()};q("#ob-no").onclick=()=>{S.stats=false;S.phq=[];save();phOptout();next()}}
+  if(st==2){regWire("ob",(r,d)=>{regSet(r,d);q("#ob-n").disabled=!(r!="fr"||d)});q("#ob-n").onclick=next}
+  if(st==3){o.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{const n=b.dataset.sp;R.sp.has(n)?R.sp.delete(n):R.sp.add(n);const y=q(".ob-bd").scrollTop;draw();q(".ob-bd").scrollTop=y});
+   q("#ob-n").onclick=()=>{if(R.sp.size){S.hs=ALL.filter(x=>!R.sp.has(x));save()}next()}}
+  if(st==4){o.querySelectorAll("[data-md]").forEach(b=>b.onclick=()=>{const n=b.dataset.md;R.md.has(n)?R.md.delete(n):R.md.add(n);b.classList.toggle("on",R.md.has(n))});
+   q("#ob-n").onclick=()=>{if(R.md.size){S.hm=MODES.filter(x=>!R.md.has(x));save()}next()}}
+  if(st==5){q("#ob-t").onclick=()=>{R.tour=true;o.style.display="none";startTour(()=>{o.style.display="";st=6;draw()})};q("#ob-n").onclick=next}
+  if(st==6){q("#ob-ics").onclick=()=>q("#ob-f").click();q("#ob-f").onchange=async e=>{const f=e.target.files[0];if(!f)return;let L=[];try{L=parseICS(await f.text())}catch(x){}
+    L=L.filter(x=>!evs().some(v=>v.date==x.date&&v.title==x.title)).sort((a,b)=>a.date<b.date?-1:1);if(!L.length){toast("Aucun événement trouvé dans ce fichier.");return}
+    const td=iso(new Date()),cut=(+td.slice(0,4)-1)+td.slice(4);L.forEach(x=>{x.m=ONB_KW.test(x.title+" "+(x.loc||"")+" "+(x.desc||""))&&x.date>=cut;x.on=x.m});icsL=L;icsL.all=!L.some(x=>x.m);if(icsL.all)L.forEach(x=>x.on=false);st=7;draw()};
+   q("#ob-cal").onclick=()=>{finish();end();startSetup()};q("#ob-n").onclick=()=>{st=8;finish();draw()}}
+  if(st==7){q("#ob-b").onclick=()=>{st=6;draw()};o.querySelectorAll("[data-ev]").forEach(b=>b.onclick=()=>{const x=icsL[+b.dataset.ev];x.on=!x.on;const y=q(".ob-bd").scrollTop;draw();q(".ob-bd").scrollTop=y});
+   if(q("#ob-all"))q("#ob-all").onclick=()=>{icsL.all=true;draw()};
+   q("#ob-add").onclick=()=>{const a=icsL.filter(x=>x.on);a.forEach((x,i)=>{const id="i"+Date.now()+i;S.ev[id]={id,date:x.date,title:x.title,mode:"",role:"part",guests:x.guests||[],host:"",place:{name:x.loc||"",lat:null,lng:null},desc:x.desc||""}});
+    R.imp=a.length;save();const f=a.map(x=>x.date).find(d=>d>=iso(new Date()))||a[0].date;cur=new Date(f+"T12:00");track("agenda_imported",{n:a.length});st=8;finish();draw()}}
+  if(st==8)q("#ob-n").onclick=()=>{end();go("cal");render()}}
+ draw()}
+
 function welcome(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();const o=document.createElement("div");o.id="welc";
- o.innerHTML=`<img src="icons/icon-192.png" alt=""><h1>Bienvenue dans ChasseLog !</h1><p>Ton carnet de chasse : tes journées, tes tirs et ta saison, toujours dans ta poche. Découvre-le en 2 minutes, puis prépare ta saison.</p><button class="go" id="wc-go">Lancer la visite guidée</button><button class="lt" id="wc-lt">Plus tard, je préfère explorer seul</button>`;
- document.body.appendChild(o);$("#wc-go").onclick=()=>{startTour();setTimeout(()=>o.remove(),350)};$("#wc-lt").onclick=()=>{S.setupDone=true;save();o.remove()}}
+ o.innerHTML=`<img src="icons/icon-192.png" alt=""><h1>Bienvenue dans ChasseLog !</h1><p>Ton carnet de chasse : tes journées, tes tirs et ta saison, toujours dans ta poche. Découvre-le en 2 minutes, puis prépare ta saison.</p><p class="rgq">📍 Où chasses-tu ?<small style="display:block;font-weight:400;font-size:.82rem;opacity:.8;margin-top:2px">pour te donner les bonnes dates d'ouverture</small></p>${regBlock("wc")}<button class="go" id="wc-go">Lancer la visite guidée</button><button class="lt" id="wc-lt">Plus tard, je préfère explorer seul</button>`;
+ document.body.appendChild(o);regWire("wc",(r,d)=>regSet(r,d));$("#wc-go").onclick=()=>{startTour();setTimeout(()=>o.remove(),350)};$("#wc-lt").onclick=()=>{S.setupDone=true;save();o.remove()}}
 const firstRun=()=>!S.tourAsked&&isSA()&&!evs().length;
-if(firstRun())welcome();else setTimeout(tourAsk,1800);
+if(firstRun())onboard();else setTimeout(tourAsk,1800);
 /* note de mise à jour (une fois) */
 function upNote(){if(S.upNote==UPN)return;if(!evs().length&&!S.tourAsked){S.upNote=UPN;save();return}if(!popFree()){setTimeout(upNote,3000);return}
  S.upNote=UPN;save();modal(`<div style="text-align:center"><div style="font-size:2.6rem;line-height:1;margin:4px 0 8px">🎉</div><h2 style="margin:0 0 8px">Grosse nouveauté !</h2><p class="sans" style="font-size:1rem;line-height:1.55;margin:0 0 10px">Encoder un tir n'a jamais été aussi rapide : <b>Prélevé, Manqué ou Blessé</b>, tes balles, ton GPS… et c'est dans la boîte ! 🎯</p><p class="sans" style="font-size:1rem;line-height:1.55;margin:0 0 16px">Découvre ta <b>réussite</b> et partage ta journée avec une toute nouvelle image, à ton style. Bonne chasse ! 🦌</p><button class="p li" id="un-ok" style="text-align:center">C'est parti !</button></div>`);$("#un-ok").onclick=()=>closeM()}
@@ -922,22 +1062,24 @@ function shotBind(evs){const pts=shotPts(evs);if($("#smap"))shotMap($("#smap"),p
  document.querySelectorAll("[data-msp]").forEach(b=>b.onclick=()=>{smapSp=b.dataset.msp;const y=window.scrollY;render();window.scrollTo(0,y)});
  if($("#smbig"))$("#smbig").onclick=()=>{modal(`<h2 style="margin-top:0">Carte de mes tirs</h2><div class="smap big" id="smap2"></div><p class="mut sans" style="margin:8px 0 0">Touche un point pour voir le tir.</p>`);setTimeout(()=>shotMap($("#smap2"),pts,true),60)}}
 let ouvM=null;
-const oOrd=md=>{const[m,d]=md.split("-"),mm=+m,dd=d=="L"?29.5:+d;return(mm>=7?mm-7:mm+5)*31+dd};
+let OS=7;/* mois de début de saison : juillet (Wallonie), juin (France) */
+const oOrd=md=>{const[m,d]=md.split("-"),mm=+m,dd=d=="L"?29.5:+d;return(mm>=OS?mm-OS:mm+12-OS)*31+dd};
+const oAll=([a,b])=>oOrd(a)<=1&&oOrd(b)>=11*31+30;
 const oFmt=md=>md=="02-L"?"fin février":md.split("-").reverse().join("/");
 function oStat(rs){if(!rs||!rs.length)return{c:"x",t:"Interdit"};const n=new Date(),t=oOrd(String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"));
- if(rs.some(([a,b])=>a=="07-01"&&b=="06-30"))return{c:"o",t:"Ouvert",d:""};
+ if(rs.some(oAll))return{c:"o",t:"Ouvert",d:""};
  const cur=rs.find(([a,b])=>oOrd(a)<=t&&t<=oOrd(b));if(cur){const left=Math.round((oOrd(cur[1])-t));return{c:"o",t:"Ouvert",d:"jusqu'au "+oFmt(cur[1])+(left<=14?` (plus que ${left} j)`:"")}}
  const nx=rs.filter(([a])=>oOrd(a)>t).sort((x,y)=>oOrd(x[0])-oOrd(y[0]))[0]||rs.slice().sort((x,y)=>oOrd(x[0])-oOrd(y[0]))[0];return{c:"f",t:"Fermé",d:"ouverture le "+oFmt(nx[0])}}
 function oBar(rs){const n=new Date(),t=oOrd(String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0"));
- return `<div class="tlb">${(rs||[]).map(([a,b])=>`<i style="left:${(oOrd(a)-1)/372*100}%;width:${(oOrd(b)-oOrd(a)+1)/372*100}%"></i>`).join("")}<u style="left:${(t-1)/372*100}%"></u></div><div class="tlm">${"J A S O N D J F M A M J".split(" ").map(x=>`<span>${x}</span>`).join("")}</div>`}
+ return `<div class="tlb">${(rs||[]).map(([a,b])=>`<i style="left:${(oOrd(a)-1)/372*100}%;width:${(oOrd(b)-oOrd(a)+1)/372*100}%"></i>`).join("")}<u style="left:${(t-1)/372*100}%"></u></div><div class="tlm">${"J F M A M J J A S O N D".split(" ").concat("J F M A M J J A S O N D".split(" ")).slice(OS-1,OS+11).map(x=>`<span>${x}</span>`).join("")}</div>`}
 function oRow(l,rs,n){const st=oStat(rs);return `<div class="orow"><div class="ol"><span>${l?esc(l):""}</span><span class="bdg ${st.c}">${st.t}</span></div>
- ${rs&&rs.length?`<div class="ol" style="margin-top:3px"><span class="od">${rs.map(([a,b])=>a=="07-01"&&b=="06-30"?"Toute l'année":oFmt(a)+" → "+oFmt(b)).join(" · ")}</span><span class="mut" style="font-size:.78rem;text-align:right">${st.d||""}</span></div>${oBar(rs)}`:""}${n?`<div class="onote">${esc(n)}</div>`:""}</div>`}
-function rOuv(){if(!ouvM){const m=(visM().find(x=>/approche|affût/i.test(x))&&!visM().some(x=>/battue/i.test(x)))?"aa":"tir";ouvM=m}const M=ouvM;
+ ${rs&&rs.length?`<div class="ol" style="margin-top:3px"><span class="od">${rs.map(([a,b])=>oAll([a,b])?"Toute l'année":oFmt(a)+" → "+oFmt(b)).join(" · ")}</span><span class="mut" style="font-size:.78rem;text-align:right">${st.d||""}</span></div>${oBar(rs)}`:""}${n?`<div class="onote">${esc(n)}</div>`:""}</div>`}
+function rOuv(){OS=7;if(S.reg=="fr"){rOuvFR();return}if(S.reg=="xx"){rOuvXX();return}if(!ouvM){const m=(visM().find(x=>/approche|affût/i.test(x))&&!visM().some(x=>/battue/i.test(x)))?"aa":"tir";ouvM=m}const M=ouvM;
  let body="",nOpen=0;
  if(M=="vol")body=`<h2>Chasse à vol (fauconnerie)</h2>`+OUV_VOL.map(it=>{const st=oStat(it.r);if(st.c=="o")nOpen++;return `<div class="ob"><div class="oh">${it.sp.startsWith("Tout")?'<span style="font-size:1.8rem;width:56px;text-align:center">🦅</span>':sil(it.img||it.sp,56)}<div class="on2"><b>${esc(it.sp)}</b></div></div>${oRow("",it.r,it.n)}</div>`}).join("");
  else body=OUV.map(([g,items])=>`<h2>${g}</h2>`+items.map(it=>{const rows=it.rows.filter(r=>r[M]);if(!rows.length)return"";rows.forEach(r=>{if(oStat(r[M]).c=="o")nOpen++});
   return `<div class="ob"><div class="oh">${sil(it.img||it.sp,56)}<div class="on2"><b>${esc(it.sp)}</b>${it.n?`<div class="onote" style="margin:0">${esc(it.n)}</div>`:""}</div></div>${rows.map(r=>oRow(r.l,r[M],r.n)).join("")}</div>`}).join("")).join("");
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Périodes d'ouverture</h1><p class="mut sans" style="margin-top:-6px">Wallonie · saisons 2025 à 2030 · aujourd'hui ${new Date().toLocaleDateString("fr-BE",{day:"numeric",month:"long"})}</p>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Périodes d'ouverture</h1><p class="mut sans" style="margin-top:-6px">Saisons 2025 à 2030 · aujourd'hui ${new Date().toLocaleDateString("fr-BE",{day:"numeric",month:"long"})}</p>${regBar()}
  <div class="chips2">${OMODES.map(([k,l])=>`<button class="fc${M==k?" on":""}" data-om="${k}">${l}</button>`).join("")}</div>
  <p class="sans" style="margin:10px 0 0"><b>${nOpen}</b> ${nOpen>1?"périodes ouvertes":"période ouverte"} aujourd'hui · ${M=="tir"?"battue, botte, chien courant…":M=="aa"?"approche et affût":"fauconnerie"}</p>
  ${body}
@@ -947,7 +1089,7 @@ function rOuv(){if(!ouvM){const m=(visM().find(x=>/approche|affût/i.test(x))&&!
  • Chasse interdite : chat haret, sarcelle d'hiver, chasse à courre.<br>
  • Le gibier d'eau peut être suspendu par le Ministre en cas de gel prolongé.</div>
  <p class="mut sans" style="font-size:.78rem">Source : arrêté du Gouvernement wallon du 5 juin 2025 (ouvertures du 1er juillet 2025 au 30 juin 2030) et vade-mecum du Royal Saint-Hubert Club (juillet 2025). Information indicative : vérifie toujours les conditions de ton conseil cynégétique et ton plan de tir.</p><div style="height:40px"></div>`;
- $("#bk2").onclick=backTo;centerChip();
+ $("#bk2").onclick=backTo;centerChip();regBind();
  document.querySelectorAll("[data-om]").forEach(b=>b.onclick=()=>{ouvM=b.dataset.om;render();window.scrollTo(0,0)})}
 
 /* ---------- armes ---------- */

@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Jusqu'au 31 octobre : chasse seulement mercredi, dimanche et fériés (sauf grand gibier, sanglier, ESOD, oiseaux de passage).","sp":{
+"Lapin":{"g":[["2026-09-13","2026-12-18"]],"n":"Furet autorisé."},
+"Lièvre":{"g":[["2026-10-04","2026-12-20"]],"n":"Plan de chasse. Mercredi, dimanche et fériés."},
+"Perdrix":{"g":[["2026-09-13","2026-12-13"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]],"n":"Faisan obscur interdit."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : sur autorisation."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : sur autorisation."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir d'été : brocard seul, sur autorisation."},
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Avant le 15/8 et en juin 2027 : sur autorisation. Saison : mercredi, samedi, dimanche et fériés. Du 1/4 au 31/5 : semis."},
+"Renard":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Bécasse":{"n":"3 par jour, 30 par saison."}}}

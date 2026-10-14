@@ -1,0 +1,10 @@
+{"ouv":"2026-09-27","clo":"2027-02-28","n":"Chasse interdite le vendredi (sauf fériés, gibier d'eau, pigeon à poste fixe).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"Avant l'ouverture : brocard seul, approche ou affût sans chien, sur autorisation."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]]},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]]},
+"Lièvre":{"g":[["2026-09-27","2026-10-11"]],"n":"Dimanche uniquement, 1 lièvre par saison (hors plan de chasse/gestion : dates propres jusqu'au 8/11)."},
+"Perdrix":{"g":[["2026-09-27","2027-01-03"]],"n":"Jeudi, dimanche et fériés."},
+"Faisan":{"g":[["2026-09-27","2027-01-03"]],"n":"Poule faisane interdite. Jeudi, dimanche et fériés."},
+"Lapin":{"g":[["2026-09-27","2027-01-03"]],"n":"Jusqu'au 28/2 où il est classé ESOD. Furet autorisé."},
+"Sanglier":{"aa":[["2026-06-01","2026-08-14"],["2026-09-27","2027-05-31"]],"bat":[["2026-08-15","2027-02-28"]],"n":"Été : affût/approche sans chien, sur autorisation. Du 15/8 à l'ouverture : battue dans les cultures (15 à 40 fusils). Du 1/4 au 31/5 : semis."},
+"Bécasse":{"n":"30 par saison, 6 par semaine, 2 par jour."}}}

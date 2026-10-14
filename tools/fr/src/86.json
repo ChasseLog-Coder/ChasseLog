@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Cerf":{"aa":[["2026-09-19","2027-02-28"]],"bat":[["2026-09-19","2027-02-28"]],"n":"Plan de chasse. Balle ou arc."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/7 au 12/9 et en juin 2027 : approche ou affût, sur autorisation individuelle."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Du 1/7 au 14/8 et en juin 2027 : sur autorisation. Du 1/4 au 31/5 : protection des semis."},
+"Renard":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-15","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Lièvre":{"g":[["2026-10-04","2026-12-06"]],"n":"Bracelet dateur obligatoire (plan de gestion)."},
+"Perdrix":{"g":[["2026-09-13","2026-12-06"]],"n":"Communes en plan de gestion faisan : jusqu'au 24/1."},
+"Faisan":{"g":[["2026-09-13","2027-01-24"]]},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]]}}}

@@ -1,0 +1,13 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Sanglier":{"aa":[["2026-06-01","2027-06-30"]],"bat":[["2026-06-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Avant le 15/8 et en juin 2027 : sur autorisation, battue seulement où l'espèce est ESOD. Battue interdite mardi et vendredi. Du 1/4 au 31/5 : affût/approche (battue exceptionnelle)."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tirs d'été (avant le 13/9 et en juin 2027) : autorisation individuelle, sans battue."},
+"Cerf":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Daim":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tirs d'été : autorisation individuelle, sans battue."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Renard":{"aa":[["2026-06-01","2027-01-10"],["2027-06-01","2027-06-30"]],"bat":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier. Après le 10/1 : battue uniquement."},
+"Lapin":{"g":[["2026-09-13","2027-01-10"]],"n":"Jusqu'au 31/1 près des digues et là où il est classé ESOD."},
+"Lièvre":{"g":[["2026-09-13","2026-12-15"]]},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]]},
+"Perdrix":{"g":[["2026-09-13","2026-12-15"]]},
+"Caille":{"g":[["2026-09-13","2027-02-20"]],"n":"Dès le 29/8 à Campestre-et-Luc, Causse-Bégon, Lanuejols, Revens."},
+"Bécasse":{"n":"3 par jour, 6 par semaine, 30 par saison."}}}

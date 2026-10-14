@@ -1,0 +1,9 @@
+{"ouv":"2026-09-13","clo":"2027-01-10","n":"Chasse uniquement lundi, mercredi, samedi, dimanche et fériés (sauf exceptions). Le lundi : approche ou affût seulement.","sp":{
+"Cerf":{"aa":[["2026-10-11","2027-01-10"]],"bat":[["2026-10-11","2027-01-10"]],"n":"Biches et jeunes dès le 23/9 dans quelques communes de la Tinée."},
+"Chevreuil":{"aa":[["2026-06-01","2027-01-10"]],"bat":[["2026-09-13","2027-01-10"]],"n":"Du 1/6 au 12/9 : brocard seul, sur autorisation."},
+"Mouflon":{"aa":[["2026-09-13","2027-01-10"]],"bat":[["2026-09-13","2027-01-10"]]},
+"Chamois":{"aa":[["2026-09-13","2026-11-10"],["2026-12-05","2027-01-10"]],"n":"Approche ou affût, chien interdit."},
+"Sanglier":{"aa":[["2026-06-01","2026-08-14"],["2026-08-23","2027-02-28"]],"bat":[["2026-08-23","2027-02-28"]],"n":"Communes où il est ESOD : dès le 23/8, tous les jours. Ailleurs : du 13/9 au 10/1, mercredi, samedi, dimanche et fériés. Été : sur autorisation (dégâts)."},
+"Lièvre":{"g":[["2026-09-13","2027-01-10"]],"n":"Jusqu'au 27/9 : mercredi et dimanche. 2 par jour."},
+"Perdrix":{"g":[["2026-09-13","2027-01-10"]],"n":"Perdrix rouge, selon la zone (jusqu'au 11/11 en zone A secteur 2). 2 par jour."},
+"Renard":{"aa":[["2026-06-01","2027-01-10"]],"bat":[["2026-08-23","2027-01-10"]],"n":"En été : avec autorisation tir d'été brocard ou lors des battues au sanglier."}}}

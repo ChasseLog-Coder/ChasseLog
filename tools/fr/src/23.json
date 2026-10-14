@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Perdrix":{"g":[["2026-09-13","2027-02-28"]],"n":"Conditions spécifiques sur les territoires sous contrat fédéral."},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]]},
+"Faisan":{"g":[["2026-09-13","2027-02-28"]]},
+"Lièvre":{"g":[["2026-09-20","2026-12-06"]],"n":"Certaines communes (annexe) : du 27/9 au 13/12."},
+"Sanglier":{"aa":[["2026-06-01","2027-03-29"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-15","2027-03-29"]],"n":"Été : affût/approche sans chien (tir d'été). Battue : jeudi, samedi, dimanche et fériés."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Été : brocard seul. Saison : jeudi, samedi, dimanche et fériés."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Cerf":{"aa":[["2026-10-17","2027-02-28"]],"bat":[["2026-10-17","2027-02-28"]],"n":"Faon et daguet dès le 1/10."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Été : dans les mêmes conditions que le sanglier, le chevreuil et le daim."},
+"Bécasse":{"n":"30 par an, 3 par jour."}}}

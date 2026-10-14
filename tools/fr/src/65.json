@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Zone de plaine et zone de montagne (dates propres au petit gibier de montagne et à l'isard).","sp":{
+"Faisan":{"g":[["2026-09-16","2027-01-31"]],"n":"Samedi, dimanche, mercredi et fériés."},
+"Perdrix":{"g":[["2026-09-13","2027-01-31"]],"n":"Plaine. Samedi, dimanche, mercredi et fériés."},
+"Lapin":{"g":[["2026-09-13","2027-01-31"]],"n":"Samedi, dimanche, mercredi et fériés."},
+"Lièvre":{"g":[["2026-10-04","2027-01-31"]],"n":"Plan de prélèvement (bracelet). Samedi, dimanche, mercredi et fériés."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : chasseurs autorisés au chevreuil ou au sanglier."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : au nord de l'A64, bracelet CE."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir d'été : brocard seul, bracelet spécifique."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"n":"Équipes de deux chasseurs max."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Avant le 15/8 : sur autorisation préfectorale. Du 1/4 au 31/5 : semis."},
+"Chamois":{"aa":[["2026-10-04","2026-11-29"]],"n":"Isard : plan de chasse (jusqu'au 8/11 en quantitatif). Samedi, dimanche, mercredi et fériés."},
+"Bécasse":{"n":"30 par saison ; 3 par jour jusqu'au 31/12, puis 2."}}}

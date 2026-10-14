@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Hors période générale : sur autorisation préfectorale. Du 1/4 au 31/5 : protection des semis (battue exceptionnelle)."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant le 13/9 et en juin 2027 : brocard seul, sur autorisation. Chevrette : du 15/10 au 28/2."},
+"Chamois":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Du 1/9 au 12/9 : 3 participants max, chiens interdits."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-01","2027-02-28"]]},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]]},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : seulement les chasseurs autorisés au chevreuil ou au sanglier."},
+"Lièvre":{"g":[["2026-09-27","2026-12-31"]],"n":"UG 8, 9 et 10 : jusqu'au 11/11. Plan de gestion et marquage sur les UG 1 à 7, 11 et 12."},
+"Faisan":{"g":[["2026-09-13","2027-01-10"]]},
+"Perdrix":{"g":[["2026-09-13","2027-01-10"]]},
+"Lapin":{"g":[["2026-09-13","2027-01-10"]]},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"30 par an, 3 par jour ; en février 3 par semaine."}}}

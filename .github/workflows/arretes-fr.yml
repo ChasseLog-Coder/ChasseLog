@@ -22,6 +22,7 @@ jobs:
         run: |
           git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"
           [ -f out/index.tsv ] || cat out/row/* > out/index.tsv 2>/dev/null; rm -rf out/pdf out/row
+          [ $(wc -l < out/index.tsv) -ge 90 ] || { echo "Récupération incomplète : rien publié"; exit 0; }
           mv out /tmp/out
           git fetch origin arretes-fr || true
           if git rev-parse --verify origin/arretes-fr >/dev/null 2>&1; then git checkout -B arretes-fr origin/arretes-fr; else git checkout --orphan arretes-fr; git rm -rqf .; fi

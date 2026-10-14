@@ -247,10 +247,10 @@ html.in-on,html.in-on body{overflow:hidden}
 </style></head><body>
 <aside id="dr"><h2>ChasseLog</h2>
 <button class="m" data-cv="year">Année</button><button class="m" data-cv="month">Mois</button><button class="m" data-cv="week">Semaine</button><button class="m" data-cv="day">Jour</button>
-<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-doc">Mes documents</button><button class="m" id="m-rm">Paramètres de rappels</button>
+<hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-ouv">Périodes d'ouverture</button><button class="m" id="m-mg">Gérer mes espèces et modes de chasse</button><button class="m" id="m-ar">Mes armes</button><button class="m" id="m-doc">Mes documents</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-fb" style="display:block;width:100%;text-align:center;border:0;border-radius:12px;background:#e8a032;color:#2a1c05;font:800 1rem system-ui;padding:14px 10px;box-shadow:0 3px 10px #0003;margin-bottom:6px">Envoyez-nous un commentaire !</button><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><button id="m-inv" style="display:block;width:100%;text-align:center;border:2px solid var(--acc);border-radius:12px;background:none;color:var(--acc);font:700 .95rem system-ui;padding:11px 10px;margin-bottom:6px">Inviter un ami</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-13a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-14a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></aside>
 <div id="page"><main id="app"></main></div>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon"],
@@ -492,7 +492,7 @@ const TOUR=[
  ["Consulte tes statistiques","La saison en cours et les saisons passées : réussite, prélèvements, records, poste porte-bonheur…",[["s","cal2"],["w",1200],["t","stats"],["s","stats0"],["n","Journées, prélèvements et réussite"],["w",3500],["sl","stats1"],["n","Tes records, ton poste porte-bonheur, tes résultats par arme"],["w",3800],["sl","stats3"],["n","Compare tes saisons et tes lieux de chasse"],["w",3500],["s","stats0"],["w",1000],["t","sprev"],["s","statsP"],["n","Revois une saison passée"],["w",3000]]],
  ["Tes documents toujours à portée de main","Ajoute ton permis de chasse, ton attestation d'assurance et ta carte d'identité : tout est dans ton téléphone, même sans réseau.",[["s","cal0"],["w",1200],["t","mn"],["s","drawer"],["w",1300],["t","mdoc"],["s","docs0"],["n","Prends une photo ou choisis un fichier"],["w",2600],["t","dadd"],["s","docs1"],["n","Indique la date de fin de validité de ton permis et de ton assurance"],["w",3200],["t","dvid"],["s","docs2"],["n","Montre-les en un geste lors d'un contrôle"],["w",3000]]]
 ];
-function startTour(){if($("#tour"))return;shut&&document.body.classList.contains("dr")&&shut();
+function startTour(){if($("#tour"))return;track("tour_started");shut&&document.body.classList.contains("dr")&&shut();
  const o=document.createElement("div");o.id="tour";document.body.appendChild(o);document.documentElement.classList.add("in-on");
  const N=TOUR.length;let k=0,run=0;const pre={};
  const load=n=>pre[n]||(pre[n]=new Promise(r=>{const i=new Image();i.onload=i.onerror=()=>r(i);i.src="tour/"+n+".webp"}));
@@ -532,7 +532,7 @@ $("#m-tour").onclick=()=>{shut();startTour()};
 /* ---------- assistant « Prépare ta saison » ---------- */
 const CONTACTS=("contacts" in navigator)&&("ContactsManager" in window);
 function deP(p){p=p.trim();const m=p.match(/^(les|le|la)\s+(.+)$/i)||p.match(/^(l['’])\s*(.+)$/i);if(m){const a=m[1].toLowerCase();return(a=="le"?"du ":a=="la"?"de la ":a=="les"?"des ":"de l'")+m[2]}return(/^[aeiouyhéèêâîôû]/i.test(p)?"d'":"de ")+p}
-function startSetup(){if($("#setup"))return;shut&&document.body.classList.contains("dr")&&shut();
+function startSetup(){if($("#setup"))return;track("setup_started");shut&&document.body.classList.contains("dr")&&shut();
  const o=document.createElement("div");o.id="setup";document.body.appendChild(o);document.documentElement.classList.add("in-on");
  const td=iso(new Date()),known=[];{const seen=new Set();(S.favs||[]).forEach(f=>{seen.add(f.name.trim().toLowerCase());known.push(favPlace(f))});evs().filter(e=>e.place&&e.place.name).sort((a,b)=>a.date<b.date?1:-1).forEach(e=>{const k=e.place.name.trim().toLowerCase();if(!seen.has(k)){seen.add(k);known.push(e.place)}})}
  const M=visM().length?visM():MODES;let step=0,mon=new Date();mon.setDate(1);const chosen=new Set(),D={};
@@ -586,7 +586,7 @@ function startSetup(){if($("#setup"))return;shut&&document.body.classList.contai
  function keep(fn,focusDay){const bd=o.querySelector(".su-bd"),y=bd?bd.scrollTop:0;fn();const b2=o.querySelector(".su-bd");if(b2)b2.scrollTop=y;if(focusDay){const i=o.querySelector(`[data-c="${focusDay}"] [data-gi]`);if(i)i.focus()}}
  function create(){const ds=[...chosen].sort(),made=[];ds.forEach((d,i)=>{const x=day(d),pn=x.place.trim(),kp=known.find(p=>p.name.trim().toLowerCase()==pn.toLowerCase()),id="s"+Date.now()+i;
    const cg=smartCoord(pn),isC=Array.isArray(cg);const e={id,date:d,title:pn&&!isC?x.mode+" "+deP(pn):x.mode,mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:isC?{name:"",lat:cg[0],lng:cg[1]}:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
-  S.setupDone=true;save();o._made=made;step=2;draw()}
+  S.setupDone=true;save();track("setup_done",{days:made||0});o._made=made;step=2;draw()}
  o._back=()=>{if(step==1){step=0;draw()}else close()};
  draw()}
 
@@ -595,6 +595,24 @@ function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))r
  S.tourAsked=true;save();modal(`<div style="text-align:center"><img src="icons/icon-192.png" alt="" style="width:72px;height:72px;border-radius:16px;margin:4px auto 8px;display:block"><h2 style="margin:0 0 6px">Bienvenue dans ChasseLog !</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 16px">Découvre en 2 minutes comment encoder tes journées, tes tirs et suivre ta saison.</p>
  <button class="p li" id="ta-go">Lancer la visite guidée</button><button class="s li" id="ta-no">Plus tard</button><p class="mut sans" style="font-size:.82rem;margin:10px 0 0">Tu la retrouves à tout moment dans le menu ☰ › Découvre l'application.</p></div>`);
  $("#ta-go").onclick=()=>{closeM();startTour()};$("#ta-no").onclick=()=>closeM()}
+/* ---------- statistiques d'utilisation anonymes (PostHog, hébergé en Europe) ----------
+   Seuls des compteurs anonymes sont envoyés (ex. « journée créée », « BANG »), jamais les tirs, lieux, positions GPS ni documents. */
+const PH_KEY="",PH_HOST="https://eu.i.posthog.com";
+const anId=()=>S.anId||(S.anId="a"+Date.now().toString(36)+Math.random().toString(36).slice(2,10));
+const phOn=()=>!!PH_KEY&&S.stats===true;
+const phPlat=()=>/android/i.test(navigator.userAgent)?"android":/iphone|ipad|ipod/i.test(navigator.userAgent)?"ios":"desktop";
+function track(ev,props){if(!phOn())return;try{S.phq=S.phq||[];S.phq.push({event:ev,distinct_id:anId(),timestamp:new Date().toISOString(),properties:Object.assign({app_version:APP_V,platform:phPlat(),installed:isSA(),$process_person_profile:false},props||{})});if(S.phq.length>80)S.phq=S.phq.slice(-80);save();phFlush()}catch(e){}}
+let phBusy=false;
+async function phFlush(){if(phBusy||!phOn()||!(S.phq||[]).length||!navigator.onLine)return;phBusy=true;const batch=S.phq.slice(0,50);
+ try{const r=await fetch(PH_HOST+"/batch/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({api_key:PH_KEY,batch}),keepalive:true});if(r.ok){S.phq=S.phq.slice(batch.length);save()}}catch(e){}phBusy=false}
+addEventListener("online",phFlush);
+function statsAsk(){if(!PH_KEY||S.stats!==undefined||firstRunPending())return;if(!popFree()){setTimeout(statsAsk,5000);return}
+ modal(`<div style="text-align:center"><div style="font-size:2.4rem;line-height:1;margin:4px 0 8px">📊</div><h2 style="margin:0 0 8px">Aide-nous à améliorer ChasseLog</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 10px">Accepte-tu de partager des <b>statistiques d'utilisation anonymes</b> ? Par exemple : « une journée a été créée », « BANG a été utilisé ».</p><p class="mut sans" style="font-size:.88rem;margin:0 0 16px">🔒 Jamais tes tirs, tes lieux, tes positions GPS ni tes documents. Tu peux changer d'avis à tout moment dans le menu.</p>
+ <button class="p li" id="st-y" style="text-align:center">Oui, j'aide ChasseLog</button><button class="s li" id="st-n" style="text-align:center">Non merci</button></div>`);
+ $("#st-y").onclick=()=>{S.stats=true;save();closeM();track("stats_optin");track("app_open",appOpenProps())};$("#st-n").onclick=()=>{S.stats=false;S.phq=[];save();closeM()}}
+const firstRunPending=()=>!!$("#welc")||!!$("#tour")||!!$("#setup");
+const appOpenProps=()=>({days:evs().filter(e=>!e.nh).length,guns:(S.guns||[]).length,docs:Object.keys(S.docs||{}).length,favs:(S.favs||[]).length});
+setTimeout(()=>{statsAsk();if(phOn()){const t=iso(new Date());track("app_open",Object.assign(appOpenProps(),{first_today:S.phDay!=t}));S.phDay=t;save()}},6000);
 const UPN="2026-10-12";
 /* premier lancement : écran d'accueil plein écran, avant le calendrier */
 function welcome(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();const o=document.createElement("div");o.id="welc";
@@ -742,7 +760,7 @@ function chooseEv(cb){const a=todayEvs();if(!a.length)return;if(a.length==1)retu
  modal(`<h2>Quelle journée ?</h2>${a.map(e=>`<button class="s li" data-ce="${e.id}">${esc(e.title)}</button>`).join("")}`);document.querySelectorAll("[data-ce]").forEach(b=>b.onclick=()=>{closeM();cb(b.dataset.ce)})}
 const curPoste=e=>e&&e.postes&&e.postes.length?e.postes[e.postes.length-1].n:null;
 const todayPoste=()=>{let best=null;todayEvs().forEach(e=>(e.postes||[]).forEach((x,i)=>{const k=x.ts||i;if(!best||k>=best.k)best={k,n:x.n}}));return best?best.n:null};
-function quickShot(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();pickCtx={mode:"quick"};go("pick")}
+function quickShot(id){track("bang");fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]}));fd.tabPhotos=fd.tabPhotos||[];fdClean=fkey();pickCtx={mode:"quick"};go("pick")}
 function commonSp(){const vis=Object.values(visSp()).flat(),cnt={};evs().forEach(e=>e.fiche&&e.fiche.tirs.forEach(t=>cnt[t.sp]=(cnt[t.sp]||0)+1));
  const used=Object.keys(cnt).filter(x=>vis.includes(x)).sort((a,b)=>cnt[b]-cnt[a]),def=["Sanglier","Chevreuil","Cerf élaphe","Faisan","Lièvre","Canard colvert","Renard","Pigeon ramier","Bécasse des bois"].filter(x=>vis.includes(x));
  return[...new Set([...used,...def])].slice(0,6)}
@@ -781,8 +799,8 @@ function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||
  let tk=0,cur=null;const pv=async()=>{const my=++tk;S.shareOpt=o;save();try{const c=await dayCanvas(id,o);if(my!=tk||!$("#sh-pv"))return;cur=c;$("#sh-pv").innerHTML=`<img src="${c.toDataURL("image/jpeg",.72)}" alt="Aperçu de l'image">`}catch(er){if($("#sh-pv"))$("#sh-pv").innerHTML='<span class="mut sans">Aperçu indisponible.</span>'}};pv();
  document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));pv()});
  document.querySelectorAll("#mo [data-so]").forEach(i=>i.onchange=()=>{o[i.dataset.so]=i.checked?1:0;pv()});
- $("#sh-dl").onclick=async()=>{try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
- $("#sh-go").onclick=async()=>{const file=await shareFile(id,o);try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
+ $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
+ $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
   dlFile(file);toast("Partage direct indisponible : l'image a été téléchargée.")}}
 
 async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,PX=90,PHO=o.st=="pho";if(syncTab(f))save();
@@ -985,7 +1003,7 @@ function rDocs(){S.docs=S.docs||{};const td=iso(new Date());
  document.querySelectorAll("[data-da]").forEach(b=>b.onclick=()=>{cur=b.dataset.da;fi.value="";fi.click()});
  fi.onchange=async()=>{const f=fi.files[0];if(!f||!cur)return;if(f.size>25e6)return toast("Fichier trop lourd (25 Mo maximum).");
   let blob=f;try{if(f.type.startsWith("image/")&&f.size>1.2e6)blob=await compress(f,2400,.88)}catch(e){blob=f}
-  try{await DB.put(docKey(cur),blob);S.docs[cur]={name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:(S.docs[cur]||{}).exp||""};save();toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
+  try{await DB.put(docKey(cur),blob);S.docs[cur]={name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:(S.docs[cur]||{}).exp||""};save();track("doc_added",{doc:cur});toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
  document.querySelectorAll("[data-dv]").forEach(b=>b.onclick=async()=>{const k=b.dataset.dv,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return toast("Document introuvable.");const u=URL.createObjectURL(bl);
   if(d.type=="application/pdf"){const w=window.open(u,"_blank");if(!w)location.href=u;return}
   const o=document.createElement("div");o.id="dview";o.innerHTML=`<img src="${u}" alt=""><button aria-label="Fermer">✕</button>`;document.body.appendChild(o);o.onclick=e=>{if(e.target.tagName!="IMG"||e.target==o)o.remove()};o.querySelector("button").onclick=()=>o.remove()});
@@ -1016,7 +1034,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-13a",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-14a",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1048,7 +1066,9 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-doc").onclick=()=>{shut();go("docs")};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-nl").onclick=()=>{shut();nlModal(false)};$("#m-bk").onclick=()=>{shut();bkSettings()};
+$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-doc").onclick=()=>{shut();go("docs")};
+if(PH_KEY)$("#m-st").style.display="block";
+$("#m-st").onclick=()=>{shut();const draw=()=>{modal(`<h2 style="margin-top:0">Statistiques anonymes</h2><p class="sans" style="line-height:1.5">ChasseLog peut compter, de façon anonyme, l'utilisation de l'app (journées créées, BANG, partages…) pour savoir ce qui est utile et s'améliorer.</p><p class="mut sans" style="font-size:.88rem">🔒 Jamais tes tirs, tes lieux, tes positions GPS ni tes documents.</p><label class="shtg"><span>Partager des statistiques anonymes</span><input type="checkbox" id="st-t" ${S.stats===true?"checked":""}><i></i></label>`);$("#st-t").onchange=e=>{S.stats=e.target.checked;if(!S.stats)S.phq=[];else track("stats_optin");save()}};draw()};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-nl").onclick=()=>{shut();nlModal(false)};$("#m-bk").onclick=()=>{shut();bkSettings()};
 function applyTheme(){const t=S.theme||"light";if(t=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=t}
 const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.toggle("on",b.dataset.th==(S.theme||"light")));
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
@@ -1221,7 +1241,7 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
   if(!hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle ne peut pas devenir un évènement hors chasse.");
   const mode=hunt?$("#e-m").value:"",i=id||"e"+Date.now()+Math.floor(Math.random()*99);if(ft)e.time=ft;else delete e.time;if(hunt)delete e.nh;else e.nh=true;
   if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||(hunt?mode||"Chasse":"Évènement"),role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
-  if(save()){sel=d;cur=new Date(d+"T12:00");closeF();render();setTimeout(fillAddr,1500)}}
+  if(save()){if(!id)track("day_created",{hunt,has_place:fl.lat!=null,fav:!!fl.fav,has_time:!!ft});sel=d;cur=new Date(d+"T12:00");closeF();render();setTimeout(fillAddr,1500)}}
  full(`<h2 style="margin-top:0" id="e-h2">${id?"Modifier l'évènement":hunt?"Nouvelle journée de chasse":"Nouvel évènement"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse" list="e-fdl" autocomplete="off"><datalist id="e-fdl">${(S.favs||[]).map(f=>`<option value="${esc(f.name)}">`).join("")}</datalist>
  <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><div class="lbx"><span>Type de chasse</span><button type="button" id="e-hk" class="hk${hunt?" on":""}" aria-label="Journée de chasse" aria-pressed="${hunt}">✓</button></div><select id="e-m" ${hunt?"":"disabled"}>${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
  ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
@@ -1241,7 +1261,7 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
    <div class="row" style="margin-top:12px"><button class="s" id="fv-no">Non merci</button><button class="p" id="fv-ok">⭐ Enregistrer</button></div>`,"2");
   const ok=()=>{const n=$("#fv-n").value.trim();if(!n)return $("#fv-n").focus();S.favs=S.favs||[];const ex=favByName(n);
    if(ex&&!confirm("Un favori « "+ex.name+" » existe déjà. Le remplacer par ce lieu ?"))return;if(ex)S.favs=S.favs.filter(f=>f!==ex);
-   const f={id:"f"+Date.now(),name:n,lat:fl.lat,lng:fl.lng,addr:fl.addr||adOf(fl)||"",used:Date.now()};S.favs.push(f);save();closeM("2");fl=favPlace(f);rl();pl();const dl=$("#e-fdl");if(dl)dl.innerHTML=S.favs.map(x=>`<option value="${esc(x.name)}">`).join("");toast("⭐ « "+n+" » ajouté à tes lieux favoris.")};
+   const f={id:"f"+Date.now(),name:n,lat:fl.lat,lng:fl.lng,addr:fl.addr||adOf(fl)||"",used:Date.now()};S.favs.push(f);save();track("fav_saved");closeM("2");fl=favPlace(f);rl();pl();const dl=$("#e-fdl");if(dl)dl.innerHTML=S.favs.map(x=>`<option value="${esc(x.name)}">`).join("");toast("⭐ « "+n+" » ajouté à tes lieux favoris.")};
   $("#fv-ok").onclick=ok;$("#fv-n").onkeydown=ev=>{if(ev.key=="Enter"){ev.preventDefault();ok()}};$("#fv-no").onclick=()=>closeM("2")};
  const favMgr=()=>{const draw=()=>{const F=S.favs||[];modal(`<h2 style="margin-top:0">Mes lieux favoris</h2>${F.length?F.map((f,i)=>`<div class="card sans" style="margin-bottom:8px;padding:10px"><div class="row" style="gap:6px;align-items:center"><input data-fr="${i}" value="${esc(f.name)}" style="margin:0"><button class="s" data-fd="${i}" style="flex:0 0 auto;color:var(--acc2)" aria-label="Supprimer">🗑</button></div>${f.addr||adOf(f)?`<div class="mut" style="font-size:.82rem;margin-top:4px">🏠 ${esc(f.addr||adOf(f))}</div>`:""}</div>`).join(""):'<p class="mut sans">Aucun lieu favori.</p>'}<button class="p" id="fm-ok" style="width:100%;margin-top:6px">Terminé</button>`,"2");
    document.querySelectorAll("[data-fr]").forEach(i=>i.onchange=()=>{const v=i.value.trim();if(v){F[+i.dataset.fr].name=v;save()}});
@@ -1294,10 +1314,10 @@ function munAsk(next){const e=S.ev[fe],T=fd.tirs.filter(t=>t.r),us=["b","c"].fil
   <div class="row" style="margin-top:12px"><button class="s" id="mu-l">Plus tard</button><button class="p" id="mu-ok">Confirmer</button></div>`,"2");
   document.querySelectorAll("[data-mc]").forEach(b=>b.onclick=()=>{const[u,d]=b.dataset.mc.split(":");M[u]=Math.max(0,M[u]+ +d);draw()});
   $("#mu-l").onclick=()=>{closeM("2");next()};
-  $("#mu-ok").onclick=()=>{fd.mun=Object.assign({_s:munBase(fd)},M);fd.munOk=true;closeM("2");next()}};draw()}
-function saveFiche(){if(!prepSave())return;const go2=()=>{S.ev[fe].fiche=fd;if(save()){go("sum");gc()}};if(munDue(false))munAsk(go2);else go2()}
+  $("#mu-ok").onclick=()=>{fd.mun=Object.assign({_s:munBase(fd)},M);fd.munOk=true;track("ammo_confirmed");closeM("2");next()}};draw()}
+function saveFiche(){if(!prepSave())return;const go2=()=>{S.ev[fe].fiche=fd;if(save()){track("fiche_saved",{shots:fd.tirs.length,tab:!!fd.tab,photos:fd.photos.length});go("sum");gc()}};if(munDue(false))munAsk(go2);else go2()}
 const canClose=e=>e&&!e.nh&&!e.closed&&e.date==iso(new Date());
-function saveClose(){if(!prepSave())return;const go2=()=>{const e=S.ev[fe];e.fiche=fd;e.closed=true;if(save()){toast("Journée clôturée. Bonne fin de journée !");go("sum");gc()}};if(munDue(true))munAsk(go2);else go2()}
+function saveClose(){if(!prepSave())return;const go2=()=>{const e=S.ev[fe];e.fiche=fd;e.closed=true;if(save()){track("day_closed",{shots:fd.tirs.length,tab:!!fd.tab});toast("Journée clôturée. Bonne fin de journée !");go("sum");gc()}};if(munDue(true))munAsk(go2);else go2()}
 function backFiche(){if(quickTid){modal(`<h2>Abandonner ce tir ?</h2><p class="sans">Il n'a pas encore été enregistré.</p><div class="row"><button class="s" id="q-k">Continuer</button><button class="p" id="q-a" style="background:var(--acc2)">Abandonner</button></div>`);$("#q-k").onclick=()=>closeM();$("#q-a").onclick=()=>{closeM();quickTid=null;go("cal")};return}
  sync();const to=S.ev[fe].fiche?"sum":"cal";if(fkey()==fdClean)return go(to);
  modal(`<h2>Enregistrer la saisie ?</h2><p class="sans">Tu as modifié cette fiche sans l'enregistrer.</p><div class="row"><button class="s" id="q-n">Annuler</button><button class="p" id="q-y">Enregistrer</button></div><p class="mut sans">« Annuler » quitte la fiche sans enregistrer ta saisie.</p>`);
@@ -1340,7 +1360,7 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
  <label>Notes</label><textarea id="f-notes" rows="3">${esc(fd.notes)}</textarea>
  <button class="s" id="tb" style="width:100%;margin-top:14px">Encoder le tableau final${nt?` (${nt} pièce${nt>1?"s":""})`:""}</button><div style="height:90px"></div>`;
  if(Q){Q.ok=false;$("#app").classList.add("quick");$("#app").innerHTML=`${BKB}<div style="padding-left:48px;min-height:44px"></div>${ed(Q,true)}<div style="height:110px"></div>`;
-  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){toast("Tir enregistré.");go("cal");gc()}},"✓ Enregistrer","Annuler")}
+  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){track("shot_saved",{result:Q.r,animals:Q.k,ammo:Q.n,gps:!!(Q.loc&&Q.loc.gps),sex:!!Q.sx,from:"bang"});toast("Tir enregistré.");go("cal");gc()}},"✓ Enregistrer","Annuler")}
  else if(canClose(e)){fbar(backFiche,saveClose,"Enregistrer et clôturer la journée");const a=document.createElement("button");a.className="s";a.id="f-nc";a.textContent="Enregistrer sans clôturer la journée";a.style.cssText="width:100%;margin-top:10px;font-size:.88rem";a.onclick=saveFiche;const sp=$("#app").lastElementChild;$("#app").insertBefore(a,sp&&sp.style&&sp.style.height?sp:null)}
  else fbar(backFiche,saveFiche);
  const T=id=>fd.tirs.find(t=>t.id==id);
@@ -1378,7 +1398,7 @@ function openTab(){syncTab(fd);let tmp=Object.assign({},fd.tab);const own=ownTab
  <button class="p" id="t-ok" style="width:100%;margin-top:12px">Valider le tableau</button>`);
  document.querySelectorAll("#mo [data-s]").forEach(b=>b.onclick=()=>{const s=b.dataset.s,nv=(tmp[s]||0)+ +b.dataset.n;if(nv<(own[s]||0)){toast("Tu as prélevé "+own[s]+" × "+s+" : retire d'abord le tir dans ta fiche.");return}tmp[s]=Math.max(0,nv);b.parentNode.querySelector("b").textContent=tmp[s];$('#mo [data-bg="'+b.dataset.gi+'"]').textContent=gs(+b.dataset.gi)||""});
  $("#t-ph").onchange=async ev=>{const f=ev.target.files[0];if(!f)return;const p=await addPhoto(f);fd.tabPhotos.push(p);$("#t-th").insertAdjacentHTML("beforeend",th(p));hydrate()};
- $("#t-ok").onclick=()=>{Object.keys(tmp).forEach(k=>{if(!tmp[k])delete tmp[k]});fd.tab=tmp;closeM();render()}}
+ $("#t-ok").onclick=()=>{Object.keys(tmp).forEach(k=>{if(!tmp[k])delete tmp[k]});track("tableau_saved",{pieces:Object.values(tmp).reduce((a,b)=>a+b,0),photo:fd.tabPhotos.length>0});fd.tab=tmp;closeM();render()}}
 
 /* ---------- fiche : consultation ---------- */
 const GC={br:["#d49a62","#94602f","#53321a"],tn:["#e8b678","#bc7d40","#7d4c25"],dk:["#78685a","#45382d","#1e1813"],gy:["#c4c8cc","#838a90","#4c5156"],bk:["#666b72","#2a2d31","#0d0e10"],cr:["#fffdf6","#ede2cb","#c2b399"],rd:["#f7ae62","#d4631c","#81360f"],gn:["#7fdcb0","#1f9068","#0e4f38"],rs:["#f4a85a","#bd531d","#6c2811"],bl:["#9adce6","#2f8da4","#154d60"],bg:["#ecd0a2","#bf9460","#7f5e33"],wh:["#ffffff","#efede6","#bcb9ae"],ye:["#ffe680","#f2b72d","#a97500"],g2:["#d3c3ac","#96806a","#5a4a3d"],pk:["#ffd0c8","#e59a92","#b0665e"],ro:["#ff8f7e","#d62c1f","#7a0f0a"]};
@@ -1499,7 +1519,7 @@ function centerChip(){const c=document.querySelector(".chips2"),o=c&&c.querySele
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 const todayS=()=>iso(new Date());
 const periodEv=()=>evs().filter(e=>!e.nh&&(seasonF=="all"||season(e.date)==seasonF));
-function rStats(){const withF=evs().filter(e=>e.fiche),seasons=[...new Set([season(todayS()),...evs().filter(e=>!e.nh).map(e=>season(e.date))])].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
+function rStats(){if(!rStats._t||Date.now()-rStats._t>60000){rStats._t=Date.now();track("stats_viewed")}const withF=evs().filter(e=>e.fiche),seasons=[...new Set([season(todayS()),...evs().filter(e=>!e.nh).map(e=>season(e.date))])].sort().reverse(),L=withF.filter(e=>seasonF=="all"||season(e.date)==seasonF),a=agg(L);
  const PE=periodEv(),plan=PE.length,passed=PE.filter(e=>e.date<=todayS()).length,bySp={},bySec={},cnt={},bySea={},place=village,pt=e=>e.fiche.tirs.reduce((x,t)=>x+t.p,0),dt=d=>d.split("-").reverse().join("/");
  a.T.forEach(t=>{if(t.p){const k=tname(t);bySp[k]=(bySp[k]||0)+t.p}});
  L.forEach(e=>{const k=place(e);bySec[k]=(bySec[k]||0)+pt(e);cnt[k]=(cnt[k]||0)+1});

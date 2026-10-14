@@ -10,6 +10,10 @@ permissions:
 jobs:
   ocr:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11]
     timeout-minutes: 170
     steps:
       - uses: actions/checkout@v4
@@ -18,4 +22,4 @@ jobs:
       - name: OCR
         run: |
           git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"
-          timeout 150m bash tools/fr/ocr.sh || true
+          SHARD=${{ matrix.shard }} NSHARD=12 timeout 150m bash tools/fr/ocr.sh || true

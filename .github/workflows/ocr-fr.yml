@@ -1,0 +1,35 @@
+name: OCR haute qualité arrêtés France
+# Ré-OCR à 300 dpi (avec détection de rotation) des arrêtés scannés listés dans tools/fr/ocr300.txt
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/fr/ocr300.txt", ".github/workflows/ocr-fr.yml"]
+permissions:
+  contents: write
+jobs:
+  ocr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils tesseract-ocr tesseract-ocr-fra tesseract-ocr-osd >/dev/null
+      - name: OCR
+        run: |
+          git show origin/arretes-fr:index.tsv > /tmp/index.tsv
+          mkdir -p /tmp/o300
+          ocr1(){ code=$1; url=$(awk -F'\t' -v c="$code" '$1==c{print $4}' /tmp/index.tsv); [ -z "$url" ] && return
+            d=$(mktemp -d); curl -sL --max-time 120 -o "$d/a.pdf" "$url"
+            pdftoppm -r 300 -gray -png -l 16 "$d/a.pdf" "$d/p"
+            for f in "$d"/p*.png; do echo "=== page $(basename $f)"; timeout 300 tesseract "$f" - -l fra --psm 1 2>/dev/null; done > /tmp/o300/$code.txt; rm -rf "$d"; echo "$code done"; }
+          export -f ocr1
+          grep -oE "^[0-9AB]{2}" tools/fr/ocr300.txt | xargs -n1 -P4 bash -c 'ocr1 "$0"'
+      - name: Publier
+        if: always()
+        run: |
+          git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"
+          git fetch -q origin arretes-fr; git checkout -B arretes-fr origin/arretes-fr
+          mkdir -p txt300; cp /tmp/o300/*.txt txt300/ 2>/dev/null || true
+          git add txt300; git commit -qm "OCR 300 dpi $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git push -q origin arretes-fr && break; git pull -q --rebase origin arretes-fr; done

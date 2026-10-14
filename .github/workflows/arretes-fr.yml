@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["tools/fr/**", ".github/workflows/arretes-fr.yml"]
+    paths: ["tools/fr/fetch.sh", "tools/fr/deps.tsv"]
   schedule:
     - cron: "17 5 * 6-9 1"   # chaque lundi de juin à septembre (nouveaux arrêtés)
 permissions:

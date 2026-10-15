@@ -1,0 +1,12 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Petit gibier sédentaire : à partir de 9 h. Battue organisée = 6 tireurs minimum.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Dès le 1/6 : affût ou approche, à balle ou à l'arc, sur autorisation préfectorale (plan de chasse)."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Dès le 1/6 : affût ou approche, sur autorisation."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Dès le 1/9 (cerf élaphe et sika) : affût ou approche, sur autorisation."},
+"Sanglier":{"aa":[["2026-06-01","2027-03-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Dès le 1/6 sur autorisation préfectorale : affût, approche et battue organisée. Tous modes à partir du 15/8."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Lapin":{"g":[["2026-09-20","2027-01-17"]]},
+"Lièvre":{"g":[["2026-10-11","2027-01-17"]],"n":"Plan de chasse."},
+"Perdrix":{"g":[["2026-09-20","2027-01-17"]]},
+"Faisan":{"g":[["2026-09-20","2027-01-17"]]},
+"Bécasse":{"g":[["2026-09-20","2027-02-20"]],"n":"3 par jour, 6 par semaine, 30 par saison."},
+"Pigeon ramier":{"g":[["2026-09-20","2027-02-10"]],"n":"20 pigeons par jour."}}}

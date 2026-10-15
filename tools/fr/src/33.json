@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","sp":{
+"Faisan":{"g":[["2026-09-13","2027-02-28"]]},
+"Perdrix":{"g":[["2026-09-13","2027-02-28"]]},
+"Lapin":{"g":[["2026-09-13","2027-02-28"]],"n":"Furet autorisé."},
+"Lièvre":{"g":[["2026-09-13","2027-01-03"]],"n":"Retardé au 2e dimanche d'octobre dans plusieurs cantons (Entre-Deux-Mers, Libournais, Nord Gironde…)."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Sanglier":{"aa":[["2026-06-01","2027-03-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-06-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"Plan de gestion, bracelet obligatoire. Avant le 15/8 et en juin 2027 : sur autorisation préfectorale."},
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"1/7–12/9 et juin 2027 : approche ou affût seulement, sur autorisation."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Tir à balle obligatoire. 1/7–12/9 : approche ou affût, sur autorisation."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"1/9–12/9 : approche ou affût. Tir à balle obligatoire."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"5 par semaine, 30 par saison ; carnet obligatoire."},
+"Pigeon ramier":{"g":[["2026-09-13","2027-02-10"]],"n":"À partir du 21/11 : 10 palombes par jour."}}}

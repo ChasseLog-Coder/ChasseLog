@@ -1,0 +1,9 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"À partir de l'ouverture, tir dès 9 h (sauf gibier d'eau, grand gibier et ESOD). Canards et oies : 10 par chasseur et par jour.","sp":{
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/7–19/9 et juin 2027 : affût ou approche, attributions individuelles du plan de chasse (tir d'été)."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Tir d'été réservé aux bénéficiaires d'un plan de chasse individuel. Balle ou arc."},
+"Cerf":{"aa":[["2026-09-20","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Balle ou arc obligatoire, plan de chasse."},
+"Sanglier":{"aa":[["2026-07-01","2027-06-30"]],"bat":[["2026-07-01","2027-03-31"],["2027-06-01","2027-06-30"]],"n":"1/7–14/8, 1/4–30/6 (affût/approche) et juin 2027 (battue) : sur autorisation préfectorale. Battue : 6 chasseurs min. avec chiens. 15/8–19/9 sans autorisation."},
+"Lièvre":{"g":[["2026-09-20","2026-12-31"]],"n":"Plan de gestion avec bracelet. Ouverture au 18/10 sur les communes de l'annexe 1."},
+"Perdrix":{"g":[["2026-09-20","2026-12-06"]]},
+"Faisan":{"g":[["2026-09-20","2027-01-15"]],"n":"Plans de gestion : ouverture au 18/10 et fermeture au 18/1 sur certaines communes ; faisan commun fermé dans quelques communes du Layon."},
+"Bécasse":{"n":"3 par jour, 6 par semaine, 30 par saison ; carnet ou ChassAdapt."}}}

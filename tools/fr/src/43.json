@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Gibier sédentaire et bécasse : pas de chasse les mardis et vendredis (sauf jours fériés). Interdiction de toute chasse les 3 et 4/10 dans le massif de l'Alagnon (comptage des cerfs).","sp":{
+"Cerf":{"aa":[["2026-10-17","2027-02-28"]],"bat":[["2026-10-17","2027-02-28"]],"n":"Tir à balle ou à l'arc ; approche/affût sans chien, avec le carnet FDC. Battue : 5 chasseurs minimum."},
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"1/6–12/9 : brocard à l'approche/affût, sur autorisation préfectorale."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"1/6–14/8 : communes sensibles, sur autorisation. 15/8–12/9 : autorisation de l'unité de gestion. 1/4–31/5 : protection des semis, sur autorisation."},
+"Lapin":{"g":[["2026-09-13","2027-01-01"]]},
+"Lièvre":{"g":[["2026-09-27","2026-12-06"]]},
+"Renard":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Moins de 5 chasseurs : plomb ou arc (balle seulement à l'approche/affût sans chien)."},
+"Faisan":{"g":[["2026-09-13","2027-01-01"]]},
+"Perdrix":{"g":[["2026-09-13","2026-12-06"]],"n":"Plateaux volcaniques du Velay : à partir du 4/10."},
+"Bécasse":{"g":[["2026-09-13","2027-02-20"]],"n":"3 par jour et 6 par semaine, 30 par saison."}}}

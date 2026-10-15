@@ -1,0 +1,11 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Petit gibier : 9 h–18 h jusqu'au 18/10, 9 h–17 h du 19/10 au 31/1, puis 9 h–18 h. Lièvre, perdrix grise et faisan : 2 jours par semaine sur calendrier FDC.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–19/9 (et dès le 1/6/2027) : approche/affût si mentionné dans la notification du plan de chasse ; balle ou arc."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Balle ou arc obligatoire."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/9–19/9 : approche/affût si mentionné dans la notification. Balle ou arc."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/9–19/9 : approche/affût si mentionné dans la notification."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"1/6–14/8 : affût/approche selon notification ; battue sur autorisation préfectorale. 15/8–19/9 : battue en plaine seulement. Plaine (hors Marquenterre) : règles de jours et de couverts. 1/4–31/5 : plaine, protection des semis, sur autorisation."},
+"Renard":{"aa":[["2026-06-01","2027-03-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-15","2027-03-31"]],"n":"Hors période générale : par les chasseurs autorisés au chevreuil ou au sanglier, dans leurs conditions."},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]],"n":"Furet autorisé."},
+"Lièvre":{"g":[["2026-09-20","2026-12-06"]],"n":"Plaine : 20/9–25/10 ; bois et marais boisés : 1/11–6/12 ; nombre de jours limité par unité de gestion. Arc : jusqu'au 20/12."},
+"Faisan":{"g":[["2026-09-20","2027-01-10"]],"n":"Plaine : jusqu'au 29/11 ; bois : 1/11–10/1. Poule selon le niveau du plan de gestion."},
+"Perdrix":{"g":[["2026-09-20","2026-11-14"]],"n":"Perdrix grise : 8 jours maximum dans la saison, sur calendrier."}}}

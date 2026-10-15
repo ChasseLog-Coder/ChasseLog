@@ -1,0 +1,12 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Chasse à tir suspendue les mardis, jeudis et vendredis (sauf fériés), sauf gibier soumis au plan de chasse, sika, gibier d'eau, oiseaux de passage (hors bécasse), renard et ESOD.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"1/6–12/9 : approche ou affût, sur autorisation préfectorale individuelle ; balle ou arc, optique ou jumelles."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Balle ou arc."},
+"Mouflon":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Balle ou arc."},
+"Cerf":{"aa":[["2026-10-25","2027-02-28"]],"bat":[["2026-10-25","2027-02-28"]],"n":"Mâles et femelles de tous âges. Balle ou arc."},
+"Sanglier":{"aa":[["2026-06-01","2027-03-31"]],"bat":[["2026-08-01","2027-03-31"]],"n":"1/6–14/8 : affût/approche sur autorisation, interdit de 9 h à 18 h. 1/8–14/8 : battue seulement dans le maïs, jusqu'à 9 h. 15/8–12/9 : affût/approche sans autorisation. Battue : samedis, dimanches, lundis, mercredis et fériés."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant le 13/9 : par les chasseurs autorisés au chevreuil ou au sanglier, dans les mêmes conditions."},
+"Perdrix":{"g":[["2026-09-13","2027-02-28"]],"n":"Perdrix rouge : les six dimanches du 20/9 au 25/10 seulement. Perdrix grise jusqu'au 28/2."},
+"Lièvre":{"g":[["2026-09-13","2027-01-03"]]},
+"Lapin":{"g":[["2026-09-13","2027-01-31"]],"n":"Furet : 6/12–31/1 sur autorisation préfectorale."},
+"Faisan":{"g":[["2026-09-13","2027-02-28"]]},
+"Bécasse":{"n":"Plan de gestion départemental (annexe de l'arrêté)."}}}

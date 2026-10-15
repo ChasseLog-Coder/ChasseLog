@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Gibier sédentaire : de 9 h à 1 h après le coucher du soleil. Timbre grand gibier obligatoire. Chasse en temps de neige interdite (sauf exceptions).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Tir d'été dès le 1/6 à l'approche ou à l'affût (bracelets du plan de chasse)."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Tir d'été dès le 1/6 à l'approche ou à l'affût."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Tir d'été dès le 1/9 à l'approche ou à l'affût."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-07-01","2027-03-31"]],"n":"1/6–14/8 et battues dès le 1/7 (5 tireurs min.) : plan de chasse/gestion ou autorisation. Dès le 15/8 sans autorisation. 1/4–31/5 : affût/approche pour protéger les semis. Bouton de marquage obligatoire."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-07-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier, à balle ou à l'arc."},
+"Lièvre":{"g":[["2026-10-04","2026-12-14"]]},
+"Perdrix":{"g":[["2026-09-20","2026-12-14"]]},
+"Faisan":{"g":[["2026-09-20","2027-01-11"]],"n":"Faisans naturels : à partir du 4/10, avec bracelet. Faisans ponchotés/bagués dès l'ouverture. Faisan vénéré jusqu'au 31/1."},
+"Bécasse":{"n":"2 par jour, 3 par semaine, 30 par an ; ChassAdapt ou carnet FDC."}}}

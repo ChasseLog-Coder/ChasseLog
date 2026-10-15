@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Dates de la zone de plaine. Massif montagnard : même ouverture générale, mais chasse collective du grand gibier les mercredis, samedis, dimanches et fériés seulement ; lièvre 4/10–27/12 ; perdrix grise 30/9–1/11 (PMA). Chasse collective du grand gibier réservée aux territoires d'au moins 100 ha d'un seul tenant.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Plaine, 1/6–12/9 : approche ou affût sans chien, sur autorisation préfectorale ; chevrette interdite sauf dégâts. Plan de chasse triennal."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Plaine, 1/9–12/9 : approche ou affût sans chien, sur autorisation préfectorale. Balle ou arc."},
+"Chamois":{"aa":[["2026-09-13","2026-11-15"]],"n":"Isard (montagne) : mercredis, samedis, dimanches et fériés ; chasse collective et chiens interdits. Jusqu'au 13/12 en UM 7.1 ; Estibette (UM 6) : 27/9–22/11."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"Plaine. 1/6–14/8 : sur autorisation préfectorale (dégâts). Dès le 15/8 tous les jours. Mars : dégâts. 1/4–31/5 : protection des semis, sur autorisation. Montagne : fermeture le 31/3."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Faisan":{"g":[["2026-09-13","2026-12-25"]],"n":"Mercredis, samedis, dimanches et jours fériés."},
+"Perdrix":{"g":[["2026-09-13","2026-12-25"]],"n":"Mercredis, samedis, dimanches et jours fériés. Montagne : perdrix grise 30/9–1/11 avec PMA."},
+"Lapin":{"g":[["2026-09-13","2026-12-25"]],"n":"Mercredis, samedis, dimanches et jours fériés."},
+"Lièvre":{"g":[["2026-10-18","2027-01-17"]],"n":"Plaine : mercredis, samedis, dimanches et fériés (plan de gestion). Montagne : 4/10–27/12."},
+"Bécasse":{"n":"Dès le 1/12 : tir interdit les mardis et vendredis (sauf fériés)."}}}

@@ -1,0 +1,11 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Chasse interdite le mercredi (tous modes, toutes espèces). Gélinotte interdite. Battue grand gibier : horaires fixes selon la période (ex. 8 h 30–17 h du 1/11 au 31/1).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–19/9 : tir de sélection à l'approche ou à l'affût sur autorisation fédérale individuelle."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–19/9 : sur autorisation fédérale individuelle."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Cerf et sika. 1/9–19/9 : tir de sélection sur autorisation fédérale individuelle."},
+"Sanglier":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-15","2027-02-28"]],"n":"1/6–14/8 : approche ou affût sur autorisation fédérale individuelle. Recherche au chien de rouge possible le 1/3/2027."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-15","2027-02-28"]],"n":"Avant le 20/9 : par les chasseurs autorisés au chevreuil ou au sanglier. Interdit dans les forêts du cœur du parc national."},
+"Lièvre":{"g":[["2026-09-20","2026-11-22"]],"n":"Jusqu'au 20/12 pour le GIC du Sud Haut-Marnais (plan de chasse)."},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]]},
+"Faisan":{"g":[["2026-09-20","2027-02-28"]],"n":"Commun et vénéré. Poule faisane interdite à Longeville-sur-la-Laines."},
+"Perdrix":{"g":[["2026-09-20","2027-02-28"]],"n":"Perdrix grise jusqu'au 8/11 seulement : samedis, dimanches, fériés et lundi suivant l'ouverture ; interdite sur certaines communes du GIC Sud Haut-Marnais. Perdrix rouge jusqu'au 28/2."},
+"Bécasse":{"n":"3 par jour, 30 par saison."}}}

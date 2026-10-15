@@ -1,0 +1,10 @@
+{"ouv":"2026-09-27","clo":"2027-02-28","n":"Ouverture le 20/9/2026 à 9 h pour le grand gibier et le renard ; le 27/9 à 9 h pour les autres gibiers sédentaires. Chasse en temps de neige interdite (sauf exceptions).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : mâles seulement, approche ou affût (nombre fixé dans la notification de plan de chasse)."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : mâles seulement, approche ou affût."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : mâles seulement, approche ou affût. Mâchoires des biches à remettre à la FDC."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"],["2027-04-01","2027-05-31"]],"n":"Sans autorisation préfectorale. 1/4–31/5 : battue seulement dans les miscanthus (ailleurs sur autorisation). Bracelet obligatoire (sauf moins de 15 kg)."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant le 20/9 : par les chasseurs autorisés au chevreuil ou au sanglier, dans les mêmes conditions."},
+"Faisan":{"g":[["2026-09-27","2027-01-31"]],"n":"Plan de gestion (quota et marquage sur les communes de l'annexe 1). Faisan vénéré jusqu'au 28/2."},
+"Lièvre":{"g":[["2026-09-27","2026-12-06"]],"n":"Plan de gestion : quota et marquage."},
+"Perdrix":{"g":[["2026-09-27","2027-01-31"]],"n":"Perdrix grise et perdrix rouge du PNR du Perche : jusqu'au 6/12 (quota et marquage). Perdrix rouge hors PNR : jusqu'au 31/1."},
+"Bécasse":{"n":"2 par jour, 3 par semaine, 30 par saison."}}}

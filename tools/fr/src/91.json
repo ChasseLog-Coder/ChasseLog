@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Petit gibier : 9 h–18 h jusqu'au 31/10, 9 h–17 h du 1/11 au 15/1, puis 9 h–18 h. Tir à balle interdit sur les territoires de moins de 5 ha.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : tir d'été dans le cadre du plan de chasse. Déclaration à la FICIF sous 48 h."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant l'ouverture : tir d'été dans le cadre du plan de chasse."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Plan de chasse qualitatif."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"1/6–14/8 sur autorisation (battue seulement dans les communes « points noirs »). Dès le 15/8 sans formalité. Mars : hors Natura 2000. 1/4–31/5 : plaine, semis, sur autorisation. 5 ha minimum d'un seul tenant."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au tir d'été du sanglier ou du chevreuil."},
+"Lièvre":{"g":[["2026-09-20","2026-11-29"]],"n":"Plan de chasse."},
+"Perdrix":{"g":[["2026-09-20","2027-01-31"]],"n":"Perdrix grise jusqu'au 29/11 ; perdrix rouge jusqu'au 31/1."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Coq jusqu'au 31/1 ; poule du 4/10 au 31/12 (plan de gestion)."},
+"Bécasse":{"n":"Carnet de prélèvement et marquage obligatoires ; 30 par saison."}}}

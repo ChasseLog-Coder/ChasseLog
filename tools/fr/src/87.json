@@ -1,0 +1,11 @@
+{"ouv":"2026-09-13","clo":"2027-02-28","n":"Ouverture le 13/9/2026 à 8 h. Petit gibier à partir de 8 h. Chasse interdite par temps de neige (sauf exceptions). Battue : gilet orange et registre FDC obligatoires.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"1/6–12/9 : tir sélectif du brocard seulement, approche ou affût, balle ou arc."},
+"Daim":{"aa":[["2026-09-13","2027-02-28"]],"bat":[["2026-09-13","2027-02-28"]],"n":"Balle ou arc."},
+"Cerf":{"aa":[["2026-10-17","2027-02-28"]],"bat":[["2026-10-17","2027-02-28"]],"n":"Balle ou arc."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"],["2027-04-01","2027-05-31"]],"n":"Jusqu'au 14/8 : battue en une seule équipe, avec accord du propriétaire de la culture et déclaration au louvetier. Dès le 13/9 : battue 2 jours fixes par semaine (à défaut samedi et dimanche) + fériés. 1/4–31/5 : protection des semis (battue exceptionnelle)."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant le 13/9 : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Lièvre":{"g":[["2026-10-18","2027-01-01"]]},
+"Lapin":{"g":[["2026-09-13","2027-01-01"]],"n":"Furet sur autorisation préfectorale."},
+"Perdrix":{"g":[["2026-09-13","2027-01-01"]],"n":"Jusqu'au 31/1 sur 6 communes (Azat-le-Ris, La Bazeuge…)."},
+"Faisan":{"g":[["2026-09-13","2027-01-01"]],"n":"Interdit sur plusieurs communes (zone de faisan sauvage et ouest du département)."},
+"Bécasse":{"n":"3 par jour, 6 par semaine, 30 par saison. Passée et croule interdites."}}}

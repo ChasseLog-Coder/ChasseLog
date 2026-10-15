@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Ouverture le 20/9/2026 à 9 h. Petit gibier : 9 h–18 h jusqu'au 31/10, 9 h–17 h du 1/11 au 15/1, puis 9 h–18 h. Tir à balle interdit sur les territoires de moins de 5 ha.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : approche ou affût sans chien, plan de chasse + autorisation de tir anticipé. Déclaration FICIF sous 48 h."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : approche ou affût avec autorisation de tir anticipé."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"Avant le 20/9 : approche ou affût avec autorisation de tir anticipé. Plan de chasse qualitatif."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"1/6–14/8 : affût avec l'autorisation chevreuil, ou battue dans les cultures sur autorisation. Dès le 15/8 sans formalité. Mars sans formalité (sauf réserve des coteaux de Seine). 1/4–31/5 : semis, sur autorisation."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil, cerf ou sanglier."},
+"Lièvre":{"g":[["2026-09-20","2026-11-29"]],"n":"Plan de chasse."},
+"Perdrix":{"g":[["2026-09-20","2027-01-31"]],"n":"Perdrix grise jusqu'au 29/11 ; perdrix rouge jusqu'au 31/1."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Poule faisane commune : 4/10–31/12 (hors zones du plan de gestion)."},
+"Bécasse":{"n":"30 par saison."}}}

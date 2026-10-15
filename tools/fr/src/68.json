@@ -1,0 +1,12 @@
+{"ouv":"2026-08-23","clo":"2027-02-01","n":"Droit local alsacien : ouverture générale le 23/8/2026, fermeture le 1/2/2027. Caille des blés et tourterelle turque interdites. Poule faisane et perdrix interdites par temps de neige.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-01"]],"bat":[["2026-08-23","2027-02-01"]],"n":"Brocard dès le 15/5/2026 ; chevrette et faon à partir du 23/8."},
+"Cerf":{"aa":[["2026-08-01","2027-02-01"]],"bat":[["2026-08-23","2027-02-01"]],"n":"Cerf mâle dès le 1/8 ; biche et faon à partir du 23/8."},
+"Daim":{"aa":[["2026-08-01","2027-02-01"]],"bat":[["2026-08-23","2027-02-01"]],"n":"Daim mâle dès le 1/8 ; daine et faon à partir du 23/8."},
+"Chamois":{"aa":[["2026-08-23","2027-02-01"]]},
+"Sanglier":{"aa":[["2026-06-01","2027-02-01"]],"bat":[["2026-06-01","2027-02-01"]],"n":"Ouvert depuis le 15/4/2026."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Ouvert depuis le 15/4/2026 jusqu'au 28/2."},
+"Lapin":{"g":[["2026-06-01","2027-02-28"]],"n":"Ouvert depuis le 15/4/2026."},
+"Lièvre":{"g":[["2026-10-15","2026-12-15"]]},
+"Faisan":{"g":[["2026-09-15","2026-12-31"]]},
+"Perdrix":{"g":[["2026-09-15","2026-12-31"]]},
+"Caille":{"x":true,"n":"Chasse interdite dans le Haut-Rhin."}}}

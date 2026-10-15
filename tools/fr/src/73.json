@@ -1,0 +1,10 @@
+{"ouv":"2026-09-13","clo":"2027-01-31","n":"Ouverture le 13/9/2026 à 7 h, clôture générale le 31/1/2027. Chasse à tir interdite les mardis et vendredis (sauf fériés). Grand gibier : mercredis, jeudis, samedis, dimanches et fériés (sanglier aussi le lundi). Chasse en temps de neige interdite (sauf exceptions).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-01-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-13","2027-01-31"]],"n":"Dès le 1/6 : brocard à l'approche ou à l'affût, sur autorisation préfectorale individuelle. Plan de chasse."},
+"Cerf":{"aa":[["2026-09-01","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]],"n":"1/9–12/9 : approche ou affût. 21/9–2/10 : seulement biche, bichette, daguet et faon."},
+"Mouflon":{"aa":[["2026-09-13","2027-01-31"]],"bat":[["2026-09-13","2027-01-31"]]},
+"Chamois":{"aa":[["2026-09-13","2027-01-31"]],"n":"Selon l'unité de gestion : fermeture le 11/11, ou interruption du 11/11 au 26/11 puis reprise jusqu'au 31/1. Bracelet par secteur et par équipe."},
+"Sanglier":{"aa":[["2026-07-01","2027-05-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-16","2027-03-31"]],"n":"1/7–15/8 : approche ou affût sur autorisation préfectorale. Dès le 16/8 tous modes. Mars : sur simple déclaration à la DDT. 1/4–31/5 : semis, sur autorisation."},
+"Lièvre":{"g":[["2026-09-13","2026-11-11"]],"n":"Plan de tir de la FDC. Mercredis, jeudis, samedis, dimanches et fériés."},
+"Faisan":{"g":[["2026-09-13","2027-01-31"]]},
+"Perdrix":{"g":[["2026-09-13","2027-01-31"]],"n":"Bartavelle : 20/9–11/11, plan de chasse."},
+"Bécasse":{"g":[["2026-09-13","2027-01-31"]],"n":"3 par jour et 6 par semaine jusqu'au 31/12, puis 3 par semaine ; 30 par saison."}}}

@@ -1,0 +1,10 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Ouverture le 20/9/2026 à 9 h, fermeture le 28/2/2027 à 18 h. Zones soumises à plan de gestion : dates propres.","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–19/9 : approche ou affût, plan de chasse FICIF + autorisation préfectorale de tir d'été."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/6–19/9 : approche ou affût, avec autorisation de tir d'été."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-20","2027-02-28"]],"n":"1/9–19/9 : approche ou affût, avec autorisation de tir d'été."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-06-01","2027-03-31"]],"n":"1/6–14/8 : affût/approche et battue en plaine sur autorisation préfectorale. 15/8–19/9 sans formalité (battue en plaine et îlots de moins de 5 ha). 1/4–31/5 : protection des semis sur autorisation."},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-06-01","2027-02-28"]],"n":"Avant le 20/9 : par les chasseurs autorisés au chevreuil ou au sanglier."},
+"Faisan":{"g":[["2026-09-20","2027-01-31"]],"n":"Faisan commun : coq jusqu'au 31/1 ; poule du 4/10 au 31/12."},
+"Perdrix":{"g":[["2026-09-20","2027-01-31"]],"n":"Perdrix grise jusqu'au 29/11 ; perdrix rouge jusqu'au 31/1."},
+"Lièvre":{"g":[["2026-09-20","2026-11-29"]],"n":"Plan de chasse."},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]]}}}

@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle fonctionne sans connexion.
 // Les fonds de carte (OpenStreetMap) ne sont volontairement PAS mis en cache.
-const V = "carnet-v58";
+const V = "carnet-v59";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "data/ouv-fr.json",
   "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "icons/apple-touch-icon.png",
@@ -8,7 +8,7 @@ const FILES = [
   "lib/leaflet/images/marker-icon.png", "lib/leaflet/images/marker-icon-2x.png",
   "lib/leaflet/images/marker-shadow.png", "lib/leaflet/images/layers.png", "lib/leaflet/images/layers-2x.png",
   "weapons/carabine.webp", "weapons/fusil.webp",
-  "animals/isard.webp", "animals/grive.webp", "animals/sarcelle.webp", "animals/chipeau.webp", "animals/oiecendree.webp", "animals/chamois.webp", "animals/caille.webp", "animals/perdrixg.webp", "animals/agneau.webp", "animals/becasse.webp", "animals/biche.webp", "animals/bichette.webp", "animals/brocard.webp", "animals/cerf.webp", "animals/cervide.webp", "animals/chevrette.webp", "animals/chevreuil.webp", "animals/chevrillard.webp", "animals/colvert.webp", "animals/daim.webp", "animals/daimf.webp", "animals/daimj.webp", "animals/daimm.webp", "animals/faon.webp", "animals/fcoq.webp", "animals/foulque.webp", "animals/fpoule.webp", "animals/lapin.webp", "animals/lievre.webp", "animals/mouflon.webp", "animals/mouflonf.webp", "animals/oie.webp", "animals/perdrix.webp", "animals/pigeon.webp", "animals/renard.webp", "animals/sanglier.webp"
+  "animals/raton.webp", "animals/isard.webp", "animals/grive.webp", "animals/sarcelle.webp", "animals/chipeau.webp", "animals/oiecendree.webp", "animals/chamois.webp", "animals/caille.webp", "animals/perdrixg.webp", "animals/agneau.webp", "animals/becasse.webp", "animals/biche.webp", "animals/bichette.webp", "animals/brocard.webp", "animals/cerf.webp", "animals/cervide.webp", "animals/chevrette.webp", "animals/chevreuil.webp", "animals/chevrillard.webp", "animals/colvert.webp", "animals/daim.webp", "animals/daimf.webp", "animals/daimj.webp", "animals/daimm.webp", "animals/faon.webp", "animals/fcoq.webp", "animals/foulque.webp", "animals/fpoule.webp", "animals/lapin.webp", "animals/lievre.webp", "animals/mouflon.webp", "animals/mouflonf.webp", "animals/oie.webp", "animals/perdrix.webp", "animals/pigeon.webp", "animals/renard.webp", "animals/sanglier.webp"
 ];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(V).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

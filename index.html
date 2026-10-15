@@ -295,7 +295,7 @@ html.in-on,html.in-on body{overflow:hidden}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-15c<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-15d<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></symbol>
 <symbol id="i-tgt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
@@ -321,7 +321,7 @@ html.in-on,html.in-on body{overflow:hidden}
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon","Chamois","Isard"],
 "Petit gibier":["Lièvre","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive"],
 "Gibier d'eau":["Canard colvert","Sarcelle d'hiver","Canard chipeau","Oie cendrée","Bernache du Canada","Foulque macroule"],
-"Autre gibier":["Lapin de garenne","Pigeon ramier","Renard"]};
+"Autre gibier":["Lapin de garenne","Pigeon ramier","Renard","Raton laveur"]};
 const CLS={"Cerf élaphe":["Cerf mâle","Biche","Bichette","Faon"],"Daim":["Mâle","Femelle","Jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"]};
 const CL={"Cerf élaphe":{m:"mâle",f:"biche",b:"bichette",j:"faon"},"Daim":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
 const XT={"Cerf élaphe":["Cerf mâle","Biche","Bichette","Faon"],"Daim":["Daim – mâle","Daim – femelle","Daim – jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
@@ -756,7 +756,7 @@ const fmtL2=ds=>ds?new Date(ds+"T12:00").toLocaleDateString("fr-BE",{day:"numeri
 const ONB_KW=/chass|battue|traque|affût|affut|approche|poste|tableau|brocard|sanglier|chevreuil|saint[- ]hubert|rdv|rendez/i;
 function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#onb"))return;
  const o=document.createElement("div");o.id="onb";document.body.appendChild(o);document.documentElement.classList.add("in-on");
- const ALL=Object.values(G).flat(),SPM=["Chevreuil","Sanglier","Cerf élaphe","Daim","Mouflon","Chamois","Isard","Renard","Lièvre","Lapin de garenne","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive","Pigeon ramier","Canard colvert","Sarcelle d'hiver","Canard chipeau","Oie cendrée","Bernache du Canada","Foulque macroule"];
+ const ALL=Object.values(G).flat(),SPM=["Chevreuil","Sanglier","Cerf élaphe","Daim","Mouflon","Chamois","Isard","Renard","Raton laveur","Lièvre","Lapin de garenne","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive","Pigeon ramier","Canard colvert","Sarcelle d'hiver","Canard chipeau","Oie cendrée","Bernache du Canada","Foulque macroule"];
  const R={sp:new Set(ALL.filter(x=>!S.hs.includes(x)).length<ALL.length?ALL.filter(x=>!S.hs.includes(x)):["Chevreuil","Sanglier"]),md:new Set(visM().length<MODES.length?visM():["Battue","Approche","Affût"]),imp:0,tour:false};
  let st=0,icsL=null;const N=6;
  const bar=k=>`<div class="ob-pg">${[...Array(N)].map((_,i)=>`<i class="${i<k?"on":""}"></i>`).join("")}</div><div class="ob-tp"><span>Étape ${k} sur ${N}</span>${k>=2&&k<=4||k==6?`<button class="ob-sk" data-skip>Passer</button>`:""}</div>`;
@@ -1249,7 +1249,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-15c",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
+const APP_V="2026-10-15d",APP_URL="https://chasselog-coder.github.io/ChasseLog/";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1816,6 +1816,7 @@ function migrate(){migTirs();const REN={"Cerf élaphe – mâle":"Cerf mâle","C
  S.hs=(S.hs||[]).map(x=>x=="Cerv"+"idé"?NEW:x);
  /* nouvelles espèces (oct. 2026) : masquées par défaut chez les utilisateurs existants (sauf caille et grive en France) */
  if(!S.sp2){S.sp2=1;if(S.setupDone||evs().length){const keep=S.reg=="fr"?["Caille des blés","Grive"]:[];["Isard","Caille des blés","Grive","Sarcelle d'hiver","Canard chipeau","Oie cendrée"].forEach(x=>{if(!keep.includes(x)&&!S.hs.includes(x))S.hs.push(x)})}}
+ if(!S.sp3){S.sp3=1;if((S.setupDone||evs().length)&&!S.hs.includes("Raton laveur"))S.hs.push("Raton laveur")}
  evs().forEach(e=>{const f=e.fiche;if(!f)return;
   (f.tirs||[]).forEach(t=>{const m=String(t.sp).match(/^(Cerf élaphe|Cerv[i]dé|Chevreuil|Faisan|Daim) – (.+)$/);if(m){t.sp=/^Cerv/.test(m[1])?NEW:m[1];t.sx=mp[m[2]]||t.sx||null}else if(/^Cerv[i]dé$/.test(t.sp))t.sp=NEW});
   if(f.tab){const n={};Object.entries(f.tab).forEach(([k,v])=>{const m=k.match(/^(?:Cerf élaphe|Cerv[i]dé)(?: – (.+))?$/);if(m)k=NEW+(m[1]?" – "+(tn[m[1]]||m[1]):"");k=REN[k]||k;n[k]=(n[k]||0)+v});f.tab=n}});save()}

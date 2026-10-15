@@ -1,0 +1,14 @@
+{"ouv":"2026-09-20","clo":"2027-02-28","n":"Chasse de 8 h 30 à 18 h (sauf chasse individuelle silencieuse du grand gibier, renard, lapin…). Battue : selon le calendrier transmis à la FDCA avant le 15/9 (20 jours max au-delà de 100 ha, 10 jours en dessous, 2 jours par semaine).","sp":{
+"Chevreuil":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-10-01","2027-02-28"]],"n":"1/6–19/9 : brocard seul, chasse individuelle silencieuse sur autorisation préfectorale. Chasse individuelle interdite de 10 h à 15 h du 1/10 au 28/2."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-10-01","2027-02-28"]],"n":"1/9–19/9 : cerf coiffé sur autorisation préfectorale. Chasse individuelle interdite de 10 h à 15 h du 1/10 au 28/2."},
+"Mouflon":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-10-01","2027-02-28"]],"n":"1/9–19/9 : sur autorisation préfectorale."},
+"Daim":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-10-01","2027-02-28"]],"n":"1/6–19/9 : sur autorisation préfectorale."},
+"Sanglier":{"aa":[["2026-06-01","2027-05-31"]],"bat":[["2026-08-01","2027-02-28"]],"n":"1/6–19/9 : individuelle sur autorisation. 1/8–30/9 : battue seulement dans le maïs et cultures sur pied. Mars : sur autorisation FDCA ; 1/4–31/5 : parcelles agricoles, sur autorisation."},
+"Faisan":{"g":[["2026-09-20","2026-12-31"]],"n":"Faisan commun. Faisan vénéré : jusqu'au 28/02."},
+"Lièvre":{"g":[["2026-09-27","2026-10-11"]],"n":"Communes en plan de gestion : 27/9 (ou 7/10) → 30/11."},
+"Perdrix":{"g":[["2026-09-27","2026-10-11"]],"n":"Perdrix grise : 20/9 → 30/11 en plan de gestion (ouverture anticipée possible dès le 6/9). Perdrix rouge : 20/9 → 28/2."},
+"Lapin":{"g":[["2026-09-20","2027-02-28"]]},
+"Renard":{"aa":[["2026-06-01","2027-02-28"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant l'ouverture : avec les autorisations daim/brocard/sanglier ou en battue dans les cultures."},
+"Caille":{"g":[["2026-08-29","2027-02-20"]],"n":"29/8–19/9 : avec chien d'arrêt et déclaration ChassAdapt."},
+"Bécasse":{"g":[["2026-09-20","2027-02-20"]],"n":"PMA annuel, déclaration ChassAdapt ou carnet."},
+"Pigeon ramier":{"g":[["2026-09-20","2027-02-20"]],"n":"Du 11 au 20/02 : à poste fixe uniquement."}}}

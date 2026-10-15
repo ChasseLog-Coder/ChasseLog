@@ -1,0 +1,11 @@
+{"ouv":"2026-09-27","clo":"2027-02-28","n":"Ouverture le 27/9/2026 à 9 h. Gibier sédentaire et oiseaux de passage : à partir de 9 h.","sp":{
+"Chevreuil":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-27","2027-02-28"]],"n":"1/7–26/9 et juin 2027 : approche ou affût, sur autorisation préfectorale individuelle (plan de chasse)."},
+"Daim":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-09-27","2027-02-28"]],"n":"1/7–26/9 et juin 2027 : approche ou affût, sur autorisation préfectorale individuelle."},
+"Cerf":{"aa":[["2026-09-01","2027-02-28"]],"bat":[["2026-09-27","2027-02-28"]],"n":"1/9–26/9 : cerfs mâles seulement, approche ou affût. Cerf sika : de l'ouverture à la fermeture, déclaration à la FDC sous 72 h."},
+"Sanglier":{"aa":[["2026-07-01","2027-05-31"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-01","2027-03-31"]],"n":"Juillet et 1/8–14/8 (battue aussi) : sur autorisation préfectorale. Dès le 15/8 tous modes. 1/4–31/5 : semis, sur autorisation. Déclaration à la FDC sous 48 h."},
+"Renard":{"aa":[["2026-07-01","2027-02-28"],["2027-06-01","2027-06-30"]],"bat":[["2026-08-01","2027-02-28"]],"n":"Avant l'ouverture : par les chasseurs autorisés au chevreuil ou au sanglier. Pas de tir du renard en avril-mai pendant la chasse du sanglier."},
+"Lapin":{"g":[["2026-09-27","2027-02-28"]],"n":"Furet autorisé."},
+"Lièvre":{"g":[["2026-09-27","2026-12-14"]],"n":"Plan de gestion cynégétique."},
+"Perdrix":{"g":[["2026-09-27","2026-12-14"]]},
+"Faisan":{"g":[["2026-09-27","2027-02-28"]],"n":"Faisan commun : jusqu'au 15/1 dans les communes du plan de gestion. Faisan vénéré jusqu'au 28/2."},
+"Bécasse":{"n":"3 par jour, 30 par saison."}}}

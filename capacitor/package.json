@@ -1,0 +1,23 @@
+{
+  "name": "chasselog-android",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Application Android de ChasseLog (Capacitor) : emballe l'app web du dépôt (index.html…) avec les fonctions natives.",
+  "scripts": {
+    "www": "node scripts/www.mjs",
+    "native": "node scripts/native.mjs",
+    "sync": "npm run www && npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/app-launcher": "^8.0.0",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/filesystem": "^8.0.0",
+    "@capacitor/keyboard": "^8.0.0",
+    "@capacitor/share": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.0"
+  }
+}

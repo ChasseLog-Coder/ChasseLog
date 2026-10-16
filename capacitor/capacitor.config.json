@@ -1,0 +1,19 @@
+{
+  "appId": "be.chasselog.app",
+  "appName": "ChasseLog",
+  "webDir": "www",
+  "android": {
+    "appendUserAgent": "ChasseLog-Android",
+    "backgroundColor": "#f1efe6"
+  },
+  "plugins": {
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover",
+      "style": "LIGHT"
+    },
+    "Keyboard": {
+      "resizeOnFullScreen": true
+    }
+  }
+}

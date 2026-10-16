@@ -1,0 +1,54 @@
+name: APK Android (test)
+# Construit l'application Android (Capacitor) à partir de l'app web et dépose l'APK sur la branche « apk-builds ».
+on:
+  workflow_dispatch:
+  push:
+    branches: [prep-capacitor]
+    paths: ["index.html", "data/**", "animals/**", "weapons/**", "tour/**", "lib/**", "icons/**", "capacitor/**", ".github/workflows/android.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: apk-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 21 }
+      - uses: android-actions/setup-android@v3
+      - name: Préparer le projet Android
+        working-directory: capacitor
+        run: |
+          set -o pipefail
+          {
+            npm install --no-audit --no-fund
+            npm ls --depth=0
+            npm run www
+            npx cap add android
+            npx cap sync android
+            VERSION_CODE=${{ github.run_number }} npm run native
+          } 2>&1 | tee ../build.log
+      - name: Construire l'APK
+        working-directory: capacitor/android
+        run: |
+          set -o pipefail
+          ./gradlew assembleRelease --no-daemon --stacktrace 2>&1 | tee -a ../../build.log
+      - name: Publier sur la branche apk-builds
+        if: always()
+        run: |
+          git config user.name "chasselog-bot"; git config user.email "contact.chasselog@gmail.com"
+          mkdir -p /tmp/out
+          APK=$(ls capacitor/android/app/build/outputs/apk/release/*.apk 2>/dev/null | head -1 || true)
+          V=$(grep -o 'const APP_V="[^"]*"' index.html | cut -d'"' -f2)
+          if [ -n "$APK" ]; then cp "$APK" /tmp/out/chasselog-$V-test.apk; R=ok; else R=echec; fi
+          tail -c 400000 build.log > /tmp/out/build.log 2>/dev/null || true
+          cp capacitor/android/app/src/main/AndroidManifest.xml /tmp/out/ 2>/dev/null || true
+          printf 'resultat=%s\nversion=%s\nbuild=%s\ncommit=%s\ndate=%s\n' "$R" "$V" "${{ github.run_number }}" "${{ github.sha }}" "$(date -u +%FT%TZ)" > /tmp/out/info.txt
+          git checkout --orphan apk-builds-tmp; git rm -rqf . ; find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} + ; cp /tmp/out/* .
+          git add -A; git commit -qm "APK test $V (build ${{ github.run_number }}, $R)"
+          git push -qf origin HEAD:apk-builds

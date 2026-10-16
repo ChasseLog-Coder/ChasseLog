@@ -1,0 +1,4 @@
+Clé de signature des APK de TEST uniquement (installation directe par les testeurs).
+Elle est publique (dépôt public) : elle sert seulement à ce que chaque nouvel APK de test
+s'installe par-dessus le précédent sans perdre les données.
+La version Google Play utilisera une autre clé, secrète, qui ne doit jamais être mise ici.

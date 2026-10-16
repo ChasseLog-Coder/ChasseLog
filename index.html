@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
 <style>
-:root{--bg:#f1efe6;--card:#fbfaf5;--ink:#26301f;--mut:#6d7461;--acc:#3f5a2b;--acc2:#a4452c;--line:#d9d6c5;--red:#d32f2f;--dw:min(82vw,300px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#f1efe6;--card:#fbfaf5;--ink:#26301f;--mut:#6d7461;--acc:#3f5a2b;--acc2:#a4452c;--line:#d9d6c5;--red:#d32f2f;--dw:min(82vw,300px);box-sizing:border-box;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px));padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px))}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}}
 :root[data-theme="dark"]{--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,"Iowan Old Style",serif;overflow-x:hidden}
 body.dr{overflow:hidden;overscroll-behavior:none}
 h1,h2,h3,button,label,.sans{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -29,7 +29,7 @@ input,select,textarea{width:100%;font:inherit;padding:9px;border:1px solid var(-
 input[type=checkbox]{width:auto}
 label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 3px}label.ck{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:.95rem;margin:2px 0}
 .row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
-#dr{position:fixed;left:0;top:0;bottom:0;max-height:100dvh;overscroll-behavior:contain;width:var(--dw);background:var(--card);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .25s;padding:calc(14px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow:auto;z-index:5}
+#dr{position:fixed;left:0;top:0;bottom:0;max-height:100dvh;overscroll-behavior:contain;width:var(--dw);background:var(--card);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .25s;padding:calc(14px + var(--safe-area-inset-top,env(safe-area-inset-top,0px))) 12px calc(14px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));display:flex;flex-direction:column;overflow:auto;z-index:5}
 body.dr #dr{transform:none}
 #dr .dhd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 4px 6px}#dr .dhd b{font:800 1.35rem system-ui}
 .dchip{border:0;background:var(--bg);color:var(--ink);border-radius:20px;padding:6px 11px;font:600 .82rem system-ui;white-space:nowrap}
@@ -74,10 +74,10 @@ body.cal{overflow:hidden;overscroll-behavior:none}body.cal #page{height:100dvh;m
 .dc u{display:block;text-decoration:none;background:var(--acc2);color:var(--bg);font:.58rem/1.35 system-ui;border-radius:3px;padding:0 2px;margin:2px 1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dc u.ok,.wk u.ok{background:var(--acc)}.dc small{color:var(--mut);font:.58rem system-ui}
 .ysc{flex:1;min-height:0;overflow-y:auto}.pd{padding:0 14px 90px}.pw{padding:0 10px 90px}
-#fab{position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:300 2rem/1 system-ui;box-shadow:0 3px 10px #0005;z-index:4;padding:0}
+#fab{position:fixed;right:18px;bottom:calc(20px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:300 2rem/1 system-ui;box-shadow:0 3px 10px #0005;z-index:4;padding:0}
 #ff{position:fixed;left:0;right:0;top:0;height:100dvh;background:var(--bg);z-index:8;display:flex;flex-direction:column}
-.fb{flex:1;min-height:0;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 16px;max-width:560px;width:100%;margin:0 auto}
-.fa{display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--card)}.fa button{flex:1}
+.fb{flex:1;min-height:0;overflow:auto;padding:calc(16px + var(--safe-area-inset-top,env(safe-area-inset-top,0px))) 16px 16px;max-width:560px;width:100%;margin:0 auto}
+.fa{display:flex;gap:10px;padding:10px 16px calc(10px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));border-top:1px solid var(--line);background:var(--card)}.fa button{flex:1}
 details.dt{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--bg)}
 details.dt>summary{display:flex;align-items:center;gap:8px;padding:12px;font:600 .95rem system-ui;cursor:pointer;list-style:none}
 details.dt>summary::-webkit-details-marker{display:none}details.dt>summary span:first-child{flex:1}
@@ -86,7 +86,7 @@ details.dt .in{padding:0 12px 8px}
 .bg{background:var(--acc);color:var(--bg);border-radius:99px;padding:0 9px;font:700 .8rem system-ui;min-width:22px;text-align:center}.bg:empty{display:none}
 .tls{display:flex;flex-wrap:wrap;gap:8px}.tl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:.75rem system-ui;color:var(--mut)}.sv{display:flex;align-items:center;gap:8px;color:var(--acc)}.sv b{font:700 1.4rem system-ui;color:var(--ink)}.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}.sr:last-child{border:0}
 .mo{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;justify-content:center;z-index:9}#mo2{z-index:10}#mo3{z-index:11}
-.sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));position:relative}
+.sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));position:relative}
 html,body{overscroll-behavior-y:none}#ptr{position:fixed;left:50%;top:0;z-index:40;transform:translate(-50%,-60px);width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--acc);border:1px solid var(--line);box-shadow:0 3px 10px #0004;display:flex;align-items:center;justify-content:center;font-size:1.4rem;pointer-events:none}#ptr.spin span{display:inline-block;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .sh{touch-action:pan-y;overscroll-behavior:contain}.grab{width:42px;height:4px;border-radius:4px;background:var(--line);margin:-6px auto 10px}
 @keyframes shUp{from{transform:translateY(100%)}to{transform:none}}@keyframes moIn{from{opacity:0}to{opacity:1}}
@@ -97,13 +97,13 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .dc u.ev{flex:1 1 auto;min-height:18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;white-space:normal;text-align:left;font:600 .6rem/1.22 system-ui;padding:3px;border-radius:5px;margin:2px 1px 1px;word-break:break-word;hyphens:auto}
 .dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo{background:#e8a032;color:#2a1c05}
 .wx{font:.56rem/1.1 system-ui;color:var(--mut);white-space:nowrap;overflow:hidden}
-#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);box-shadow:0 5px 14px #0008,inset 0 2px 3px #ffffff40,0 0 0 3px #ffffffcc;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
+#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);box-shadow:0 5px 14px #0008,inset 0 2px 3px #ffffff40,0 0 0 3px #ffffffcc;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
 #bang:active{transform:translateX(-50%) scale(.93)}
 #pst{align-self:center;border-radius:99px;border:0;background:var(--acc);color:var(--bg);font:700 .9rem system-ui;padding:9px 18px;z-index:5;box-shadow:0 2px 6px #0003;white-space:nowrap}
 .sunb{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:.9rem system-ui;margin:0 0 6px}.sunb span{display:inline-flex;align-items:center;gap:5px}.sunb small{width:100%;font-size:.72rem;color:var(--mut)}
 .pkg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .pk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px 8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;font:600 .78rem/1.2 system-ui;color:var(--ink);text-align:center;min-height:100px}.pk:active{transform:scale(.95)}
-#okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
+#okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
 #app.quick .vb{display:none}
 /* nouvel encodage des tirs */
 .sumb{display:flex;justify-content:space-around;text-align:center;background:var(--acc);color:var(--bg);border-radius:14px;padding:10px 4px;margin:12px 0 4px;font-family:system-ui}.sumb b{display:block;font-size:1.35rem}.sumb span{font-size:.72rem;opacity:.9}
@@ -132,7 +132,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .shtg{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line);font:500 .92rem system-ui;cursor:pointer}.shtg small{display:block;color:var(--mut);font-size:.75rem}
 .shtg input{display:none}.shtg i{flex:0 0 auto;width:42px;height:24px;border-radius:99px;background:#c9c5b5;position:relative;transition:background .2s}.shtg i:after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s}
 .shtg input:checked+i{background:var(--acc)}.shtg input:checked+i:after{left:21px}
-#onb{position:fixed;inset:0;z-index:1100;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(16px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#onb{position:fixed;inset:0;z-index:1100;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;display:flex;flex-direction:column;padding:calc(14px + var(--safe-area-inset-top,env(safe-area-inset-top))) 18px calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));font-family:system-ui,-apple-system,sans-serif}
 #onb.wl{background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%)}
 #onb h1{font:800 1.6rem/1.2 system-ui;margin:0 0 8px}.ob-sub{font:.98rem/1.45 system-ui;color:#cfd8c0;margin:0 0 16px}.ob-sub b{color:#f4f1e6}
 .ob-pg{display:flex;gap:5px;margin-bottom:8px}.ob-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e}.ob-pg i.on{background:#f5b83d}
@@ -152,7 +152,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .ob-ev{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#ffffff12;border:0;border-radius:12px;padding:10px 12px;margin-bottom:7px;color:#f4f1e6;font:600 .92rem system-ui}.ob-ev i{width:22px;height:22px;border-radius:6px;background:#ffffff26;flex:0 0 auto;color:#2a1c05;font:900 .8rem/22px system-ui;text-align:center;font-style:normal}.ob-ev.on i{background:#e8a032}.ob-ev small{display:block;font:400 .78rem system-ui;color:#cfd8c0}
 .ob-sm{width:100%;max-width:340px;text-align:left;margin-top:10px}.ob-sm div{font:600 1rem system-ui;padding:10px 0;border-bottom:1px solid #ffffff1c}.ob-ft{text-align:center;font:.86rem system-ui;color:#cfd8c0;margin:10px 0 0}
 #onb .rgb button{background:#ffffff14;border-color:#ffffff30;color:#f3efe2}#onb .rgb button small{color:#cfd8c0}#onb .rgb button.on{border-color:#e8a032;background:#e8a03230}#onb .rgsel{background:#1d2f18;color:#f3efe2;border-color:#e8a032}#onb .rgx{color:#cfd8c0}
-#welc{position:fixed;inset:0;z-index:80;background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%);color:#f3efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px calc(30px + env(safe-area-inset-bottom,0px));font-family:system-ui}
+#welc{position:fixed;inset:0;z-index:80;background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%);color:#f3efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px calc(30px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));font-family:system-ui}
 .rgw{margin:0}.rgb{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rgb button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:12px 8px;font:700 1rem system-ui;display:flex;flex-direction:column;align-items:center;gap:2px}.rgb button span{font-size:1.9rem;line-height:1.1}.rgb button small{font:500 .78rem system-ui;color:var(--mut)}.rgb button.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--card))}
 .rgd{margin-top:10px}.rgsel{width:100%;font:600 1rem system-ui;padding:12px;border-radius:12px;border:2px solid var(--acc);background:var(--card);color:var(--ink)}.rgx{display:block;margin:10px auto 0;border:0;background:none;color:var(--mut);font:500 .85rem system-ui;text-decoration:underline}
 .rgbar{display:flex;align-items:center;gap:8px;width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;font:.95rem system-ui;margin:8px 0 4px;text-align:left}.rgbar span{font-size:1.3rem}.rgbar b{flex:1}.rgbar i{font-style:normal;color:var(--acc);font-weight:700;font-size:.85rem}
@@ -198,7 +198,7 @@ button.sx{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);
 button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;border-color:#e0709a77}button.sx.m.on{background:#3b82c4;border-color:#3b82c4;color:#fff}button.sx.f.on{background:#e0709a;border-color:#e0709a;color:#fff}
 .sxi{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;color:#fff;font:700 .78rem system-ui;vertical-align:middle}.sxi.m{background:#3b82c4}.sxi.f{background:#e0709a}
 .det{margin-top:10px}.dl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0;color:var(--ink);font-size:.9rem}.dl input{width:110px}
-#fab2{position:fixed;left:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);box-shadow:0 3px 10px #0005;z-index:4;padding:0;display:flex;align-items:center;justify-content:center}
+#fab2{position:fixed;left:18px;bottom:calc(20px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);box-shadow:0 3px 10px #0005;z-index:4;padding:0;display:flex;align-items:center;justify-content:center}
 #dr .seg{margin:2px 0 8px}
 .chips2{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.fc{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 13px;font:.85rem system-ui}.fc.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 .kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px}.pg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -206,10 +206,10 @@ button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;borde
 .sc2 b{font:700 1.7rem system-ui;color:var(--acc)}.sc2 span{font:.72rem system-ui;color:var(--mut)}
 button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
-.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
+.toast{position:fixed;left:50%;bottom:calc(100px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
 html.in-on,html.in-on body{overflow:hidden}
-#inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#2f4620,#1d2c14);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}
-#inst.in-and.in-p{padding-top:calc(76px + env(safe-area-inset-top))}
+#inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#2f4620,#1d2c14);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(24px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)))}
+#inst.in-and.in-p{padding-top:calc(76px + var(--safe-area-inset-top,env(safe-area-inset-top)))}
 .in-w0{max-width:460px;margin:0 auto}
 .in-hd{display:flex;align-items:center;gap:14px;margin:4px 0 12px}.in-hd img{width:58px;height:58px;border-radius:14px;box-shadow:0 4px 14px #0005}
 .in-hd h1{margin:0;font:800 1.5rem/1.15 system-ui}.in-hd p{margin:2px 0 0;font:.92rem system-ui;color:#cfd8c0}
@@ -224,10 +224,10 @@ html.in-on,html.in-on body{overflow:hidden}
 .in-st img{display:block;width:100%;max-width:380px;margin:10px auto 0;border-radius:10px;border:1px solid #d9d6c5}
 .in-hp{background:#ffffff14;border-radius:12px;padding:10px 12px;margin:4px 0 8px;font:.85rem/1.45 system-ui;color:#e3e8d8}.in-hp summary{font-weight:700;color:#f5b83d;cursor:pointer}.in-hp ol{margin:8px 0 0 18px;padding:0}.in-hp li{margin-bottom:6px}
 .in-ar{position:fixed;z-index:1001;left:0;right:0;display:flex;align-items:center;gap:10px;padding:0 14px;height:64px;background:#1a2811;color:#f5b83d;font:800 .95rem system-ui;pointer-events:none;box-shadow:0 0 16px #0007}
-.in-and .in-ar{top:0;padding-top:env(safe-area-inset-top);height:calc(64px + env(safe-area-inset-top));justify-content:flex-end}.in-and .in-ar svg{animation:inUp 1s ease-in-out infinite;align-self:flex-start;margin-top:4px}
+.in-and .in-ar{top:0;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top));height:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top)));justify-content:flex-end}.in-and .in-ar svg{animation:inUp 1s ease-in-out infinite;align-self:flex-start;margin-top:4px}
 .in-ic{width:17px;height:18px;vertical-align:-3px}.in-m{color:#6d7461;font-size:.88rem}
 @keyframes inUp{50%{transform:translateY(-6px)}}@keyframes inDn{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(-8px)}}
-#tour{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:calc(10px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom));user-select:none;-webkit-user-select:none}
+#tour{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:calc(10px + var(--safe-area-inset-top,env(safe-area-inset-top))) 14px calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));user-select:none;-webkit-user-select:none}
 .to-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.to-pg{flex:1;display:flex;gap:4px}.to-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e;transition:background .4s}.to-pg i.on{background:#f5b83d}
 .to-n{font:700 .8rem system-ui;color:#cfd8c0;min-width:34px;text-align:right}.to-x{border:0;background:#ffffff1f;color:#fff;border-radius:10px;font:700 .85rem system-ui;padding:8px 11px}
 .to-cap{min-height:118px}.to-cap h2{margin:2px 0 4px;font:800 1.32rem/1.2 system-ui;color:#fff}.to-cap p{margin:0;font:.95rem/1.4 system-ui;color:#dfe6d2}
@@ -253,7 +253,7 @@ html.in-on,html.in-on body{overflow:hidden}
 .smap{position:relative;height:300px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);margin-top:8px}.smap.big{height:68vh}.slg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 2px 0;font:.8rem system-ui;color:var(--mut)}.slg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:2px solid #fff;box-shadow:0 0 0 1px #0003}
 .leaflet-popup-content{font:.86rem/1.4 system-ui;margin:10px 12px}.leaflet-popup-content a.sgo{display:inline-block;margin-top:6px;font-weight:700;color:var(--acc)}
 .wrdv{flex:1 1 100%;margin-top:2px;padding:7px 10px;border-radius:9px;background:#3f5a2b18;font:600 .85rem/1.35 system-ui;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}.wrdv b{width:100%}.wrdv span{white-space:nowrap}.wrdv svg{vertical-align:-3px}
-#setup{position:fixed;inset:0;z-index:1090;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#setup{position:fixed;inset:0;z-index:1090;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:calc(12px + var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(14px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));font-family:system-ui,-apple-system,sans-serif}
 #setup.dk{background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6}
 .su-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}.su-pg{flex:1;display:flex;gap:5px}.su-pg i{flex:1;height:5px;border-radius:3px;background:var(--line)}.su-pg i.on{background:var(--acc)}
 #setup.dk .su-pg i{background:#ffffff2e}#setup.dk .su-pg i.on{background:#f5b83d}
@@ -280,9 +280,9 @@ html.in-on,html.in-on body{overflow:hidden}
 .su-tip{display:flex;gap:10px;text-align:left;font:.9rem/1.4 system-ui;color:#dfe6d2;width:100%}
 .su-lt{border:0;background:none;color:#b9c3aa;text-decoration:underline;font:.85rem system-ui;padding:10px;margin-top:4px}
 .dtag{display:inline-block;font-size:.75rem;font-weight:700;color:var(--mut);letter-spacing:.02em}.dplus{flex:0 0 auto;align-self:flex-start;border:0;background:none;color:var(--acc);padding:0;display:flex;flex-direction:column;align-items:center;gap:3px}.dplus b{width:40px;height:40px;border-radius:50%;border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font:700 1.5rem/1 system-ui;padding-bottom:3px;box-sizing:border-box}.dplus small{font:700 .68rem system-ui;white-space:nowrap}.pxl{display:flex;flex-wrap:wrap;gap:6px}.pxc{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 11px;font:600 .9rem system-ui;display:flex;align-items:center;gap:6px}.pxc.on{border-color:var(--acc);background:var(--acc);color:#fff}.pxc small{font-size:.7rem;font-weight:700;opacity:.8;text-transform:uppercase;margin-left:2px}.dth{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg);border:1px solid var(--line)}.dth.em{display:flex;align-items:center;justify-content:center;font-size:1.8rem}.dth.pdf{display:flex;align-items:center;justify-content:center;font:800 .9rem system-ui;color:#fff;background:#b3261e;border:0}
-#dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:48px;height:48px;border-radius:50%;border:3px solid #fff;background:#d32f2f;color:#fff;font:800 1.3rem system-ui;box-shadow:0 4px 14px #000a;z-index:2}
+#dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + var(--safe-area-inset-top,env(safe-area-inset-top)));right:12px;width:48px;height:48px;border-radius:50%;border:3px solid #fff;background:#d32f2f;color:#fff;font:800 1.3rem system-ui;box-shadow:0 4px 14px #000a;z-index:2}
 /* tour complet (oct. 2026) : place sous le dernier jour du mois, petits écrans, cibles tactiles */
-.wks{margin-bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+.wks{margin-bottom:calc(78px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)))}
 @media(max-width:340px){.dc u.ev{font-size:.53rem;padding:2px;word-break:normal;overflow-wrap:anywhere}.wr{grid-template-columns:22px repeat(7,minmax(0,1fr))}.wd{grid-template-columns:22px repeat(7,minmax(0,1fr))}}
 .sgr .seg button{padding:10px 12px;min-height:42px}
 .fc{padding:10px 15px;min-height:42px}
@@ -323,6 +323,39 @@ button.d[data-dg]{min-height:44px;padding:10px 14px}
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
 </defs></svg>
 <div id="page"><main id="app"></main></div>
+<script>
+/* ---------- application Android (Capacitor) : remplace ce que le navigateur fait et que l'app installée ne sait pas faire ----------
+   Sur le site web, IS_APP est faux et rien de ce bloc ne s'applique. */
+const CAPX=window.Capacitor,IS_APP=!!(CAPX&&CAPX.isNativePlatform&&CAPX.isNativePlatform());
+const NP=n=>{if(!IS_APP)return null;try{return(CAPX.Plugins&&CAPX.Plugins[n])||(CAPX.registerPlugin&&CAPX.registerPlugin(n))||null}catch(e){return null}};
+const b64of=b=>new Promise((res,rej)=>{const fr=new FileReader;fr.onload=()=>res(String(fr.result).split(",")[1]||"");fr.onerror=()=>rej(fr.error);fr.readAsDataURL(b)});
+const safeName=n=>String(n||"fichier").replace(/[\\/:*?"<>|]+/g,"_").slice(0,120);
+const isCancel=e=>/cancel|annul|abort/i.test(String(e&&(e.message||e.errorMessage||e)));
+/* partage Android (WhatsApp, Gmail, Drive…) : les fichiers passent par le cache de l'app. Renvoie false si la personne annule. */
+async function natShare(o){const SH=NP("Share"),FS=NP("Filesystem");if(!SH)throw new Error("partage indisponible");let files;
+ if(o.files&&o.files.length){files=[];for(const f of o.files){const w=await FS.writeFile({path:safeName(f.name),data:await b64of(f),directory:"CACHE"});files.push(w.uri)}}
+ try{await SH.share({title:o.title,text:o.text,url:o.url,files,dialogTitle:o.dialogTitle||o.title});return true}catch(e){if(isCancel(e))return false;throw e}}
+/* copie gardée dans Documents › ChasseLog (visible dans l'app Fichiers du téléphone) */
+async function natKeep(f){const FS=NP("Filesystem");if(!FS)return false;try{await FS.writeFile({path:"ChasseLog/"+safeName(f.name),data:await b64of(f),directory:"DOCUMENTS",recursive:true});return true}catch(e){return false}}
+/* fichier exporté : copie dans Documents puis menu de partage pour l'envoyer ailleurs */
+async function natExport(f,title){const kept=await natKeep(f);let sent=false;try{sent=await natShare({files:[f],title:title||f.name,dialogTitle:"Envoyer ou ranger « "+f.name+" »"})}catch(e){}
+ if(kept)toast("Copie enregistrée dans Documents › ChasseLog"+(sent?"":"."));else if(!sent)toast("Fichier non enregistré.");return kept||sent}
+/* liens externes (Facebook, Ko-fi, Maps, arrêtés…) : ouverts dans l'app concernée ou le navigateur du téléphone */
+const natOpen=url=>{const L=NP("AppLauncher");if(L)L.openUrl({url}).catch(()=>{try{window.open(url,"_blank")}catch(e){}});else window.open(url,"_blank")};
+const openExt=url=>{if(IS_APP)return natOpen(url);const w=window.open(url,"_blank","noopener");if(!w)location.href=url};
+const GEO_HELP=IS_APP?"Autorise la localisation pour ChasseLog : Paramètres du téléphone › Applications › ChasseLog › Autorisations › Position.":"Autorise la localisation pour ChasseLog dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).";
+if(IS_APP){
+ document.documentElement.classList.add("app");
+ document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href]");if(!a)return;const h=a.getAttribute("href")||"";if(/^(https?:|mailto:|tel:|geo:)/i.test(h)){e.preventDefault();natOpen(a.href)}},true);
+ /* la position est mémorisée comme autorisée dès qu'une demande réussit (la WebView ne renseigne pas toujours navigator.permissions) */
+ if(navigator.geolocation){const g=navigator.geolocation,mk=v=>{try{localStorage.setItem("geo-ok",v)}catch(e){}},gp=g.getCurrentPosition.bind(g),wp=g.watchPosition.bind(g);
+  g.getCurrentPosition=(ok,er,o)=>gp(p=>{mk("1");ok&&ok(p)},x=>{if(x&&x.code==1)mk("");er&&er(x)},o);
+  g.watchPosition=(ok,er,o)=>wp(p=>{mk("1");ok&&ok(p)},x=>{if(x&&x.code==1)mk("");er&&er(x)},o)}
+ /* barres du système : icônes claires sur fond sombre (thème sombre, accueil, visite) et foncées sinon */
+ const bars=()=>{const SB=NP("SystemBars");if(!SB)return;const th=document.documentElement.dataset.theme,dk=th=="dark"||(!th&&matchMedia("(prefers-color-scheme: dark)").matches),ov=document.querySelector("#onb,#tour,#setup,#welc,#dview");const st=dk||ov?"DARK":"LIGHT";if(st!=bars.s){bars.s=st;try{SB.setStyle({style:st}).catch(()=>{})}catch(e){}}};
+ addEventListener("DOMContentLoaded",()=>{bars();new MutationObserver(bars).observe(document.body,{childList:true});new MutationObserver(bars).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});matchMedia("(prefers-color-scheme: dark)").addEventListener("change",bars)});
+}
+</script>
 <script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon","Chamois","Isard"],
 "Petit gibier":["Lièvre","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive"],
@@ -395,14 +428,15 @@ function hwBack(){if($("#setup")){$("#setup")._back();return true}if($("#tour"))
  if(view!="cal"){go(vst.length?vst[vst.length-1]:"cal");return true}
  return false}
 let armed=!!(history.state&&history.state.t);const arm=()=>{if(!armed){armed=true;try{history.pushState({t:1},"")}catch(e){}}};
-addEventListener("pointerdown",arm,true);
-addEventListener("popstate",()=>{armed=false;if(hwBack())arm();else history.back()});
+if(IS_APP){const A=NP("App");if(A)A.addListener("backButton",()=>{const v=$("#dview");if(v){v.remove();return}if(!hwBack())A.minimizeApp()})}
+else{addEventListener("pointerdown",arm,true);
+addEventListener("popstate",()=>{armed=false;if(hwBack())arm();else history.back()})}
 function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFullYear(),d.getMonth()+k,1);if(cv=="year")return new Date(d.getFullYear()+k,0,1);d.setDate(d.getDate()+k*(cv=="week"?7:1));return d}
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
 function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv})[view]();hydrate()}
-function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
+function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */
 function tfix(t){if(t.r===undefined){const p=+t.p||0,hh=+t.h||0;t.r=p>0?"p":hh>0?"b":"m";t.k=p>0?p:1}
@@ -494,7 +528,7 @@ function folModal(){track("follow_ask");modal(`<div style="text-align:center"><d
  <p class="sans" style="font-size:1.02rem;line-height:1.5;margin:0 0 14px">Suis la page Facebook de ChasseLog : nouveautés, dates d'ouverture, et l'annonce de la sortie officielle.</p></div>
  <button class="p" id="fo-y" style="width:100%">Suivre ChasseLog sur Facebook</button><button class="s" id="fo-n" style="width:100%;margin-top:8px">Non merci</button>
  <p class="mut sans" style="font-size:.8rem;margin-top:10px">Ce message ne s'affichera plus. La page reste accessible depuis ☰ › Suivez-nous !</p>`);
- $("#fo-y").onclick=()=>{closeM();track("follow_fb",{src:"ask"});const w=window.open(FB_PAGE,"_blank","noopener");if(!w)location.href=FB_PAGE};$("#fo-n").onclick=()=>closeM()}
+ $("#fo-y").onclick=()=>{closeM();track("follow_fb",{src:"ask"});openExt(FB_PAGE)};$("#fo-n").onclick=()=>closeM()}
 
 /* ---------- inscription : être prévenu de la sortie officielle ---------- */
 function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2><p class="sans" style="font-size:1.02rem;line-height:1.5">Reste au courant ! Laisse ton adresse e-mail et on te prévient dès que l'application sortira en version complète.</p>
@@ -517,16 +551,16 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
   catch(e){b.disabled=false;b.textContent="Me prévenir";err("L'envoi a échoué. Réessaie dans un instant.")}}}
 
 /* ---------- ouverture depuis Messenger / Facebook / Instagram : guider vers le vrai navigateur ---------- */
-(()=>{const ua=navigator.userAgent||"";if(!/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;if(matchMedia("(display-mode: standalone)").matches)return;
+(()=>{const ua=navigator.userAgent||"";if(IS_APP||!/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;if(matchMedia("(display-mode: standalone)").matches)return;
  const and=/Android/i.test(ua),d=document.createElement("div");d.id="iab";
- d.style.cssText="position:fixed;left:10px;right:10px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:60;background:#e8a032;color:#2a1c05;border-radius:14px;padding:14px;font:600 .92rem/1.35 system-ui;box-shadow:0 6px 20px #0006";
+ d.style.cssText="position:fixed;left:10px;right:10px;bottom:calc(96px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));z-index:60;background:#e8a032;color:#2a1c05;border-radius:14px;padding:14px;font:600 .92rem/1.35 system-ui;box-shadow:0 6px 20px #0006";
  d.innerHTML=`<b style="font-size:1rem">Pour installer ChasseLog</b><br>Tu es dans le navigateur de Messenger. Touche les trois points <b>⋯</b> en haut à droite, puis <b>« Ouvrir dans le navigateur »</b>${and?", ensuite menu ⋮ › « Installer et créer un raccourci »":", puis Partager › « Sur l'écran d'accueil »"}.
  <div style="display:flex;gap:8px;margin-top:10px">${and?`<a href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end" style="flex:1;text-align:center;background:#2a1c05;color:#fff;border-radius:10px;padding:10px;text-decoration:none;font-weight:700">Ouvrir dans Chrome</a>`:""}<button style="flex:${and?"0 0 auto":"1"};border:1px solid #2a1c05;background:none;color:#2a1c05;border-radius:10px;padding:10px 14px;font:600 .9rem system-ui">Plus tard</button></div>`;
  document.body.appendChild(d);d.querySelector("button").onclick=()=>d.remove()})();
 
 /* ---------- installation : écran d'aide quand ChasseLog est ouvert dans le navigateur d'un téléphone ---------- */
 let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;const b=document.getElementById("in-go");if(b)b.hidden=false});
-(()=>{const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
+(()=>{if(IS_APP)return;const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
  const sa=["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
  if(q==null){if(sa||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(/[?&]web\b/.test(location.search))sessionStorage.setItem("chasselog-skipinst","1");if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
  let ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
@@ -669,7 +703,7 @@ function startSetup(){if($("#setup"))return;track("setup_started");shut&&documen
  o._back=()=>{if(step==1){step=0;draw()}else close()};
  draw()}
 
-const isSA=()=>["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
+const isSA=()=>IS_APP||["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
 function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))return;if(!popFree()){setTimeout(tourAsk,4000);return}
  S.tourAsked=true;save();modal(`<div style="text-align:center"><img src="icons/icon-192.png" alt="" style="width:72px;height:72px;border-radius:16px;margin:4px auto 8px;display:block"><h2 style="margin:0 0 6px">Bienvenue dans ChasseLog !</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 16px">Découvre en 2 minutes comment encoder tes journées, tes tirs et suivre ta saison.</p>
  <button class="p li" id="ta-go">Lancer la visite guidée</button><button class="s li" id="ta-no">Plus tard</button><p class="mut sans" style="font-size:.82rem;margin:10px 0 0">Tu la retrouves à tout moment dans le menu ☰ › Paramètres › Revoir la visite guidée.</p></div>`);
@@ -679,7 +713,7 @@ function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))r
 const PH_KEY="phc_woUjwnMErQuDhrGrf6xSqha8cNxVnF8JCSZNhTpzWisJ",PH_HOST="https://eu.i.posthog.com";
 const anId=()=>S.anId||(S.anId="a"+Date.now().toString(36)+Math.random().toString(36).slice(2,10));
 const phOn=()=>!!PH_KEY&&S.stats===true;
-const phPlat=()=>/android/i.test(navigator.userAgent)?"android":/iphone|ipad|ipod/i.test(navigator.userAgent)?"ios":"desktop";
+const phPlat=()=>IS_APP?"android-app":/android/i.test(navigator.userAgent)?"android":/iphone|ipad|ipod/i.test(navigator.userAgent)?"ios":"desktop";
 function track(ev,props){if(!phOn())return;try{S.phq=S.phq||[];S.phq.push({event:ev,distinct_id:anId(),timestamp:new Date().toISOString(),properties:Object.assign({app_version:APP_V,platform:phPlat(),installed:isSA(),$process_person_profile:false},props||{})});if(S.phq.length>80)S.phq=S.phq.slice(-80);save();phFlush()}catch(e){}}
 let phBusy=false;
 async function phFlush(){if(phBusy||!phOn()||!(S.phq||[]).length||!navigator.onLine)return;phBusy=true;const batch=S.phq.slice(0,50);
@@ -703,7 +737,13 @@ const FRD=[["01","Ain"],["02","Aisne"],["03","Allier"],["04","Alpes-de-Haute-Pro
 const frNom=c=>(FRD.find(d=>d[0]==c)||[])[1]||"";
 const regLbl=()=>S.reg=="fr"?(S.dep?frNom(S.dep)+" ("+S.dep+")":"France"):S.reg=="xx"?"Autre pays":"Wallonie";
 const regFlag=()=>S.reg=="fr"?"🇫🇷":S.reg=="xx"?"🌍":"🇧🇪";
-let FRO=null;async function frData(){if(FRO)return FRO;try{const r=await fetch("data/ouv-fr.json");if(r.ok)FRO=await r.json()}catch(e){}return FRO}
+let FRO=null;const FR_URL="https://chasselog-coder.github.io/ChasseLog/data/ouv-fr.json";
+async function frData(){if(FRO)return FRO;let loc=null;try{const r=await fetch("data/ouv-fr.json");if(r.ok)loc=await r.json()}catch(e){}
+ if(IS_APP){/* l'app télécharge les dates les plus récentes du site, garde la dernière copie pour le hors connexion, sinon utilise celles livrées avec l'app */
+  let best=loc;try{const c=JSON.parse(localStorage.getItem("ouv-fr")||"null");if(c&&(!best||String(c.maj||"")>String(best.maj||"")))best=c}catch(e){}
+  try{const ac=new AbortController,t=setTimeout(()=>ac.abort(),6000),r=await fetch(FR_URL,{signal:ac.signal,cache:"no-cache"});clearTimeout(t);if(r.ok){const x=await r.json();if(x&&x.dep&&(!best||String(x.maj||"")>=String(best.maj||""))){best=x;try{localStorage.setItem("ouv-fr",JSON.stringify(x))}catch(e){}}}}catch(e){}
+  return FRO=best}
+ return FRO=loc}
 function regSet(reg,dep){S.reg=reg;S.dep=reg=="fr"?dep:null;S.regAsked=true;save();try{drChip()}catch(e){}track("region_set",{reg,dep:reg=="fr"?dep:null});if(reg=="fr")frData()}
 const depSel=(id,v)=>`<select id="${id}" class="rgsel"><option value="">Choisis ton département…</option>${FRD.map(([c,n])=>`<option value="${c}"${v==c?" selected":""}>${c} · ${esc(n)}</option>`).join("")}</select>`;
 /* bloc de choix réutilisable (accueil, popup, réglage) */
@@ -787,7 +827,7 @@ function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#o
   else if(st==6)h=bar(6)+`<div class="ob-bd"><div class="ob-ic">🗓️</div><h1>Tes journées de chasse</h1><p class="ob-sub">Comment veux-tu ajouter les dates de ta saison ?</p>
    <button class="ob-cd" id="ob-ics"><span>📥</span><div><b>Importer mon agenda</b><small>Google Agenda, Outlook, Calendrier iPhone (fichier .ics) : on repère les évènements « chasse », « battue », « traque »…</small></div></button>
    <button class="ob-cd" id="ob-cal"><span>👆</span><div><b>Je les sélectionne sur un calendrier</b><small>touche tes dates, puis lieu et invités</small></div></button>
-   <input type="file" id="ob-f" accept=".ics,text/calendar" hidden><details class="ob-hp"><summary>Comment obtenir le fichier .ics ?</summary><p><b>Google Agenda</b> (sur ordinateur) : Paramètres › Importer et exporter › Exporter, puis décompresse le .zip.<br><b>iPhone</b> : partage ton calendrier ou exporte-le depuis iCloud.com.<br><b>Outlook</b> : Calendrier › Partager › Publier, puis « ICS ».</p></details></div><button class="ob-lt" id="ob-n">Plus tard</button>`;
+   <input type="file" id="ob-f" ${IS_APP?"":'accept=".ics,text/calendar"'} hidden><details class="ob-hp"><summary>Comment obtenir le fichier .ics ?</summary><p><b>Google Agenda</b> (sur ordinateur) : Paramètres › Importer et exporter › Exporter, puis décompresse le .zip.<br><b>iPhone</b> : partage ton calendrier ou exporte-le depuis iCloud.com.<br><b>Outlook</b> : Calendrier › Partager › Publier, puis « ICS ».</p></details></div><button class="ob-lt" id="ob-n">Plus tard</button>`;
   else if(st==7){const L=icsL,k=L.filter(x=>x.on).length;h=`<div class="ob-tp"><button class="ob-sk" id="ob-b">‹ Retour</button><span></span></div><div class="ob-bd"><h1>${L.filter(x=>x.m).length} journée${L.filter(x=>x.m).length>1?"s":""} trouvée${L.filter(x=>x.m).length>1?"s":""} 🎉</h1><p class="ob-sub">Dans ton agenda, avec les mots « chasse », « battue », « traque »… Décoche celles à ignorer.</p>
    ${L.map((x,i)=>x.m||x.on||icsL.all?`<button class="ob-ev${x.on?" on":""}" data-ev="${i}"><i>${x.on?"✓":""}</i><div>${esc(x.title)}<small>${new Date(x.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"short",day:"numeric",month:"short",year:"numeric"})}${x.loc?" · "+esc(x.loc):""}</small></div></button>`:"").join("")}
    ${!icsL.all&&L.some(x=>!x.m)?`<button class="ob-lt" id="ob-all">${L.filter(x=>!x.m).length>1?"Voir aussi les "+L.filter(x=>!x.m).length+" autres évènements":"Voir aussi l'autre évènement"}</button>`:""}</div><button class="ob-go" id="ob-add" ${k?"":"disabled"}>Ajouter ${k} journée${k>1?"s":""}</button>`}
@@ -834,7 +874,8 @@ setTimeout(newsDocs,2600);
 /* ---------- inviter un ami ---------- */
 async function invite(){
  // Texte du message « Inviter un ami » : modifiable librement (\n = retour à la ligne). Le lien est ajouté automatiquement à la fin.
- const text="Je t'invite à essayer ChasseLog, un agenda de chasse gratuit et sans pub pour ton téléphone.\nEnregistre-y tes journées, tes armes, tes tirs et consulte tes statistiques !\nAucun compte requis, tes données restent sur ton téléphone (version test web BETA).";
+ const text="Je t'invite à essayer ChasseLog, un agenda de chasse gratuit et sans pub pour ton téléphone.\nEnregistre-y tes journées, tes armes, tes tirs et consulte tes statistiques !\nAucun compte requis, tes données restent sur ton téléphone ("+(IS_APP?"version test BETA":"version test web BETA")+").";
+ if(IS_APP){try{await natShare({title:"ChasseLog",text,url:INV_URL,dialogTitle:"Inviter un ami"});return}catch(e){}}
  try{if(navigator.share){await navigator.share({title:"ChasseLog",text,url:INV_URL});return}}catch(e){if(e&&e.name=="AbortError")return}
  try{await navigator.clipboard.writeText(text+" "+INV_URL);toast("Lien d'invitation copié : colle-le dans un message.")}catch(e){prompt("Copie ce lien et envoie-le :",INV_URL)}}
 
@@ -843,6 +884,8 @@ const BKD=()=>{if(!S.bk)S.bk={on:false,every:14,svc:"gdrive",photos:true,last:0,
 const SVC={gdrive:"Google Drive",onedrive:"OneDrive",dropbox:"Dropbox",icloud:"iCloud Drive",autre:"Autre"};
 async function doBackup(prep){const B=BKD(),json=await(prep||exportJSON(!B.photos)),nm="chasselog-sauvegarde-"+iso(new Date());
  const done=m=>{B.last=Date.now();B.snooze=0;save();toast(m);return true};
+ if(IS_APP){const f=new File([json],nm+".json",{type:"application/json"}),kept=await natKeep(f);let sent=false;try{sent=await natShare({files:[f],title:"Sauvegarde ChasseLog",dialogTitle:"Envoyer la sauvegarde (Drive, e-mail…)"})}catch(e){}
+  if(!kept&&!sent)return false;return done(sent?"Sauvegarde envoyée"+(kept?" (copie aussi dans Documents › ChasseLog).":"."):"Sauvegarde enregistrée dans Documents › ChasseLog.")}
  for(const f of[new File([json],nm+".json",{type:"application/json"}),new File([json],nm+".txt",{type:"text/plain"})]){
   try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Sauvegarde ChasseLog"});return done("Sauvegarde envoyée.")}}catch(e){if(e&&e.name=="AbortError")return false}}
  dl(nm+".json","application/json",json);return done("Fichier téléchargé : range-le dans "+SVC[B.svc]+".")}
@@ -854,7 +897,7 @@ function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
  <label class="ck sans" style="margin-top:12px"><input type="checkbox" id="bk-ph" ${B.photos?"checked":""}>Inclure les photos (fichier plus lourd)</label>
  <p class="mut sans" style="font-size:.85rem">Dernière sauvegarde : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}.</p>
  <button class="p" id="bk-now" style="width:100%">Sauvegarder maintenant</button>
- <p class="mut sans" style="font-size:.8rem;margin-top:10px">Dans la version web, ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage${B.svc=="icloud"?" (sur iPhone : « Enregistrer dans Fichiers », puis iCloud Drive)":""}. Dans la future application Android, elle se fera toute seule. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».</p>`);
+ <p class="mut sans" style="font-size:.8rem;margin-top:10px">${IS_APP?`ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage. Une copie est aussi gardée dans Documents › ChasseLog sur ton téléphone. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».`:`Dans la version web, ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage${B.svc=="icloud"?" (sur iPhone : « Enregistrer dans Fichiers », puis iCloud Drive)":""}. Dans la future application Android, elle se fera toute seule. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».`}</p>`);
   $("#bk-on").onchange=e=>{B.on=e.target.checked;save()};
   document.querySelectorAll("[data-bf]").forEach(b=>b.onclick=()=>{B.every=+b.dataset.bf;save();draw()});
   document.querySelectorAll("[data-bs]").forEach(b=>b.onclick=()=>{B.svc=b.dataset.bs;save();draw()});
@@ -862,14 +905,14 @@ function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
   $("#bk-now").onclick=async()=>{if(await doBackup(prep)){closeM();const x=$("#bkb");if(x)x.remove()}}};draw()}
 function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||$("#mdb")||view!="cal")return;if(Date.now()-(B.last||0)<B.every*864e5||Date.now()<(B.snooze||0))return;
  const prep=exportJSON(!B.photos),d=document.createElement("div");d.id="bkb";
- d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">Sauvegarde prévue vers ${SVC[B.svc]}<br><small style="font-weight:400;color:var(--mut)">Dernière : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}</small></span><button class="p" style="padding:9px 12px">Sauvegarder</button><button aria-label="Plus tard" style="border:0;background:none;color:var(--mut);font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");b1.onclick=async()=>{if(await doBackup(prep))d.remove()};b2.onclick=()=>{B.snooze=Date.now()+864e5;save();d.remove()}}
 const needK=t=>t.sp=="Sanglier"?"w":(COR(t.sp)&&t.sx=="m")?"c":null,missT=t=>{if(!t.p)return false;if(CLS[t.sp]&&!t.sx)return true;const k=needK(t);if(!k)return false;const a=(t[k]||[]).slice(0,t.p);return a.length<t.p||a.some(v=>v===""||v==null)};
 function missingDet(){const td=iso(new Date()),now=new Date(),sn=S.mdSn||{};return evs().filter(e=>{if(!e.fiche||e.nh||(sn[e.id]||0)>Date.now())return false;const age=(Date.parse(td)-Date.parse(e.date))/864e5;
  if(e.closed||age<0||age>14||(age==0&&now.getHours()<18))return false;return e.fiche.tirs.some(missT)}).sort((a,b)=>a.date<b.date?1:-1)}
 function mdCheck(){if(view!="cal"||$("#mdb")||$("#bkb"))return;const e=missingDet()[0];if(!e)return;const k=e.fiche.tirs.filter(missT).map(t=>CLS[t.sp]&&!t.sx?"x":needK(t));
- const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">À compléter : ${[k.includes("x")?"mâle, femelle ou jeune":"",k.includes("w")?"poids du sanglier":"",k.includes("c")?"nombre de cors":""].filter(Boolean).join(" · ")}<br><small style="font-weight:500">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}</small></span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .9rem system-ui;padding:9px 12px">Compléter</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");
  b1.onclick=()=>{d.remove();openFiche(e.id);fd.tirs.forEach(t=>{if(missT(t))t.ok=false});render()};
@@ -899,7 +942,7 @@ async function getWx(la,ln){const k=wxKey(la,ln),c=WXC[k];if(c&&Date.now()-c.t<3
   d.time.forEach((t,i)=>days[t]={c:pk(d,"weather_code",i),hi:pk(d,"temperature_2m_max",i),lo:pk(d,"temperature_2m_min",i),pp:pk(d,"precipitation_probability_max",i),pr:pk(d,"precipitation_sum",i),ws:pk(d,"wind_speed_10m_max",i),wg:pk(d,"wind_gusts_10m_max",i),wd:pk(d,"wind_direction_10m_dominant",i),h:{}});
   h.time.forEach((t,i)=>{const ds=t.slice(0,10),hh=+t.slice(11,13);if(!days[ds]||hh<5||hh>20)return;days[ds].h[hh]={c:pk(h,"weather_code",i),t:pk(h,"temperature_2m",i),pr:pk(h,"precipitation",i),pp:pk(h,"precipitation_probability",i),ws:pk(h,"wind_speed_10m",i),wg:pk(h,"wind_gusts_10m",i),wd:pk(h,"wind_direction_10m",i)}});
   const v={t:Date.now(),days};WXC[k]=v;const ks=Object.keys(WXC);if(ks.length>8)delete WXC[ks[0]];try{localStorage.setItem(WXK,JSON.stringify(WXC))}catch(e){}return v}catch(e){return c||null}}
-async function userPos(){try{if(!navigator.permissions||!navigator.geolocation)return null;const st=await navigator.permissions.query({name:"geolocation"});
+async function userPos(){try{if(!navigator.geolocation||(!IS_APP&&!navigator.permissions))return null;const st=IS_APP?{state:(()=>{try{return localStorage.getItem("geo-ok")?"granted":"prompt"}catch(e){return"prompt"}})()}:await navigator.permissions.query({name:"geolocation"});
  if(st.state!="granted"){if(S.wxPos){delete S.wxPos;save()}return null}
  if(S.wxPos&&Date.now()-(S.wxPos.t||0)<15*6e4)return S.wxPos;
  const q=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{maximumAge:6e5,timeout:10000}));S.wxPos={lat:+q.coords.latitude.toFixed(2),lng:+q.coords.longitude.toFixed(2),t:Date.now()};save();return S.wxPos}catch(e){return S.wxPos||null}}
@@ -920,7 +963,7 @@ async function sunBand(el,ds,loc,tm){if(!el||!ds)return;el.dataset.ds=ds;el.data
  if(!L){el.innerHTML=`<button class="s" id="sun-on" style="width:100%;text-align:left">📍 Active la localisation pour afficher le lever et le coucher du soleil et la météo</button>`;
   $("#sun-on").onclick=()=>{if(!navigator.geolocation)return;el.innerHTML='<small style="margin:0">Recherche de ta position…</small>';
    navigator.geolocation.getCurrentPosition(q=>{S.wxPos={lat:+q.coords.latitude.toFixed(2),lng:+q.coords.longitude.toFixed(2),t:Date.now()};save();sunBand(el,ds,loc,tm);loadHomeWx()},
-    er=>{el.innerHTML=`<small style="margin:0">${er&&er.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).":"Position indisponible pour le moment."}</small>`},{enableHighAccuracy:false,timeout:15000})};return}
+    er=>{el.innerHTML=`<small style="margin:0">${er&&er.code==1?"Localisation refusée. "+GEO_HELP:"Position indisponible pour le moment."}</small>`},{enableHighAccuracy:false,timeout:15000})};return}
  const s=sunTimes(ds,L.lat,L.lng),lbl=`<small>${has?"Pour le lieu de RDV":"Pour ta position actuelle"}</small>`;
  const base=`<span>${SUNUP}Lever ${hm(s.rise)}</span><span>${SUNDN}Coucher ${hm(s.set)}</span>`;el.innerHTML=base+lbl;
  const w=await getWx(L.lat,L.lng),d=w&&w.days[ds];if(!d||el.dataset.ds!=ds||!el.isConnected)return;
@@ -947,7 +990,7 @@ function gpsCapture(prev,cb){if(!navigator.geolocation)return toast("Géolocalis
   map.on("click",ev=>{stop();best={lat:ev.latlng.lat,lng:ev.latlng.lng,acc:null};if(cc){map.removeLayer(cc);cc=null}show()})}catch(e){map=null}}
  if(!map)$("#gmap").style.display="none";
  wid=navigator.geolocation.watchPosition(q=>{if(!$("#gst")){stop();return}const c=q.coords;if(best&&best.acc==null)return;if(!best||c.accuracy<best.acc)best={lat:c.latitude,lng:c.longitude,acc:c.accuracy};show();if(best.acc<=10)stop()},
-  er=>{if(!$("#gst"))return;if(er.code==1){stop();$("#gst").textContent="Localisation refusée";$("#gsub").textContent="Autorise la localisation pour ChasseLog dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations)."}else if(!best)$("#gst").textContent="Signal GPS introuvable pour l'instant, patiente ou déplace-toi à découvert…"},{enableHighAccuracy:true,maximumAge:0,timeout:30000});
+  er=>{if(!$("#gst"))return;if(er.code==1){stop();$("#gst").textContent="Localisation refusée";$("#gsub").textContent=GEO_HELP}else if(!best)$("#gst").textContent="Signal GPS introuvable pour l'instant, patiente ou déplace-toi à découvert…"},{enableHighAccuracy:true,maximumAge:0,timeout:30000});
  setTimeout(()=>{stop();if($("#gst")&&!best)$("#gst").textContent="Pas de position obtenue. Réessaie à découvert ou place le repère sur la carte."},60000);
  setTimeout(show,4500);
  $("#gok").onclick=()=>{if(!best)return;stop();closeM("2");cb(best)}}
@@ -986,7 +1029,7 @@ const silSvg=(n,w)=>{const x=sil(n,w);return x?x.replace("<svg ",'<svg xmlns="ht
 /* ---------- partager ma journée : choix du style et des éléments ---------- */
 const SHO_DEF={st:"tro",mine:1,reus:1,eff:0,gun:0,tab:1,lieu:0};
 async function shareFile(id,o){const c=await dayCanvas(id,o),e=S.ev[id],blob=await new Promise(r=>c.toBlob(r,"image/png"));return new File([blob],"chasselog-"+e.date+".png",{type:"image/png"})}
-function dlFile(f){const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
+function dlFile(f){if(IS_APP)return natExport(f);const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
 function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||[]).length>0,o=Object.assign({},SHO_DEF,S.shareOpt||{});if(o.st=="pho"&&!hasPh)o.st="tro";
  const has={mine:f.tirs.some(t=>t.p),reus:a.a>0,eff:a.p>0&&a.n>0,gun:f.tirs.some(t=>t.r&&gunOf(t.gun)),tab:Object.values(f.tab||{}).some(v=>v>0),lieu:true};
  const sw=(k,l,sub)=>has[k]?`<label class="shtg"><span>${l}${sub?`<small>${sub}</small>`:""}</span><input type="checkbox" data-so="${k}" ${o[k]?"checked":""}><i></i></label>`:"";
@@ -1000,7 +1043,7 @@ function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||
  document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));pv()});
  document.querySelectorAll("#mo [data-so]").forEach(i=>i.onchange=()=>{o[i.dataset.so]=i.checked?1:0;pv()});
  $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
- $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
+ $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);if(IS_APP){try{await natShare({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL,dialogTitle:"Partager ma journée"})}catch(er){toast("Partage impossible pour le moment.")}return}try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
   dlFile(file);toast("Partage direct indisponible : l'image a été téléchargée.")}}
 
 async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,PX=90,PHO=o.st=="pho";if(syncTab(f))save();
@@ -1220,9 +1263,10 @@ function rDocs(){S.docs=S.docs||{};const td=iso(new Date()),hc=homeCC();
   let blob=f;try{if(f.type.startsWith("image/")&&f.size>1.2e6)blob=await compress(f,2400,.88)}catch(e){blob=f}
   try{await DB.put(docKey(cur),blob);const old=S.docs[cur]||{};S.docs[cur]=Object.assign({},old,meta||{},{name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:old.exp||""});save();track("doc_added",cur.startsWith("px")?{doc:"permis_etranger",cc:S.docs[cur].cc}:{doc:cur});toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
  document.querySelectorAll("[data-dv]").forEach(b=>b.onclick=async()=>{const k=b.dataset.dv,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return toast("Document introuvable.");const u=URL.createObjectURL(bl);
-  if(d.type=="application/pdf"){const w=window.open(u,"_blank");if(!w)location.href=u;return}
+  if(d.type=="application/pdf"){if(IS_APP){const f=new File([bl],docLab(k).replace(/[^\wÀ-ÿ -]/g,"").trim()+".pdf",{type:"application/pdf"});try{await natShare({files:[f],title:docLab(k),dialogTitle:"Ouvrir le PDF avec…"})}catch(e){toast("Aucune application pour ouvrir ce PDF.")}return}const w=window.open(u,"_blank");if(!w)location.href=u;return}
   const o=document.createElement("div");o.id="dview";o.innerHTML=`<img src="${u}" alt=""><button aria-label="Fermer">✕</button>`;document.body.appendChild(o);o.onclick=e=>{if(e.target.tagName!="IMG"||e.target==o)o.remove()};o.querySelector("button").onclick=()=>o.remove()});
  document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=async()=>{const k=b.dataset.ds,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return;const lab=docLab(k),ext=d.type=="application/pdf"?"pdf":"jpg",file=new File([bl],lab.replace(/[^\wÀ-ÿ -]/g,"").trim()+"."+ext,{type:d.type});
+  if(IS_APP){try{await natShare({files:[file],title:lab})}catch(e){toast("Partage impossible pour le moment.")}return}
   try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:lab});return}}catch(e){if(e&&e.name=="AbortError")return}
   const a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download=file.name;a.click()});
  document.querySelectorAll("[data-dx]").forEach(b=>b.onclick=()=>{const k=b.dataset.dx;modal(`<h2>Supprimer ce document ?</h2><p class="sans">${esc(docLab(k))}</p><div class="row"><button class="s" id="dx-n">Annuler</button><button class="p" id="dx-y" style="background:var(--acc2)">Supprimer</button></div>`);
@@ -1275,7 +1319,7 @@ async function notify(e){const msg="Pense à encoder ta fiche : "+e.title+" ("+e
 let chkBusy=false;async function chk(){if(!REM_ON||chkBusy)return;chkBusy=true;try{await syncRem();if(RM().sleep)return;const now=Date.now();let ch=0;
  for(const e of evs())if(e.rem&&!e.fiche&&!e.remDone){const d=dueOf(e);if(d<=now&&now-d<36*36e5){e.remDone=1;ch=1;await notify(e)}}if(ch){save();syncRem()}}finally{chkBusy=false}}
 setInterval(chk,30000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")chk()});setTimeout(chk,1500);
-if("serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.fiche)openFicheId(e.data.fiche)});
+if(!IS_APP&&"serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.fiche)openFicheId(e.data.fiche)});
  navigator.serviceWorker.ready.then(async r=>{try{if(r.periodicSync){const st=await navigator.permissions.query({name:"periodic-background-sync"});if(st.state=="granted")await r.periodicSync.register("rappels",{minInterval:3600000})}}catch(x){}}).catch(()=>{})}
 setTimeout(()=>{const q=new URLSearchParams(location.search).get("fiche");if(q){history.replaceState(history.state,"",location.pathname);openFicheId(q)}},300);
 $("#m-rm").onclick=()=>{shut();modal(`<h2>Paramètres de rappels</h2><p class="sans" style="font-size:1.05rem">🔔 Cette fonction n'est pas encore disponible sur la version web.</p><p class="mut sans">Elle sera ajoutée plus tard, avec la version Android installée.</p>`)};
@@ -1308,7 +1352,7 @@ function supModal(src){track("support_open",{src});modal(`<div style="text-align
  <button class="s" id="sup-no" style="width:100%;margin-top:12px">Peut-être plus tard</button>`);
  $("#sup-go").onclick=()=>{track("support_click",{src});setTimeout(closeM,300)};$("#sup-no").onclick=()=>closeM()}
 $("#m-sup").onclick=()=>{shut();supModal("menu")};
-$("#m-fol").onclick=()=>{shut();track("follow_fb");const w=window.open(FB_PAGE,"_blank","noopener");if(!w)location.href=FB_PAGE};
+$("#m-fol").onclick=()=>{shut();track("follow_fb");openExt(FB_PAGE)};
 /* ---------- page Paramètres ---------- */
 const PRIV_URL="https://chasselog.be/confidentialite.html";
 function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg>`,row=(id,i,t,v,sub)=>`<button class="sgr" id="${id}">${ic(i)}<span>${t}${sub?`<small>${sub}</small>`:""}</span><span class="sv${v===null?" nv":""}">${v||""}</span></button>`;
@@ -1320,7 +1364,7 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
   ${row("sg-im","dl","Importer un calendrier","",".ics de ton agenda ou sauvegarde .json")}${row("sg-ex","ul","Exporter mon calendrier","")}${row("sg-bk","save","Sauvegarde automatique","")}</div>
  <div class="sgl">Confidentialité</div><div class="sgg">${PH_KEY?`<label class="sgr shtg" style="margin:0">${ic("eye")}<span>Statistiques anonymes<small>Compte l'utilisation de l'app pour l'améliorer. Jamais tes tirs, tes lieux ni tes documents.</small></span><input type="checkbox" id="sg-st" ${S.stats===true?"checked":""}><i></i></label>`:""}<a class="sgr" href="${PRIV_URL}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">${ic("info")}<span>Politique de confidentialité<small>Ce que l'app garde, ce qu'elle envoie et à qui</small></span><span class="sv"></span></a></div>
  <div class="sgl">Aide</div><div class="sgg">${row("sg-tour","play","Revoir la visite guidée","")}${row("sg-fol","heart","Suivez-nous sur Facebook","")}${row("sg-fb","msg","Donner mon avis","")}${row("sg-sup","cup","Soutenir ChasseLog","","Un petit don pour couvrir les frais")}</div>
- <div class="sgl">À propos</div><div class="sgg"><div class="sgr">${ic("info")}<span>ChasseLog bêta web · version ${APP_V}<small>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</small></span></div></div><div style="height:70px"></div>`;
+ <div class="sgl">À propos</div><div class="sgg"><div class="sgr">${ic("info")}<span>${IS_APP?"ChasseLog pour Android (test)":"ChasseLog bêta web"} · version ${APP_V}<small>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</small></span></div></div><div style="height:70px"></div>`;
  $("#bk2").onclick=backTo;
  $("#sg-reg").onclick=()=>regModal(false);
  document.querySelectorAll("[data-th2]").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th2;save();applyTheme();thSet();render()});
@@ -1334,7 +1378,7 @@ const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.t
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
 $("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
 $("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
-$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,.txt,text/calendar,application/json,text/plain">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
+$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" ${IS_APP?"":'accept=".ics,.json,.txt,text/calendar,application/json,text/plain"'}>`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>${S.docs&&Object.keys(S.docs).length?`<button class="s li" id="x-d">Sauvegarde complète + mes documents</button><p class="mut sans" style="font-size:.8rem;margin:4px 0 0">Avec tes documents (permis, assurance…), par exemple pour passer sur un nouveau téléphone. Garde ce fichier pour toi.</p>`:""}`);
  if($("#x-d"))$("#x-d").onclick=async()=>{dl("chasselog-avec-documents.json","application/json",await exportJSON(false,true));closeM()};
  $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
@@ -1495,7 +1539,7 @@ function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.n
   if(mk)mk.setLatLng([la,ln]);else{mk=L.marker([la,ln],{draggable:true}).addTo(map);mk.on("dragend",()=>{const q=mk.getLatLng();inp.value=q.lat.toFixed(5)+", "+q.lng.toFixed(5);lookAd(q.lat,q.lng)})}
   if(o.fly)map.setView([la,ln],o.z||Math.max(map.getZoom(),16))};
  const gps=ok=>{if(!navigator.geolocation){msg.textContent="Géolocalisation non supportée sur cet appareil.";return}
-  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},e=>{msg.textContent=e&&e.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse → Autorisations).":"Position indisponible pour le moment."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
+  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},e=>{msg.textContent=e&&e.code==1?"Localisation refusée. "+GEO_HELP:"Position indisponible pour le moment."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
  if(window.L){
   try{L.Icon.Default.imagePath="lib/leaflet/images/";
   map=L.map("pmap");map.attributionControl.setPrefix(false);map.setView(c0?[c0[0],c0[1]]:[50.5,4.6],c0?16:8);let err=0;
@@ -1874,10 +1918,10 @@ migratePhotos().then(c=>{if(c)render()}).catch(()=>{});
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 </script>
 <script>
-if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
+if(!IS_APP&&"serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
  let hadCtl=!!navigator.serviceWorker.controller,shown=false,reloading=false;
  const banner=()=>{if(shown)return;shown=true;const d=document.createElement("div");d.id="upd";d.setAttribute("role","alert");
-  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top,0px));z-index:50;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;font:600 .95rem system-ui;box-shadow:0 6px 20px #0006";
+  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(10px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:50;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;font:600 .95rem system-ui;box-shadow:0 6px 20px #0006";
   d.innerHTML='<span style="flex:1">Nouvelle version de ChasseLog disponible.</span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .95rem system-ui;padding:10px 14px">Mettre à jour</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.3rem;padding:4px 6px">✕</button>';
   document.body.appendChild(d);d.querySelectorAll("button")[0].onclick=async()=>{d.querySelector("span").textContent="Mise à jour…";reloading=true;try{const r=await navigator.serviceWorker.getRegistration();if(r){await r.update().catch(()=>{});if(r.waiting){r.waiting.postMessage("skip");setTimeout(()=>location.reload(),2500);return}}}catch(e){}location.reload()};d.querySelectorAll("button")[1].onclick=()=>{d.remove();shown=false}};
  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(reloading)return location.reload();if(hadCtl)banner();hadCtl=true});

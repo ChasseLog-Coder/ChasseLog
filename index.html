@@ -206,7 +206,7 @@ button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;borde
 .sc2 b{font:700 1.7rem system-ui;color:var(--acc)}.sc2 span{font:.72rem system-ui;color:var(--mut)}
 button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
-.toast{position:fixed;left:50%;bottom:calc(100px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
+.toast{position:fixed;left:50%;bottom:calc(100px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:1300;max-width:90%}
 html.in-on,html.in-on body{overflow:hidden}
 #inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#2f4620,#1d2c14);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(24px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)))}
 #inst.in-and.in-p{padding-top:calc(76px + var(--safe-area-inset-top,env(safe-area-inset-top)))}
@@ -346,6 +346,9 @@ const openExt=url=>{if(IS_APP)return natOpen(url);const w=window.open(url,"_blan
 const GEO_HELP=IS_APP?"Autorise la localisation pour ChasseLog : Paramètres du téléphone › Applications › ChasseLog › Autorisations › Position.":"Autorise la localisation pour ChasseLog dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).";
 if(IS_APP){
  document.documentElement.classList.add("app");
+ /* version de test : toute erreur inattendue s'affiche à l'écran pour pouvoir la signaler */
+ const oops=m=>{try{const d=document.createElement("div");d.className="toast";d.style.cssText="bottom:auto;top:calc(12px + var(--safe-area-inset-top,0px));background:#a4452c;color:#fff;z-index:1400";d.textContent="⚠️ "+String(m).slice(0,180);document.body.appendChild(d);setTimeout(()=>d.remove(),9000)}catch(e){}};
+ addEventListener("error",e=>oops(e.message||"Erreur"));addEventListener("unhandledrejection",e=>oops((e.reason&&(e.reason.message||e.reason))||"Erreur"));
  document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href]");if(!a)return;const h=a.getAttribute("href")||"";if(/^(https?:|mailto:|tel:|geo:)/i.test(h)){e.preventDefault();natOpen(a.href)}},true);
  /* la position est mémorisée comme autorisée dès qu'une demande réussit (la WebView ne renseigne pas toujours navigator.permissions) */
  if(navigator.geolocation){const g=navigator.geolocation,mk=v=>{try{localStorage.setItem("geo-ok",v)}catch(e){}},gp=g.getCurrentPosition.bind(g),wp=g.watchPosition.bind(g);
@@ -844,7 +847,9 @@ function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#o
   if(st==4){o.querySelectorAll("[data-md]").forEach(b=>b.onclick=()=>{const n=b.dataset.md;R.md.has(n)?R.md.delete(n):R.md.add(n);b.classList.toggle("on",R.md.has(n))});
    q("#ob-n").onclick=()=>{if(R.md.size){S.hm=MODES.filter(x=>!R.md.has(x));save()}next()}}
   if(st==5){q("#ob-t").onclick=()=>{R.tour=true;o.style.display="none";startTour(()=>{o.style.display="";st=6;draw()})};q("#ob-n").onclick=next}
-  if(st==6){q("#ob-ics").onclick=()=>q("#ob-f").click();q("#ob-f").onchange=async e=>{const f=e.target.files[0];if(!f)return;let L=[];try{L=parseICS(await f.text())}catch(x){}
+  if(st==6){q("#ob-ics").onclick=()=>q("#ob-f").click();q("#ob-f").onchange=async e=>{const f=e.target.files[0];if(!f)return;let L=[],t="";try{t=await f.text()}catch(x){return toast("Impossible de lire ce fichier.")}
+    if(/^\s*\{/.test(t)){finish();end();go("cal");return importBk(t)}
+    try{L=parseICS(t)}catch(x){}
     L=L.filter(x=>!evs().some(v=>v.date==x.date&&v.title==x.title)).sort((a,b)=>a.date<b.date?-1:1);if(!L.length){toast("Aucun évènement trouvé dans ce fichier.");return}
     const td=iso(new Date()),cut=(+td.slice(0,4)-1)+td.slice(4);L.forEach(x=>{x.m=ONB_KW.test(x.title+" "+(x.loc||"")+" "+(x.desc||""))&&x.date>=cut;x.on=x.m});icsL=L;icsL.all=!L.some(x=>x.m);if(icsL.all)L.forEach(x=>x.on=false);st=7;draw()};
    q("#ob-cal").onclick=()=>{finish();end();startSetup()};q("#ob-n").onclick=()=>{st=8;finish();draw()}}
@@ -1378,7 +1383,7 @@ const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.t
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
 $("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
 $("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
-$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" ${IS_APP?"":'accept=".ics,.json,.txt,text/calendar,application/json,text/plain"'}>`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
+$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" ${IS_APP?"":'accept=".ics,.json,.txt,text/calendar,application/json,text/plain"'}>`);$("#imf").onchange=async e=>{try{await importFile(e.target.files[0])}catch(x){alert("L'import a échoué : "+(x&&x.message||x))}}};
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>${S.docs&&Object.keys(S.docs).length?`<button class="s li" id="x-d">Sauvegarde complète + mes documents</button><p class="mut sans" style="font-size:.8rem;margin:4px 0 0">Avec tes documents (permis, assurance…), par exemple pour passer sur un nouveau téléphone. Garde ce fichier pour toi.</p>`:""}`);
  if($("#x-d"))$("#x-d").onclick=async()=>{dl("chasselog-avec-documents.json","application/json",await exportJSON(false,true));closeM()};
  $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
@@ -1406,7 +1411,7 @@ function normBk(d){if(!isO(d)||!isO(d.ev))return null;const ev={};
  const o=Object.assign({},d,{ev});for(const k of["custom","hm","hs","guns","favs"]){if(o[k]==null)continue;if(!Array.isArray(o[k]))return null}
  o.guns=(o.guns||[]).filter(g=>isO(g)&&g.id);o.favs=(o.favs||[]).filter(f=>isO(f)&&f.id);o.custom=(o.custom||[]).filter(x=>typeof x=="string");
  o.docs=isO(o.docs)?Object.fromEntries(Object.entries(o.docs).filter(([k,v])=>isO(v)&&String(v.data||"").startsWith("data:"))):{};return o}
-async function importBk(t){let d;try{d=normBk(JSON.parse(t))}catch(x){d=null}
+async function importBk(t){let d;try{d=normBk(JSON.parse(String(t).replace(/^\uFEFF/,"")))}catch(x){d=null}
  if(!d)return alert("Fichier invalide : ce n'est pas une sauvegarde ChasseLog lisible. Ton carnet n'a pas été modifié.");
  const all=Object.values(d.ev),add=all.filter(e=>!S.ev[e.id]),dk=Object.keys(d.docs).filter(k=>!(S.docs&&S.docs[k])),empty=!evs().length,n=add.length;
  if(!n&&!dk.length)return alert(all.length?"Toutes les journées de cette sauvegarde sont déjà dans ton carnet.":"Cette sauvegarde ne contient aucune journée.");
@@ -1424,7 +1429,7 @@ async function importBk(t){let d;try{d=normBk(JSON.parse(t))}catch(x){d=null}
   for(const k of dk){try{const v=docs[k],bl=await(await fetch(v.data)).blob();await DB.put(docKey(k),bl);const{data,...m}=v;S.docs[k]=m}catch(x){}}
   migrate();await migratePhotos();save();closeM();toast(n?pl(n,"journée importée.","journées importées."):"Sauvegarde importée.");
   if(n){const l=add.map(e=>e.date).sort().pop();cur=new Date(l+"T12:00")}go("cal")}}
-async function importFile(f){if(!f)return;const t=await f.text();
+async function importFile(f){if(!f)return toast("Aucun fichier reçu. Réessaie en choisissant le fichier dans « Téléchargements » ou « Fichiers ».");let t;try{t=await f.text()}catch(x){return alert("Impossible de lire ce fichier : "+(x&&x.message||x))}
  if(/\.(json|txt)$/i.test(f.name)||/^\s*\{/.test(t))return importBk(t);
  const a=parseICS(t).filter(x=>!evs().some(o=>o.date==x.date&&o.title==x.title));
  if(!a.length)return alert("Aucun nouvel évènement trouvé dans ce fichier.");if(!confirm("Importer "+a.length+" évènement(s) ?"))return;

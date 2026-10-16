@@ -1,0 +1,5 @@
+resultat=ok
+version=2026-10-16a
+build=5
+commit=35ef3b82e93e36a2c88a597dc0b1673f0139aee5
+date=2026-10-16T13:02:31Z

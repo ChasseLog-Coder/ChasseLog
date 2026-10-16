@@ -14,6 +14,10 @@
     },
     "Keyboard": {
       "resizeOnFullScreen": true
+    },
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_chasselog",
+      "iconColor": "#3F5A2B"
     }
   }
 }

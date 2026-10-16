@@ -19,6 +19,7 @@ const PERMS = [
   '<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />',
   '<uses-feature android:name="android.hardware.location.gps" android:required="false" />',
   '<uses-permission android:name="android.permission.VIBRATE" />',
+  '<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />',
   '<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29" />'
 ];
 edit(manifest, x => {
@@ -30,21 +31,8 @@ edit(manifest, x => {
 const pkgPath = cfg.appId.split(".");
 const act = join(main, "java", ...pkgPath, "MainActivity.java");
 must(existsSync(act), "MainActivity.java introuvable (" + act + ")");
-writeFileSync(act, `package ${cfg.appId};
-
-import android.os.Bundle;
-import androidx.activity.EdgeToEdge;
-import com.getcapacitor.BridgeActivity;
-
-public class MainActivity extends BridgeActivity {
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // après super.onCreate : le thème de l'app est alors en place (sinon Android affiche une barre de titre)
-        EdgeToEdge.enable(this);
-    }
-}
-`);
+for (const f of ["MainActivity.java", "ChasseLogMediaPlugin.java"])
+  writeFileSync(join(dirname(act), f), readFileSync(join(cap, "native", f), "utf8").replace(/__PKG__/g, cfg.appId));
 
 // 3. Icônes (préparées dans capacitor/res)
 cpSync(join(cap, "res"), res, { recursive: true });

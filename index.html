@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="lib/leaflet/leaflet.css">
 <script src="lib/leaflet/leaflet.js"></script>
 <style>
-:root{--bg:#f1efe6;--card:#fbfaf5;--ink:#26301f;--mut:#6d7461;--acc:#3f5a2b;--acc2:#a4452c;--line:#d9d6c5;--red:#d32f2f;--dw:min(82vw,300px);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#f1efe6;--card:#fbfaf5;--ink:#26301f;--mut:#6d7461;--acc:#3f5a2b;--acc2:#a4452c;--line:#d9d6c5;--red:#d32f2f;--dw:min(82vw,300px);box-sizing:border-box;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px));padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px))}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}}
 :root[data-theme="dark"]{--bg:#171b14;--card:#20261b;--ink:#e8ead9;--mut:#9aa28a;--acc:#8fb56a;--acc2:#e08a6b;--line:#333b2b;--red:#ff7b72}
-*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px))}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 Georgia,"Iowan Old Style",serif;overflow-x:hidden}
 body.dr{overflow:hidden;overscroll-behavior:none}
 h1,h2,h3,button,label,.sans{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -29,7 +29,7 @@ input,select,textarea{width:100%;font:inherit;padding:9px;border:1px solid var(-
 input[type=checkbox]{width:auto}
 label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 3px}label.ck{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:.95rem;margin:2px 0}
 .row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
-#dr{position:fixed;left:0;top:0;bottom:0;max-height:100dvh;overscroll-behavior:contain;width:var(--dw);background:var(--card);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .25s;padding:calc(14px + env(safe-area-inset-top,0px)) 12px calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow:auto;z-index:5}
+#dr{position:fixed;left:0;top:0;bottom:0;max-height:100dvh;overscroll-behavior:contain;width:var(--dw);background:var(--card);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .25s;padding:calc(14px + var(--safe-area-inset-top,env(safe-area-inset-top,0px))) 12px calc(14px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));display:flex;flex-direction:column;overflow:auto;z-index:5}
 body.dr #dr{transform:none}
 #dr .dhd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 4px 6px}#dr .dhd b{font:800 1.35rem system-ui}
 .dchip{border:0;background:var(--bg);color:var(--ink);border-radius:20px;padding:6px 11px;font:600 .82rem system-ui;white-space:nowrap}
@@ -74,10 +74,10 @@ body.cal{overflow:hidden;overscroll-behavior:none}body.cal #page{height:100dvh;m
 .dc u{display:block;text-decoration:none;background:var(--acc2);color:var(--bg);font:.58rem/1.35 system-ui;border-radius:3px;padding:0 2px;margin:2px 1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dc u.ok,.wk u.ok{background:var(--acc)}.dc small{color:var(--mut);font:.58rem system-ui}
 .ysc{flex:1;min-height:0;overflow-y:auto}.pd{padding:0 14px 90px}.pw{padding:0 10px 90px}
-#fab{position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:300 2rem/1 system-ui;box-shadow:0 3px 10px #0005;z-index:4;padding:0}
+#fab{position:fixed;right:18px;bottom:calc(20px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:300 2rem/1 system-ui;box-shadow:0 3px 10px #0005;z-index:4;padding:0}
 #ff{position:fixed;left:0;right:0;top:0;height:100dvh;background:var(--bg);z-index:8;display:flex;flex-direction:column}
-.fb{flex:1;min-height:0;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 16px;max-width:560px;width:100%;margin:0 auto}
-.fa{display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--card)}.fa button{flex:1}
+.fb{flex:1;min-height:0;overflow:auto;padding:calc(16px + var(--safe-area-inset-top,env(safe-area-inset-top,0px))) 16px 16px;max-width:560px;width:100%;margin:0 auto}
+.fa{display:flex;gap:10px;padding:10px 16px calc(10px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));border-top:1px solid var(--line);background:var(--card)}.fa button{flex:1}
 details.dt{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--bg)}
 details.dt>summary{display:flex;align-items:center;gap:8px;padding:12px;font:600 .95rem system-ui;cursor:pointer;list-style:none}
 details.dt>summary::-webkit-details-marker{display:none}details.dt>summary span:first-child{flex:1}
@@ -86,7 +86,7 @@ details.dt .in{padding:0 12px 8px}
 .bg{background:var(--acc);color:var(--bg);border-radius:99px;padding:0 9px;font:700 .8rem system-ui;min-width:22px;text-align:center}.bg:empty{display:none}
 .tls{display:flex;flex-wrap:wrap;gap:8px}.tl{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:.75rem system-ui;color:var(--mut)}.sv{display:flex;align-items:center;gap:8px;color:var(--acc)}.sv b{font:700 1.4rem system-ui;color:var(--ink)}.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}.sr:last-child{border:0}
 .mo{position:fixed;inset:0;background:#0008;display:flex;align-items:flex-end;justify-content:center;z-index:9}#mo2{z-index:10}#mo3{z-index:11}
-.sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));position:relative}
+.sh{background:var(--card);width:100%;max-width:560px;max-height:90%;overflow:auto;border-radius:14px 14px 0 0;padding:16px 16px calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));position:relative}
 html,body{overscroll-behavior-y:none}#ptr{position:fixed;left:50%;top:0;z-index:40;transform:translate(-50%,-60px);width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--acc);border:1px solid var(--line);box-shadow:0 3px 10px #0004;display:flex;align-items:center;justify-content:center;font-size:1.4rem;pointer-events:none}#ptr.spin span{display:inline-block;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
 .sh{touch-action:pan-y;overscroll-behavior:contain}.grab{width:42px;height:4px;border-radius:4px;background:var(--line);margin:-6px auto 10px}
 @keyframes shUp{from{transform:translateY(100%)}to{transform:none}}@keyframes moIn{from{opacity:0}to{opacity:1}}
@@ -97,13 +97,13 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .dc u.ev{flex:1 1 auto;min-height:18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;white-space:normal;text-align:left;font:600 .6rem/1.22 system-ui;padding:3px;border-radius:5px;margin:2px 1px 1px;word-break:break-word;hyphens:auto}
 .dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo{background:#e8a032;color:#2a1c05}
 .wx{font:.56rem/1.1 system-ui;color:var(--mut);white-space:nowrap;overflow:hidden}
-#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);box-shadow:0 5px 14px #0008,inset 0 2px 3px #ffffff40,0 0 0 3px #ffffffcc;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
+#bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);box-shadow:0 5px 14px #0008,inset 0 2px 3px #ffffff40,0 0 0 3px #ffffffcc;z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
 #bang:active{transform:translateX(-50%) scale(.93)}
 #pst{align-self:center;border-radius:99px;border:0;background:var(--acc);color:var(--bg);font:700 .9rem system-ui;padding:9px 18px;z-index:5;box-shadow:0 2px 6px #0003;white-space:nowrap}
 .sunb{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:.9rem system-ui;margin:0 0 6px}.sunb span{display:inline-flex;align-items:center;gap:5px}.sunb small{width:100%;font-size:.72rem;color:var(--mut)}
 .pkg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .pk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px 8px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;font:600 .78rem/1.2 system-ui;color:var(--ink);text-align:center;min-height:100px}.pk:active{transform:scale(.95)}
-#okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
+#okq{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:72px;height:72px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);font:700 2rem system-ui;box-shadow:0 4px 14px #0006;z-index:6}
 #app.quick .vb{display:none}
 /* nouvel encodage des tirs */
 .sumb{display:flex;justify-content:space-around;text-align:center;background:var(--acc);color:var(--bg);border-radius:14px;padding:10px 4px;margin:12px 0 4px;font-family:system-ui}.sumb b{display:block;font-size:1.35rem}.sumb span{font-size:.72rem;opacity:.9}
@@ -132,7 +132,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .shtg{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line);font:500 .92rem system-ui;cursor:pointer}.shtg small{display:block;color:var(--mut);font-size:.75rem}
 .shtg input{display:none}.shtg i{flex:0 0 auto;width:42px;height:24px;border-radius:99px;background:#c9c5b5;position:relative;transition:background .2s}.shtg i:after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s}
 .shtg input:checked+i{background:var(--acc)}.shtg input:checked+i:after{left:21px}
-#onb{position:fixed;inset:0;z-index:1100;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top)) 18px calc(16px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#onb{position:fixed;inset:0;z-index:1100;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;display:flex;flex-direction:column;padding:calc(14px + var(--safe-area-inset-top,env(safe-area-inset-top))) 18px calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));font-family:system-ui,-apple-system,sans-serif}
 #onb.wl{background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%)}
 #onb h1{font:800 1.6rem/1.2 system-ui;margin:0 0 8px}.ob-sub{font:.98rem/1.45 system-ui;color:#cfd8c0;margin:0 0 16px}.ob-sub b{color:#f4f1e6}
 .ob-pg{display:flex;gap:5px;margin-bottom:8px}.ob-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e}.ob-pg i.on{background:#f5b83d}
@@ -152,7 +152,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .ob-ev{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#ffffff12;border:0;border-radius:12px;padding:10px 12px;margin-bottom:7px;color:#f4f1e6;font:600 .92rem system-ui}.ob-ev i{width:22px;height:22px;border-radius:6px;background:#ffffff26;flex:0 0 auto;color:#2a1c05;font:900 .8rem/22px system-ui;text-align:center;font-style:normal}.ob-ev.on i{background:#e8a032}.ob-ev small{display:block;font:400 .78rem system-ui;color:#cfd8c0}
 .ob-sm{width:100%;max-width:340px;text-align:left;margin-top:10px}.ob-sm div{font:600 1rem system-ui;padding:10px 0;border-bottom:1px solid #ffffff1c}.ob-ft{text-align:center;font:.86rem system-ui;color:#cfd8c0;margin:10px 0 0}
 #onb .rgb button{background:#ffffff14;border-color:#ffffff30;color:#f3efe2}#onb .rgb button small{color:#cfd8c0}#onb .rgb button.on{border-color:#e8a032;background:#e8a03230}#onb .rgsel{background:#1d2f18;color:#f3efe2;border-color:#e8a032}#onb .rgx{color:#cfd8c0}
-#welc{position:fixed;inset:0;z-index:80;background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%);color:#f3efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px calc(30px + env(safe-area-inset-bottom,0px));font-family:system-ui}
+#welc{position:fixed;inset:0;z-index:80;background:radial-gradient(ellipse at 50% 25%,#2f5a28,#152411 75%);color:#f3efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 26px calc(30px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));font-family:system-ui}
 .rgw{margin:0}.rgb{display:grid;grid-template-columns:1fr 1fr;gap:10px}.rgb button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:14px;padding:12px 8px;font:700 1rem system-ui;display:flex;flex-direction:column;align-items:center;gap:2px}.rgb button span{font-size:1.9rem;line-height:1.1}.rgb button small{font:500 .78rem system-ui;color:var(--mut)}.rgb button.on{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--card))}
 .rgd{margin-top:10px}.rgsel{width:100%;font:600 1rem system-ui;padding:12px;border-radius:12px;border:2px solid var(--acc);background:var(--card);color:var(--ink)}.rgx{display:block;margin:10px auto 0;border:0;background:none;color:var(--mut);font:500 .85rem system-ui;text-decoration:underline}
 .rgbar{display:flex;align-items:center;gap:8px;width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;font:.95rem system-ui;margin:8px 0 4px;text-align:left}.rgbar span{font-size:1.3rem}.rgbar b{flex:1}.rgbar i{font-style:normal;color:var(--acc);font-weight:700;font-size:.85rem}
@@ -198,7 +198,7 @@ button.sx{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);
 button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;border-color:#e0709a77}button.sx.m.on{background:#3b82c4;border-color:#3b82c4;color:#fff}button.sx.f.on{background:#e0709a;border-color:#e0709a;color:#fff}
 .sxi{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;color:#fff;font:700 .78rem system-ui;vertical-align:middle}.sxi.m{background:#3b82c4}.sxi.f{background:#e0709a}
 .det{margin-top:10px}.dl{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0;color:var(--ink);font-size:.9rem}.dl input{width:110px}
-#fab2{position:fixed;left:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);box-shadow:0 3px 10px #0005;z-index:4;padding:0;display:flex;align-items:center;justify-content:center}
+#fab2{position:fixed;left:18px;bottom:calc(20px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:56px;height:56px;border-radius:50%;border:0;background:var(--acc);color:var(--bg);box-shadow:0 3px 10px #0005;z-index:4;padding:0;display:flex;align-items:center;justify-content:center}
 #dr .seg{margin:2px 0 8px}
 .chips2{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}.fc{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 13px;font:.85rem system-ui}.fc.on{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 .kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px}.pg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -206,10 +206,10 @@ button.sx.m{color:#3b82c4;border-color:#3b82c477}button.sx.f{color:#e0709a;borde
 .sc2 b{font:700 1.7rem system-ui;color:var(--acc)}.sc2 span{font:.72rem system-ui;color:var(--mut)}
 button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
-.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:20;max-width:90%}
+.toast{position:fixed;left:50%;bottom:calc(100px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:1300;max-width:90%}
 html.in-on,html.in-on body{overflow:hidden}
-#inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#2f4620,#1d2c14);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom))}
-#inst.in-and.in-p{padding-top:calc(76px + env(safe-area-inset-top))}
+#inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#2f4620,#1d2c14);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(24px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)))}
+#inst.in-and.in-p{padding-top:calc(76px + var(--safe-area-inset-top,env(safe-area-inset-top)))}
 .in-w0{max-width:460px;margin:0 auto}
 .in-hd{display:flex;align-items:center;gap:14px;margin:4px 0 12px}.in-hd img{width:58px;height:58px;border-radius:14px;box-shadow:0 4px 14px #0005}
 .in-hd h1{margin:0;font:800 1.5rem/1.15 system-ui}.in-hd p{margin:2px 0 0;font:.92rem system-ui;color:#cfd8c0}
@@ -224,10 +224,10 @@ html.in-on,html.in-on body{overflow:hidden}
 .in-st img{display:block;width:100%;max-width:380px;margin:10px auto 0;border-radius:10px;border:1px solid #d9d6c5}
 .in-hp{background:#ffffff14;border-radius:12px;padding:10px 12px;margin:4px 0 8px;font:.85rem/1.45 system-ui;color:#e3e8d8}.in-hp summary{font-weight:700;color:#f5b83d;cursor:pointer}.in-hp ol{margin:8px 0 0 18px;padding:0}.in-hp li{margin-bottom:6px}
 .in-ar{position:fixed;z-index:1001;left:0;right:0;display:flex;align-items:center;gap:10px;padding:0 14px;height:64px;background:#1a2811;color:#f5b83d;font:800 .95rem system-ui;pointer-events:none;box-shadow:0 0 16px #0007}
-.in-and .in-ar{top:0;padding-top:env(safe-area-inset-top);height:calc(64px + env(safe-area-inset-top));justify-content:flex-end}.in-and .in-ar svg{animation:inUp 1s ease-in-out infinite;align-self:flex-start;margin-top:4px}
+.in-and .in-ar{top:0;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top));height:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top)));justify-content:flex-end}.in-and .in-ar svg{animation:inUp 1s ease-in-out infinite;align-self:flex-start;margin-top:4px}
 .in-ic{width:17px;height:18px;vertical-align:-3px}.in-m{color:#6d7461;font-size:.88rem}
 @keyframes inUp{50%{transform:translateY(-6px)}}@keyframes inDn{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(-8px)}}
-#tour{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:calc(10px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom));user-select:none;-webkit-user-select:none}
+#tour{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:calc(10px + var(--safe-area-inset-top,env(safe-area-inset-top))) 14px calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));user-select:none;-webkit-user-select:none}
 .to-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.to-pg{flex:1;display:flex;gap:4px}.to-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e;transition:background .4s}.to-pg i.on{background:#f5b83d}
 .to-n{font:700 .8rem system-ui;color:#cfd8c0;min-width:34px;text-align:right}.to-x{border:0;background:#ffffff1f;color:#fff;border-radius:10px;font:700 .85rem system-ui;padding:8px 11px}
 .to-cap{min-height:118px}.to-cap h2{margin:2px 0 4px;font:800 1.32rem/1.2 system-ui;color:#fff}.to-cap p{margin:0;font:.95rem/1.4 system-ui;color:#dfe6d2}
@@ -253,7 +253,7 @@ html.in-on,html.in-on body{overflow:hidden}
 .smap{position:relative;height:300px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg);margin-top:8px}.smap.big{height:68vh}.slg{display:flex;flex-wrap:wrap;gap:4px 12px;margin:8px 2px 0;font:.8rem system-ui;color:var(--mut)}.slg i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px;border:2px solid #fff;box-shadow:0 0 0 1px #0003}
 .leaflet-popup-content{font:.86rem/1.4 system-ui;margin:10px 12px}.leaflet-popup-content a.sgo{display:inline-block;margin-top:6px;font-weight:700;color:var(--acc)}
 .wrdv{flex:1 1 100%;margin-top:2px;padding:7px 10px;border-radius:9px;background:#3f5a2b18;font:600 .85rem/1.35 system-ui;display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}.wrdv b{width:100%}.wrdv span{white-space:nowrap}.wrdv svg{vertical-align:-3px}
-#setup{position:fixed;inset:0;z-index:1090;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:calc(12px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));font-family:system-ui,-apple-system,sans-serif}
+#setup{position:fixed;inset:0;z-index:1090;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;padding:calc(12px + var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(14px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));font-family:system-ui,-apple-system,sans-serif}
 #setup.dk{background:linear-gradient(180deg,#2f4620,#1b2912);color:#f4f1e6}
 .su-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}.su-pg{flex:1;display:flex;gap:5px}.su-pg i{flex:1;height:5px;border-radius:3px;background:var(--line)}.su-pg i.on{background:var(--acc)}
 #setup.dk .su-pg i{background:#ffffff2e}#setup.dk .su-pg i.on{background:#f5b83d}
@@ -280,19 +280,37 @@ html.in-on,html.in-on body{overflow:hidden}
 .su-tip{display:flex;gap:10px;text-align:left;font:.9rem/1.4 system-ui;color:#dfe6d2;width:100%}
 .su-lt{border:0;background:none;color:#b9c3aa;text-decoration:underline;font:.85rem system-ui;padding:10px;margin-top:4px}
 .dtag{display:inline-block;font-size:.75rem;font-weight:700;color:var(--mut);letter-spacing:.02em}.dplus{flex:0 0 auto;align-self:flex-start;border:0;background:none;color:var(--acc);padding:0;display:flex;flex-direction:column;align-items:center;gap:3px}.dplus b{width:40px;height:40px;border-radius:50%;border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font:700 1.5rem/1 system-ui;padding-bottom:3px;box-sizing:border-box}.dplus small{font:700 .68rem system-ui;white-space:nowrap}.pxl{display:flex;flex-wrap:wrap;gap:6px}.pxc{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 11px;font:600 .9rem system-ui;display:flex;align-items:center;gap:6px}.pxc.on{border-color:var(--acc);background:var(--acc);color:#fff}.pxc small{font-size:.7rem;font-weight:700;opacity:.8;text-transform:uppercase;margin-left:2px}.dth{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:var(--bg);border:1px solid var(--line)}.dth.em{display:flex;align-items:center;justify-content:center;font-size:1.8rem}.dth.pdf{display:flex;align-items:center;justify-content:center;font:800 .9rem system-ui;color:#fff;background:#b3261e;border:0}
-#dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + env(safe-area-inset-top));right:12px;width:48px;height:48px;border-radius:50%;border:3px solid #fff;background:#d32f2f;color:#fff;font:800 1.3rem system-ui;box-shadow:0 4px 14px #000a;z-index:2}
+#dview{position:fixed;inset:0;z-index:1200;background:#000e;display:flex;align-items:center;justify-content:center;overflow:auto;touch-action:pinch-zoom}#dview img{max-width:100%;max-height:100%;object-fit:contain}#dview button{position:fixed;top:calc(12px + var(--safe-area-inset-top,env(safe-area-inset-top)));right:12px;width:48px;height:48px;border-radius:50%;border:3px solid #fff;background:#d32f2f;color:#fff;font:800 1.3rem system-ui;box-shadow:0 4px 14px #000a;z-index:2}
 /* tour complet (oct. 2026) : place sous le dernier jour du mois, petits écrans, cibles tactiles */
-.wks{margin-bottom:calc(78px + env(safe-area-inset-bottom,0px))}
+.wks{margin-bottom:calc(78px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)))}
 @media(max-width:340px){.dc u.ev{font-size:.53rem;padding:2px;word-break:normal;overflow-wrap:anywhere}.wr{grid-template-columns:22px repeat(7,minmax(0,1fr))}.wd{grid-template-columns:22px repeat(7,minmax(0,1fr))}}
 .sgr .seg button{padding:10px 12px;min-height:42px}
 .fc{padding:10px 15px;min-height:42px}
 .hk{position:relative}.hk::after{content:"";position:absolute;inset:-11px}
 button.d[data-dg]{min-height:44px;padding:10px 14px}
+/* blessés à confirmer, marge de fin de page au-dessus des boutons d'Android */
+.tlw{border-style:dashed;border-color:#e8a032}.tlw .sv img{opacity:.6}.tlw b.q{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#e8a032;color:#2a1c05;font-size:1.05rem}.tlw small{display:block;color:#a06b12;font-weight:700}.tlw.lost{border-color:var(--line)}.tlw.lost b.q{background:var(--line);color:var(--mut)}.tlw.lost small{color:var(--mut)}
+.endsp{height:calc(28px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)))}
+.ppk{display:block;text-align:center;cursor:pointer}
+/* Mes favoris */
+.fvt{margin:4px 0 12px}.fvt button{min-height:42px}
+.fvg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.fvs{position:relative;border:2px solid var(--line);background:var(--card);border-radius:14px;padding:8px 4px 7px;display:flex;flex-direction:column;align-items:center;gap:3px;font:600 .78rem/1.2 system-ui;color:var(--mut);text-align:center}
+.fvs img{opacity:.45;filter:grayscale(.7)}.fvs.on img{opacity:1;filter:none}
+.fvs.on{border-color:var(--acc);color:var(--ink);background:color-mix(in srgb,var(--acc) 9%,var(--card))}
+.fvs.on:after{content:"✓";position:absolute;top:4px;right:6px;background:var(--acc);color:#fff;border-radius:50%;width:18px;height:18px;font:900 .7rem/18px system-ui}
+.fvs i,.fvm i{font-style:normal;color:var(--acc2);padding:4px 6px;font-weight:800}.fvs i{position:absolute;top:0;left:2px}
+.fvi{font-size:1.9rem;line-height:48px}
+.fvc{display:flex;flex-wrap:wrap;gap:8px}
+.fvm{border:2px solid var(--line);border-radius:99px;padding:10px 15px;min-height:44px;background:var(--card);font:600 .92rem system-ui;color:var(--mut)}.fvm.on{background:var(--acc);border-color:var(--acc);color:#fff}.fvm.on i{color:#fff}
+.fvp{margin-bottom:8px;padding:10px}
+.ob-bk{color:#f5d48a;padding:10px 12px 10px 0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent);transition:border-color .15s,box-shadow .15s}
 </style></head><body>
 <aside id="dr"><div class="dhd"><b>ChasseLog</b><button class="dchip" id="m-reg" aria-label="Changer de région"></button></div>
 <div class="dlab">Affichage</div><div class="dseg"><button data-cv="year">Année</button><button data-cv="month">Mois</button><button data-cv="week">Sem.</button><button data-cv="day">Jour</button></div>
 <div class="dlab">Ma chasse</div>
-<button class="m mi2" id="m-ouv"><svg class="mi" aria-hidden="true"><use href="#i-sun"/></svg>Périodes d'ouverture</button><button class="m mi2" id="m-mg"><svg class="mi" aria-hidden="true"><use href="#i-leaf"/></svg>Mes espèces et modes</button><button class="m mi2" id="m-ar"><svg class="mi" aria-hidden="true"><use href="#i-tgt"/></svg>Mes armes</button><button class="m mi2" id="m-doc"><svg class="mi" aria-hidden="true"><use href="#i-doc"/></svg>Mes documents</button>
+<button class="m mi2" id="m-ouv"><svg class="mi" aria-hidden="true"><use href="#i-sun"/></svg>Périodes d'ouverture</button><button class="m mi2" id="m-mg"><svg class="mi" aria-hidden="true"><use href="#i-leaf"/></svg>Mes favoris</button><button class="m mi2" id="m-ar"><svg class="mi" aria-hidden="true"><use href="#i-tgt"/></svg>Mes armes</button><button class="m mi2" id="m-doc"><svg class="mi" aria-hidden="true"><use href="#i-doc"/></svg>Mes documents</button>
 <div style="margin-top:auto;padding-top:10px"><hr>
 <button class="m mi2" id="m-set"><svg class="mi" aria-hidden="true"><use href="#i-gear"/></svg>Paramètres<span class="dch">›</span></button><button class="m mi2" id="m-inv"><svg class="mi" aria-hidden="true"><use href="#i-usr"/></svg>Inviter un ami</button><button class="m mi2" id="m-fol"><svg class="mi" aria-hidden="true"><use href="#i-heart"/></svg>Suivez-nous !</button><button class="m mi2" id="m-sup"><svg class="mi" aria-hidden="true"><use href="#i-cup"/></svg>Soutenir ChasseLog</button>
 <button id="m-fb" class="dfb"><svg class="mi" aria-hidden="true"><use href="#i-msg"/></svg>Donner mon avis</button><p class="dver" id="dver"></p></div>
@@ -301,7 +319,7 @@ button.d[data-dg]{min-height:44px;padding:10px 14px}
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-16a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-16b<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></symbol>
 <symbol id="i-tgt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
@@ -324,6 +342,53 @@ button.d[data-dg]{min-height:44px;padding:10px 14px}
 </defs></svg>
 <div id="page"><main id="app"></main></div>
 <script>
+/* ---------- application Android (Capacitor) : remplace ce que le navigateur fait et que l'app installée ne sait pas faire ----------
+   Sur le site web, IS_APP est faux et rien de ce bloc ne s'applique. */
+const CAPX=window.Capacitor,IS_APP=!!(CAPX&&CAPX.isNativePlatform&&CAPX.isNativePlatform());
+const NP=n=>{if(!IS_APP)return null;try{return(CAPX.Plugins&&CAPX.Plugins[n])||(CAPX.registerPlugin&&CAPX.registerPlugin(n))||null}catch(e){return null}};
+const b64of=b=>new Promise((res,rej)=>{const fr=new FileReader;fr.onload=()=>res(String(fr.result).split(",")[1]||"");fr.onerror=()=>rej(fr.error);fr.readAsDataURL(b)});
+const safeName=n=>String(n||"fichier").replace(/[\\/:*?"<>|]+/g,"_").slice(0,120);
+const isCancel=e=>/cancel|annul|abort/i.test(String(e&&(e.message||e.errorMessage||e)));
+/* partage Android (WhatsApp, Gmail, Drive…) : les fichiers passent par le cache de l'app. Renvoie false si la personne annule. */
+async function natShare(o){const SH=NP("Share"),FS=NP("Filesystem");if(!SH)throw new Error("partage indisponible");let files;
+ if(o.files&&o.files.length){files=[];for(const f of o.files){const w=await FS.writeFile({path:safeName(f.name),data:await b64of(f),directory:"CACHE"});files.push(w.uri)}}
+ try{await SH.share({title:o.title,text:o.text,url:o.url,files,dialogTitle:o.dialogTitle||o.title});return true}catch(e){if(isCancel(e))return false;throw e}}
+/* copie gardée dans Documents › ChasseLog (visible dans l'app Fichiers du téléphone) */
+async function natKeep(f){const FS=NP("Filesystem");if(!FS)return false;try{await FS.writeFile({path:"ChasseLog/"+safeName(f.name),data:await b64of(f),directory:"DOCUMENTS",recursive:true});return true}catch(e){return false}}
+/* fichier exporté : copie dans Documents puis menu de partage pour l'envoyer ailleurs */
+async function natExport(f,title){const kept=await natKeep(f);let sent=false;try{sent=await natShare({files:[f],title:title||f.name,dialogTitle:"Envoyer ou ranger « "+f.name+" »"})}catch(e){}
+ if(kept)toast("Copie enregistrée dans Documents › ChasseLog"+(sent?"":"."));else if(!sent)toast("Fichier non enregistré.");return kept||sent}
+/* liens externes (Facebook, Ko-fi, Maps, arrêtés…) : ouverts dans l'app concernée ou le navigateur du téléphone */
+const natOpen=url=>{const L=NP("AppLauncher");if(L)L.openUrl({url}).catch(()=>{try{window.open(url,"_blank")}catch(e){}});else window.open(url,"_blank")};
+const openExt=url=>{if(IS_APP)return natOpen(url);const w=window.open(url,"_blank","noopener");if(!w)location.href=url};
+/* photo prise avec l'appareil : copie dans l'album « ChasseLog » de la galerie */
+async function natAlbum(f){const M=NP("ChasseLogMedia");if(!M)return false;try{const d=new Date(),p=n=>String(n).padStart(2,"0");await M.savePhoto({data:await b64of(f),mime:f.type||"image/jpeg",name:`ChasseLog_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}.jpg`});return true}catch(e){return false}}
+/* notifications locales (rappels) : uniquement dans l'app Android */
+const natLN=()=>NP("LocalNotifications");
+async function natNotifOk(ask){const L=natLN();if(!L)return false;try{let p=await L.checkPermissions();if(p.display=="prompt"||p.display=="prompt-with-rationale"){if(!ask)return false;p=await L.requestPermissions()}return p.display=="granted"}catch(e){return false}}
+const GEO_HELP=IS_APP?"Autorise la localisation pour ChasseLog : Paramètres du téléphone › Applications › ChasseLog › Autorisations › Position.":"Autorise la localisation pour ChasseLog dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).";
+if(IS_APP){
+ document.documentElement.classList.add("app");
+ /* version de test : toute erreur inattendue s'affiche à l'écran pour pouvoir la signaler */
+ const oops=m=>{try{const d=document.createElement("div");d.className="toast";d.style.cssText="bottom:auto;top:calc(12px + var(--safe-area-inset-top,0px));background:#a4452c;color:#fff;z-index:1400";d.textContent="⚠️ "+String(m).slice(0,180);document.body.appendChild(d);setTimeout(()=>d.remove(),9000)}catch(e){}};
+ addEventListener("error",e=>oops(e.message||"Erreur"));
+ /* marges des barres Android : valeurs mesurées par l'app si la WebView n'en donne pas (ou moins) */
+ window.__applyInsets=()=>{const n=window.__natInsets;if(!n)return;const pr=document.createElement("div");pr.style.cssText="position:fixed;visibility:hidden;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px));padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px))";document.documentElement.appendChild(pr);const cs=getComputedStyle(pr),t=parseFloat(cs.paddingTop)||0,b=parseFloat(cs.paddingBottom)||0;pr.remove();
+  const r=document.documentElement.style;if(n.t>t+1)r.setProperty("--safe-area-inset-top",n.t+"px");if(n.b>b+1)r.setProperty("--safe-area-inset-bottom",n.b+"px");window.__insetsUsed={t:Math.max(t,n.t),b:Math.max(b,n.b),web:{t,b}}};
+ if(window.__natInsets)addEventListener("DOMContentLoaded",()=>window.__applyInsets());
+ /* clavier : le champ choisi est amené au centre une fois le clavier ouvert, sans à-coups */
+ {const K=NP("Keyboard");if(K)try{K.addListener("keyboardDidShow",()=>{const a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))setTimeout(()=>a.scrollIntoView({block:"center",behavior:"smooth"}),30)})}catch(e){}}addEventListener("unhandledrejection",e=>oops((e.reason&&(e.reason.message||e.reason))||"Erreur"));
+ document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href]");if(!a)return;const h=a.getAttribute("href")||"";if(/^(https?:|mailto:|tel:|geo:)/i.test(h)){e.preventDefault();natOpen(a.href)}},true);
+ /* la position est mémorisée comme autorisée dès qu'une demande réussit (la WebView ne renseigne pas toujours navigator.permissions) */
+ if(navigator.geolocation){const g=navigator.geolocation,mk=v=>{try{localStorage.setItem("geo-ok",v)}catch(e){}},gp=g.getCurrentPosition.bind(g),wp=g.watchPosition.bind(g);
+  g.getCurrentPosition=(ok,er,o)=>gp(p=>{mk("1");ok&&ok(p)},x=>{if(x&&x.code==1)mk("");er&&er(x)},o);
+  g.watchPosition=(ok,er,o)=>wp(p=>{mk("1");ok&&ok(p)},x=>{if(x&&x.code==1)mk("");er&&er(x)},o)}
+ /* barres du système : icônes claires sur fond sombre (thème sombre, accueil, visite) et foncées sinon */
+ const bars=()=>{const SB=NP("SystemBars");if(!SB)return;const th=document.documentElement.dataset.theme,dk=th=="dark"||(!th&&matchMedia("(prefers-color-scheme: dark)").matches),ov=document.querySelector("#onb,#tour,#setup,#welc,#dview");const st=dk||ov?"DARK":"LIGHT";if(st!=bars.s){bars.s=st;try{SB.setStyle({style:st}).catch(()=>{})}catch(e){}}};
+ addEventListener("DOMContentLoaded",()=>{bars();new MutationObserver(bars).observe(document.body,{childList:true});new MutationObserver(bars).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});matchMedia("(prefers-color-scheme: dark)").addEventListener("change",bars)});
+}
+</script>
+<script>
 const G={"Grand gibier":["Cerf élaphe","Chevreuil","Sanglier","Daim","Mouflon","Chamois","Isard"],
 "Petit gibier":["Lièvre","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive"],
 "Gibier d'eau":["Canard colvert","Sarcelle d'hiver","Canard chipeau","Oie cendrée","Bernache du Canada","Foulque macroule"],
@@ -337,7 +402,9 @@ const TN={"Cerf élaphe":{m:"Cerf mâle",f:"Biche",b:"Bichette",j:"Faon"},"Chevr
 const tname=t=>(t.sx&&TN[t.sp]&&TN[t.sp][t.sx])?TN[t.sp][t.sx]:(t.sx&&CL[t.sp]&&CL[t.sp][t.sx])?t.sp+" – "+CL[t.sp][t.sx]:t.sp;
 const sxi=x=>x?`<span class="sxi ${x}">${x=="m"?"♂":"♀"}</span>`:"";
 const extra=t=>{const f=a=>(a||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(esc),w=f(t.w),c=f(t.c);return(t.sp=="Sanglier"&&w.length?" · "+w.join(", ")+" kg":"")+(c.length&&COR(t.sp)&&t.sx=="m"?" · "+c.join(", ")+" cors":"")};
-const MODES=["Battue","Approche","Affût","Poussée silencieuse","Chasse devant soi","Chasse à la passée","Chasse à la hutte","Chasse au chien d'arrêt","Chasse au terrier","Chasse à courre","Fauconnerie"];
+const MODES=["Battue","Traque-affût","Approche","Affût","Chasse au vol (fauconnerie)","Botte","Chasse à courre","Bourse et furets"];
+/* modes de chasse proposés : la chasse à courre seulement en France, plus les modes ajoutés par l'utilisateur (S.cm) */
+const allModes=()=>[...MODES.filter(m=>m!="Chasse à courre"||S.reg=="fr"),...(S.cm||[]).filter(m=>!MODES.includes(m))];
 const MN=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
 const UL={b:"Balles",c:"Cartouches"},UW=(u,n)=>(n==1||n==0?{b:"balle",c:"cartouche"}[u]:UL[u]&&UL[u].toLowerCase())||"",UNIT=s=>(/^(Cerf|Cervid|Chevreuil|Sanglier|Daim|Mouflon|Renard)/.test(s))?"b":"c";
 const $=s=>document.querySelector(s);
@@ -367,13 +434,51 @@ async function fillAddr(){if(adBusy||!navigator.onLine)return;S.ad=S.ad||{};cons
  for(const p of todo.slice(0,10)){try{const s=await rgAddr(p.lat,p.lng);if(s)ch=1}catch(x){break}await new Promise(r=>setTimeout(r,1100))}
  adBusy=false;if(ch){evs().forEach(e=>{const p=e.place;if(p&&p.lat!=null&&!p.addr&&S.ad[adKey(p.lat,p.lng)])p.addr=S.ad[adKey(p.lat,p.lng)]});save();if(view!="fiche")render()}}
 setTimeout(fillAddr,5000);
+/* ---------- Mes favoris : espèces, modes de chasse et lieux ---------- */
+const plKey=p=>p?(p.name?p.name.trim().toLowerCase():p.lat!=null?(+p.lat).toFixed(4)+","+(+p.lng).toFixed(4):""):"";
+const plHidden=p=>(S.hidePl||[]).includes(plKey(p));
+const knownPl=()=>{const seen=new Set((S.favs||[]).map(f=>f.name.trim().toLowerCase())),o=[];evs().filter(e=>e.place&&(e.place.name||e.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1).forEach(e=>{const k=plKey(e.place);if(k&&!seen.has(k)&&!favNear(e.place)){seen.add(k);o.push(e.place)}});return o.filter(p=>!plHidden(p))};
+let favTab="sp";
+function favName(p,cb){modal(`<h2 style="margin-top:0">⭐ Nom du lieu favori</h2>${p.addr||adOf(p)?`<p class="mut sans" style="font-size:.85rem">🏠 ${esc(p.addr||adOf(p))}</p>`:""}<label>Nom du lieu</label><input id="fn-n" value="${esc(p.name||"")}" placeholder="ex. Cabanon de chasse de Renlies" maxlength="60"><div class="row" style="margin-top:12px"><button class="s" id="fn-x">Annuler</button><button class="p" id="fn-ok">⭐ Enregistrer</button></div>`,"2");
+ const ok=()=>{const n=$("#fn-n").value.trim();if(!n)return $("#fn-n").focus();const ex=favByName(n);if(ex&&!confirm("Un favori « "+ex.name+" » existe déjà. Le remplacer par ce lieu ?"))return;S.favs=(S.favs||[]).filter(f=>f!==ex);
+  S.favs.push({id:"f"+Date.now(),name:n,lat:p.lat??null,lng:p.lng??null,addr:p.addr||adOf(p)||"",used:Date.now()});save();track("fav_saved",{from:"favoris"});closeM("2");toast("⭐ « "+n+" » ajouté à tes lieux favoris.");cb&&cb()};
+ $("#fn-ok").onclick=ok;$("#fn-n").onkeydown=e=>{if(e.key=="Enter"){e.preventDefault();ok()}};$("#fn-x").onclick=()=>closeM("2")}
+function rFav(){const tabs=[["sp","Mes espèces"],["md","Mes modes"],["pl","Mes lieux"]];let body="";S.cm=S.cm||[];
+ if(favTab=="sp"){const grp=Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{}),n=Object.values(grp).flat().filter(x=>!S.hs.includes(x)).length;
+  body=`<p class="mut sans">Touche une espèce pour l'afficher ou la masquer dans tes listes d'encodage · <b>${n}</b> affichée${n>1?"s":""}.</p>`+Object.entries(grp).map(([g,a])=>`<h3>${esc(g)}</h3><div class="fvg">${a.map(x=>`<button class="fvs${S.hs.includes(x)?"":" on"}" data-fs="${esc(x)}" aria-pressed="${!S.hs.includes(x)}">${sil(x,64)||'<span class="fvi">🐾</span>'}<span>${esc(x)}</span>${S.custom.includes(x)?`<i data-fsx="${esc(x)}" aria-label="Supprimer ${esc(x)}">✕</i>`:""}</button>`).join("")}</div>`).join("")
+   +`<h3>Ajouter une espèce</h3><div class="row"><input id="fv-ns" placeholder="Nom de l'espèce"><button class="s" id="fv-na" style="flex:0 0 auto">Ajouter</button></div>`}
+ else if(favTab=="md"){const A=allModes(),n=A.filter(m=>!S.hm.includes(m)).length;
+  body=`<p class="mut sans">Touche un mode pour l'afficher ou le masquer quand tu crées une journée · <b>${n}</b> affiché${n>1?"s":""}.</p><div class="fvc">${A.map(m=>`<button class="fvm${S.hm.includes(m)?"":" on"}" data-fm="${esc(m)}" aria-pressed="${!S.hm.includes(m)}">${esc(m)}${S.cm.includes(m)?` <i data-fmx="${esc(m)}" aria-label="Supprimer ${esc(m)}">✕</i>`:""}</button>`).join("")}</div>
+   <h3>Ajouter un mode de chasse</h3><div class="row"><input id="fv-nm" placeholder="ex. Chasse au chien d'arrêt"><button class="s" id="fv-ma" style="flex:0 0 auto">Ajouter</button></div>`}
+ else{const F=S.favs||[],K=knownPl();
+  body=`<p class="mut sans">Tes lieux favoris se choisissent dans « Lieu de RDV » quand tu crées une journée.</p><button class="p" id="fv-pa" style="width:100%">＋ Ajouter un lieu</button>
+   <h3>Mes lieux favoris</h3>${F.length?F.map((f,i)=>`<div class="card sans fvp"><label style="margin:0 0 4px">⭐ Nom du lieu</label><input data-fpr="${i}" value="${esc(f.name)}" style="margin:0" aria-label="Nom du lieu"><div class="row" style="gap:6px;align-items:center;margin-top:8px"><span class="mut" style="flex:1;min-width:0;font-size:.82rem">${f.addr||adOf(f)?"🏠 "+esc(f.addr||adOf(f)):f.lat==null?"Pas encore placé sur la carte":"📍 "+coord(f)}</span><button class="s" data-fpm="${i}" style="flex:0 0 auto;min-height:44px">🗺 Carte</button><button class="s" data-fpd="${i}" style="flex:0 0 auto;min-height:44px;color:var(--acc2)" aria-label="Supprimer ce favori">🗑</button></div></div>`).join(""):'<p class="mut sans">Aucun lieu favori pour l\'instant.</p>'}
+   ${K.length?`<h3>Lieux suggérés</h3><p class="mut sans" style="margin-top:-4px">Repris de tes journées : ajoute-les à tes favoris ou retire-les des suggestions.</p>${K.map((p,i)=>`<div class="card sans fvp"><div class="row" style="gap:6px;align-items:center"><span style="flex:1;min-width:0">📍 ${esc(p.name||p.addr||adOf(p)||coord(p))}</span><button class="s" data-fka="${i}" style="flex:0 0 auto">⭐ Favori</button><button class="s" data-fkh="${i}" style="flex:0 0 auto" aria-label="Retirer des suggestions">✕</button></div></div>`).join("")}`:""}
+   ${(S.hidePl||[]).length?`<button class="lnk" id="fv-hr" style="margin-top:10px">Réafficher ${S.hidePl.length>1?"les "+S.hidePl.length+" lieux retirés":"le lieu retiré"} des suggestions</button>`:""}`}
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes favoris</h1><div class="seg fvt">${tabs.map(([k,l])=>`<button data-fvt="${k}" class="${favTab==k?"on":""}">${l}</button>`).join("")}</div>${body}<div style="height:80px"></div>`;
+ $("#bk2").onclick=backTo;
+ document.querySelectorAll("[data-fvt]").forEach(b=>b.onclick=()=>{favTab=b.dataset.fvt;render()});
+ document.querySelectorAll("[data-fs]").forEach(b=>b.onclick=ev=>{const x=ev.target.closest("[data-fsx]");if(x){const n=x.dataset.fsx;if(!confirm("Supprimer l'espèce « "+n+" » de ta liste ?"))return;S.custom=S.custom.filter(c=>c!=n);S.hs=S.hs.filter(h=>h!=n);save();return render()}
+  const n=b.dataset.fs;S.hs=S.hs.includes(n)?S.hs.filter(h=>h!=n):[...S.hs,n];save();b.classList.toggle("on",!S.hs.includes(n));b.setAttribute("aria-pressed",!S.hs.includes(n));const c=$("#app p.mut b");if(c){const k=Object.values(Object.assign({},G,{c:S.custom})).flat().filter(x=>!S.hs.includes(x)).length;c.textContent=k}});
+ if($("#fv-na"))$("#fv-na").onclick=()=>{const v=$("#fv-ns").value.trim();if(!v)return;if(!S.custom.includes(v)&&!Object.values(G).flat().includes(v))S.custom.push(v);S.hs=S.hs.filter(h=>h!=v);save();toast("Espèce « "+v+" » ajoutée.");render()};
+ document.querySelectorAll("[data-fm]").forEach(b=>b.onclick=ev=>{const x=ev.target.closest("[data-fmx]");if(x){const n=x.dataset.fmx;if(!confirm("Supprimer le mode « "+n+" » ?"))return;S.cm=S.cm.filter(c=>c!=n);S.hm=S.hm.filter(h=>h!=n);save();return render()}
+  const n=b.dataset.fm;S.hm=S.hm.includes(n)?S.hm.filter(h=>h!=n):[...S.hm,n];save();render()});
+ if($("#fv-ma"))$("#fv-ma").onclick=()=>{const v=$("#fv-nm").value.trim();if(!v)return;if(!allModes().includes(v))S.cm.push(v);S.hm=S.hm.filter(h=>h!=v);save();toast("Mode « "+v+" » ajouté.");render()};
+ if($("#fv-pa"))$("#fv-pa").onclick=()=>pickLoc({name:"",lat:null,lng:null},p=>{if(p.lat==null&&!p.name)return;setTimeout(()=>favName(p,render),250)});
+ document.querySelectorAll("[data-fpr]").forEach(i=>i.onchange=()=>{const v=i.value.trim(),f=S.favs[+i.dataset.fpr];if(v&&f){f.name=v;save();toast("Nom enregistré.")}});
+ document.querySelectorAll("[data-fpm]").forEach(b=>b.onclick=()=>{const f=S.favs[+b.dataset.fpm];pickLoc(favPlace(f),p=>{if(p.lat==null)return;f.lat=p.lat;f.lng=p.lng;f.addr=p.addr||adOf(p)||"";save();toast("Emplacement mis à jour.");render()})});
+ document.querySelectorAll("[data-fpd]").forEach(b=>b.onclick=()=>{const i=+b.dataset.fpd,f=S.favs[i];modal(`<h2>Supprimer ce lieu favori ?</h2><p class="sans">⭐ ${esc(f.name)}</p><p class="mut sans" style="font-size:.88rem">Tes journées passées gardent leur lieu de RDV.</p><div class="row"><button class="s" id="fd-n">Annuler</button><button class="p" id="fd-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#fd-n").onclick=()=>closeM("2");$("#fd-y").onclick=()=>{S.favs.splice(i,1);save();closeM("2");render()}});
+ const K=favTab=="pl"?knownPl():[];
+ document.querySelectorAll("[data-fka]").forEach(b=>b.onclick=()=>favName(K[+b.dataset.fka],render));
+ document.querySelectorAll("[data-fkh]").forEach(b=>b.onclick=()=>{S.hidePl=S.hidePl||[];S.hidePl.push(plKey(K[+b.dataset.fkh]));save();toast("Lieu retiré des suggestions.");render()});
+ if($("#fv-hr"))$("#fv-hr").onclick=()=>{S.hidePl=[];save();render()}}
 /* lieux favoris */
 const favNear=p=>p&&p.lat!=null?(S.favs||[]).find(f=>Math.abs(f.lat-p.lat)<6e-4&&Math.abs(f.lng-p.lng)<9e-4):null;
 const favByName=n=>{n=(n||"").trim().toLowerCase();return n?(S.favs||[]).find(f=>f.name.trim().toLowerCase()==n):null};
 const favPlace=f=>({name:f.name,lat:f.lat,lng:f.lng,addr:f.addr||adOf(f)||"",fav:f.id});
 const link=l=>l&&l.lat!=null?`<a href="https://www.google.com/maps?q=${l.lat},${l.lng}" target="_blank" rel="noopener">ouvrir dans Maps</a>`:"";
 const visTab=()=>{const o={};Object.entries(visSp()).forEach(([g,a])=>{o[g]=a.flatMap(x=>XT[x]||[x])});return o};
-const visM=()=>MODES.filter(m=>!S.hm.includes(m));
+const visM=()=>allModes().filter(m=>!S.hm.includes(m));
 const visSp=()=>{const o={};Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).forEach(([g,a])=>{const f=a.filter(s=>!S.hs.includes(s));if(f.length)o[g]=f});return o};
 function parseCoord(s){const m=String(s).match(/(-?\d+(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d+(?:[.,]\d+)?)/);return m?[+m[1].replace(",","."),+m[2].replace(",",".")]:null}
 function toast(t){document.querySelectorAll(".toast").forEach(x=>x.remove());const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
@@ -388,21 +493,22 @@ function modal(h,l=""){closeM(l);const m=document.createElement("div");m.id="mo"
 function closeM(l=""){const m=$("#mo"+l);if(m)m.remove()}
 let vst=[];
 function go(v){if(v!=view){if(v=="cal")vst=[];else if(vst.length&&vst[vst.length-1]==v)vst.pop();else if(!(v=="sum"&&view=="fiche"))vst.push(view)}const ch=v!=view;view=v;render();if(ch){window.scrollTo(0,0);$("#app").scrollTop=0}}
-function hwBack(){if($("#setup")){$("#setup")._back();return true}if($("#tour")){$("#tour .to-x").click();return true}if(document.body.classList.contains("dr")){shut();return true}
+function hwBack(){if($("#onb"))return !!($("#onb")._back&&$("#onb")._back());if($("#setup")){$("#setup")._back();return true}if($("#tour")){$("#tour .to-x").click();return true}if(document.body.classList.contains("dr")){shut();return true}
  for(const l of["3","2",""])if($("#mo"+l)){closeM(l);return true}
  if($("#ff")){closeF();return true}
  if(view=="fiche"){backFiche();return true}
  if(view!="cal"){go(vst.length?vst[vst.length-1]:"cal");return true}
  return false}
 let armed=!!(history.state&&history.state.t);const arm=()=>{if(!armed){armed=true;try{history.pushState({t:1},"")}catch(e){}}};
-addEventListener("pointerdown",arm,true);
-addEventListener("popstate",()=>{armed=false;if(hwBack())arm();else history.back()});
+if(IS_APP){const A=NP("App");if(A)A.addListener("backButton",()=>{const v=$("#dview");if(v){v.remove();return}if(!hwBack())A.minimizeApp()})}
+else{addEventListener("pointerdown",arm,true);
+addEventListener("popstate",()=>{armed=false;if(hwBack())arm();else history.back()})}
 function shifted(k){const d=new Date(cur);if(cv=="month")return new Date(d.getFullYear(),d.getMonth()+k,1);if(cv=="year")return new Date(d.getFullYear()+k,0,1);d.setDate(d.getDate()+k*(cv=="week"?7:1));return d}
 function step(k){cur=shifted(k);render()}
 function isoWeek(d){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),w=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-w);return Math.ceil(((t-Date.UTC(t.getUTCFullYear(),0,1))/864e5+1)/7)}
 const VIEWS={};
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv})[view]();hydrate()}
-function dl(n,t,c){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav})[view]();hydrate()}
+function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */
 function tfix(t){if(t.r===undefined){const p=+t.p||0,hh=+t.h||0;t.r=p>0?"p":hh>0?"b":"m";t.k=p>0?p:1}
@@ -494,7 +600,7 @@ function folModal(){track("follow_ask");modal(`<div style="text-align:center"><d
  <p class="sans" style="font-size:1.02rem;line-height:1.5;margin:0 0 14px">Suis la page Facebook de ChasseLog : nouveautés, dates d'ouverture, et l'annonce de la sortie officielle.</p></div>
  <button class="p" id="fo-y" style="width:100%">Suivre ChasseLog sur Facebook</button><button class="s" id="fo-n" style="width:100%;margin-top:8px">Non merci</button>
  <p class="mut sans" style="font-size:.8rem;margin-top:10px">Ce message ne s'affichera plus. La page reste accessible depuis ☰ › Suivez-nous !</p>`);
- $("#fo-y").onclick=()=>{closeM();track("follow_fb",{src:"ask"});const w=window.open(FB_PAGE,"_blank","noopener");if(!w)location.href=FB_PAGE};$("#fo-n").onclick=()=>closeM()}
+ $("#fo-y").onclick=()=>{closeM();track("follow_fb",{src:"ask"});openExt(FB_PAGE)};$("#fo-n").onclick=()=>closeM()}
 
 /* ---------- inscription : être prévenu de la sortie officielle ---------- */
 function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2><p class="sans" style="font-size:1.02rem;line-height:1.5">Reste au courant ! Laisse ton adresse e-mail et on te prévient dès que l'application sortira en version complète.</p>
@@ -517,16 +623,16 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
   catch(e){b.disabled=false;b.textContent="Me prévenir";err("L'envoi a échoué. Réessaie dans un instant.")}}}
 
 /* ---------- ouverture depuis Messenger / Facebook / Instagram : guider vers le vrai navigateur ---------- */
-(()=>{const ua=navigator.userAgent||"";if(!/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;if(matchMedia("(display-mode: standalone)").matches)return;
+(()=>{const ua=navigator.userAgent||"";if(IS_APP||!/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;if(matchMedia("(display-mode: standalone)").matches)return;
  const and=/Android/i.test(ua),d=document.createElement("div");d.id="iab";
- d.style.cssText="position:fixed;left:10px;right:10px;bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:60;background:#e8a032;color:#2a1c05;border-radius:14px;padding:14px;font:600 .92rem/1.35 system-ui;box-shadow:0 6px 20px #0006";
+ d.style.cssText="position:fixed;left:10px;right:10px;bottom:calc(96px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));z-index:60;background:#e8a032;color:#2a1c05;border-radius:14px;padding:14px;font:600 .92rem/1.35 system-ui;box-shadow:0 6px 20px #0006";
  d.innerHTML=`<b style="font-size:1rem">Pour installer ChasseLog</b><br>Tu es dans le navigateur de Messenger. Touche les trois points <b>⋯</b> en haut à droite, puis <b>« Ouvrir dans le navigateur »</b>${and?", ensuite menu ⋮ › « Installer et créer un raccourci »":", puis Partager › « Sur l'écran d'accueil »"}.
  <div style="display:flex;gap:8px;margin-top:10px">${and?`<a href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end" style="flex:1;text-align:center;background:#2a1c05;color:#fff;border-radius:10px;padding:10px;text-decoration:none;font-weight:700">Ouvrir dans Chrome</a>`:""}<button style="flex:${and?"0 0 auto":"1"};border:1px solid #2a1c05;background:none;color:#2a1c05;border-radius:10px;padding:10px 14px;font:600 .9rem system-ui">Plus tard</button></div>`;
  document.body.appendChild(d);d.querySelector("button").onclick=()=>d.remove()})();
 
 /* ---------- installation : écran d'aide quand ChasseLog est ouvert dans le navigateur d'un téléphone ---------- */
 let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;const b=document.getElementById("in-go");if(b)b.hidden=false});
-(()=>{const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
+(()=>{if(IS_APP)return;const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
  const sa=["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
  if(q==null){if(sa||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(/[?&]web\b/.test(location.search))sessionStorage.setItem("chasselog-skipinst","1");if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
  let ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
@@ -614,7 +720,7 @@ function deP(p){p=p.trim();const m=p.match(/^(les|le|la)\s+(.+)$/i)||p.match(/^(
 function startSetup(){if($("#setup"))return;track("setup_started");shut&&document.body.classList.contains("dr")&&shut();
  const o=document.createElement("div");o.id="setup";document.body.appendChild(o);document.documentElement.classList.add("in-on");
  const td=iso(new Date()),known=[];{const seen=new Set();(S.favs||[]).forEach(f=>{seen.add(f.name.trim().toLowerCase());known.push(favPlace(f))});evs().filter(e=>e.place&&e.place.name).sort((a,b)=>a.date<b.date?1:-1).forEach(e=>{const k=e.place.name.trim().toLowerCase();if(!seen.has(k)){seen.add(k);known.push(e.place)}})}
- const M=visM().length?visM():MODES;let step=0,mon=new Date();mon.setDate(1);const chosen=new Set(),D={};
+ const M=visM().length?visM():allModes();let step=0,mon=new Date();mon.setDate(1);const chosen=new Set(),D={};
  const day=ds=>D[ds]=D[ds]||{mode:M[0],place:"",role:"part",guests:[],host:""};
  const fmtS=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"short",day:"numeric",month:"short"});
  const fmtL=ds=>{const s=new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"});return s[0].toUpperCase()+s.slice(1)};
@@ -639,7 +745,7 @@ function startSetup(){if($("#setup"))return;track("setup_started");shut&&documen
     :`<div class="su-l">Invité par</div><div class="su-r"><input data-h placeholder="Nom de la personne qui t'invite" value="${esc(x.host)}">${CONTACTS?`<button class="su-ct" data-hc aria-label="Choisir dans mes contacts">${SIL}</button>`:""}</div>`}</div>`};
    o.innerHTML=top(1)+`<div class="su-bd"><h1>Où, comment, avec qui ?</h1><p class="su-sub">Le lieu de rendez-vous suffit. La position GPS est facultative.</p>
    ${ds.length?card(ds[0],0):""}${ds.length>1?`<button class="su-cp" id="su-cp">Même chose pour ${ds.length==2?"l'autre journée":`les ${ds.length-1} autres journées`}</button>`:""}${ds.slice(1).map((d,i)=>card(d,i+1)).join("")}
-   <datalist id="su-kp">${known.map(p=>`<option value="${esc(p.name)}">`).join("")}</datalist><div style="height:10px"></div></div>
+   <datalist id="su-kp">${known.filter(p=>!plHidden(p)).map(p=>`<option value="${esc(p.name)}">`).join("")}</datalist><div style="height:10px"></div></div>
    <div class="su-ft"><button class="su-bk" id="su-b">‹</button><button class="su-go" id="su-n">Créer mes ${ds.length} journée${ds.length>1?"s":""}</button></div>`;
    o.querySelectorAll("[data-c]").forEach(c=>{const d=c.dataset.c,x=day(d);
     c.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{x.mode=b.dataset.m;c.querySelectorAll("[data-m]").forEach(z=>z.classList.toggle("on",z==b))});
@@ -664,12 +770,12 @@ function startSetup(){if($("#setup"))return;track("setup_started");shut&&documen
   if($("#su-x"))$("#su-x").onclick=()=>{S.setupDone=true;save();close()}}
  function keep(fn,focusDay){const bd=o.querySelector(".su-bd"),y=bd?bd.scrollTop:0;fn();const b2=o.querySelector(".su-bd");if(b2)b2.scrollTop=y;if(focusDay){const i=o.querySelector(`[data-c="${focusDay}"] [data-gi]`);if(i)i.focus()}}
  function create(){const ds=[...chosen].sort(),made=[];ds.forEach((d,i)=>{const x=day(d),pn=x.place.trim(),kp=known.find(p=>p.name.trim().toLowerCase()==pn.toLowerCase()),id="s"+Date.now()+i;
-   const cg=smartCoord(pn),isC=Array.isArray(cg);const e={id,date:d,title:pn&&!isC?x.mode+" "+deP(pn):x.mode,mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:isC?{name:"",lat:cg[0],lng:cg[1]}:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
+   const cg=smartCoord(pn),isC=Array.isArray(cg);const e={id,date:d,title:x.mode||"Chasse",mode:x.mode,role:x.role,guests:x.role=="part"?x.guests:[],host:x.role=="guest"?x.host.trim():"",place:isC?{name:"",lat:cg[0],lng:cg[1]}:kp?Object.assign({},kp):{name:pn,lat:null,lng:null},desc:""};S.ev[id]=e;made.push(e)});
   S.setupDone=true;save();track("setup_done",{days:made||0});o._made=made;step=2;draw()}
  o._back=()=>{if(step==1){step=0;draw()}else close()};
  draw()}
 
-const isSA=()=>["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
+const isSA=()=>IS_APP||["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
 function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))return;if(!popFree()){setTimeout(tourAsk,4000);return}
  S.tourAsked=true;save();modal(`<div style="text-align:center"><img src="icons/icon-192.png" alt="" style="width:72px;height:72px;border-radius:16px;margin:4px auto 8px;display:block"><h2 style="margin:0 0 6px">Bienvenue dans ChasseLog !</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 16px">Découvre en 2 minutes comment encoder tes journées, tes tirs et suivre ta saison.</p>
  <button class="p li" id="ta-go">Lancer la visite guidée</button><button class="s li" id="ta-no">Plus tard</button><p class="mut sans" style="font-size:.82rem;margin:10px 0 0">Tu la retrouves à tout moment dans le menu ☰ › Paramètres › Revoir la visite guidée.</p></div>`);
@@ -679,7 +785,7 @@ function tourAsk(){if(S.tourAsked||!(isSA()||/[?&]tour/.test(location.search)))r
 const PH_KEY="phc_woUjwnMErQuDhrGrf6xSqha8cNxVnF8JCSZNhTpzWisJ",PH_HOST="https://eu.i.posthog.com";
 const anId=()=>S.anId||(S.anId="a"+Date.now().toString(36)+Math.random().toString(36).slice(2,10));
 const phOn=()=>!!PH_KEY&&S.stats===true;
-const phPlat=()=>/android/i.test(navigator.userAgent)?"android":/iphone|ipad|ipod/i.test(navigator.userAgent)?"ios":"desktop";
+const phPlat=()=>IS_APP?"android-app":/android/i.test(navigator.userAgent)?"android":/iphone|ipad|ipod/i.test(navigator.userAgent)?"ios":"desktop";
 function track(ev,props){if(!phOn())return;try{S.phq=S.phq||[];S.phq.push({event:ev,distinct_id:anId(),timestamp:new Date().toISOString(),properties:Object.assign({app_version:APP_V,platform:phPlat(),installed:isSA(),$process_person_profile:false},props||{})});if(S.phq.length>80)S.phq=S.phq.slice(-80);save();phFlush()}catch(e){}}
 let phBusy=false;
 async function phFlush(){if(phBusy||!phOn()||!(S.phq||[]).length||!navigator.onLine)return;phBusy=true;const batch=S.phq.slice(0,50);
@@ -703,7 +809,13 @@ const FRD=[["01","Ain"],["02","Aisne"],["03","Allier"],["04","Alpes-de-Haute-Pro
 const frNom=c=>(FRD.find(d=>d[0]==c)||[])[1]||"";
 const regLbl=()=>S.reg=="fr"?(S.dep?frNom(S.dep)+" ("+S.dep+")":"France"):S.reg=="xx"?"Autre pays":"Wallonie";
 const regFlag=()=>S.reg=="fr"?"🇫🇷":S.reg=="xx"?"🌍":"🇧🇪";
-let FRO=null;async function frData(){if(FRO)return FRO;try{const r=await fetch("data/ouv-fr.json");if(r.ok)FRO=await r.json()}catch(e){}return FRO}
+let FRO=null;const FR_URL="https://chasselog-coder.github.io/ChasseLog/data/ouv-fr.json";
+async function frData(){if(FRO)return FRO;let loc=null;try{const r=await fetch("data/ouv-fr.json");if(r.ok)loc=await r.json()}catch(e){}
+ if(IS_APP){/* l'app télécharge les dates les plus récentes du site, garde la dernière copie pour le hors connexion, sinon utilise celles livrées avec l'app */
+  let best=loc;try{const c=JSON.parse(localStorage.getItem("ouv-fr")||"null");if(c&&(!best||String(c.maj||"")>String(best.maj||"")))best=c}catch(e){}
+  try{const ac=new AbortController,t=setTimeout(()=>ac.abort(),6000),r=await fetch(FR_URL,{signal:ac.signal,cache:"no-cache"});clearTimeout(t);if(r.ok){const x=await r.json();if(x&&x.dep&&(!best||String(x.maj||"")>=String(best.maj||""))){best=x;try{localStorage.setItem("ouv-fr",JSON.stringify(x))}catch(e){}}}}catch(e){}
+  return FRO=best}
+ return FRO=loc}
 function regSet(reg,dep){S.reg=reg;S.dep=reg=="fr"?dep:null;S.regAsked=true;save();try{drChip()}catch(e){}track("region_set",{reg,dep:reg=="fr"?dep:null});if(reg=="fr")frData()}
 const depSel=(id,v)=>`<select id="${id}" class="rgsel"><option value="">Choisis ton département…</option>${FRD.map(([c,n])=>`<option value="${c}"${v==c?" selected":""}>${c} · ${esc(n)}</option>`).join("")}</select>`;
 /* bloc de choix réutilisable (accueil, popup, réglage) */
@@ -771,30 +883,32 @@ const ONB_KW=/chass|battue|traque|affût|affut|approche|poste|tableau|brocard|sa
 function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#onb"))return;
  const o=document.createElement("div");o.id="onb";document.body.appendChild(o);document.documentElement.classList.add("in-on");
  const ALL=Object.values(G).flat(),SPM=["Chevreuil","Sanglier","Cerf élaphe","Daim","Mouflon","Chamois","Isard","Renard","Raton laveur","Lièvre","Lapin de garenne","Faisan","Perdrix grise","Perdrix rouge","Caille des blés","Bécasse des bois","Grive","Pigeon ramier","Canard colvert","Sarcelle d'hiver","Canard chipeau","Oie cendrée","Bernache du Canada","Foulque macroule"];
- const R={sp:new Set(ALL.filter(x=>!S.hs.includes(x)).length<ALL.length?ALL.filter(x=>!S.hs.includes(x)):["Chevreuil","Sanglier"]),md:new Set(visM().length<MODES.length?visM():["Battue","Approche","Affût"]),imp:0,tour:false};
- let st=0,icsL=null;const N=6;
- const bar=k=>`<div class="ob-pg">${[...Array(N)].map((_,i)=>`<i class="${i<k?"on":""}"></i>`).join("")}</div><div class="ob-tp"><span>Étape ${k} sur ${N}</span>${k>=2&&k<=4||k==6?`<button class="ob-sk" data-skip>Passer</button>`:""}</div>`;
+ const SPDEF=["Sanglier","Chevreuil","Cerf élaphe","Faisan","Lièvre","Canard colvert","Bécasse des bois","Pigeon ramier","Renard"];
+ const R={sp:new Set(ALL.filter(x=>!S.hs.includes(x)).length<ALL.length?ALL.filter(x=>!S.hs.includes(x)):SPDEF.filter(x=>ALL.includes(x))),md:new Set(visM().length<allModes().length?visM():["Battue","Traque-affût","Approche","Affût"]),imp:0,tour:false};
+ let st=0,icsL=null,last=0,goingBack=false;const hist=[],N=6;
+ const bar=k=>`<div class="ob-pg">${[...Array(N)].map((_,i)=>`<i class="${i<k?"on":""}"></i>`).join("")}</div><div class="ob-tp">${hist.length?`<button class="ob-sk ob-bk" data-back aria-label="Étape précédente">‹ Retour</button>`:""}<span>Étape ${k} sur ${N}</span>${k>=2&&k<=4||k==6?`<button class="ob-sk" data-skip>Passer</button>`:"<i></i>"}</div>`;
  const end=()=>{o.remove();document.documentElement.classList.remove("in-on")};
  const finish=()=>{S.setupDone=true;save();track("onboarding_done",{reg:S.reg||"",dep:S.reg=="fr"?S.dep||"":"",species:ALL.filter(x=>!S.hs.includes(x)).join(","),nsp:ALL.filter(x=>!S.hs.includes(x)).length,modes:visM().join(","),imported:R.imp,tour:R.tour});};
  const spCard=n=>{const im=sil(n,72);return `<button class="ob-sp${R.sp.has(n)?" on":""}" data-sp="${esc(n)}">${im||'<span style="font-size:2rem;line-height:54px">🐐</span>'}<span>${esc(n.replace(" de garenne","").replace(" des bois","").replace(" élaphe","").replace(" des blés","").replace("Canard colvert","Colvert").replace("Canard chipeau","Chipeau").replace(" d'hiver",""))}</span></button>`};
- function draw(){let h="";
+ const back=()=>{if(!hist.length)return false;goingBack=true;st=hist.pop();draw();return true};o._back=back;
+ function draw(){if(st!==last){if(!goingBack)hist.push(last);last=st}goingBack=false;let h="";
   if(st==0)h=`<div class="ob-c ob-wl"><img class="ob-lg" src="icons/icon-192.png" alt=""><h1>Bienvenue dans ChasseLog !</h1><p>Ton carnet de chasse : tes journées, tes tirs et ta saison, toujours dans ta poche.</p><p>On prépare tout ensemble en 2 minutes.</p></div><button class="ob-go" id="ob-n">Commencer</button>`;
   else if(st==1)h=bar(1)+`<div class="ob-bd"><div class="ob-ic">📊</div><h1>Aide-nous à améliorer ChasseLog</h1><p class="ob-sub">Partages-tu des statistiques d'utilisation <b>anonymes</b> ? Par exemple : « une journée a été créée », ta région, tes espèces préférées.</p><div class="ob-nt">🔒 Jamais tes tirs, tes lieux, tes positions GPS ni tes documents. Si tu refuses, on note seulement « un refus ». Modifiable à tout moment dans le menu.</div></div><button class="ob-go" id="ob-y">Oui, j'aide ChasseLog</button><button class="ob-no" id="ob-no">Non merci</button>`;
   else if(st==2)h=bar(2)+`<div class="ob-bd"><div class="ob-ic">📍</div><h1>Où chasses-tu ?</h1><p class="ob-sub">Pour te donner les dates d'ouverture les plus justes.</p>${regBlock("ob")}</div><button class="ob-go" id="ob-n" ${S.reg&&(S.reg!="fr"||S.dep)?"":"disabled"}>Continuer</button>`;
-  else if(st==3){const L=SPM.filter(x=>ALL.includes(x));h=bar(3)+`<div class="ob-bd"><h1>Tes espèces</h1><p class="ob-sub">Touche celles que tu chasses : elles te seront proposées en premier. <b>Tout est modifiable ensuite</b> dans ☰ › Mes espèces et modes.</p><div class="ob-gr">${L.map(spCard).join("")}</div></div><button class="ob-go" id="ob-n">${R.sp.size?"Continuer · "+R.sp.size+" espèce"+(R.sp.size>1?"s":""):"Continuer"}</button>`}
-  else if(st==4)h=bar(4)+`<div class="ob-bd"><div class="ob-ic">🎯</div><h1>Comment chasses-tu ?</h1><p class="ob-sub">Choisis tes modes de chasse. <b>Modifiable ensuite</b> dans ☰ › Mes espèces et modes.</p><div class="ob-ch">${MODES.map(m=>`<button class="${R.md.has(m)?"on":""}" data-md="${esc(m)}">${esc(m)}</button>`).join("")}</div></div><button class="ob-go" id="ob-n">Continuer</button>`;
+  else if(st==3){const L=SPM.filter(x=>ALL.includes(x));h=bar(3)+`<div class="ob-bd"><h1>Tes espèces</h1><p class="ob-sub">Touche celles que tu chasses : elles te seront proposées en premier. <b>Tout est modifiable ensuite</b> dans ☰ › Mes favoris.</p><div class="ob-gr">${L.map(spCard).join("")}</div></div><button class="ob-go" id="ob-n">${R.sp.size?"Continuer · "+R.sp.size+" espèce"+(R.sp.size>1?"s":""):"Continuer"}</button>`}
+  else if(st==4)h=bar(4)+`<div class="ob-bd"><div class="ob-ic">🎯</div><h1>Comment chasses-tu ?</h1><p class="ob-sub">Choisis tes modes de chasse. <b>Modifiable ensuite</b> dans ☰ › Mes favoris.</p><div class="ob-ch">${allModes().map(m=>`<button class="${R.md.has(m)?"on":""}" data-md="${esc(m)}">${esc(m)}</button>`).join("")}</div></div><button class="ob-go" id="ob-n">Continuer</button>`;
   else if(st==5)h=bar(5)+`<div class="ob-c"><div class="ob-ic" style="font-size:4rem">🧭</div><h1>Découvre ChasseLog en 2 minutes</h1><p class="ob-sub">Encoder une journée, faire BANG, partager ton tableau, consulter tes stats et tes documents.</p></div><button class="ob-go" id="ob-t">Lancer la visite guidée</button><button class="ob-lt" id="ob-n">Plus tard (☰ › Paramètres › Revoir la visite guidée)</button>`;
   else if(st==6)h=bar(6)+`<div class="ob-bd"><div class="ob-ic">🗓️</div><h1>Tes journées de chasse</h1><p class="ob-sub">Comment veux-tu ajouter les dates de ta saison ?</p>
    <button class="ob-cd" id="ob-ics"><span>📥</span><div><b>Importer mon agenda</b><small>Google Agenda, Outlook, Calendrier iPhone (fichier .ics) : on repère les évènements « chasse », « battue », « traque »…</small></div></button>
    <button class="ob-cd" id="ob-cal"><span>👆</span><div><b>Je les sélectionne sur un calendrier</b><small>touche tes dates, puis lieu et invités</small></div></button>
-   <input type="file" id="ob-f" accept=".ics,text/calendar" hidden><details class="ob-hp"><summary>Comment obtenir le fichier .ics ?</summary><p><b>Google Agenda</b> (sur ordinateur) : Paramètres › Importer et exporter › Exporter, puis décompresse le .zip.<br><b>iPhone</b> : partage ton calendrier ou exporte-le depuis iCloud.com.<br><b>Outlook</b> : Calendrier › Partager › Publier, puis « ICS ».</p></details></div><button class="ob-lt" id="ob-n">Plus tard</button>`;
-  else if(st==7){const L=icsL,k=L.filter(x=>x.on).length;h=`<div class="ob-tp"><button class="ob-sk" id="ob-b">‹ Retour</button><span></span></div><div class="ob-bd"><h1>${L.filter(x=>x.m).length} journée${L.filter(x=>x.m).length>1?"s":""} trouvée${L.filter(x=>x.m).length>1?"s":""} 🎉</h1><p class="ob-sub">Dans ton agenda, avec les mots « chasse », « battue », « traque »… Décoche celles à ignorer.</p>
+   <input type="file" id="ob-f" ${IS_APP?"":'accept=".ics,text/calendar"'} hidden><details class="ob-hp"><summary>Comment obtenir le fichier .ics ?</summary><p><b>Google Agenda</b> (sur ordinateur) : Paramètres › Importer et exporter › Exporter, puis décompresse le .zip.<br><b>iPhone</b> : partage ton calendrier ou exporte-le depuis iCloud.com.<br><b>Outlook</b> : Calendrier › Partager › Publier, puis « ICS ».</p></details></div><button class="ob-lt" id="ob-n">Plus tard</button>`;
+  else if(st==7){const L=icsL,k=L.filter(x=>x.on).length;h=`<div class="ob-tp"><button class="ob-sk ob-bk" data-back>‹ Retour</button><span></span></div><div class="ob-bd"><h1>${L.filter(x=>x.m).length} journée${L.filter(x=>x.m).length>1?"s":""} trouvée${L.filter(x=>x.m).length>1?"s":""} 🎉</h1><p class="ob-sub">Dans ton agenda, avec les mots « chasse », « battue », « traque »… Décoche celles à ignorer.</p>
    ${L.map((x,i)=>x.m||x.on||icsL.all?`<button class="ob-ev${x.on?" on":""}" data-ev="${i}"><i>${x.on?"✓":""}</i><div>${esc(x.title)}<small>${new Date(x.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"short",day:"numeric",month:"short",year:"numeric"})}${x.loc?" · "+esc(x.loc):""}</small></div></button>`:"").join("")}
    ${!icsL.all&&L.some(x=>!x.m)?`<button class="ob-lt" id="ob-all">${L.filter(x=>!x.m).length>1?"Voir aussi les "+L.filter(x=>!x.m).length+" autres évènements":"Voir aussi l'autre évènement"}</button>`:""}</div><button class="ob-go" id="ob-add" ${k?"":"disabled"}>Ajouter ${k} journée${k>1?"s":""}</button>`}
   else if(st==8){const ns=ALL.filter(x=>!S.hs.includes(x)).length;h=`<div class="ob-c ob-wl"><div class="ob-ic" style="font-size:4rem">🎯</div><h1>Tout est prêt !</h1><p>Bonne saison, et que ton tableau soit beau 🦌</p><div class="ob-sm"><div>📍 ${esc(regLbl())}</div><div>🦌 ${ns} espèce${ns>1?"s":""} · ${visM().length} mode${visM().length>1?"s":""} de chasse</div>${R.imp?`<div>🗓️ ${R.imp} journée${R.imp>1?"s":""} ajoutée${R.imp>1?"s":""}</div>`:""}<div>📊 Statistiques anonymes : ${S.stats?"oui":"non"}</div></div><button class="ob-ev${BKD().on?" on":""}" id="ob-bk" style="max-width:340px;margin-top:14px"><i>${BKD().on?"✓":""}</i><div>💾 Sauvegarde automatique (conseillé)<small>Tous les 14 jours, ChasseLog te propose d'envoyer une copie de ton carnet vers Google Drive, iCloud…</small></div></button></div><button class="ob-go" id="ob-n">Ouvrir mon carnet</button><p class="ob-ft">Tout se modifie dans le menu ☰</p>`}
   o.className=st==0||st==8?"wl":"";o.innerHTML=h;bind()}
  const next=()=>{st++;draw()};
- function bind(){const q=x=>o.querySelector(x);
+ function bind(){const q=x=>o.querySelector(x);o.querySelectorAll("[data-back]").forEach(b=>b.onclick=back);
   o.querySelectorAll("[data-skip]").forEach(b=>b.onclick=()=>{if(st==6){st=8;finish();draw()}else next()});
   if(st==0)q("#ob-n").onclick=next;
   if(st==1){q("#ob-y").onclick=()=>{S.stats=true;save();track("stats_optin");next()};q("#ob-no").onclick=()=>{S.stats=false;S.phq=[];save();phOptout();next()}}
@@ -802,13 +916,15 @@ function onboard(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();if($("#o
   if(st==3){o.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{const n=b.dataset.sp;R.sp.has(n)?R.sp.delete(n):R.sp.add(n);const y=q(".ob-bd").scrollTop;draw();q(".ob-bd").scrollTop=y});
    q("#ob-n").onclick=()=>{if(R.sp.size){S.hs=ALL.filter(x=>!R.sp.has(x));save()}next()}}
   if(st==4){o.querySelectorAll("[data-md]").forEach(b=>b.onclick=()=>{const n=b.dataset.md;R.md.has(n)?R.md.delete(n):R.md.add(n);b.classList.toggle("on",R.md.has(n))});
-   q("#ob-n").onclick=()=>{if(R.md.size){S.hm=MODES.filter(x=>!R.md.has(x));save()}next()}}
+   q("#ob-n").onclick=()=>{if(R.md.size){S.hm=allModes().filter(x=>!R.md.has(x));save()}next()}}
   if(st==5){q("#ob-t").onclick=()=>{R.tour=true;o.style.display="none";startTour(()=>{o.style.display="";st=6;draw()})};q("#ob-n").onclick=next}
-  if(st==6){q("#ob-ics").onclick=()=>q("#ob-f").click();q("#ob-f").onchange=async e=>{const f=e.target.files[0];if(!f)return;let L=[];try{L=parseICS(await f.text())}catch(x){}
+  if(st==6){q("#ob-ics").onclick=()=>q("#ob-f").click();q("#ob-f").onchange=async e=>{const f=e.target.files[0];if(!f)return;let L=[],t="";try{t=await f.text()}catch(x){return toast("Impossible de lire ce fichier.")}
+    if(/^\s*\{/.test(t)){finish();end();go("cal");return importBk(t)}
+    try{L=parseICS(t)}catch(x){}
     L=L.filter(x=>!evs().some(v=>v.date==x.date&&v.title==x.title)).sort((a,b)=>a.date<b.date?-1:1);if(!L.length){toast("Aucun évènement trouvé dans ce fichier.");return}
     const td=iso(new Date()),cut=(+td.slice(0,4)-1)+td.slice(4);L.forEach(x=>{x.m=ONB_KW.test(x.title+" "+(x.loc||"")+" "+(x.desc||""))&&x.date>=cut;x.on=x.m});icsL=L;icsL.all=!L.some(x=>x.m);if(icsL.all)L.forEach(x=>x.on=false);st=7;draw()};
    q("#ob-cal").onclick=()=>{finish();end();startSetup()};q("#ob-n").onclick=()=>{st=8;finish();draw()}}
-  if(st==7){q("#ob-b").onclick=()=>{st=6;draw()};o.querySelectorAll("[data-ev]").forEach(b=>b.onclick=()=>{const x=icsL[+b.dataset.ev];x.on=!x.on;const y=q(".ob-bd").scrollTop;draw();q(".ob-bd").scrollTop=y});
+  if(st==7){o.querySelectorAll("[data-ev]").forEach(b=>b.onclick=()=>{const x=icsL[+b.dataset.ev];x.on=!x.on;const y=q(".ob-bd").scrollTop;draw();q(".ob-bd").scrollTop=y});
    if(q("#ob-all"))q("#ob-all").onclick=()=>{icsL.all=true;draw()};
    q("#ob-add").onclick=()=>{const a=icsL.filter(x=>x.on);a.forEach((x,i)=>{const id="i"+Date.now()+i;S.ev[id]={id,date:x.date,title:x.title,mode:"",role:"part",guests:x.guests||[],host:"",place:{name:x.loc||"",lat:null,lng:null},desc:x.desc||""}});
     R.imp=a.length;save();const f=a.map(x=>x.date).find(d=>d>=iso(new Date()))||a[0].date;cur=new Date(f+"T12:00");track("agenda_imported",{n:a.length});st=8;finish();draw()}}
@@ -834,7 +950,8 @@ setTimeout(newsDocs,2600);
 /* ---------- inviter un ami ---------- */
 async function invite(){
  // Texte du message « Inviter un ami » : modifiable librement (\n = retour à la ligne). Le lien est ajouté automatiquement à la fin.
- const text="Je t'invite à essayer ChasseLog, un agenda de chasse gratuit et sans pub pour ton téléphone.\nEnregistre-y tes journées, tes armes, tes tirs et consulte tes statistiques !\nAucun compte requis, tes données restent sur ton téléphone (version test web BETA).";
+ const text="Je t'invite à essayer ChasseLog, un agenda de chasse gratuit et sans pub pour ton téléphone.\nEnregistre-y tes journées, tes armes, tes tirs et consulte tes statistiques !\nAucun compte requis, tes données restent sur ton téléphone ("+(IS_APP?"version test BETA":"version test web BETA")+").";
+ if(IS_APP){try{await natShare({title:"ChasseLog",text,url:INV_URL,dialogTitle:"Inviter un ami"});return}catch(e){}}
  try{if(navigator.share){await navigator.share({title:"ChasseLog",text,url:INV_URL});return}}catch(e){if(e&&e.name=="AbortError")return}
  try{await navigator.clipboard.writeText(text+" "+INV_URL);toast("Lien d'invitation copié : colle-le dans un message.")}catch(e){prompt("Copie ce lien et envoie-le :",INV_URL)}}
 
@@ -843,6 +960,8 @@ const BKD=()=>{if(!S.bk)S.bk={on:false,every:14,svc:"gdrive",photos:true,last:0,
 const SVC={gdrive:"Google Drive",onedrive:"OneDrive",dropbox:"Dropbox",icloud:"iCloud Drive",autre:"Autre"};
 async function doBackup(prep){const B=BKD(),json=await(prep||exportJSON(!B.photos)),nm="chasselog-sauvegarde-"+iso(new Date());
  const done=m=>{B.last=Date.now();B.snooze=0;save();toast(m);return true};
+ if(IS_APP){const f=new File([json],nm+".json",{type:"application/json"}),kept=await natKeep(f);let sent=false;try{sent=await natShare({files:[f],title:"Sauvegarde ChasseLog",dialogTitle:"Envoyer la sauvegarde (Drive, e-mail…)"})}catch(e){}
+  if(!kept&&!sent)return false;return done(sent?"Sauvegarde envoyée"+(kept?" (copie aussi dans Documents › ChasseLog).":"."):"Sauvegarde enregistrée dans Documents › ChasseLog.")}
  for(const f of[new File([json],nm+".json",{type:"application/json"}),new File([json],nm+".txt",{type:"text/plain"})]){
   try{if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Sauvegarde ChasseLog"});return done("Sauvegarde envoyée.")}}catch(e){if(e&&e.name=="AbortError")return false}}
  dl(nm+".json","application/json",json);return done("Fichier téléchargé : range-le dans "+SVC[B.svc]+".")}
@@ -854,7 +973,7 @@ function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
  <label class="ck sans" style="margin-top:12px"><input type="checkbox" id="bk-ph" ${B.photos?"checked":""}>Inclure les photos (fichier plus lourd)</label>
  <p class="mut sans" style="font-size:.85rem">Dernière sauvegarde : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}.</p>
  <button class="p" id="bk-now" style="width:100%">Sauvegarder maintenant</button>
- <p class="mut sans" style="font-size:.8rem;margin-top:10px">Dans la version web, ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage${B.svc=="icloud"?" (sur iPhone : « Enregistrer dans Fichiers », puis iCloud Drive)":""}. Dans la future application Android, elle se fera toute seule. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».</p>`);
+ <p class="mut sans" style="font-size:.8rem;margin-top:10px">${IS_APP?`ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage. Une copie est aussi gardée dans Documents › ChasseLog sur ton téléphone. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».`:`Dans la version web, ChasseLog te prévient à l'ouverture quand une sauvegarde est due et prépare le fichier : choisis ${SVC[B.svc]=="Autre"?"ton service":SVC[B.svc]} dans le menu de partage${B.svc=="icloud"?" (sur iPhone : « Enregistrer dans Fichiers », puis iCloud Drive)":""}. Dans la future application Android, elle se fera toute seule. Pour restaurer : ☰ › Paramètres › « Importer un calendrier ».`}</p>`);
   $("#bk-on").onchange=e=>{B.on=e.target.checked;save()};
   document.querySelectorAll("[data-bf]").forEach(b=>b.onclick=()=>{B.every=+b.dataset.bf;save();draw()});
   document.querySelectorAll("[data-bs]").forEach(b=>b.onclick=()=>{B.svc=b.dataset.bs;save();draw()});
@@ -862,14 +981,14 @@ function bkSettings(){const B=BKD();let prep=exportJSON(!B.photos);
   $("#bk-now").onclick=async()=>{if(await doBackup(prep)){closeM();const x=$("#bkb");if(x)x.remove()}}};draw()}
 function bkCheck(){const B=BKD();if(!B.on||$("#bkb")||$("#mdb")||view!="cal")return;if(Date.now()-(B.last||0)<B.every*864e5||Date.now()<(B.snooze||0))return;
  const prep=exportJSON(!B.photos),d=document.createElement("div");d.id="bkb";
- d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:45;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">Sauvegarde prévue vers ${SVC[B.svc]}<br><small style="font-weight:400;color:var(--mut)">Dernière : ${B.last?new Date(B.last).toLocaleDateString("fr-BE"):"jamais"}</small></span><button class="p" style="padding:9px 12px">Sauvegarder</button><button aria-label="Plus tard" style="border:0;background:none;color:var(--mut);font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");b1.onclick=async()=>{if(await doBackup(prep))d.remove()};b2.onclick=()=>{B.snooze=Date.now()+864e5;save();d.remove()}}
 const needK=t=>t.sp=="Sanglier"?"w":(COR(t.sp)&&t.sx=="m")?"c":null,missT=t=>{if(!t.p)return false;if(CLS[t.sp]&&!t.sx)return true;const k=needK(t);if(!k)return false;const a=(t[k]||[]).slice(0,t.p);return a.length<t.p||a.some(v=>v===""||v==null)};
 function missingDet(){const td=iso(new Date()),now=new Date(),sn=S.mdSn||{};return evs().filter(e=>{if(!e.fiche||e.nh||(sn[e.id]||0)>Date.now())return false;const age=(Date.parse(td)-Date.parse(e.date))/864e5;
  if(e.closed||age<0||age>14||(age==0&&now.getHours()<18))return false;return e.fiche.tirs.some(missT)}).sort((a,b)=>a.date<b.date?1:-1)}
 function mdCheck(){if(view!="cal"||$("#mdb")||$("#bkb"))return;const e=missingDet()[0];if(!e)return;const k=e.fiche.tirs.filter(missT).map(t=>CLS[t.sp]&&!t.sx?"x":needK(t));
- const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + env(safe-area-inset-top,0px));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
+ const d=document.createElement("div");d.id="mdb";d.style.cssText="position:fixed;left:10px;right:10px;top:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:45;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;font:600 .9rem system-ui;box-shadow:0 6px 20px #0005";
  d.innerHTML=`<span style="flex:1">À compléter : ${[k.includes("x")?"mâle, femelle ou jeune":"",k.includes("w")?"poids du sanglier":"",k.includes("c")?"nombre de cors":""].filter(Boolean).join(" · ")}<br><small style="font-weight:500">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}</small></span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .9rem system-ui;padding:9px 12px">Compléter</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.2rem;padding:4px">✕</button>`;
  document.body.appendChild(d);const[b1,b2]=d.querySelectorAll("button");
  b1.onclick=()=>{d.remove();openFiche(e.id);fd.tirs.forEach(t=>{if(missT(t))t.ok=false});render()};
@@ -899,7 +1018,7 @@ async function getWx(la,ln){const k=wxKey(la,ln),c=WXC[k];if(c&&Date.now()-c.t<3
   d.time.forEach((t,i)=>days[t]={c:pk(d,"weather_code",i),hi:pk(d,"temperature_2m_max",i),lo:pk(d,"temperature_2m_min",i),pp:pk(d,"precipitation_probability_max",i),pr:pk(d,"precipitation_sum",i),ws:pk(d,"wind_speed_10m_max",i),wg:pk(d,"wind_gusts_10m_max",i),wd:pk(d,"wind_direction_10m_dominant",i),h:{}});
   h.time.forEach((t,i)=>{const ds=t.slice(0,10),hh=+t.slice(11,13);if(!days[ds]||hh<5||hh>20)return;days[ds].h[hh]={c:pk(h,"weather_code",i),t:pk(h,"temperature_2m",i),pr:pk(h,"precipitation",i),pp:pk(h,"precipitation_probability",i),ws:pk(h,"wind_speed_10m",i),wg:pk(h,"wind_gusts_10m",i),wd:pk(h,"wind_direction_10m",i)}});
   const v={t:Date.now(),days};WXC[k]=v;const ks=Object.keys(WXC);if(ks.length>8)delete WXC[ks[0]];try{localStorage.setItem(WXK,JSON.stringify(WXC))}catch(e){}return v}catch(e){return c||null}}
-async function userPos(){try{if(!navigator.permissions||!navigator.geolocation)return null;const st=await navigator.permissions.query({name:"geolocation"});
+async function userPos(){try{if(!navigator.geolocation||(!IS_APP&&!navigator.permissions))return null;const st=IS_APP?{state:(()=>{try{return localStorage.getItem("geo-ok")?"granted":"prompt"}catch(e){return"prompt"}})()}:await navigator.permissions.query({name:"geolocation"});
  if(st.state!="granted"){if(S.wxPos){delete S.wxPos;save()}return null}
  if(S.wxPos&&Date.now()-(S.wxPos.t||0)<15*6e4)return S.wxPos;
  const q=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{maximumAge:6e5,timeout:10000}));S.wxPos={lat:+q.coords.latitude.toFixed(2),lng:+q.coords.longitude.toFixed(2),t:Date.now()};save();return S.wxPos}catch(e){return S.wxPos||null}}
@@ -920,7 +1039,7 @@ async function sunBand(el,ds,loc,tm){if(!el||!ds)return;el.dataset.ds=ds;el.data
  if(!L){el.innerHTML=`<button class="s" id="sun-on" style="width:100%;text-align:left">📍 Active la localisation pour afficher le lever et le coucher du soleil et la météo</button>`;
   $("#sun-on").onclick=()=>{if(!navigator.geolocation)return;el.innerHTML='<small style="margin:0">Recherche de ta position…</small>';
    navigator.geolocation.getCurrentPosition(q=>{S.wxPos={lat:+q.coords.latitude.toFixed(2),lng:+q.coords.longitude.toFixed(2),t:Date.now()};save();sunBand(el,ds,loc,tm);loadHomeWx()},
-    er=>{el.innerHTML=`<small style="margin:0">${er&&er.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations).":"Position indisponible pour le moment."}</small>`},{enableHighAccuracy:false,timeout:15000})};return}
+    er=>{el.innerHTML=`<small style="margin:0">${er&&er.code==1?"Localisation refusée. "+GEO_HELP:"Position indisponible pour le moment."}</small>`},{enableHighAccuracy:false,timeout:15000})};return}
  const s=sunTimes(ds,L.lat,L.lng),lbl=`<small>${has?"Pour le lieu de RDV":"Pour ta position actuelle"}</small>`;
  const base=`<span>${SUNUP}Lever ${hm(s.rise)}</span><span>${SUNDN}Coucher ${hm(s.set)}</span>`;el.innerHTML=base+lbl;
  const w=await getWx(L.lat,L.lng),d=w&&w.days[ds];if(!d||el.dataset.ds!=ds||!el.isConnected)return;
@@ -947,7 +1066,7 @@ function gpsCapture(prev,cb){if(!navigator.geolocation)return toast("Géolocalis
   map.on("click",ev=>{stop();best={lat:ev.latlng.lat,lng:ev.latlng.lng,acc:null};if(cc){map.removeLayer(cc);cc=null}show()})}catch(e){map=null}}
  if(!map)$("#gmap").style.display="none";
  wid=navigator.geolocation.watchPosition(q=>{if(!$("#gst")){stop();return}const c=q.coords;if(best&&best.acc==null)return;if(!best||c.accuracy<best.acc)best={lat:c.latitude,lng:c.longitude,acc:c.accuracy};show();if(best.acc<=10)stop()},
-  er=>{if(!$("#gst"))return;if(er.code==1){stop();$("#gst").textContent="Localisation refusée";$("#gsub").textContent="Autorise la localisation pour ChasseLog dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse, puis Autorisations)."}else if(!best)$("#gst").textContent="Signal GPS introuvable pour l'instant, patiente ou déplace-toi à découvert…"},{enableHighAccuracy:true,maximumAge:0,timeout:30000});
+  er=>{if(!$("#gst"))return;if(er.code==1){stop();$("#gst").textContent="Localisation refusée";$("#gsub").textContent=GEO_HELP}else if(!best)$("#gst").textContent="Signal GPS introuvable pour l'instant, patiente ou déplace-toi à découvert…"},{enableHighAccuracy:true,maximumAge:0,timeout:30000});
  setTimeout(()=>{stop();if($("#gst")&&!best)$("#gst").textContent="Pas de position obtenue. Réessaie à découvert ou place le repère sur la carte."},60000);
  setTimeout(show,4500);
  $("#gok").onclick=()=>{if(!best)return;stop();closeM("2");cb(best)}}
@@ -986,7 +1105,7 @@ const silSvg=(n,w)=>{const x=sil(n,w);return x?x.replace("<svg ",'<svg xmlns="ht
 /* ---------- partager ma journée : choix du style et des éléments ---------- */
 const SHO_DEF={st:"tro",mine:1,reus:1,eff:0,gun:0,tab:1,lieu:0};
 async function shareFile(id,o){const c=await dayCanvas(id,o),e=S.ev[id],blob=await new Promise(r=>c.toBlob(r,"image/png"));return new File([blob],"chasselog-"+e.date+".png",{type:"image/png"})}
-function dlFile(f){const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
+function dlFile(f){if(IS_APP)return natExport(f);const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
 function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||[]).length>0,o=Object.assign({},SHO_DEF,S.shareOpt||{});if(o.st=="pho"&&!hasPh)o.st="tro";
  const has={mine:f.tirs.some(t=>t.p),reus:a.a>0,eff:a.p>0&&a.n>0,gun:f.tirs.some(t=>t.r&&gunOf(t.gun)),tab:Object.values(f.tab||{}).some(v=>v>0),lieu:true};
  const sw=(k,l,sub)=>has[k]?`<label class="shtg"><span>${l}${sub?`<small>${sub}</small>`:""}</span><input type="checkbox" data-so="${k}" ${o[k]?"checked":""}><i></i></label>`:"";
@@ -1000,7 +1119,7 @@ function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||
  document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));pv()});
  document.querySelectorAll("#mo [data-so]").forEach(i=>i.onchange=()=>{o[i.dataset.so]=i.checked?1:0;pv()});
  $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
- $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
+ $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);if(IS_APP){try{await natShare({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL,dialogTitle:"Partager ma journée"})}catch(er){toast("Partage impossible pour le moment.")}return}try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
   dlFile(file);toast("Partage direct indisponible : l'image a été téléchargée.")}}
 
 async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,PX=90,PHO=o.st=="pho";if(syncTab(f))save();
@@ -1220,9 +1339,10 @@ function rDocs(){S.docs=S.docs||{};const td=iso(new Date()),hc=homeCC();
   let blob=f;try{if(f.type.startsWith("image/")&&f.size>1.2e6)blob=await compress(f,2400,.88)}catch(e){blob=f}
   try{await DB.put(docKey(cur),blob);const old=S.docs[cur]||{};S.docs[cur]=Object.assign({},old,meta||{},{name:f.name,type:f.type.startsWith("image/")?"image/jpeg":f.type,date:iso(new Date()),exp:old.exp||""});save();track("doc_added",cur.startsWith("px")?{doc:"permis_etranger",cc:S.docs[cur].cc}:{doc:cur});toast("Document enregistré.");render()}catch(e){toast("Impossible d'enregistrer ce document.")}};
  document.querySelectorAll("[data-dv]").forEach(b=>b.onclick=async()=>{const k=b.dataset.dv,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return toast("Document introuvable.");const u=URL.createObjectURL(bl);
-  if(d.type=="application/pdf"){const w=window.open(u,"_blank");if(!w)location.href=u;return}
+  if(d.type=="application/pdf"){if(IS_APP){const f=new File([bl],docLab(k).replace(/[^\wÀ-ÿ -]/g,"").trim()+".pdf",{type:"application/pdf"});try{await natShare({files:[f],title:docLab(k),dialogTitle:"Ouvrir le PDF avec…"})}catch(e){toast("Aucune application pour ouvrir ce PDF.")}return}const w=window.open(u,"_blank");if(!w)location.href=u;return}
   const o=document.createElement("div");o.id="dview";o.innerHTML=`<img src="${u}" alt=""><button aria-label="Fermer">✕</button>`;document.body.appendChild(o);o.onclick=e=>{if(e.target.tagName!="IMG"||e.target==o)o.remove()};o.querySelector("button").onclick=()=>o.remove()});
  document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=async()=>{const k=b.dataset.ds,d=S.docs[k],bl=await DB.get(docKey(k));if(!bl)return;const lab=docLab(k),ext=d.type=="application/pdf"?"pdf":"jpg",file=new File([bl],lab.replace(/[^\wÀ-ÿ -]/g,"").trim()+"."+ext,{type:d.type});
+  if(IS_APP){try{await natShare({files:[file],title:lab})}catch(e){toast("Partage impossible pour le moment.")}return}
   try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:lab});return}}catch(e){if(e&&e.name=="AbortError")return}
   const a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download=file.name;a.click()});
  document.querySelectorAll("[data-dx]").forEach(b=>b.onclick=()=>{const k=b.dataset.dx;modal(`<h2>Supprimer ce document ?</h2><p class="sans">${esc(docLab(k))}</p><div class="row"><button class="s" id="dx-n">Annuler</button><button class="p" id="dx-y" style="background:var(--acc2)">Supprimer</button></div>`);
@@ -1263,7 +1383,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-16a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-10-16b",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1275,7 +1395,7 @@ async function notify(e){const msg="Pense à encoder ta fiche : "+e.title+" ("+e
 let chkBusy=false;async function chk(){if(!REM_ON||chkBusy)return;chkBusy=true;try{await syncRem();if(RM().sleep)return;const now=Date.now();let ch=0;
  for(const e of evs())if(e.rem&&!e.fiche&&!e.remDone){const d=dueOf(e);if(d<=now&&now-d<36*36e5){e.remDone=1;ch=1;await notify(e)}}if(ch){save();syncRem()}}finally{chkBusy=false}}
 setInterval(chk,30000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")chk()});setTimeout(chk,1500);
-if("serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.fiche)openFicheId(e.data.fiche)});
+if(!IS_APP&&"serviceWorker" in navigator){navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.fiche)openFicheId(e.data.fiche)});
  navigator.serviceWorker.ready.then(async r=>{try{if(r.periodicSync){const st=await navigator.permissions.query({name:"periodic-background-sync"});if(st.state=="granted")await r.periodicSync.register("rappels",{minInterval:3600000})}}catch(x){}}).catch(()=>{})}
 setTimeout(()=>{const q=new URLSearchParams(location.search).get("fiche");if(q){history.replaceState(history.state,"",location.pathname);openFicheId(q)}},300);
 $("#m-rm").onclick=()=>{shut();modal(`<h2>Paramètres de rappels</h2><p class="sans" style="font-size:1.05rem">🔔 Cette fonction n'est pas encore disponible sur la version web.</p><p class="mut sans">Elle sera ajoutée plus tard, avec la version Android installée.</p>`)};
@@ -1308,7 +1428,7 @@ function supModal(src){track("support_open",{src});modal(`<div style="text-align
  <button class="s" id="sup-no" style="width:100%;margin-top:12px">Peut-être plus tard</button>`);
  $("#sup-go").onclick=()=>{track("support_click",{src});setTimeout(closeM,300)};$("#sup-no").onclick=()=>closeM()}
 $("#m-sup").onclick=()=>{shut();supModal("menu")};
-$("#m-fol").onclick=()=>{shut();track("follow_fb");const w=window.open(FB_PAGE,"_blank","noopener");if(!w)location.href=FB_PAGE};
+$("#m-fol").onclick=()=>{shut();track("follow_fb");openExt(FB_PAGE)};
 /* ---------- page Paramètres ---------- */
 const PRIV_URL="https://chasselog.be/confidentialite.html";
 function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg>`,row=(id,i,t,v,sub)=>`<button class="sgr" id="${id}">${ic(i)}<span>${t}${sub?`<small>${sub}</small>`:""}</span><span class="sv${v===null?" nv":""}">${v||""}</span></button>`;
@@ -1320,7 +1440,7 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
   ${row("sg-im","dl","Importer un calendrier","",".ics de ton agenda ou sauvegarde .json")}${row("sg-ex","ul","Exporter mon calendrier","")}${row("sg-bk","save","Sauvegarde automatique","")}</div>
  <div class="sgl">Confidentialité</div><div class="sgg">${PH_KEY?`<label class="sgr shtg" style="margin:0">${ic("eye")}<span>Statistiques anonymes<small>Compte l'utilisation de l'app pour l'améliorer. Jamais tes tirs, tes lieux ni tes documents.</small></span><input type="checkbox" id="sg-st" ${S.stats===true?"checked":""}><i></i></label>`:""}<a class="sgr" href="${PRIV_URL}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">${ic("info")}<span>Politique de confidentialité<small>Ce que l'app garde, ce qu'elle envoie et à qui</small></span><span class="sv"></span></a></div>
  <div class="sgl">Aide</div><div class="sgg">${row("sg-tour","play","Revoir la visite guidée","")}${row("sg-fol","heart","Suivez-nous sur Facebook","")}${row("sg-fb","msg","Donner mon avis","")}${row("sg-sup","cup","Soutenir ChasseLog","","Un petit don pour couvrir les frais")}</div>
- <div class="sgl">À propos</div><div class="sgg"><div class="sgr">${ic("info")}<span>ChasseLog bêta web · version ${APP_V}<small>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</small></span></div></div><div style="height:70px"></div>`;
+ <div class="sgl">À propos</div><div class="sgg"><div class="sgr">${ic("info")}<span>${IS_APP?"ChasseLog pour Android (test)":"ChasseLog bêta web"} · version ${APP_V}<small>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com${IS_APP&&window.__insetsUsed?` · écran ${Math.round(__insetsUsed.t)}/${Math.round(__insetsUsed.b)} (web ${Math.round(__insetsUsed.web.t)}/${Math.round(__insetsUsed.web.b)})`:""}</small></span></div></div><div style="height:70px"></div>`;
  $("#bk2").onclick=backTo;
  $("#sg-reg").onclick=()=>regModal(false);
  document.querySelectorAll("[data-th2]").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th2;save();applyTheme();thSet();render()});
@@ -1334,13 +1454,14 @@ const thSet=()=>document.querySelectorAll("#th button").forEach(b=>b.classList.t
 document.querySelectorAll("#th button").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th;save();applyTheme();thSet()});thSet();
 $("#sy").value=S.sync;$("#sy").onchange=e=>{S.sync=e.target.value;save()};
 $("#m-sy").onclick=()=>{shut();toast("La synchronisation en ligne arrive avec les comptes (V2). Tes données sont enregistrées sur cet appareil.")};
-$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" accept=".ics,.json,.txt,text/calendar,application/json,text/plain">`);$("#imf").onchange=async e=>{await importFile(e.target.files[0])}};
+$("#m-im").onclick=()=>{shut();modal(`<h2>Importer un calendrier</h2><p class="mut sans">Choisis un fichier de ton appareil : calendrier Google Agenda (.ics, à décompresser si tu as un .zip) ou sauvegarde du carnet (.json).</p><input type="file" id="imf" ${IS_APP?"":'accept=".ics,.json,.txt,text/calendar,application/json,text/plain"'}>`);$("#imf").onchange=async e=>{try{await importFile(e.target.files[0])}catch(x){alert("L'import a échoué : "+(x&&x.message||x))}}};
 $("#m-ex").onclick=()=>{shut();modal(`<h2>Exporter mon calendrier</h2><button class="p li" id="x-i">Calendrier (.ics)</button><button class="s li" id="x-j">Sauvegarde complète (.json, avec fiches et photos)</button>${S.docs&&Object.keys(S.docs).length?`<button class="s li" id="x-d">Sauvegarde complète + mes documents</button><p class="mut sans" style="font-size:.8rem;margin:4px 0 0">Avec tes documents (permis, assurance…), par exemple pour passer sur un nouveau téléphone. Garde ce fichier pour toi.</p>`:""}`);
  if($("#x-d"))$("#x-d").onclick=async()=>{dl("chasselog-avec-documents.json","application/json",await exportJSON(false,true));closeM()};
  $("#x-i").onclick=()=>{const v=evs().map(e=>["BEGIN:VEVENT","UID:"+e.id+"@carnet","DTSTART;VALUE=DATE:"+e.date.replace(/-/g,""),"SUMMARY:"+e.title.replace(/[,;]/g," "),"LOCATION:"+(e.place.name||"").replace(/[,;]/g," ")].concat(e.place.lat!=null?["GEO:"+e.place.lat+";"+e.place.lng]:[],["END:VEVENT"]).join("\r\n"));dl("chasselog.ics","text/calendar","BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Carnet de chasse//FR\r\n"+v.join("\r\n")+"\r\nEND:VCALENDAR");closeM()};
  $("#x-j").onclick=async()=>{dl("chasselog.json","application/json",await exportJSON());closeM()}};
-$("#m-mg").onclick=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n)}</label>`;
- modal(`<h2>Mes modes de chasse et espèces</h2><p class="mut sans">Décoche ce que tu ne chasses pas : ces choix disparaissent des listes d'encodage.</p><h3>Modes de chasse</h3>${MODES.map(m=>ck(m,"hm","m")).join("")}
+$("#m-mg").onclick=()=>{shut();favTab="sp";go("fav")};
+const mgOld=()=>{shut();const ck=(n,h,k)=>`<label class="ck"><input type="checkbox" data-${k}="${esc(n)}" ${S[h].includes(n)?"":"checked"}>${esc(n)}</label>`;
+ modal(`<h2>Mes modes de chasse et espèces</h2><p class="mut sans">Décoche ce que tu ne chasses pas : ces choix disparaissent des listes d'encodage.</p><h3>Modes de chasse</h3>${allModes().map(m=>ck(m,"hm","m")).join("")}
  ${Object.entries(Object.assign({},G,S.custom.length?{"Mes espèces":S.custom}:{})).map(([g,a])=>`<h3>${g}</h3>${a.map(s=>ck(s,"hs","s")).join("")}`).join("")}
  <h3>Ajouter une espèce</h3><div class="row"><input id="ns" placeholder="Nom de l'espèce"><button class="s" id="na" style="flex:0 0 90px">Ajouter</button></div>`);
  document.querySelectorAll("#mo input[type=checkbox]").forEach(c=>c.onchange=()=>{const h=c.dataset.m!==undefined?"hm":"hs",n=c.dataset.m??c.dataset.s;S[h]=S[h].filter(x=>x!=n);if(!c.checked)S[h].push(n);save()});
@@ -1362,7 +1483,7 @@ function normBk(d){if(!isO(d)||!isO(d.ev))return null;const ev={};
  const o=Object.assign({},d,{ev});for(const k of["custom","hm","hs","guns","favs"]){if(o[k]==null)continue;if(!Array.isArray(o[k]))return null}
  o.guns=(o.guns||[]).filter(g=>isO(g)&&g.id);o.favs=(o.favs||[]).filter(f=>isO(f)&&f.id);o.custom=(o.custom||[]).filter(x=>typeof x=="string");
  o.docs=isO(o.docs)?Object.fromEntries(Object.entries(o.docs).filter(([k,v])=>isO(v)&&String(v.data||"").startsWith("data:"))):{};return o}
-async function importBk(t){let d;try{d=normBk(JSON.parse(t))}catch(x){d=null}
+async function importBk(t){let d;try{d=normBk(JSON.parse(String(t).replace(/^\uFEFF/,"")))}catch(x){d=null}
  if(!d)return alert("Fichier invalide : ce n'est pas une sauvegarde ChasseLog lisible. Ton carnet n'a pas été modifié.");
  const all=Object.values(d.ev),add=all.filter(e=>!S.ev[e.id]),dk=Object.keys(d.docs).filter(k=>!(S.docs&&S.docs[k])),empty=!evs().length,n=add.length;
  if(!n&&!dk.length)return alert(all.length?"Toutes les journées de cette sauvegarde sont déjà dans ton carnet.":"Cette sauvegarde ne contient aucune journée.");
@@ -1380,7 +1501,7 @@ async function importBk(t){let d;try{d=normBk(JSON.parse(t))}catch(x){d=null}
   for(const k of dk){try{const v=docs[k],bl=await(await fetch(v.data)).blob();await DB.put(docKey(k),bl);const{data,...m}=v;S.docs[k]=m}catch(x){}}
   migrate();await migratePhotos();save();closeM();toast(n?pl(n,"journée importée.","journées importées."):"Sauvegarde importée.");
   if(n){const l=add.map(e=>e.date).sort().pop();cur=new Date(l+"T12:00")}go("cal")}}
-async function importFile(f){if(!f)return;const t=await f.text();
+async function importFile(f){if(!f)return toast("Aucun fichier reçu. Réessaie en choisissant le fichier dans « Téléchargements » ou « Fichiers ».");let t;try{t=await f.text()}catch(x){return alert("Impossible de lire ce fichier : "+(x&&x.message||x))}
  if(/\.(json|txt)$/i.test(f.name)||/^\s*\{/.test(t))return importBk(t);
  const a=parseICS(t).filter(x=>!evs().some(o=>o.date==x.date&&o.title==x.title));
  if(!a.length)return alert("Aucun nouvel évènement trouvé dans ce fichier.");if(!confirm("Importer "+a.length+" évènement(s) ?"))return;
@@ -1443,8 +1564,8 @@ function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
  <div class="card sans" id="o-c" style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><div style="flex:1">${e.nh?"Évènement hors chasse":`Type de chasse : ${esc(e.mode||"à préciser")}<br>Rôle : ${roleTxt(e)}`}<br>Lieu${e.nh?"":" de RDV"} : ${esc(lieu(e.place))} ${link(e.place)}${e.desc?"<br>Notes : "+esc(e.desc).replace(/\n/g,"<br>"):""}</div><button class="d" id="o-x" aria-label="Supprimer l'évènement"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></div>
  <button class="p" id="o-f" style="width:100%;${e.nh?"display:none":""}" ${can?"":"disabled"}>${e.fiche?"Consulter la fiche de chasse":"Remplir la fiche de chasse"}</button>${canClose(e)?`<button class="s" id="o-cl" style="width:100%;margin-top:8px">✓ Clôturer la journée</button>`:""}<div class="row" style="margin-top:8px;align-items:center"><span class="mut sans" style="flex:1">${can||e.nh?"":"Disponible à partir du "+e.date.split("-").reverse().join("/")+"."}</span><button class="s" id="o-a" style="flex:0 0 auto">+ Ajouter un évènement</button></div>`);
  $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};sunBand($("#o-sun"),e.date,e.place,e.time);
- $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};if($("#o-cl"))$("#o-cl").onclick=()=>{e.fiche=e.fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]};e.closed=true;save();closeM();toast("Journée clôturée. Bonne fin de journée !");render()};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
- $("#o-x").onclick=()=>{modal(`<h2>Supprimer cet évènement ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?"<br>La fiche de chasse associée sera aussi supprimée.":""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
+ $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};if($("#o-cl"))$("#o-cl").onclick=()=>{const doIt=()=>{e.fiche=e.fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]};e.closed=true;save();closeM();toast("Journée clôturée. Bonne fin de journée !");render();woundSync(true)};closeM();if(!closeWarn(e.fiche,doIt,()=>{fe=id;openFiche(id)}))doIt()};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
+ $("#o-x").onclick=()=>{modal(`<h2>Supprimer ${e.nh?"cet évènement":"cette journée"} ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?`<br><b>La fiche de chasse sera aussi supprimée</b>${(e.fiche.tirs||[]).length?" ("+e.fiche.tirs.length+" tir"+(e.fiche.tirs.length>1?"s":"")+")":""}. Cette action est définitive.`:""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
 
 /* ---------- coordonnées collées (Google Maps, GPS, plus codes) ---------- */
 const OLC="23456789CFGHJMPQRVWX",OLR=[20,1,.05,.0025,.000125];
@@ -1495,7 +1616,7 @@ function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.n
   if(mk)mk.setLatLng([la,ln]);else{mk=L.marker([la,ln],{draggable:true}).addTo(map);mk.on("dragend",()=>{const q=mk.getLatLng();inp.value=q.lat.toFixed(5)+", "+q.lng.toFixed(5);lookAd(q.lat,q.lng)})}
   if(o.fly)map.setView([la,ln],o.z||Math.max(map.getZoom(),16))};
  const gps=ok=>{if(!navigator.geolocation){msg.textContent="Géolocalisation non supportée sur cet appareil.";return}
-  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},e=>{msg.textContent=e&&e.code==1?"Localisation refusée : autorise-la dans les réglages du navigateur (cadenas ou ⓘ à côté de l'adresse → Autorisations).":"Position indisponible pour le moment."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
+  msg.textContent="Recherche de ta position…";navigator.geolocation.getCurrentPosition(o=>{msg.textContent="";ok(o.coords.latitude,o.coords.longitude)},e=>{msg.textContent=e&&e.code==1?"Localisation refusée. "+GEO_HELP:"Position indisponible pour le moment."},{enableHighAccuracy:true,timeout:20000,maximumAge:30000})};
  if(window.L){
   try{L.Icon.Default.imagePath="lib/leaflet/images/";
   map=L.map("pmap");map.attributionControl.setPrefix(false);map.setView(c0?[c0[0],c0[1]]:[50.5,4.6],c0?16:8);let err=0;
@@ -1519,7 +1640,7 @@ function pickLoc(loc,cb,reset){loc=loc||{name:"",lat:null,lng:null};let nm=loc.n
  if(reset)$("#p-r").onclick=()=>{closeM("2");reset()};
  $("#p-ok").onclick=()=>{const c=parseCoord(inp.value);if(!c&&(inp.value.trim()||!nm)){msg.innerHTML=`<span style="color:var(--acc2);font-weight:700">${inp.value.trim()?"Coordonnées non reconnues. Exemple : 50.50, 5.90":"Aucun emplacement choisi : cherche un lieu, touche la carte ou utilise ta position."}</span>`;msg.scrollIntoView({block:"center",behavior:"smooth"});return}closeM("2");const o={name:nm,lat:c?c[0]:null,lng:c?c[1]:null,addr:c?adOf({lat:c[0],lng:c[1]})||(addr&&loc.lat!=null&&adKey(c[0],c[1])==adKey(loc.lat,loc.lng)?addr:""):""};if(c&&loc.fav&&adKey(c[0],c[1])==adKey(loc.lat,loc.lng))o.fav=loc.fav;cb(o)}}
 function full(html,onSave){closeF();const o=document.createElement("div");o.id="ff";o.innerHTML=`<div class="fb">${html}</div><div class="fa"><button class="s" id="f-c">Annuler</button><button class="p" id="f-s">Enregistrer</button></div>`;document.body.appendChild(o);
- const vv=window.visualViewport,fit=()=>{if(vv){o.style.height=vv.height+"px";o.style.top=vv.offsetTop+"px"}};fit();
+ const vv=IS_APP?null:window.visualViewport,fit=()=>{if(vv){o.style.height=vv.height+"px";o.style.top=vv.offsetTop+"px"}};fit();
  if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);o._f=fit}
  $("#f-c").onclick=closeF;$("#f-s").onclick=onSave}
 function closeF(){const o=$("#ff");if(o){if(window.visualViewport&&o._f){visualViewport.removeEventListener("resize",o._f);visualViewport.removeEventListener("scroll",o._f)}o.remove()}}
@@ -1533,7 +1654,7 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
   const mode=hunt?$("#e-m").value:"",i=id||"e"+Date.now()+Math.floor(Math.random()*99);if(ft)e.time=ft;else delete e.time;if(hunt)delete e.nh;else e.nh=true;
   if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||(hunt?mode||"Chasse":"Évènement"),role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
   if(save()){if(!id)track("day_created",{hunt,has_place:fl.lat!=null,fav:!!fl.fav,has_time:!!ft});sel=d;cur=new Date(d+"T12:00");closeF();render();setTimeout(fillAddr,1500)}}
- full(`<h2 style="margin-top:0" id="e-h2">${id?"Modifier l'évènement":hunt?"Nouvelle journée de chasse":"Nouvel évènement"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse" list="e-fdl" autocomplete="off"><datalist id="e-fdl">${(S.favs||[]).map(f=>`<option value="${esc(f.name)}">`).join("")}</datalist>
+ full(`<h2 style="margin-top:0" id="e-h2">${id?"Modifier l'évènement":hunt?"Nouvelle journée de chasse":"Nouvel évènement"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse" autocomplete="off" autocapitalize="sentences">
  <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><div class="lbx"><span>Type de chasse</span><button type="button" id="e-hk" class="hk${hunt?" on":""}" aria-label="Journée de chasse" aria-pressed="${hunt}">✓</button></div><select id="e-m" ${hunt?"":"disabled"}>${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
  ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
  <p class="mut sans" id="e-nhm" style="margin:6px 0 0;${hunt?"display:none":""}">Ce n'est pas une journée de chasse : l'évènement n'apparaît pas dans les statistiques.</p>
@@ -1541,36 +1662,35 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
  <div id="e-pw"><div id="e-gl"></div><button class="s" id="e-gb" style="margin-top:8px">Ajouter un invité ?</button><div class="row" id="e-gr" style="display:none;margin-top:8px"><input id="e-gi" placeholder="Nom de l'invité"><button class="s" id="e-ga" style="flex:0 0 auto">Ajouter</button><button class="s" id="e-gc" style="flex:0 0 auto" aria-label="Annuler l'ajout">✕</button></div></div>
  <div id="e-hw"><label>Invitant</label><input id="e-h" value="${esc(e.host)}" placeholder="Nom de l'invitant"></div></div>
  <div id="e-tw"></div>
- <label id="e-ll">Lieu de RDV</label><div style="position:relative"><button class="s sans" id="e-l" style="width:100%;text-align:left;padding-right:46px"></button><button type="button" id="e-lx" aria-label="Retirer le lieu" style="display:none;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;line-height:1;padding:0">✕</button></div><div class="chq" id="e-pl" style="margin-top:8px"></div>`,sv);
+ <label id="e-ll">Lieu de RDV</label><div style="position:relative"><button class="s sans" id="e-l" style="width:100%;text-align:left;padding-right:46px"></button><button type="button" id="e-lx" aria-label="Retirer le lieu" style="display:none;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;line-height:1;padding:0">✕</button></div><div id="e-pl" style="margin-top:8px"></div>`,sv);
  const gl=()=>{$("#e-gl").innerHTML=(fg.length?"<label>Invités</label>":"")+fg.map((g,i)=>`<span class="chip">${esc(g)}<button data-gx="${i}" aria-label="Retirer">✕</button></span>`).join("");document.querySelectorAll("[data-gx]").forEach(b=>b.onclick=()=>{fg.splice(+b.dataset.gx,1);gl()})};
  const rl=()=>{const ad=fl.addr||adOf(fl),nmx=fl.name||ad;$("#e-lx").style.display=fl.name||fl.lat!=null?"block":"none";$("#e-l").innerHTML=nmx?`${fl.fav?"⭐":"📍"} ${esc(nmx)}${fl.name&&ad?`<br><span class="mut" style="font-size:.82rem">${esc(ad)}</span>`:""}`:(fl.lat!=null?"📍 Recherche de l'adresse…":"📍 Choisir sur la carte");
   if(fl.lat!=null&&!ad){const k=adKey(fl.lat,fl.lng);rgAddr(fl.lat,fl.lng).then(s=>{if(fl.lat!=null&&adKey(fl.lat,fl.lng)==k){if(s)fl.addr=s;else if(!fl.name)$("#e-l").textContent="📍 "+coord(fl);if(s)rl()}}).catch(()=>{if(fl.lat!=null&&!fl.name&&!fl.addr)$("#e-l").textContent="📍 "+coord(fl)})}};
  const useFav=f=>{f.used=Date.now();fl=favPlace(f);rl();pl();su()};
  const askFav=()=>{if(fl.lat==null||fl.fav)return;const nf=favNear(fl);if(nf){fl.name=nf.name;fl.fav=nf.id;rl();pl();return}
-  modal(`<div style="text-align:center"><div style="font-size:2.2rem;line-height:1;margin:2px 0 6px">⭐</div><h2 style="margin:0 0 6px">Ajouter ce lieu à tes favoris ?</h2><p class="sans" style="margin:0 0 4px">Donne-lui un nom : la prochaine fois, il suffira d'écrire ce nom dans le titre pour retrouver ce lieu de RDV.</p>${fl.addr||adOf(fl)?`<p class="mut sans" style="font-size:.85rem;margin:0 0 6px">🏠 ${esc(fl.addr||adOf(fl))}</p>`:""}</div>
-   <label>Nom du lieu</label><input id="fv-n" value="${esc(fl.name||$("#e-t").value.trim())}" placeholder="ex. Chasse Renlies (Bosquets)" maxlength="60">
+  modal(`<div style="text-align:center"><div style="font-size:2.2rem;line-height:1;margin:2px 0 6px">⭐</div><h2 style="margin:0 0 6px">Ajouter ce lieu à tes favoris ?</h2><p class="sans" style="margin:0 0 4px">Donne-lui un nom : la prochaine fois, tu le choisiras directement dans la liste de tes lieux favoris.</p>${fl.addr||adOf(fl)?`<p class="mut sans" style="font-size:.85rem;margin:0 0 6px">🏠 ${esc(fl.addr||adOf(fl))}</p>`:""}</div>
+   <label>Nom du lieu</label><input id="fv-n" value="${esc(fl.name||"")}" placeholder="ex. Cabanon de chasse de Renlies" maxlength="60">
    <div class="row" style="margin-top:12px"><button class="s" id="fv-no">Non merci</button><button class="p" id="fv-ok">⭐ Enregistrer</button></div>`,"2");
   const ok=()=>{const n=$("#fv-n").value.trim();if(!n)return $("#fv-n").focus();S.favs=S.favs||[];const ex=favByName(n);
    if(ex&&!confirm("Un favori « "+ex.name+" » existe déjà. Le remplacer par ce lieu ?"))return;if(ex)S.favs=S.favs.filter(f=>f!==ex);
-   const f={id:"f"+Date.now(),name:n,lat:fl.lat,lng:fl.lng,addr:fl.addr||adOf(fl)||"",used:Date.now()};S.favs.push(f);save();track("fav_saved");closeM("2");fl=favPlace(f);rl();pl();const dl=$("#e-fdl");if(dl)dl.innerHTML=S.favs.map(x=>`<option value="${esc(x.name)}">`).join("");toast("⭐ « "+n+" » ajouté à tes lieux favoris.")};
+   const f={id:"f"+Date.now(),name:n,lat:fl.lat,lng:fl.lng,addr:fl.addr||adOf(fl)||"",used:Date.now()};S.favs.push(f);save();track("fav_saved");closeM("2");fl=favPlace(f);rl();pl();toast("⭐ « "+n+" » ajouté à tes lieux favoris.")};
   $("#fv-ok").onclick=ok;$("#fv-n").onkeydown=ev=>{if(ev.key=="Enter"){ev.preventDefault();ok()}};$("#fv-no").onclick=()=>closeM("2")};
  const favMgr=()=>{const draw=()=>{const F=S.favs||[];modal(`<h2 style="margin-top:0">Mes lieux favoris</h2>${F.length?F.map((f,i)=>`<div class="card sans" style="margin-bottom:8px;padding:10px"><div class="row" style="gap:6px;align-items:center"><input data-fr="${i}" value="${esc(f.name)}" style="margin:0"><button class="s" data-fd="${i}" style="flex:0 0 auto;color:var(--acc2)" aria-label="Supprimer">🗑</button></div>${f.addr||adOf(f)?`<div class="mut" style="font-size:.82rem;margin-top:4px">🏠 ${esc(f.addr||adOf(f))}</div>`:""}</div>`).join(""):'<p class="mut sans">Aucun lieu favori.</p>'}<button class="p" id="fm-ok" style="width:100%;margin-top:6px">Terminé</button>`,"2");
    document.querySelectorAll("[data-fr]").forEach(i=>i.onchange=()=>{const v=i.value.trim();if(v){F[+i.dataset.fr].name=v;save()}});
-   document.querySelectorAll("[data-fd]").forEach(b=>b.onclick=()=>{F.splice(+b.dataset.fd,1);save();draw()});
-   $("#fm-ok").onclick=()=>{closeM("2");const f=fl.fav&&(S.favs||[]).find(x=>x.id==fl.fav);if(fl.fav&&!f)delete fl.fav;else if(f)fl.name=f.name;rl();pl();const dl=$("#e-fdl");if(dl)dl.innerHTML=(S.favs||[]).map(x=>`<option value="${esc(x.name)}">`).join("")}};draw()};
+   document.querySelectorAll("[data-fd]").forEach(b=>b.onclick=()=>{const f=F[+b.dataset.fd];if(!confirm("Supprimer « "+f.name+" » de tes lieux favoris ?"))return;F.splice(+b.dataset.fd,1);save();draw()});
+   $("#fm-ok").onclick=()=>{closeM("2");const f=fl.fav&&(S.favs||[]).find(x=>x.id==fl.fav);if(fl.fav&&!f)delete fl.fav;else if(f)fl.name=f.name;rl();pl()}};draw()};
  const rr=()=>{const g=$("#e-r").value=="guest";$("#e-pw").style.display=g?"none":"block";$("#e-hw").style.display=g?"block":"none"};
  const tw=()=>{$("#e-tw").innerHTML=ft?`<label>Heure de RDV</label><div class="row"><input type="time" id="e-tm" value="${ft}"><button class="s" id="e-tx" style="flex:0 0 auto" aria-label="Retirer l'heure">✕</button></div>`:`<button class="s" id="e-ta" style="margin-top:12px">Ajouter une heure de RDV ?</button>`;
   if(ft){$("#e-tm").onchange=ev=>{ft=ev.target.value||null;su()};$("#e-tx").onclick=()=>{ft=null;tw();su()}}else $("#e-ta").onclick=()=>{ft="08:30";tw();su()}};
  const hk=()=>{$("#e-hk").classList.toggle("on",hunt);$("#e-hk").setAttribute("aria-pressed",hunt);$("#e-m").disabled=!hunt;$("#e-rw").style.display=hunt?"block":"none";$("#e-nhm").style.display=hunt?"none":"block";$("#e-ll").textContent=hunt?"Lieu de RDV":"Lieu";$("#e-t").placeholder=hunt?"Chasse":"Évènement";if(!id)$("#e-h2").textContent=hunt?"Nouvelle journée de chasse":"Nouvel évènement (hors chasse)"};
  const pk=x=>x.name?x.name.trim().toLowerCase():(x.lat!=null?x.lat.toFixed(4)+","+x.lng.toFixed(4):"");
- const pl=()=>{const out=[...(S.favs||[])].sort((a,b)=>(b.used||0)-(a.used||0)).filter(f=>f.id!=fl.fav).slice(0,8);
-  $("#e-pl").innerHTML=(S.favs||[]).length?`<span class="mut sans" style="width:100%;font-size:.8rem;display:flex;justify-content:space-between">${out.length?"Lieux déjà utilisés :":"Lieux favoris"}<a href="#" id="e-fm" style="color:var(--acc)">Gérer</a></span>`+out.map((x,i)=>`<button type="button" data-pl="${i}">⭐ ${esc(x.name)}</button>`).join(""):"";
-  document.querySelectorAll("#e-pl [data-pl]").forEach(b=>b.onclick=()=>useFav(out[+b.dataset.pl]));if($("#e-fm"))$("#e-fm").onclick=ev=>{ev.preventDefault();favMgr()}};
+ const pl=()=>{const F=[...(S.favs||[])].sort((a,b)=>(b.used||0)-(a.used||0));
+  $("#e-pl").innerHTML=F.length?`<div class="row" style="gap:8px;align-items:center;width:100%"><select id="e-fs" style="flex:1;margin:0" aria-label="Lieux favoris"><option value="">⭐ Choisir un de mes lieux favoris…</option>${F.map(f=>`<option value="${f.id}" ${f.id==fl.fav?"selected":""}>${esc(f.name)}</option>`).join("")}</select><button type="button" class="s" id="e-fm" style="flex:0 0 auto">Gérer</button></div>`:"";
+  const fs=$("#e-fs");if(fs)fs.onchange=()=>{const f=F.find(x=>x.id==fs.value);if(f){useFav(f);toast("⭐ Lieu « "+f.name+" » choisi.")}};if($("#e-fm"))$("#e-fm").onclick=ev=>{ev.preventDefault();favMgr()}};
  const hideG=()=>{$("#e-gi").value="";$("#e-gr").style.display="none";$("#e-gb").style.display="block"};
  gl();rl();rr();tw();hk();pl();$("#e-r").onchange=rr;
  $("#e-hk").onclick=()=>{if(hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle reste une journée de chasse.");hunt=!hunt;hk()};
- $("#e-t").addEventListener("input",()=>{const f=favByName($("#e-t").value);if(f&&fl.fav!=f.id){if($("#e-t").value!=f.name)$("#e-t").value=f.name;useFav(f);toast("⭐ Lieu favori « "+f.name+" » appliqué.")}});
- $("#e-t").addEventListener("change",()=>{if(id||fl.name||fl.lat!=null)return;const v=$("#e-t").value.trim().toLowerCase();if(!v)return;const o=evs().filter(x=>x.title.toLowerCase()==v&&x.place&&(x.place.name||x.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1)[0];
+  $("#e-t").addEventListener("change",()=>{if(id||fl.name||fl.lat!=null)return;const v=$("#e-t").value.trim().toLowerCase();if(!v)return;const o=evs().filter(x=>x.title.toLowerCase()==v&&x.place&&(x.place.name||x.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1)[0];
   if(o){fl=Object.assign({},o.place);rl();pl();su();if(!ft&&o.time){ft=o.time;tw()}if(hunt&&o.mode&&[...$("#e-m").options].some(op=>op.value==o.mode))$("#e-m").value=o.mode;toast("Lieu repris de ta dernière journée « "+o.title+" ».")}});
  $("#e-gb").onclick=()=>{$("#e-gb").style.display="none";$("#e-gr").style.display="flex";$("#e-gi").focus()};
  $("#e-ga").onclick=()=>{const v=$("#e-gi").value.trim();if(v){fg.push(v);gl()}hideG()};
@@ -1579,6 +1699,41 @@ function openForm(id,ds){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:vis
  $("#e-lx").onclick=()=>{fl={name:"",lat:null,lng:null};rl();pl();su();toast("Lieu de RDV retiré.")};
  $("#e-l").onclick=()=>pickLoc(fl,p=>{fl=p;rl();pl();su();setTimeout(askFav,250)})}
 
+/* ---------- animal blessé ou incertain : confirmation (retrouvé ou non) et rappels à 24 h et 48 h ---------- */
+const tirTs=t=>t.ts||+((String(t.id).match(/^k(\d{13})/)||[])[1]||0);
+const wounds=()=>evs().flatMap(e=>(e.fiche&&e.fiche.tirs||[]).filter(t=>t.r=="b"&&!t.lost).map(t=>({e,t})));
+const nid=x=>{let h=7;for(const c of x)h=(h*31+c.charCodeAt(0))|0;return Math.abs(h)%2000000000+1};
+function woundModal(eid,tid){const e=S.ev[eid],t=e&&e.fiche&&(e.fiche.tirs||[]).find(x=>x.id==tid);if(!t)return;
+ const ts=tirTs(t),h=ts?Math.round((Date.now()-ts)/36e5):null;
+ modal(`<h2 style="display:flex;align-items:center;gap:8px;margin-top:0">${sil(tname(t),44)}<span>${esc(tname(t))}${t.k>1?" × "+t.k:""}</span></h2>
+ <p class="sans" style="margin:0 0 4px">🩸 <b>${t.lost?"Non retrouvé":"Blessé ou incertain"}</b> · ${esc(e.title)}, ${fmt(e.date)}${h!=null&&h>=1?` · il y a ${h<48?h+" h":Math.round(h/24)+" jours"}`:""}</p>
+ <p class="mut sans" style="font-size:.88rem;margin-top:0">Tant qu'il n'est pas retrouvé, il compte comme un tir raté dans tes statistiques.</p>
+ <h3>As-tu retrouvé l'animal ?</h3><button class="p li" id="wd-y">✅ Oui, retrouvé : il est prélevé</button><button class="s li" id="wd-n">❌ Non, pas retrouvé</button>${t.lost?"":`<button class="s li" id="wd-w">⏳ Toujours en recherche</button>`}<button class="lnk" id="wd-e" style="margin-top:6px">Modifier ce tir</button>`);
+ const done=m=>{save();woundSync();closeM();toast(m);if(["sum","cal","stats"].includes(view))render()};
+ $("#wd-y").onclick=()=>{t.r="p";delete t.lost;t.found=Date.now();tfix(t);syncTab(e.fiche);track("wound_found");done("Animal retrouvé : il compte maintenant comme prélevé."+(CLS[t.sp]&&!t.sx?" Pense à préciser le sexe.":""))};
+ $("#wd-n").onclick=()=>{t.lost=1;track("wound_lost");done("Noté : animal non retrouvé.")};
+ if($("#wd-w"))$("#wd-w").onclick=()=>{closeM();toast("D'accord, ChasseLog te le redemandera.")};
+ $("#wd-e").onclick=()=>{closeM();openFiche(eid);const x=fd.tirs.find(q=>q.id==tid);if(x){x.ok=false;render();const c=$("#tc-"+tid);if(c)c.scrollIntoView({block:"center"})}}}
+function openWound(eid,tid){if(!S.ev[eid])return;document.querySelectorAll(".mo").forEach(m=>m.remove());closeF();shut();fe=eid;vst=[];view="cal";if(S.ev[eid].fiche)go("sum");setTimeout(()=>woundModal(eid,tid),250)}
+/* rappels Android : une notification 24 h puis 48 h après le tir, tant que l'animal n'est pas confirmé */
+async function woundSync(ask){if(!IS_APP)return;const L=natLN();if(!L)return;const now=Date.now(),want=[];
+ wounds().forEach(({e,t})=>{const ts=tirTs(t);if(!ts)return;[24,48].forEach(hh=>{const at=ts+hh*36e5;if(at>now+6e4)want.push({id:nid(t.id+"|"+hh),title:"🩸 Animal blessé : retrouvé ?",body:tname(t)+" · "+e.title+" ("+e.date.split("-").reverse().join("/")+"). Touche pour dire s'il a été retrouvé.",schedule:{at:new Date(at),allowWhileIdle:true},extra:{ev:e.id,tir:t.id},smallIcon:"ic_stat_chasselog"})})});
+ try{const pend=((await L.getPending())||{}).notifications||[],keep=new Set(want.map(n=>n.id)),ids=new Set(pend.map(n=>n.id));
+  const del=pend.filter(n=>!keep.has(n.id)&&(!n.extra||n.extra.tir));if(del.length)await L.cancel({notifications:del.map(n=>({id:n.id}))});
+  const add=want.filter(n=>!ids.has(n.id));if(!add.length||!(await natNotifOk(ask)))return;await L.schedule({notifications:add})}catch(e){}}
+/* à l'ouverture (site et app) : un animal blessé depuis plus de 24 h ? on demande, au plus une fois par jour */
+function woundAsk(){const now=Date.now(),W=wounds().filter(({t})=>{const ts=tirTs(t);return ts&&now-ts>24*36e5&&now-ts<10*864e5&&now-((S.wAsk||{})[t.id]||0)>20*36e5});
+ if(!W.length||popPend()||!popFree())return;const{e,t}=W[0];S.wAsk=S.wAsk||{};S.wAsk[t.id]=now;save();woundModal(e.id,t.id)}
+/* clôture d'une journée : rappel des informations manquantes (sexe, poids, cors) et des animaux à confirmer */
+function closeWarn(f,onGo,onFix){const T=(f&&f.tirs||[]).filter(t=>t.r),M=T.filter(t=>t.p&&tMiss(t).length),B=T.filter(t=>t.r=="b"&&!t.lost);if(!M.length&&!B.length)return false;
+ modal(`<h2 style="margin-top:0">⚠️ N'oubliez pas d'encoder les informations manquantes des animaux</h2>${M.length?`<div class="card sans" style="margin-bottom:8px">${M.map(t=>`<div class="sr"><span class="lb">${sil(tname(t),36)}${esc(tname(t))}</span><b style="font-size:.85rem;text-align:right">${esc(tMiss(t).join(", "))}</b></div>`).join("")}</div>`:""}
+ ${B.length?`<p class="sans" style="font-size:.92rem">🩸 ${B.length>1?B.length+" animaux blessés ou incertains restent":"1 animal blessé ou incertain reste"} à confirmer. ${IS_APP?"ChasseLog te le redemandera 24 h et 48 h après le tir.":"ChasseLog te le redemandera à l'ouverture de l'app."}</p>`:""}
+ <button class="p li" id="cw-f">${M.length?"Compléter maintenant":"Retour à la fiche"}</button><button class="s li" id="cw-g">Clôturer quand même</button>`);
+ $("#cw-f").onclick=()=>{closeM();onFix&&onFix(M[0]||B[0])};$("#cw-g").onclick=()=>{closeM();onGo()};return true}
+/* ---------- photo : appareil photo ou galerie (dans l'app, la photo prise est aussi rangée dans l'album « ChasseLog ») ---------- */
+function photoPick(cb,multi){modal(`<h2 style="margin-top:0">Ajouter une photo</h2><label class="p li ppk">📷 Prendre une photo<input type="file" accept="image/*" capture="environment" id="pp-c" hidden></label><label class="s li ppk">🖼️ Choisir dans la galerie<input type="file" accept="image/*" ${multi?"multiple":""} id="pp-g" hidden></label>${IS_APP?'<p class="mut sans" style="font-size:.8rem;margin:6px 0 0">Les photos prises ici sont aussi rangées dans l\'album « ChasseLog » de ta galerie.</p>':""}`,"3");
+ const use=async(inp,cam)=>{const fs=[...(inp.files||[])];closeM("3");if(!fs.length)return;if(cam&&IS_APP)fs.forEach(f=>natAlbum(f));try{await cb(fs)}catch(e){toast("Photo non ajoutée.")}};
+ $("#pp-c").onchange=e=>use(e.target,true);$("#pp-g").onchange=e=>use(e.target,false)}
 /* ---------- fiche : édition ---------- */
 let fdClean="";
 const fkey=()=>JSON.stringify(Object.assign({},fd,{tirs:fd.tirs.map(t=>Object.assign({},t,{ok:0}))}));
@@ -1586,7 +1741,7 @@ function openFiche(id){fe=id;fd=JSON.parse(JSON.stringify(S.ev[id].fiche||{tirs:
 function sync(){if($("#f-notes"))fd.notes=$("#f-notes").value}
 function rmBar(){const b=$("#fb2");if(b){if(window.visualViewport&&b._f){visualViewport.removeEventListener("resize",b._f);visualViewport.removeEventListener("scroll",b._f)}b.remove()}}
 function fbar(back,sv,lab,bl){const b=document.createElement("div");b.id="fb2";b.className="fa";b.innerHTML=`<button class="s" id="b-r">${bl||"Retour"}</button><button class="p" id="b-s"${lab?' style="flex:2;font-size:.95rem;line-height:1.2"':""}>${lab||"Enregistrer"}</button>`;document.body.appendChild(b);
- const vv=window.visualViewport,fit=()=>{if(vv)b.style.bottom=Math.max(0,window.innerHeight-vv.height-vv.offsetTop)+"px"};fit();
+ const vv=IS_APP?null:window.visualViewport,fit=()=>{if(vv)b.style.bottom=Math.max(0,window.innerHeight-vv.height-vv.offsetTop)+"px"};fit();
  if(vv){vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit);b._f=fit}
  $("#b-r").onclick=back;if(sv)$("#b-s").onclick=sv;else $("#b-s").remove()}
 const munSum=(f,u)=>(f.tirs||[]).filter(t=>t.r&&t.u==u).reduce((x,t)=>x+(+t.n||0),0);
@@ -1606,9 +1761,9 @@ function munAsk(next){const e=S.ev[fe],T=fd.tirs.filter(t=>t.r),us=["b","c"].fil
   document.querySelectorAll("[data-mc]").forEach(b=>b.onclick=()=>{const[u,d]=b.dataset.mc.split(":");M[u]=Math.max(0,M[u]+ +d);draw()});
   $("#mu-l").onclick=()=>{closeM("2");next()};
   $("#mu-ok").onclick=()=>{fd.mun=Object.assign({_s:munBase(fd)},M);fd.munOk=true;track("ammo_confirmed");closeM("2");next()}};draw()}
-function saveFiche(){if(!prepSave())return;const go2=()=>{S.ev[fe].fiche=fd;if(save()){track("fiche_saved",{shots:fd.tirs.length,tab:!!fd.tab,photos:fd.photos.length});go("sum");gc()}};if(munDue(false))munAsk(go2);else go2()}
+function saveFiche(){if(!prepSave())return;const go2=()=>{S.ev[fe].fiche=fd;if(save()){track("fiche_saved",{shots:fd.tirs.length,tab:!!fd.tab,photos:fd.photos.length});go("sum");gc();woundSync(true)}};if(munDue(false))munAsk(go2);else go2()}
 const canClose=e=>e&&!e.nh&&!e.closed&&e.date==iso(new Date());
-function saveClose(){if(!prepSave())return;const go2=()=>{const e=S.ev[fe];e.fiche=fd;e.closed=true;if(save()){track("day_closed",{shots:fd.tirs.length,tab:!!fd.tab});toast("Journée clôturée. Bonne fin de journée !");go("sum");gc()}};if(munDue(true))munAsk(go2);else go2()}
+function saveClose(force){if(!prepSave())return;if(!force&&closeWarn(fd,()=>saveClose(true),t=>{if(!t)return;t.ok=false;detOpen.add(t.id);render();const c=$("#tc-"+t.id);if(c)c.scrollIntoView({block:"center"})}))return;const go2=()=>{const e=S.ev[fe];e.fiche=fd;e.closed=true;if(save()){track("day_closed",{shots:fd.tirs.length,tab:!!fd.tab});toast("Journée clôturée. Bonne fin de journée !");go("sum");gc();woundSync(true)}};if(munDue(true))munAsk(go2);else go2()}
 function backFiche(){if(quickTid){modal(`<h2>Abandonner ce tir ?</h2><p class="sans">Il n'a pas encore été enregistré.</p><div class="row"><button class="s" id="q-k">Continuer</button><button class="p" id="q-a" style="background:var(--acc2)">Abandonner</button></div>`);$("#q-k").onclick=()=>closeM();$("#q-a").onclick=()=>{closeM();quickTid=null;go("cal")};return}
  sync();const to=S.ev[fe].fiche?"sum":"cal";if(fkey()==fdClean)return go(to);
  modal(`<h2>Enregistrer la saisie ?</h2><p class="sans">Tu as modifié cette fiche sans l'enregistrer.</p><div class="row"><button class="s" id="q-n">Annuler</button><button class="p" id="q-y">Enregistrer</button></div><p class="mut sans">« Annuler » quitte la fiche sans enregistrer ta saisie.</p>`);
@@ -1634,11 +1789,11 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
   <div class="rt">${[["p","✅","Prélevé",""],["m","❌","Manqué",""],["b","🩸","Blessé","<small>ou je ne sais pas</small>"]].map(([r,i,l,s])=>`<button data-r="${t.id}:${r}" class="r-${r}${t.r==r?" on":""}"><span>${i}</span>${l}${s}</button>`).join("")}</div>
   ${t.r?`<div class="cnt2">${t.r!="m"?stp(t,t.r=="p"?"Animaux prélevés":"Animaux concernés","k",t.k):""}${stp(t,U+" tirées","n",t.n,`<button class="lnk" data-u="${t.id}">⇄ ${t.u=="b"?"cartouches":"balles"}</button>`)}</div>`:'<p class="mut" style="margin:10px 2px 0;font-size:.88rem">Choisis le résultat : tu pourras ensuite indiquer le nombre d\'animaux et de munitions.</p>'}
   <button class="gpsb${t.loc&&t.loc.gps?" on":""}" data-gps="${t.id}"><span class="i">📍</span><span>${t.loc&&t.loc.gps?`Position du tir enregistrée<small>${t.loc.acc!=null?"± "+Math.round(t.loc.acc)+" m · ":""}touche pour mettre à jour</small>`:`Enregistrer ma position<small>là où je suis posté au moment du tir</small>`}</span></button>
-  <details class="tdet" data-dt="${t.id}"${op?" open":""}><summary>＋ ${t.r=="p"?(needK(t)?(needK(t)=="w"?"Poids, ":"Cors, "):"")+"photo, arme, lieu":"Arme, lieu du tir"} <span class="mut">(ou plus tard)</span></summary>
+  <details class="tdet" data-dt="${t.id}"${op?" open":""}><summary>＋ ${t.r=="p"?(needK(t)?(needK(t)=="w"?"Poids, ":"Cors, "):"")+"photo, arme"+(qk?"":", lieu"):"Arme"+(qk?"":", lieu du tir")} <span class="mut">(ou plus tard)</span></summary>
    ${t.r=="p"?detail(t):""}
    ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16,(gunOf(t.gun)||{}).type||"carabine")}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}
-   ${t.r=="p"?`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:9px;margin-top:8px;color:var(--ink)">📷 Photo de l'animal<input type="file" accept="image/*" data-tph="${t.id}" hidden></label>`:""}
-   <button class="s sans" data-l="${t.id}" style="width:100%;margin-top:8px;text-align:left">🗺 ${t.loc?"Lieu du tir : "+esc(lieu(t.loc)):"Lieu de RDV : "+esc(lieu(e.place))} · choisir sur la carte</button>
+   ${t.r=="p"?`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><button type="button" class="s sans" data-tph="${t.id}" style="display:block;width:100%;text-align:center;padding:10px;margin-top:8px">📷 Photo de l'animal</button>`:""}
+   ${qk?"":`<button class="s sans" data-l="${t.id}" style="width:100%;margin-top:8px;text-align:left">🗺 ${t.loc?"Lieu du tir : "+esc(lieu(t.loc)):"Lieu de RDV : "+esc(lieu(e.place))} · choisir sur la carte</button>`}
   </details>
   ${qk?"":`<button class="p" data-v="${t.id}" style="width:100%;margin-top:12px">✓ Valider ce tir</button>`}</div>`};
  const A=agg([{fiche:fd}]);
@@ -1647,11 +1802,11 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
  <h2>Mes tirs</h2>
  <div>${fd.tirs.map(t=>t.ok===false?ed(t,false):tLine(t,true)).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
  <button class="addt" id="a-b">＋ Ajouter un tir</button>
- <h2>Photos</h2><div class="ph">${fd.photos.map((p,i)=>`<div><img data-pid="${p}" alt="Photo ${i+1}"><button class="d" data-rp="${i}">Retirer</button></div>`).join("")}</div><input type="file" accept="image/*" multiple id="f-ph" style="margin-top:8px">
+ <h2>Photos</h2><div class="ph">${fd.photos.map((p,i)=>`<div><img data-pid="${p}" alt="Photo ${i+1}"><button class="d" data-rp="${i}">Retirer</button></div>`).join("")}${fd.tirs.flatMap(t=>(t.ph||[]).map(x=>`<div><img data-pid="${x}" alt="Photo de l'animal"><small class="mut sans" style="display:block;font-size:.72rem;text-align:center">${esc(tname(t))}</small></div>`)).join("")}</div><button type="button" class="s sans" id="f-ph" style="display:block;width:100%;text-align:center;padding:10px;margin-top:8px">📷 Ajouter une photo de la journée</button>
  <label>Notes</label><textarea id="f-notes" rows="3">${esc(fd.notes)}</textarea>
  <button class="s" id="tb" style="width:100%;margin-top:14px">Encoder le tableau final${nt?` (${nt} pièce${nt>1?"s":""})`:""}</button><div style="height:90px"></div>`;
  if(Q){Q.ok=false;$("#app").classList.add("quick");$("#app").innerHTML=`${BKB}<div style="padding-left:48px;min-height:44px"></div>${ed(Q,true)}<div style="height:110px"></div>`;
-  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){track("shot_saved",{result:Q.r,animals:Q.k,ammo:Q.n,gps:!!(Q.loc&&Q.loc.gps),sex:!!Q.sx,from:"bang"});toast("Tir enregistré.");go("cal");gc()}},"✓ Enregistrer","Annuler")}
+  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){track("shot_saved",{result:Q.r,animals:Q.k,ammo:Q.n,gps:!!(Q.loc&&Q.loc.gps),sex:!!Q.sx,from:"bang"});toast(Q.r=="b"?"Tir enregistré. Blessé ou incertain : à confirmer dans « Mes résultats ».":"Tir enregistré.");go("cal");gc();woundSync(true)}},"✓ Enregistrer","Annuler")}
  else if(canClose(e)){fbar(backFiche,saveClose,"Enregistrer et clôturer la journée");const a=document.createElement("button");a.className="s";a.id="f-nc";a.textContent="Enregistrer sans clôturer la journée";a.style.cssText="width:100%;margin-top:10px;font-size:.88rem";a.onclick=saveFiche;const sp=$("#app").lastElementChild;$("#app").insertBefore(a,sp&&sp.style&&sp.style.height?sp:null)}
  else fbar(backFiche,saveFiche);
  const T=id=>fd.tirs.find(t=>t.id==id);
@@ -1664,14 +1819,14 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
  document.querySelectorAll("[data-dt]").forEach(d=>d.ontoggle=()=>{d.open?detOpen.add(d.dataset.dt):detOpen.delete(d.dataset.dt)});
  document.querySelectorAll("[data-dk]").forEach(i=>i.oninput=()=>{const[id,k,ix]=i.dataset.dk.split("|"),t=T(id);t[k]=t[k]||[];t[k][+ix]=i.value});
  document.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.u);t.u=t.u=="b"?"c":"b";render()});
- document.querySelectorAll("[data-x]").forEach(b=>b.onclick=()=>{sync();fd.tirs=fd.tirs.filter(t=>t.id!=b.dataset.x);render()});
+ document.querySelectorAll("[data-x]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.x);modal(`<h2>Retirer ce tir ?</h2><p class="sans">${esc(tname(t))} · ${(RES[t.r]||["","à compléter"])[1]}</p><div class="row"><button class="s" id="rx-n">Annuler</button><button class="p" id="rx-y" style="background:var(--acc2)">Retirer</button></div>`,"2");$("#rx-n").onclick=()=>closeM("2");$("#rx-y").onclick=()=>{closeM("2");fd.tirs=fd.tirs.filter(x=>x.id!=t.id);render()}});
  document.querySelectorAll("[data-gps]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.gps);gpsCapture(t.loc&&t.loc.gps?t.loc:null,g=>{t.loc={name:"Lieu du tir",lat:g.lat,lng:g.lng,acc:g.acc,gps:1};toast("Position du tir enregistrée.");render()})});
  document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.l);pickLoc(t.loc||e.place,p=>{t.loc=p;render()},t.loc?()=>{t.loc=null;render()}:null)});
  document.querySelectorAll("[data-rp]").forEach(b=>b.onclick=()=>{sync();fd.photos.splice(+b.dataset.rp,1);render()});
  document.querySelectorAll("[data-gn]").forEach(x=>x.onchange=()=>{sync();const t=T(x.dataset.gn);t.gun=x.value||null;if(t.gun)S.lastGun=t.gun;save()});
- document.querySelectorAll("[data-tph]").forEach(i=>i.onchange=async ev=>{sync();const t=T(i.dataset.tph);t.ph=t.ph||[];for(const f of ev.target.files)t.ph.push(await addPhoto(f));render()});
+ document.querySelectorAll("[data-tph]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.tph);photoPick(async fs=>{t.ph=t.ph||[];for(const f of fs)t.ph.push(await addPhoto(f));detOpen.add(t.id);render()},true)});
  document.querySelectorAll("[data-rtp]").forEach(b=>b.onclick=()=>{sync();const[id,i]=b.dataset.rtp.split("|");T(id).ph.splice(+i,1);render()});
- if($("#f-ph"))$("#f-ph").onchange=async ev=>{sync();for(const f of ev.target.files)fd.photos.push(await addPhoto(f));render()};
+ if($("#f-ph"))$("#f-ph").onclick=()=>{sync();photoPick(async fs=>{for(const f of fs)fd.photos.push(await addPhoto(f));render()},true)};
  if($("#tb"))$("#tb").onclick=()=>{sync();openTab()}}
 function shrink(f){return new Promise(r=>{const i=new Image;i.onload=()=>{const k=Math.min(1,720/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);r(c.toDataURL("image/jpeg",.6))};i.src=URL.createObjectURL(f)})}
 /* mes pièces prélevées (avec un nom présent dans le tableau) : toujours comptées dans le tableau final */
@@ -1688,10 +1843,10 @@ function openTab(){syncTab(fd);let tmp=Object.assign({},fd.tab);const own=ownTab
  modal(`<h2>Tableau final</h2><p class="mut sans">Ouvre une catégorie puis indique la quantité par espèce. Pré-rempli avec les pièces prélevées de tes tirs.</p>${uk.length?`<p class="sans" style="background:#e8a03222;border:1px solid #e8a032;border-radius:10px;padding:8px 10px;font-size:.88rem;margin:0 0 10px">⚠️ Sexe non indiqué dans tes tirs pour : <b>${uk.map(([s,n])=>n+" "+esc(s.toLowerCase())).join(", ")}</b>. Ajoute-${uk.reduce((a,x)=>a+x[1],0)>1?"les":"le"} ci-dessous dans la bonne catégorie (ex. coq ou poule).</p>`:""}${extra.length?`<p class="sans" style="background:#e8a03222;border:1px solid #e8a032;border-radius:10px;padding:8px 10px;font-size:.88rem;margin:0 0 10px">⚠️ Pièce${extra.length>1?"s":""} sans sexe dans le tableau : corrige-${extra.length>1?"les":"la"} dans « À préciser » (mets 0 et ajoute-${extra.length>1?"les":"la"} dans la bonne catégorie).</p>`:""}
  ${ents.map(([g,a],i)=>`<details class="dt"${g=="À préciser"?" open":""}><summary><span>${g}</span><span class="bg" data-bg="${i}">${gs(i)||""}</span></summary><div class="in">${a.map(s=>`<div class="row sans" style="padding:4px 0"><span>${esc(s)}</span><span class="st" style="flex:0 0 125px;justify-content:flex-end"><button data-s="${esc(s)}" data-gi="${i}" data-n="-1">−</button><b>${tmp[s]||0}</b><button data-s="${esc(s)}" data-gi="${i}" data-n="1">+</button></span></div>`).join("")}</div></details>`).join("")}
  <h3>Photo du tableau</h3><div class="ph" id="t-th">${fd.tabPhotos.map(th).join("")}</div>
- <label class="s sans" style="display:block;text-align:center;border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:8px;color:var(--ink)">📷 Prendre une photo<input type="file" accept="image/*" capture="environment" id="t-ph" hidden></label>
+ <button type="button" class="s sans" id="t-ph" style="display:block;width:100%;text-align:center;padding:10px;margin-top:8px">📷 Photo du tableau</button>
  <button class="p" id="t-ok" style="width:100%;margin-top:12px">Valider le tableau</button>`);
  document.querySelectorAll("#mo [data-s]").forEach(b=>b.onclick=()=>{const s=b.dataset.s,nv=(tmp[s]||0)+ +b.dataset.n;if(nv<(own[s]||0)){toast("Tu as prélevé "+own[s]+" × "+s+" : retire d'abord le tir dans ta fiche.");return}tmp[s]=Math.max(0,nv);b.parentNode.querySelector("b").textContent=tmp[s];$('#mo [data-bg="'+b.dataset.gi+'"]').textContent=gs(+b.dataset.gi)||""});
- $("#t-ph").onchange=async ev=>{const f=ev.target.files[0];if(!f)return;const p=await addPhoto(f);fd.tabPhotos.push(p);$("#t-th").insertAdjacentHTML("beforeend",th(p));hydrate()};
+ $("#t-ph").onclick=()=>photoPick(async fs=>{for(const f of fs){const p=await addPhoto(f);fd.tabPhotos.push(p);$("#t-th").insertAdjacentHTML("beforeend",th(p))}hydrate()},true);
  $("#t-ok").onclick=()=>{Object.keys(tmp).forEach(k=>{if(!tmp[k])delete tmp[k]});track("tableau_saved",{pieces:Object.values(tmp).reduce((a,b)=>a+b,0),photo:fd.tabPhotos.length>0});fd.tab=tmp;closeM();render()}}
 
 /* ---------- fiche : consultation ---------- */
@@ -1744,26 +1899,27 @@ const ic=(k,z=24)=>ICO[k].replace("<svg ",`<svg width="${z}" height="${z}" aria-
 function gauge(p){let a="";for(let i=0;i<18;i++){const q=i/17*100,h=q<=30?5:q<=45?5+(q-30)/15*23:q<=70?28:q<=85?28+(q-70)/15*82:110,t0=(180+i*10)*Math.PI/180,t1=(190+i*10)*Math.PI/180;a+=`<path d="M${30+22*Math.cos(t0)} ${30+22*Math.sin(t0)}A22 22 0 0 1 ${30+22*Math.cos(t1)} ${30+22*Math.sin(t1)}" stroke="hsl(${h} 70% 45%)" stroke-width="6" fill="none"/>`}
  const t=(180+Math.min(100,p)*1.8)*Math.PI/180;return `<svg viewBox="0 0 60 36" width="60" height="36" aria-hidden="true">${a}<line x1="30" y1="30" x2="${30+17*Math.cos(t)}" y2="${30+17*Math.sin(t)}" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="30" r="3.5" fill="currentColor"/></svg>`}
 function rSum(){const e=S.ev[fe],f=e.fiche,a=agg([e]),cnt={};if(syncTab(f))save();
- f.tirs.forEach(t=>{if(t.p)cnt[tname(t)]=(cnt[tname(t)]||0)+t.p});const tabC=f.tab||{};
+ f.tirs.forEach(t=>{if(t.p)cnt[tname(t)]=(cnt[tname(t)]||0)+t.p});const tabC=f.tab||{},WB=f.tirs.filter(t=>t.r=="b"),PH=[...f.photos,...f.tirs.flatMap(t=>t.ph||[])];
  const R=[],row=(l,v,i)=>R.push(`<div class="sr"><span class="lb">${i||""}${l}</span><b>${v}</b></div>`),pr=(l,h,n)=>{const p=Math.round(h/n*100);R.push(`<div class="sr"><span class="lb">${ic("t",26)}${l}</span><span style="display:flex;align-items:center;gap:8px">${gauge(p)}<b>${p}%</b></span></div>`)};
  if(a.a){row("Animaux tirés",a.a);row("Prélevés",a.p);if(a.m)row("Manqués",a.m);if(a.h)row("Blessés ou incertains",a.h);pr("Réussite",a.p,a.a)}
  if(a.bn)row("Balles tirées",a.bn,ic("b",26));if(a.cn)row("Cartouches tirées",a.cn,ic("c",26));
  if(a.p&&a.n){const uu=a.bn&&!a.cn?"b":a.cn&&!a.bn?"c":"";row("Munitions par pièce",effTxt(a.n,a.p,uu).replace(/ par pièce$/,""))}
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(e.mode||"type à préciser")}<br>📍 ${esc(lieu(e.place))} ${link(e.place)}${(e.postes||[]).length?`<br>Poste${e.postes.length>1?"s":""} : ${e.postes.map(x=>"n° "+esc(x.n)).join(" · ")}`:""}</p>
  <button id="sh-day" class="shb"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Partager ma journée</button>
- <h2 style="margin-top:14px">Mes résultats</h2>${Object.keys(cnt).length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<button class="tl" data-rs="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche un résultat pour voir le détail du tir.</p>`:'<p class="mut sans">Aucun gibier prélevé par toi.</p>'}
+ <h2 style="margin-top:14px">Mes résultats</h2>${Object.keys(cnt).length||WB.length?`<div class="tls">${Object.entries(cnt).map(([k,v])=>`<button class="tl" data-rs="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}${WB.map(t=>`<button class="tl tlw${t.lost?" lost":""}" data-rw="${t.id}"><div class="sv">${sil(tname(t),64)}<b class="q">${t.lost?"✕":"?"}</b></div>${esc(tname(t))}${t.k>1?" × "+t.k:""}<small>${t.lost?"non retrouvé":"blessé · à confirmer"}</small></button>`).join("")}</div><p class="mut sans">Touche un résultat pour voir le détail du tir${WB.some(t=>!t.lost)?" ou confirmer un animal blessé":""}.</p>`:'<p class="mut sans">Aucun gibier prélevé par toi.</p>'}
  ${R.length?`<h2>Statistiques</h2><div class="card sans">${R.join("")}</div>`:""}
  <h2>Tableau de la journée</h2>${Object.keys(tabC).length?`<div class="tls">${Object.entries(tabC).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut sans">Tableau final non encodé.</p>'}${(f.tabPhotos||[]).length?`<div class="ph">${f.tabPhotos.map(p=>`<img data-pid="${p}" alt="Tableau de chasse">`).join("")}</div>`:''}
- ${f.photos.length?`<button class="s" id="sh-ph" style="width:100%;margin-top:10px">📷 Afficher les photos (${f.photos.length})</button>`:""}
+ ${PH.length?`<button class="s" id="sh-ph" style="width:100%;margin-top:10px">📷 Afficher les photos (${PH.length})</button>`:""}
  ${f.notes?`<h2>Notes</h2><div class="card">${esc(f.notes)}</div>`:""}
- <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div>`;
+ <div class="row" style="margin-top:14px"><button class="s" id="bk" style="flex:0 0 auto;padding:11px 16px;font-size:1rem">‹ Retour</button><button class="p" id="md">Modifier la fiche de chasse</button></div><div class="endsp"></div>`;
  if(S.ev[fe].closed&&S.ev[fe].date==iso(new Date())){const ro=document.createElement("button");ro.className="s";ro.textContent="Rouvrir la journée (réafficher BANG)";ro.style.cssText="width:100%;margin-top:14px;font-size:.88rem";ro.onclick=()=>{delete S.ev[fe].closed;save();toast("Journée rouverte.");render()};const sp=$("#app").lastElementChild;$("#app").insertBefore(ro,sp&&sp.style&&sp.style.height?sp:null)}
  $("#sh-day").onclick=()=>{const u=(S.ev[fe].fiche.tirs||[]).filter(t=>t.p&&CLS[t.sp]&&!t.sx);if(!u.length)return shareDay(fe);
   modal(`<h2 style="margin-top:0">Précise d'abord ton tableau</h2><p class="sans" style="line-height:1.5">Avant de partager ta journée, indique s'il s'agit d'un mâle, d'une femelle ou d'un jeune pour : <b>${[...new Set(u.map(t=>t.sp))].map(esc).join(", ")}</b>.</p><button class="p li" id="sh-fx">Préciser maintenant</button>`);
   $("#sh-fx").onclick=()=>{const id=fe;closeM();openFiche(id);fd.tirs.forEach(t=>{if(t.p&&CLS[t.sp]&&!t.sx)t.ok=false});render()}};
  $("#bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");$("#md").onclick=()=>openFiche(fe);
- if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${f.photos.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
- document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&(tname(t)==k||k.startsWith(t.sp)));
+ if($("#sh-ph"))$("#sh-ph").onclick=()=>modal(`<h2>Photos de la journée</h2><div class="ph">${PH.map(p=>`<img data-pid="${p}" alt="Photo de la journée">`).join("")}</div>`);
+ document.querySelectorAll("[data-rw]").forEach(b=>b.onclick=()=>woundModal(fe,b.dataset.rw));
+ document.querySelectorAll("[data-rs]").forEach(b=>b.onclick=()=>{const k=b.dataset.rs;let ts=f.tirs.filter(t=>t.p&&tname(t)==k);
   const one=t=>{const u=UL[t.u].toLowerCase(),p=t.n?Math.round(t.h/t.n*100):0,ex=t.sp=="Sanglier"?(t.w||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>esc(x)+" kg"):(COR(t.sp)&&t.sx=="m")?(t.c||[]).slice(0,t.p).filter(x=>x!==""&&x!=null).map(x=>esc(x)+" cors"):[];
    return `<div class="card sans"><div class="row" style="gap:10px;justify-content:flex-start">${sil(tname(t),48)}<div><b>${esc(tname(t))}</b> ${CLS[t.sp]?"":sxi(t.sx)}</div></div>
    <div class="sr"><span class="lb">Résultat</span><span class="chip2 ${(RES[t.r]||["cb"])[0]}">${(RES[t.r]||["","–"])[1]}${t.r!="m"&&t.k>1?" × "+t.k:""}</span></div><div class="sr"><span class="lb">${ic(t.u,26)}${UL[t.u]} tirées</span><b>${t.n}</b></div>
@@ -1858,7 +2014,11 @@ function rStats(){if(!rStats._t||Date.now()-rStats._t>60000){rStats._t=Date.now(
   drill(`${sil(k,56)}<span>${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${tot}</b><span>prélèvements</span></div><div class="sc2"><b>${rows.length}</b><span>journées</span></div>${ws.length?`<div class="sc2"><b>${av(ws)}</b><span>kg en moyenne</span></div>`:cs.length?`<div class="sc2"><b>${av(cs)}</b><span>cors en moyenne</span></div>`:""}</div>`,rows)});
  document.querySelectorAll("[data-pl]").forEach(b=>b.onclick=()=>{const k=b.dataset.pl,es=L.filter(e=>place(e)==k);
   drill(`<span>📍 ${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${es.length}</b><span>journées</span></div><div class="sc2"><b>${bySec[k]}</b><span>prélèvements</span></div></div>`,es.map(e=>({e,txt:pt(e)+" prélèvement"+(pt(e)>1?"s":"")})))})}
-function migrate(){migTirs();if(S.dep=="75")S.dep=null;const REN={"Cerf élaphe – mâle":"Cerf mâle","Cerf élaphe – femelle":"Biche","Cerf élaphe – bichette":"Bichette","Cerf élaphe – jeune":"Faon","Chevreuil – brocard":"Brocard","Chevreuil – chevrette":"Chevrette","Chevreuil – chevrillard":"Chevrillard"},NEW="Cerf élaphe",mp={cerf:"m",biche:"f",bichette:"b",faon:"j",brocard:"m",chevrette:"f",chevrillard:"j",coq:"m",poule:"f","mâle":"m",femelle:"f",jeune:"j"},tn={cerf:"mâle",biche:"femelle",bichette:"bichette",faon:"jeune"};
+function migrate(){migTirs();if(S.dep=="75")S.dep=null;
+ /* nouvelle liste des modes de chasse : « Fauconnerie » devient « Chasse au vol (fauconnerie) » ; les anciens modes déjà utilisés deviennent des modes personnels */
+ if(!S.md2){S.md2=1;S.cm=S.cm||[];const RN={"Fauconnerie":"Chasse au vol (fauconnerie)"};
+  evs().forEach(e=>{if(RN[e.mode])e.mode=RN[e.mode];if(e.mode&&!MODES.includes(e.mode)&&!S.cm.includes(e.mode))S.cm.push(e.mode)});
+  S.hm=(S.hm||[]).map(m=>RN[m]||m).filter(m=>MODES.includes(m)||S.cm.includes(m))}const REN={"Cerf élaphe – mâle":"Cerf mâle","Cerf élaphe – femelle":"Biche","Cerf élaphe – bichette":"Bichette","Cerf élaphe – jeune":"Faon","Chevreuil – brocard":"Brocard","Chevreuil – chevrette":"Chevrette","Chevreuil – chevrillard":"Chevrillard"},NEW="Cerf élaphe",mp={cerf:"m",biche:"f",bichette:"b",faon:"j",brocard:"m",chevrette:"f",chevrillard:"j",coq:"m",poule:"f","mâle":"m",femelle:"f",jeune:"j"},tn={cerf:"mâle",biche:"femelle",bichette:"bichette",faon:"jeune"};
  S.hs=(S.hs||[]).map(x=>x=="Cerv"+"idé"?NEW:x);
  /* nouvelles espèces (oct. 2026) : masquées par défaut chez les utilisateurs existants (sauf caille et grive en France) */
  if(!S.sp2){S.sp2=1;if(S.setupDone||evs().length){const keep=S.reg=="fr"?["Caille des blés","Grive"]:[];["Isard","Caille des blés","Grive","Sarcelle d'hiver","Canard chipeau","Oie cendrée"].forEach(x=>{if(!keep.includes(x)&&!S.hs.includes(x))S.hs.push(x)})}}
@@ -1871,13 +2031,15 @@ go("cal");
 if(!S.tabSync1){let ch=0;evs().forEach(e=>{if(e.fiche&&syncTab(e.fiche))ch=1});S.tabSync1=1;save();if(ch)render()}
 if(!S.tabFx1){let ch=0;evs().forEach(e=>{if(e.fiche&&fixTab(e.fiche))ch=1});S.tabFx1=1;save();if(ch)render()}
 migratePhotos().then(c=>{if(c)render()}).catch(()=>{});
+setTimeout(woundAsk,3500);setInterval(woundAsk,60000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")setTimeout(woundAsk,1800)});
+if(IS_APP){woundSync(false);const L=natLN();if(L)try{L.addListener("localNotificationActionPerformed",a=>{const x=a&&a.notification&&a.notification.extra;if(x&&x.ev)openWound(x.ev,x.tir)})}catch(e){}}
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 </script>
 <script>
-if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
+if(!IS_APP&&"serviceWorker" in navigator&&/^https?:$/.test(location.protocol)){
  let hadCtl=!!navigator.serviceWorker.controller,shown=false,reloading=false;
  const banner=()=>{if(shown)return;shown=true;const d=document.createElement("div");d.id="upd";d.setAttribute("role","alert");
-  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(10px + env(safe-area-inset-top,0px));z-index:50;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;font:600 .95rem system-ui;box-shadow:0 6px 20px #0006";
+  d.style.cssText="position:fixed;left:10px;right:10px;top:calc(10px + var(--safe-area-inset-top,env(safe-area-inset-top,0px)));z-index:50;background:#e8a032;color:#2a1c05;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;font:600 .95rem system-ui;box-shadow:0 6px 20px #0006";
   d.innerHTML='<span style="flex:1">Nouvelle version de ChasseLog disponible.</span><button style="border:0;border-radius:10px;background:#2a1c05;color:#fff;font:700 .95rem system-ui;padding:10px 14px">Mettre à jour</button><button aria-label="Plus tard" style="border:0;background:none;color:#2a1c05;font-size:1.3rem;padding:4px 6px">✕</button>';
   document.body.appendChild(d);d.querySelectorAll("button")[0].onclick=async()=>{d.querySelector("span").textContent="Mise à jour…";reloading=true;try{const r=await navigator.serviceWorker.getRegistration();if(r){await r.update().catch(()=>{});if(r.waiting){r.waiting.postMessage("skip");setTimeout(()=>location.reload(),2500);return}}}catch(e){}location.reload()};d.querySelectorAll("button")[1].onclick=()=>{d.remove();shown=false}};
  navigator.serviceWorker.addEventListener("controllerchange",()=>{if(reloading)return location.reload();if(hadCtl)banner();hadCtl=true});

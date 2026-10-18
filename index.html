@@ -1146,14 +1146,22 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
    rr=(X,Y,w,h,r)=>{x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()};
   if(PF=="fit"){const[X,Y,w,h]=box(0,128,236);x.drawImage(PI,X,Y,w,h)}
   else if(PF=="frame"){const[X,Y,w,h]=box(64,150,262),B=16;x.save();x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=40;x.shadowOffsetY=16;x.fillStyle="#f3efe2";rr(X-B,Y-B,w+2*B,h+2*B,14);x.fill();x.restore();x.drawImage(PI,X,Y,w,h);x.strokeStyle="#e8a032";x.lineWidth=3;rr(X-B-8,Y-B-8,w+2*B+16,h+2*B+16,20);x.stroke()}
-  else if(PF=="dual"||PF=="dual2"){/* fond : la même photo, floue, qui se fond dans le vert de l'image (sans bord visible) */
+  else if(PF=="dual"||PF=="dual2"||PF=="tape"){/* fond : la même photo, floue, qui se fond dans le vert de l'image (sans bord visible) */
    const oc=document.createElement("canvas");oc.width=W;oc.height=PHH;const ox=oc.getContext("2d"),sc=Math.max(W/PI.width,PHH/PI.height),dw=PI.width*sc,dh=PI.height*sc;
    ox.filter="blur(12px)";ox.drawImage(PI,(W-dw)/2-20,(PHH-dh)/2-20,dw+40,dh+40);ox.filter="none";ox.fillStyle="rgba(21,36,17,.18)";ox.fillRect(0,0,W,PHH);
    ox.globalCompositeOperation="destination-in";const gv=ox.createLinearGradient(0,0,0,PHH);gv.addColorStop(0,"rgba(0,0,0,.95)");gv.addColorStop(.55,"rgba(0,0,0,.9)");gv.addColorStop(.82,"rgba(0,0,0,.45)");gv.addColorStop(1,"rgba(0,0,0,0)");ox.fillStyle=gv;ox.fillRect(0,0,W,PHH);
    const gh=ox.createLinearGradient(0,0,W,0);gh.addColorStop(0,"rgba(0,0,0,.6)");gh.addColorStop(.12,"#000");gh.addColorStop(.88,"#000");gh.addColorStop(1,"rgba(0,0,0,.6)");ox.fillStyle=gh;ox.fillRect(0,0,W,PHH);x.drawImage(oc,0,0);
    if(DEC){x.save();x.beginPath();x.rect(0,0,W,PHH);x.clip();x.drawImage(DEC,0,0,W,c.height);x.restore()}/* branches de chêne au-dessus du fond flou */
-   const[X,Y,w,h]=box(40,136,246);x.save();x.shadowColor="rgba(0,0,0,.6)";x.shadowBlur=46;x.shadowOffsetY=18;rr(X,Y,w,h,22);x.fillStyle="#000";x.fill();x.restore();x.save();rr(X,Y,w,h,22);x.clip();x.drawImage(PI,X,Y,w,h);x.restore();
-   if(PF=="dual"){x.strokeStyle="rgba(243,239,226,.85)";x.lineWidth=4;rr(X,Y,w,h,22);x.stroke()}}
+   if(PF=="tape"){/* photo imprimée (bord blanc), légèrement penchée, collée avec 4 morceaux de scotch */
+    const[X,Y,w,h]=box(96,170,280),B=18,cx=X+w/2,cy=Y+h/2;x.save();x.translate(cx,cy);x.rotate(-.025);
+    x.save();x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=30;x.shadowOffsetX=6;x.shadowOffsetY=14;x.fillStyle="#f7f3e8";x.fillRect(-w/2-B,-h/2-B,w+2*B,h+2*B);x.restore();
+    x.save();x.filter="sepia(.28) saturate(.9) contrast(1.04)";x.drawImage(PI,-w/2,-h/2,w,h);x.restore();
+    const vg=x.createRadialGradient(0,0,Math.min(w,h)*.35,0,0,Math.max(w,h)*.62);vg.addColorStop(0,"rgba(60,40,10,0)");vg.addColorStop(1,"rgba(60,40,10,.28)");x.fillStyle=vg;x.fillRect(-w/2,-h/2,w,h);
+    const tape=(tx,ty,ang)=>{x.save();x.translate(tx,ty);x.rotate(ang);const tw=150,th=46;x.shadowColor="rgba(0,0,0,.25)";x.shadowBlur=6;x.shadowOffsetY=2;x.fillStyle="rgba(236,226,196,.78)";x.beginPath();
+     for(let i=0;i<=10;i++)x.lineTo(-tw/2+i*tw/10,-th/2+(i%2?2.5:-2.5));for(let i=10;i>=0;i--)x.lineTo(-tw/2+i*tw/10,th/2+(i%2?2.5:-2.5));x.closePath();x.fill();x.shadowColor="transparent";x.fillStyle="rgba(255,255,255,.18)";x.fillRect(-tw/2,-th/2,tw,th/3);x.restore()};
+    const hx=w/2+B-10,hy=h/2+B-10;tape(-hx,-hy,-.72);tape(hx,-hy,.70);tape(-hx,hy,.70);tape(hx,hy,-.72);x.restore()}
+   else{const[X,Y,w,h]=box(40,136,246);x.save();x.shadowColor="rgba(0,0,0,.6)";x.shadowBlur=46;x.shadowOffsetY=18;rr(X,Y,w,h,22);x.fillStyle="#000";x.fill();x.restore();x.save();rr(X,Y,w,h,22);x.clip();x.drawImage(PI,X,Y,w,h);x.restore();
+   if(PF=="dual"){x.strokeStyle="rgba(243,239,226,.85)";x.lineWidth=4;rr(X,Y,w,h,22);x.stroke()}}}
   else{cover(1);shade(.55,.15)}}y=50}
   if(D&&lg)x.drawImage(lg,W/2-150,y,56,56);x.font=F(800,40);const cw=x.measureText("Chasse").width,lw=x.measureText("Log").width,lx=W/2-150+70;
   if(D){x.fillStyle="#f3efe2";x.fillText("Chasse",lx,y+42);x.fillStyle="#e8a032";x.fillText("Log",lx+cw,y+42)}y+=56+40;if(PI)y=PHH-250;

@@ -292,6 +292,7 @@ button.d[data-dg]{min-height:44px;padding:10px 14px}
 .tlw{border-style:dashed;border-color:#e8a032}.tlw .sv img{opacity:.6}.tlw b.q{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#e8a032;color:#2a1c05;font-size:1.05rem}.tlw small{display:block;color:#a06b12;font-weight:700}.tlw.lost{border-color:var(--line)}.tlw.lost b.q{background:var(--line);color:var(--mut)}.tlw.lost small{color:var(--mut)}
 .endsp{height:calc(28px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)))}
 .ppk{display:block;text-align:center;cursor:pointer}
+.shpf{margin:4px 0 10px}.shpf .seg{margin-top:4px}.shpf .seg button{min-height:42px}
 /* Mes favoris */
 .fvt{margin:4px 0 12px}.fvt button{min-height:42px}
 .fvg{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
@@ -1112,14 +1113,16 @@ function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||
  const uu=a.bn&&!a.cn?"b":a.cn&&!a.bn?"c":"";
  modal(`<h2 style="margin-top:0">Partager ma journée</h2>
  <div class="shst">${[["tro","Trophée"],["com","Complet"],["pho","Photo du tableau"]].map(([k,l])=>k=="pho"&&!hasPh?"":`<button data-st="${k}" class="${o.st==k?"on":""}">${l}</button>`).join("")}</div>
+ <div class="shpf" id="sh-pf" style="${o.st=="pho"?"":"display:none"}"><span class="mut sans">Mise en page de la photo</span><div class="seg">${[["dual2","Style 1 · superposée"],["tape","Style 2 · vintage"]].map(([k,l])=>`<button data-pf="${k}" class="${(o.pf||"dual2")==k?"on":""}">${l}</button>`).join("")}</div></div>
  <div class="shpv" id="sh-pv"><span class="mut sans">Préparation de l'aperçu…</span></div>
  ${sw("mine","Mes pièces")}${sw("reus","Réussite",a.a?`${a.p} prélevé${a.p>1?"s":""} sur ${a.a} ${a.a>1?"animaux":"animal"} tiré${a.a>1?"s":""}`:"")}${sw("eff","Munitions par pièce",effTxt(a.n,a.p,uu))}${sw("gun","Arme utilisée")}${sw("tab","Tableau de la journée")}${sw("lieu","Lieu et poste")}
  <div class="row" style="margin-top:14px"><button class="s" id="sh-dl">⬇ Télécharger l'image</button><button class="p" id="sh-go" style="background:#e8a032;color:#2a1c05;font-weight:800">Partager</button></div>`);
  let tk=0,cur=null;const pv=async()=>{const my=++tk;S.shareOpt=o;save();try{const c=await dayCanvas(id,o);if(my!=tk||!$("#sh-pv"))return;cur=c;$("#sh-pv").innerHTML=`<img src="${c.toDataURL("image/jpeg",.72)}" alt="Aperçu de l'image">`}catch(er){if($("#sh-pv"))$("#sh-pv").innerHTML='<span class="mut sans">Aperçu indisponible.</span>'}};pv();
- document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));pv()});
+ document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));$("#sh-pf").style.display=o.st=="pho"?"":"none";pv()});
+ document.querySelectorAll("#mo [data-pf]").forEach(b=>b.onclick=()=>{o.pf=b.dataset.pf;document.querySelectorAll("#mo [data-pf]").forEach(x=>x.classList.toggle("on",x==b));pv()});
  document.querySelectorAll("#mo [data-so]").forEach(i=>i.onchange=()=>{o[i.dataset.so]=i.checked?1:0;pv()});
- $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
- $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,action:"share"});const file=await shareFile(id,o);if(IS_APP){try{await natShare({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL,dialogTitle:"Partager ma journée"})}catch(er){toast("Partage impossible pour le moment.")}return}try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
+ $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,layout:o.st=="pho"?o.pf||"dual2":"",action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
+ $("#sh-go").onclick=async()=>{track("share_image",{style:o.st,layout:o.st=="pho"?o.pf||"dual2":"",action:"share"});const file=await shareFile(id,o);if(IS_APP){try{await natShare({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL,dialogTitle:"Partager ma journée"})}catch(er){toast("Partage impossible pour le moment.")}return}try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"Ma journée de chasse",text:"Ma journée de chasse, encodée avec ChasseLog : "+APP_URL});return}}catch(er){if(er&&er.name=="AbortError")return}
   dlFile(file);toast("Partage direct indisponible : l'image a été téléchargée.")}}
 
 async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]),W=1080,PX=90,PHO=o.st=="pho";if(syncTab(f))save();

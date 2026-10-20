@@ -1135,7 +1135,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
  const gids=o.gun?[...new Set(f.tirs.filter(q=>q.r).map(q=>q.gun).filter(g=>gunOf(g)))]:[],guns=gids.map(gunOf);
  const n=a.n,shot=f.tirs.some(q=>q.r),uu=a.bn&&!a.cn?"b":a.cn&&!a.bn?"c":"";
  const ims={};for(const[k]of[...MI,...TI])if(!(k in ims))ims[k]=await silImg(k);
- const gimg={};for(const g of guns){const t=g.type=="fusil"?"fusil":"carabine";if(!gimg[t])gimg[t]=await new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=()=>r(null);i.src="weapons/"+t+".webp"})}
+ const gimg={};for(const g of guns){const t=wImg(g.type);if(!gimg[t])gimg[t]=await new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=()=>r(null);i.src="weapons/"+t+".webp"})}
  const lg=await svgImg(LOGO_SVG);let PI=null;if(PHO&&(f.tabPhotos||[]).length){try{const b=await DB.get(f.tabPhotos[0]);if(b)PI=await new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=()=>r(null);i.src=typeof b=="string"?b:URL.createObjectURL(b)})}catch(er){}}const PHH=PI?820:0;
  const F=(w,z)=>`${w} ${z}px system-ui,-apple-system,"Segoe UI",sans-serif`;
  const c=document.createElement("canvas");c.width=W;let x=c.getContext("2d");
@@ -1182,7 +1182,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
   if(o.mine&&!PI){sec("Mes pièces");
   if(MI.length)grid(MI,true);else{y+=30;if(D){x.font=F(500,28);x.fillStyle="#cfd8c0";x.fillText(shot?"Pas de prélèvement pour moi aujourd'hui.":"Pas de tir aujourd'hui.",W/2,y)}y+=40}}
   if(o.st=="tro"&&shot&&(o.reus||o.eff)&&a.a){y+=60;y=pill(D,y,o.reus?rTxt:"🎯 "+effTxt(a.n,a.p,uu))}
-  if(guns.length){const seen=new Set();guns.forEach(g=>{const t=g.type=="fusil"?"fusil":"carabine";if(seen.has(t))return;seen.add(t);const im=gimg[t];if(!im)return;const gw=t=="fusil"?560:540,gh=im.height*gw/im.width;
+  if(guns.length){const seen=new Set();guns.forEach(g=>{const t=wImg(g.type);if(seen.has(t))return;seen.add(t);const im=gimg[t];if(!im)return;const gw=t=="fusil"?560:540,gh=im.height*gw/im.width;
     if(D){x.save();x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=16;x.shadowOffsetY=10;x.drawImage(im,W/2-gw/2,y,gw,gh);x.restore()}y+=gh+12});
    y+=22;if(D){x.font=F(600,26);x.fillStyle="#dfe6d2";x.fillText(guns.map(g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")).join("   ·   "),W/2,y)}y+=10}
   if(o.st=="com"&&shot&&a.a){y+=70;const st=[[String(a.a),(a.a>1?"animaux":"animal")+" tiré"+(a.a>1?"s":"")],[String(a.p),"prélevé"+(a.p>1?"s":"")]];if(o.reus)st.push([a.re+" %","réussite"]);if(o.eff&&a.p&&a.n)st.push([String(Math.round(a.n/a.p*10)/10).replace(".",","),(uu=="b"?"balles":uu=="c"?"cartouches":"munitions")+" / pièce"]);
@@ -1327,11 +1327,14 @@ fusil:{
  "Perazzi":{"MX8":"12/70"},
  "Mossberg":{"500":F2,"930":F2},
  "Remington":{"870":F2,"Versa Max":F2},
- "Baikal":{"MP-27":F2,"MP-153":F2}}};
-const gunIc=(h=18,type="carabine")=>`<img src="weapons/${type=="fusil"?"fusil":"carabine"}.webp" alt="" aria-hidden="true" style="height:${Math.round(h*1.25)}px;width:${Math.round(h*4.6)}px;object-fit:contain;flex:0 0 auto;vertical-align:middle">`;
-const gl=g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" ("+g.cal+")":"");
+ "Baikal":{"MP-27":F2,"MP-153":F2}},
+arc:{"Mathews":{},"Hoyt":{},"PSE":{},"Bowtech":{},"Bear Archery":{},"Elite":{},"Prime":{},"Xpedition":{}}};
+const PTS=["Lames fixes – 2 lames","Lames fixes – 3 lames","Mécanique – 2 lames","Mécanique – 3 lames","Hybride (fixe + mécanique)"],PGR=["100 gr","125 gr","150 gr","200 gr"];
+const wImg=t=>t=="fusil"?"fusil":t=="arc"?"arc":"carabine",wLbl=t=>t=="fusil"?"Fusil":t=="arc"?"Arc à poulies":"Carabine";
+const gunIc=(h=18,type="carabine")=>`<img src="weapons/${wImg(type)}.webp" alt="" aria-hidden="true" style="height:${Math.round(h*1.25)}px;width:${Math.round(h*4.6)}px;object-fit:contain;flex:0 0 auto;vertical-align:middle">`;
+const gl=g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" ("+g.cal+(g.gr?" · "+g.gr:"")+")":"");
 const gunOf=id=>(S.guns||[]).find(g=>g.id==id);
-let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};
+let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:"",gr:""};
 /* ---------- mes documents (stockés uniquement sur le téléphone) ---------- */
 const DOCS=[["permis","Permis / licence de chasse","📜",true],["assur","Attestation d'assurance","🛡️",true],["idr","Carte d'identité – recto","🪪",false],["idv","Carte d'identité – verso","🪪",false]];
 const docKey=k=>"_doc:"+k;
@@ -1392,20 +1395,21 @@ function pxModal(onOk){const hc=homeCC(),main=hc=="fr"?"be":"fr";const L=[pcc(ma
 
 function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO=ag.brand=="__o",models=cat&&ag.brand&&!brandO&&cat[ag.brand]?Object.keys(cat[ag.brand]):[],modelO=ag.model=="__o",cals=models.length&&ag.model&&!modelO&&cat[ag.brand][ag.model]?cat[ag.brand][ag.model].split("|"):[];
  const opt=(arr,v,ph)=>`<option value="">${ph}</option>${arr.map(x=>`<option ${x==v?"selected":""}>${esc(x)}</option>`).join("")}<option value="__o" ${v=="__o"?"selected":""}>Autre…</option>`;
- const brand=brandO?ag.ob:ag.brand,model=(brandO||modelO)?ag.om:ag.model,cal=(brandO||modelO||ag.cal=="__o")?ag.oc:ag.cal,okAdd=ag.type&&brand&&cal;
+ const brand=brandO?ag.ob:ag.brand,model=(brandO||modelO)?ag.om:ag.model,cal=(ag.type=="arc"?ag.cal=="__o":(brandO||modelO||ag.cal=="__o"))?ag.oc:ag.cal,okAdd=ag.type&&brand&&cal;
  $("#app").innerHTML=`<button id="g-bk" aria-label="Retour" style="position:fixed;top:10px;left:10px;z-index:6;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.7rem;line-height:1;padding:0 0 3px;box-shadow:0 2px 6px #0003">‹</button><h1 style="margin-top:4px;padding-left:48px">Mes armes</h1>
- <div>${S.guns.map(g=>`<div class="card cd sans">${gunIc(22,g.type)}<div style="flex:1;min-width:0"><b>${esc([g.brand,g.model].filter(Boolean).join(" "))}</b><br><span class="mut">${g.type=="fusil"?"Fusil":"Carabine"} · ${esc(g.cal)}</span></div><button class="d" data-dg="${g.id}" style="flex:0 0 auto">Retirer</button></div>`).join("")||'<p class="mut sans">Aucune arme enregistrée.</p>'}</div>
- <h2>Ajouter une arme</h2><label>Type</label><div class="seg"><button data-gt="carabine" class="${ag.type=="carabine"?"on":""}">Carabine</button><button data-gt="fusil" class="${ag.type=="fusil"?"on":""}">Fusil</button></div>
+ <div>${S.guns.map(g=>`<div class="card cd sans">${gunIc(22,g.type)}<div style="flex:1;min-width:0"><b>${esc([g.brand,g.model].filter(Boolean).join(" "))}</b><br><span class="mut">${wLbl(g.type)} · ${esc(g.cal)}${g.gr?" · "+esc(g.gr):""}</span></div><button class="d" data-dg="${g.id}" style="flex:0 0 auto">Retirer</button></div>`).join("")||'<p class="mut sans">Aucune arme enregistrée.</p>'}</div>
+ <h2>Ajouter une arme</h2><label>Type</label><div class="seg"><button data-gt="carabine" class="${ag.type=="carabine"?"on":""}">Carabine</button><button data-gt="fusil" class="${ag.type=="fusil"?"on":""}">Fusil</button><button data-gt="arc" class="${ag.type=="arc"?"on":""}">Arc</button></div>
  ${cat?`<label>Marque</label><select id="g-b">${opt(Object.keys(cat),ag.brand,"Choisir une marque")}</select>${brandO?`<input id="g-ob" value="${esc(ag.ob)}" placeholder="Marque" style="margin-top:6px">`:""}`:""}
- ${(models.length||brandO)?`<label>Modèle</label>${brandO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle">`:`<select id="g-m">${opt(models,ag.model,"Choisir un modèle")}</select>${modelO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle" style="margin-top:6px">`:""}`}`:""}
- ${(cals.length||brandO||modelO)?`<label>Calibre</label>${(brandO||modelO)?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre (ex. .308 Win ou 12/76)">`:`<select id="g-c">${opt(cals,ag.cal,"Choisir un calibre")}</select>${ag.cal=="__o"?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre" style="margin-top:6px">`:""}`}`:""}
+ ${ag.type=="arc"?(ag.brand?`<label>Modèle <span class="mut" style="font-weight:400">(facultatif)</span></label><input id="g-om" value="${esc(ag.om)}" placeholder="Modèle (ex. Lift X)"><label>Pointe de chasse</label><select id="g-c">${opt(PTS,ag.cal,"Choisir une pointe")}</select>${ag.cal=="__o"?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Pointe" style="margin-top:6px">`:""}<label>Poids de pointe</label><div class="seg">${PGR.map(x=>`<button data-gr="${x}" class="${ag.gr==x?"on":""}">${x}</button>`).join("")}</div><p class="mut sans" style="font-size:.78rem;margin-top:8px">🏹 Avec un arc, les munitions passent automatiquement sur « flèches » au BANG.</p>`:""):`${(models.length||brandO)?`<label>Modèle</label>${brandO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle">`:`<select id="g-m">${opt(models,ag.model,"Choisir un modèle")}</select>${modelO?`<input id="g-om" value="${esc(ag.om)}" placeholder="Modèle" style="margin-top:6px">`:""}`}`:""}
+ ${(cals.length||brandO||modelO)?`<label>Calibre</label>${(brandO||modelO)?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre (ex. .308 Win ou 12/76)">`:`<select id="g-c">${opt(cals,ag.cal,"Choisir un calibre")}</select>${ag.cal=="__o"?`<input id="g-oc" value="${esc(ag.oc)}" placeholder="Calibre" style="margin-top:6px">`:""}`}`:""}`}
  <button class="p" id="g-ok" style="width:100%;margin-top:14px" ${okAdd?"":"disabled"}>Ajouter cette arme</button><p class="mut sans" style="font-size:.8rem">La liste est indicative : choisis « Autre… » pour saisir une marque, un modèle ou un calibre absent.</p><div style="height:90px"></div>`;
  $("#g-bk").onclick=()=>go(vst.length?vst[vst.length-1]:"cal");
- document.querySelectorAll("[data-gt]").forEach(b=>b.onclick=()=>{ag={type:b.dataset.gt,brand:"",model:"",cal:"",ob:"",om:"",oc:""};render()});
- const on=(id,k,reset)=>{const el=$(id);if(el)el.onchange=()=>{ag[k]=el.value;reset.forEach(r=>ag[r]="");render()}},tx=(id,k)=>{const el=$(id);if(el)el.oninput=()=>{ag[k]=el.value;const b=$("#g-ok");if(b){const bb=ag.brand=="__o"?ag.ob:ag.brand,cc=(ag.brand=="__o"||ag.model=="__o"||ag.cal=="__o")?ag.oc:ag.cal;b.disabled=!(ag.type&&bb&&cc)}}};
- on("#g-b","brand",["model","cal","ob","om","oc"]);on("#g-m","model",["cal","om","oc"]);on("#g-c","cal",["oc"]);tx("#g-ob","ob");tx("#g-om","om");tx("#g-oc","oc");
+ document.querySelectorAll("[data-gt]").forEach(b=>b.onclick=()=>{ag={type:b.dataset.gt,brand:"",model:"",cal:"",ob:"",om:"",oc:"",gr:""};render()});
+ document.querySelectorAll("[data-gr]").forEach(b=>b.onclick=()=>{ag.gr=ag.gr==b.dataset.gr?"":b.dataset.gr;render()});
+ const on=(id,k,reset)=>{const el=$(id);if(el)el.onchange=()=>{ag[k]=el.value;reset.forEach(r=>ag[r]="");render()}},tx=(id,k)=>{const el=$(id);if(el)el.oninput=()=>{ag[k]=el.value;const b=$("#g-ok");if(b){const bb=ag.brand=="__o"?ag.ob:ag.brand,cc=(ag.type=="arc"?ag.cal=="__o":(ag.brand=="__o"||ag.model=="__o"||ag.cal=="__o"))?ag.oc:ag.cal;b.disabled=!(ag.type&&bb&&cc)}}};
+ on("#g-b","brand",ag.type=="arc"?["cal","ob","oc"]:["model","cal","ob","om","oc"]);on("#g-m","model",["cal","om","oc"]);on("#g-c","cal",["oc"]);tx("#g-ob","ob");tx("#g-om","om");tx("#g-oc","oc");
  document.querySelectorAll("[data-dg]").forEach(b=>b.onclick=()=>{if(confirm("Retirer cette arme ?")){S.guns=S.guns.filter(g=>g.id!=b.dataset.dg);save();render()}});
- $("#g-ok").onclick=()=>{const bO=ag.brand=="__o",mO=bO||ag.model=="__o",cO=mO||ag.cal=="__o";S.guns.push({id:"g"+Date.now(),type:ag.type,brand:(bO?ag.ob:ag.brand).trim(),model:(mO?ag.om:ag.model).trim(),cal:(cO?ag.oc:ag.cal).trim()});save();ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:""};render()}}
+ $("#g-ok").onclick=()=>{const A=ag.type=="arc",bO=ag.brand=="__o",mO=A||bO||ag.model=="__o",cO=A?ag.cal=="__o":(mO||ag.cal=="__o");const g={id:"g"+Date.now(),type:ag.type,brand:(bO?ag.ob:ag.brand).trim(),model:(mO?ag.om:ag.model).trim(),cal:(cO?ag.oc:ag.cal).trim()};if(A&&ag.gr)g.gr=ag.gr;S.guns.push(g);save();ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:"",gr:""};render()}}
 
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};

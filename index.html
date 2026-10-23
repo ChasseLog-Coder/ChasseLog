@@ -1693,24 +1693,25 @@ function full(html,onSave){closeF();const o=document.createElement("div");o.id="
  $("#f-c").onclick=closeF;$("#f-s").onclick=onSave}
 function closeF(){const o=$("#ff");if(o){if(window.visualViewport&&o._f){visualViewport.removeEventListener("resize",o._f);visualViewport.removeEventListener("scroll",o._f)}o.remove()}}
 function openForm(id,ds,fromFiche){closeM();const e=id?S.ev[id]:{date:ds,title:"",mode:visM()[0]||"",role:"part",guests:[],host:"",place:{name:"",lat:null,lng:null}};
- let fl=Object.assign({},e.place),fg=[...(e.guests||[])],ft=e.time||null,hunt=!e.nh;
+ let fl=Object.assign({},e.place),fg=[...(e.guests||[])],ft=e.time||(id?null:"08:30"),tT=false,hunt=!e.nh;
  const ms=[...new Set(["",...visM(),e.mode])],tdy=iso(new Date());
  function sv(){const d=$("#e-d").value;if(!d)return alert("Choisis une date.");
   if(e.fiche&&d>tdy)return alert("Cette journée a une fiche de chasse encodée : elle ne peut pas être déplacée dans le futur.");
   const g=$("#e-r").value=="guest",gi=$("#e-gi").value.trim();if(!g&&gi&&$("#e-gr").style.display!="none")fg.push(gi);
   if(!hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle ne peut pas devenir un évènement hors chasse.");
-  const mode=hunt?$("#e-m").value:"",i=id||"e"+Date.now()+Math.floor(Math.random()*99);if(ft)e.time=ft;else delete e.time;if(hunt)delete e.nh;else e.nh=true;
+  const mode=hunt?$("#e-m").value:"",i=id||"e"+Date.now()+Math.floor(Math.random()*99);if(ft)e.time=ft;else delete e.time;e.desc=$("#e-n").value.trim();if(hunt)delete e.nh;else e.nh=true;
   if(id&&e.date!=d)delete e.remDone;S.ev[i]=Object.assign(e,{id:i,date:d,mode,title:$("#e-t").value.trim()||(hunt?mode||"Chasse":"Évènement"),role:g?"guest":"part",host:g?$("#e-h").value.trim():"",guests:g?[]:fg,place:fl});
   if(save()){if(!id)track("day_created",{hunt,has_place:fl.lat!=null,fav:!!fl.fav,has_time:!!ft});sel=d;cur=new Date(d+"T12:00");closeF();render();setTimeout(fillAddr,1500)}}
  full(`<h2 style="margin-top:0" id="e-h2">${id?"Modifier l'évènement":hunt?"Nouvelle journée de chasse":"Nouvel évènement"}</h2><div class="sunb" id="e-sun"></div><label>Titre</label><input id="e-t" value="${esc(e.title)}" placeholder="Chasse" autocomplete="off" autocapitalize="sentences">
  <div class="row"><div><label>Date</label><input type="date" id="e-d" value="${e.date}" ${e.fiche?`max="${tdy}"`:""}></div><div><div class="lbx"><span>Type de chasse</span><button type="button" id="e-hk" class="hk${hunt?" on":""}" aria-label="Journée de chasse" aria-pressed="${hunt}">✓</button></div><select id="e-m" ${hunt?"":"disabled"}>${ms.map(m=>`<option ${m==e.mode?"selected":""}>${esc(m)}</option>`).join("")}</select></div></div>
+ <div id="e-tw"></div>
  ${e.fiche?'<p class="mut sans">La fiche de chasse est encodée : la date ne peut pas être déplacée dans le futur.</p>':""}
  <p class="mut sans" id="e-nhm" style="margin:6px 0 0;${hunt?"display:none":""}">Ce n'est pas une journée de chasse : l'évènement n'apparaît pas dans les statistiques.</p>
  <div id="e-rw"><label>Rôle</label><select id="e-r"><option value="part" ${e.role!="guest"?"selected":""}>${roleL()}</option><option value="guest" ${e.role=="guest"?"selected":""}>Invité</option></select>
  <div id="e-pw"><div id="e-gl"></div><button class="s" id="e-gb" style="margin-top:8px">Ajouter un invité ?</button><div class="row" id="e-gr" style="display:none;margin-top:8px"><input id="e-gi" placeholder="Nom de l'invité"><button class="s" id="e-ga" style="flex:0 0 auto">Ajouter</button><button class="s" id="e-gc" style="flex:0 0 auto" aria-label="Annuler l'ajout">✕</button></div></div>
  <div id="e-hw"><label>Invitant</label><input id="e-h" value="${esc(e.host)}" placeholder="Nom de l'invitant"></div></div>
- <div id="e-tw"></div>
- <label id="e-ll">Lieu de RDV</label><div style="position:relative"><button class="s sans" id="e-l" style="width:100%;text-align:left;padding-right:46px"></button><button type="button" id="e-lx" aria-label="Retirer le lieu" style="display:none;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;line-height:1;padding:0">✕</button></div><div id="e-pl" style="margin-top:8px"></div>`,sv);
+ <label id="e-ll">Lieu de RDV</label><div style="position:relative"><button class="s sans" id="e-l" style="width:100%;text-align:left;padding-right:46px"></button><button type="button" id="e-lx" aria-label="Retirer le lieu" style="display:none;position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1rem;line-height:1;padding:0">✕</button></div><div id="e-pl" style="margin-top:8px"></div>
+ <label for="e-n">Notes</label><textarea id="e-n" rows="3" placeholder="Matériel, consignes, covoiturage…" autocapitalize="sentences">${esc(e.desc||"")}</textarea>`,sv);
  const gl=()=>{$("#e-gl").innerHTML=(fg.length?"<label>Invités</label>":"")+fg.map((g,i)=>`<span class="chip">${esc(g)}<button data-gx="${i}" aria-label="Retirer">✕</button></span>`).join("");document.querySelectorAll("[data-gx]").forEach(b=>b.onclick=()=>{fg.splice(+b.dataset.gx,1);gl()})};
  const rl=()=>{const ad=fl.addr||adOf(fl),nmx=fl.name||ad;$("#e-lx").style.display=fl.name||fl.lat!=null?"block":"none";$("#e-l").innerHTML=nmx?`${fl.fav?"⭐":"📍"} ${esc(nmx)}${fl.name&&ad?`<br><span class="mut" style="font-size:.82rem">${esc(ad)}</span>`:""}`:(fl.lat!=null?"📍 Recherche de l'adresse…":"📍 Choisir sur la carte");
   if(fl.lat!=null&&!ad){const k=adKey(fl.lat,fl.lng);rgAddr(fl.lat,fl.lng).then(s=>{if(fl.lat!=null&&adKey(fl.lat,fl.lng)==k){if(s)fl.addr=s;else if(!fl.name)$("#e-l").textContent="📍 "+coord(fl);if(s)rl()}}).catch(()=>{if(fl.lat!=null&&!fl.name&&!fl.addr)$("#e-l").textContent="📍 "+coord(fl)})}};
@@ -1728,9 +1729,9 @@ function openForm(id,ds,fromFiche){closeM();const e=id?S.ev[id]:{date:ds,title:"
    document.querySelectorAll("[data-fd]").forEach(b=>b.onclick=()=>{const f=F[+b.dataset.fd];if(!confirm("Supprimer « "+f.name+" » de tes lieux favoris ?"))return;F.splice(+b.dataset.fd,1);save();draw()});
    $("#fm-ok").onclick=()=>{closeM("2");const f=fl.fav&&(S.favs||[]).find(x=>x.id==fl.fav);if(fl.fav&&!f)delete fl.fav;else if(f)fl.name=f.name;rl();pl()}};draw()};
  const rr=()=>{const g=$("#e-r").value=="guest";$("#e-pw").style.display=g?"none":"block";$("#e-hw").style.display=g?"block":"none"};
- const tw=()=>{$("#e-tw").innerHTML=ft?`<label>Heure de RDV</label><div class="row"><input type="time" id="e-tm" value="${ft}"><button class="s" id="e-tx" style="flex:0 0 auto" aria-label="Retirer l'heure">✕</button></div>`:`<button class="s" id="e-ta" style="margin-top:12px">Ajouter une heure de RDV ?</button>`;
-  if(ft){$("#e-tm").onchange=ev=>{ft=ev.target.value||null;su()};$("#e-tx").onclick=()=>{ft=null;tw();su()}}else $("#e-ta").onclick=()=>{ft="08:30";tw();su()}};
- const hk=()=>{$("#e-hk").classList.toggle("on",hunt);$("#e-hk").setAttribute("aria-pressed",hunt);$("#e-m").disabled=!hunt;$("#e-rw").style.display=hunt?"block":"none";$("#e-nhm").style.display=hunt?"none":"block";$("#e-ll").textContent=hunt?"Lieu de RDV":"Lieu";$("#e-t").placeholder=hunt?"Chasse":"Évènement";if(!id)$("#e-h2").textContent=hunt?"Nouvelle journée de chasse":"Nouvel évènement (hors chasse)"};
+ const tw=()=>{$("#e-tw").innerHTML=`<label for="e-tm" id="e-tl">${hunt?"Heure de RDV":"Heure"}</label><div class="row"><input type="time" id="e-tm" value="${ft||""}">${ft?`<button class="s" id="e-tx" style="flex:0 0 auto" aria-label="Retirer l'heure">✕</button>`:""}</div>`;
+  $("#e-tm").onchange=ev=>{tT=true;const had=!!ft;ft=ev.target.value||null;if(had!=!!ft)tw();su()};if(ft)$("#e-tx").onclick=()=>{ft=null;tw();su()}};
+ const hk=()=>{$("#e-hk").classList.toggle("on",hunt);$("#e-hk").setAttribute("aria-pressed",hunt);$("#e-m").disabled=!hunt;$("#e-rw").style.display=hunt?"block":"none";$("#e-nhm").style.display=hunt?"none":"block";$("#e-ll").textContent=hunt?"Lieu de RDV":"Lieu";if($("#e-tl"))$("#e-tl").textContent=hunt?"Heure de RDV":"Heure";$("#e-t").placeholder=hunt?"Chasse":"Évènement";if(!id)$("#e-h2").textContent=hunt?"Nouvelle journée de chasse":"Nouvel évènement (hors chasse)"};
  const pk=x=>x.name?x.name.trim().toLowerCase():(x.lat!=null?x.lat.toFixed(4)+","+x.lng.toFixed(4):"");
  const pl=()=>{const F=[...(S.favs||[])].sort((a,b)=>(b.used||0)-(a.used||0));
   $("#e-pl").innerHTML=F.length?`<div class="row" style="gap:8px;align-items:center;width:100%"><select id="e-fs" style="flex:1;margin:0" aria-label="Lieux favoris"><option value="">⭐ Choisir un de mes lieux favoris…</option>${F.map(f=>`<option value="${f.id}" ${f.id==fl.fav?"selected":""}>${esc(f.name)}</option>`).join("")}</select><button type="button" class="s" id="e-fm" style="flex:0 0 auto">Gérer</button></div>`:"";
@@ -1739,7 +1740,7 @@ function openForm(id,ds,fromFiche){closeM();const e=id?S.ev[id]:{date:ds,title:"
  gl();rl();rr();tw();hk();pl();$("#e-r").onchange=rr;
  $("#e-hk").onclick=()=>{if(hunt&&e.fiche)return alert("Cette journée a une fiche de chasse : elle reste une journée de chasse.");hunt=!hunt;hk()};
   $("#e-t").addEventListener("change",()=>{if(id||fl.name||fl.lat!=null)return;const v=$("#e-t").value.trim().toLowerCase();if(!v)return;const o=evs().filter(x=>x.title.toLowerCase()==v&&x.place&&(x.place.name||x.place.lat!=null)).sort((a,b)=>a.date<b.date?1:-1)[0];
-  if(o){fl=Object.assign({},o.place);rl();pl();su();if(!ft&&o.time){ft=o.time;tw()}if(hunt&&o.mode&&[...$("#e-m").options].some(op=>op.value==o.mode))$("#e-m").value=o.mode;toast("Lieu repris de ta dernière journée « "+o.title+" ».")}});
+  if(o){fl=Object.assign({},o.place);rl();pl();su();if(o.time&&!tT&&(!ft||(!id&&ft=="08:30"))){ft=o.time;tw()}if(hunt&&o.mode&&[...$("#e-m").options].some(op=>op.value==o.mode))$("#e-m").value=o.mode;toast("Lieu repris de ta dernière journée « "+o.title+" ».")}});
  $("#e-gb").onclick=()=>{$("#e-gb").style.display="none";$("#e-gr").style.display="flex";$("#e-gi").focus()};
  $("#e-ga").onclick=()=>{const v=$("#e-gi").value.trim();if(v){fg.push(v);gl()}hideG()};
  $("#e-gc").onclick=hideG;

@@ -1427,7 +1427,7 @@ const gl=g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" ("+g.cal+(g.gr?
 const gunOf=id=>(S.guns||[]).find(g=>g.id==id);
 let ag={type:"",brand:"",model:"",cal:"",ob:"",om:"",oc:"",gr:""};
 /* ---------- mes documents (stockés uniquement sur le téléphone) ---------- */
-const DOCS=[["permis","Permis / licence de chasse","📜",true],["assur","Attestation d'assurance","🛡️",true],["idr","Carte d'identité – recto","🪪",false],["idv","Carte d'identité – verso","🪪",false]];
+const DOCS=[["permis","Permis / licence de chasse","📜",true],["assur","Attestation d'assurance","🛡️",true],["radio","Licence radio (talkies-walkies)","📻",true],["idr","Carte d'identité – recto","🪪",false],["idv","Carte d'identité – verso","🪪",false]];
 const docKey=k=>"_doc:"+k;
 /* permis étrangers : clés « px… » dans S.docs, avec pays (cc) et type de document (doc) */
 const PCC=[["fr","France","🇫🇷"],["be","Belgique – Wallonie","🇧🇪"],["fl","Belgique – Flandre","🇧🇪"],["lu","Luxembourg","🇱🇺"],["de","Allemagne","🇩🇪"],["nl","Pays-Bas","🇳🇱"],["es","Espagne","🇪🇸"],["xx","Autre pays","🌍"]];

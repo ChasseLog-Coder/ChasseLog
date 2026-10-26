@@ -109,8 +109,8 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .sumb{display:flex;justify-content:space-around;text-align:center;background:var(--acc);color:var(--bg);border-radius:14px;padding:10px 4px;margin:12px 0 4px;font-family:system-ui}.sumb b{display:block;font-size:1.35rem}.sumb span{font-size:.72rem;opacity:.9}
 /* Mes trophées */
 .trw{position:relative}.trw .tln{padding-right:52px}.trw.on .tln{background:color-mix(in srgb,#e8a032 15%,var(--card));border-color:#e8a032;box-shadow:0 0 0 1px #e8a032 inset}
-.trk{position:absolute;right:6px;bottom:4px;width:44px;height:40px;border:0;background:none;padding:6px;color:var(--mut);display:flex;align-items:center;justify-content:center;border-radius:10px}
-.tri{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.trw.on .trk{color:#b97a12}.trw.on .trk .ts{fill:#e8a032}
+.trq{position:absolute;right:6px;bottom:4px;width:44px;height:40px;border:0;background:none;padding:6px;color:var(--mut);display:flex;align-items:center;justify-content:center;border-radius:10px}
+.tri{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.trw.on .trq{color:#b97a12}.trw.on .trq .ts{fill:#e8a032}
 .trw .tln .chev{margin-bottom:22px}.trhint{font-size:.82rem;margin:-4px 2px 8px}
 .trf{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}.trf button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:7px 12px;font:600 .82rem system-ui}.trf button.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .trv{flex:0 0 auto;width:96px;margin:0}.trv button{min-height:36px}
@@ -342,7 +342,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-26d<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-26e<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></symbol>
 <symbol id="i-tgt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
@@ -1512,7 +1512,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-26d",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-10-26e",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1946,7 +1946,7 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
  ${sumBand(A)}
  <h2>Mes tirs</h2>
- ${fd.tirs.some(troOk)?`<p class="mut sans trhint">Grand gibier prélevé : touche le massacre pour l'ajouter à Mes trophées.</p>`:""}<div>${fd.tirs.map(t=>t.ok===false?ed(t,false):troOk(t)?`<div class="trw${isTro(t)?" on":""}">${tLine(t,true)}<button class="trk" data-trk="${t.id}" aria-pressed="${isTro(t)}" aria-label="${isTro(t)?"Retirer de":"Ajouter à"} Mes trophées">${TRO_ICON}</button></div>`:tLine(t,true)).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
+ ${fd.tirs.some(troOk)?`<p class="mut sans trhint">Grand gibier prélevé : touche le massacre pour l'ajouter à Mes trophées.</p>`:""}<div>${fd.tirs.map(t=>t.ok===false?ed(t,false):troOk(t)?`<div class="trw${isTro(t)?" on":""}">${tLine(t,true)}<button class="trq" data-trk="${t.id}" aria-pressed="${isTro(t)}" aria-label="${isTro(t)?"Retirer de":"Ajouter à"} Mes trophées">${TRO_ICON}</button></div>`:tLine(t,true)).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
  <button class="addt" id="a-b">＋ Ajouter un tir</button>
  <h2>Tableau final</h2>${nt?`<div class="tls" style="margin-bottom:8px">${Object.entries(fd.tab).filter(([k,v])=>v>0).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,56)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut sans" style="margin:-4px 0 8px">Les pièces de toute l\'équipe en fin de journée, avec une photo du tableau si tu veux.</p>'}
  <button class="tbb" id="tb">🦌 ${nt?`Modifier le tableau final · ${nt} pièce${nt>1?"s":""}`:"Encoder le tableau final"}</button>

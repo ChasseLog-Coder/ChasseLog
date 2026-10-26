@@ -131,7 +131,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .tdet{margin-top:10px}.tdet summary{color:var(--acc);font:600 .88rem system-ui;cursor:pointer;list-style:none;padding:4px 2px}.tdet summary::-webkit-details-marker{display:none}
 .addt{display:block;width:100%;border:1.5px dashed var(--acc);background:none;color:var(--acc);border-radius:12px;padding:11px;font:700 .95rem system-ui;margin-top:4px}
 .munq{background:#e8a03214;border:1px solid #e8a032;border-radius:14px;padding:10px 12px;margin-top:12px;font-family:system-ui}
-.shst{display:flex;gap:6px;margin-bottom:10px}.shst button{flex:1;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 2px;font:600 .82rem system-ui}.shst button.on{border-color:#e8a032;background:#e8a0321f}
+.shst{display:flex;gap:6px;margin-bottom:10px}.shst button{flex:1;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 2px;font:600 .82rem system-ui}.shst button.on{border-color:#e8a032;background:#e8a0321f}.shst button.off{opacity:.55;border-style:dashed}.shst button small{display:block;font-weight:400;font-size:.68rem;color:var(--mut)}
 .shpv{background:#152411;border-radius:10px;min-height:120px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;overflow:hidden}.shpv img{display:block;max-width:100%;max-height:44vh;object-fit:contain}
 .shtg{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 2px;border-bottom:1px solid var(--line);font:500 .92rem system-ui;cursor:pointer}.shtg small{display:block;color:var(--mut);font-size:.75rem}
 .shtg input{display:none}.shtg i{flex:0 0 auto;width:42px;height:24px;border-radius:99px;background:#c9c5b5;position:relative;transition:background .2s}.shtg i:after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s}
@@ -1118,21 +1118,21 @@ const svgImg=svg=>new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=
 const silImg=n=>{const t=silType(n);if(t&&PIC.has(t))return new Promise(r=>{const i=new Image;i.onload=()=>r(i);i.onerror=()=>r(null);i.src="animals/"+t+".webp"});return svgImg(silSvg(n,180))};
 const silSvg=(n,w)=>{const x=sil(n,w);return x?x.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" ').replace(/(<svg[^>]*>)/,"$1"+(window.DEFS||"")):""};
 /* ---------- partager ma journée : choix du style et des éléments ---------- */
-const SHO_DEF={st:"tro",mine:1,reus:1,eff:0,gun:0,tab:1,lieu:0};
+const SHO_DEF={st:"com",mine:1,reus:1,eff:0,gun:0,tab:1,lieu:0};
 async function shareFile(id,o){const c=await dayCanvas(id,o),e=S.ev[id],blob=await new Promise(r=>c.toBlob(r,"image/png"));return new File([blob],"chasselog-"+e.date+".png",{type:"image/png"})}
 function dlFile(f){if(IS_APP)return natExport(f);const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
-function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||[]).length>0,o=Object.assign({},SHO_DEF,S.shareOpt||{});if(o.st=="pho"&&!hasPh)o.st="tro";
+function shareDay(id){const e=S.ev[id],f=e.fiche,a=agg([e]),hasPh=(f.tabPhotos||[]).length>0,o=Object.assign({},SHO_DEF,S.shareOpt||{});if(o.st=="tro"||(o.st=="pho"&&!hasPh))o.st="com";
  const has={mine:f.tirs.some(t=>t.p),reus:a.a>0,eff:a.p>0&&a.n>0,gun:f.tirs.some(t=>t.r&&gunOf(t.gun)),tab:Object.values(f.tab||{}).some(v=>v>0),lieu:true};
  const sw=(k,l,sub)=>has[k]?`<label class="shtg"><span>${l}${sub?`<small>${sub}</small>`:""}</span><input type="checkbox" data-so="${k}" ${o[k]?"checked":""}><i></i></label>`:"";
  const uu=muU(a);
  modal(`<h2 style="margin-top:0">Partager ma journée</h2>
- <div class="shst">${[["tro","Trophée"],["com","Complet"],["pho","Photo du tableau"]].map(([k,l])=>k=="pho"&&!hasPh?"":`<button data-st="${k}" class="${o.st==k?"on":""}">${l}</button>`).join("")}</div>
+ <div class="shst">${[["com","Complet"],["pho","Photo du tableau"]].map(([k,l])=>`<button data-st="${k}" class="${o.st==k?"on":""}${k=="pho"&&!hasPh?" off":""}">${l}${k=="pho"&&!hasPh?"<small>ajoute d'abord la photo</small>":""}</button>`).join("")}</div>
  <div class="shpf" id="sh-pf" style="${o.st=="pho"?"":"display:none"}"><span class="mut sans">Mise en page de la photo</span><div class="seg">${[["dual2","Style 1 · superposée"],["tape","Style 2 · vintage"]].map(([k,l])=>`<button data-pf="${k}" class="${(o.pf||"dual2")==k?"on":""}">${l}</button>`).join("")}</div></div>
  <div class="shpv" id="sh-pv"><span class="mut sans">Préparation de l'aperçu…</span></div>
- ${sw("mine","Mes pièces")}${sw("reus","Réussite",a.a?`${a.p} prélevé${a.p>1?"s":""} sur ${a.a} ${a.a>1?"animaux":"animal"} tiré${a.a>1?"s":""}`:"")}${sw("eff","Munitions par pièce",effTxt(a.n,a.p,uu))}${sw("gun","Arme utilisée")}${sw("tab","Tableau de la journée")}${sw("lieu","Lieu et poste")}
+ ${sw("mine","Mes pièces")}${sw("reus","Réussite",a.a?`${a.p} prélevé${a.p>1?"s":""} sur ${a.a} ${a.a>1?"animaux":"animal"} tiré${a.a>1?"s":""}`:"")}<div id="sh-eff" style="${o.st=="pho"?"display:none":""}">${sw("eff","Munitions par pièce",effTxt(a.n,a.p,uu))}</div>${sw("gun","Arme utilisée")}${sw("tab","Tableau de la journée")}${sw("lieu","Lieu et poste")}
  <div class="row" style="margin-top:14px"><button class="s" id="sh-dl">⬇ Télécharger l'image</button><button class="p" id="sh-go" style="background:#e8a032;color:#2a1c05;font-weight:800">Partager</button></div>`);
  let tk=0,cur=null;const pv=async()=>{const my=++tk;S.shareOpt=o;save();try{const c=await dayCanvas(id,o);if(my!=tk||!$("#sh-pv"))return;cur=c;$("#sh-pv").innerHTML=`<img src="${c.toDataURL("image/jpeg",.72)}" alt="Aperçu de l'image">`}catch(er){if($("#sh-pv"))$("#sh-pv").innerHTML='<span class="mut sans">Aperçu indisponible.</span>'}};pv();
- document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{o.st=b.dataset.st;document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));$("#sh-pf").style.display=o.st=="pho"?"":"none";pv()});
+ document.querySelectorAll("#mo [data-st]").forEach(b=>b.onclick=()=>{if(b.classList.contains("off"))return toast("Ajoute une photo du tableau dans « Encoder le tableau final » pour utiliser ce style.");o.st=b.dataset.st;$("#sh-eff").style.display=o.st=="pho"?"none":"";document.querySelectorAll("#mo [data-st]").forEach(x=>x.classList.toggle("on",x==b));$("#sh-pf").style.display=o.st=="pho"?"":"none";pv()});
  document.querySelectorAll("#mo [data-pf]").forEach(b=>b.onclick=()=>{o.pf=b.dataset.pf;document.querySelectorAll("#mo [data-pf]").forEach(x=>x.classList.toggle("on",x==b));pv()});
  document.querySelectorAll("#mo [data-so]").forEach(i=>i.onchange=()=>{o[i.dataset.so]=i.checked?1:0;pv()});
  $("#sh-dl").onclick=async()=>{track("share_image",{style:o.st,layout:o.st=="pho"?o.pf||"dual2":"",action:"download"});try{dlFile(await shareFile(id,o));toast("Image téléchargée.")}catch(er){toast("Téléchargement impossible.")}};
@@ -1143,7 +1143,10 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
  // contenu
  const exp=L=>{const n=L.reduce((u,[k,v])=>u+v,0);return n<=9?L.flatMap(([k,v])=>Array(v).fill([k,null])):L.map(([k,v])=>[k,v])};
  const mineM={};f.tirs.forEach(q=>{if(q.p)mineM[tname(q)]=(mineM[tname(q)]||0)+q.p});const ME=Object.entries(mineM),MI=exp(ME);
- const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE);
+ const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE),BIG=new Set(G["Grand gibier"].flatMap(q=>XT[q]||[q])),TEB=TE.filter(([k])=>BIG.has(k)),TES=TE.filter(([k])=>!BIG.has(k)),TIB=tabTot<=9?exp(TEB):TEB,TIS=tabTot<=9?exp(TES):TES,nB=TEB.reduce((u,[k,v])=>u+v,0),nS=tabTot-nB;
+ /* « dont 1 brocard et 2 sangliers pour moi » */
+ const plu=(n,l)=>{l=l.replace(" – "," ");l=l.charAt(0).toLowerCase()+l.slice(1);if(n<2)return l;let stop=false;return l.split(" ").map(w=>{if(stop||/^(du|de|des|d'|d’)/.test(w)){stop=true;return w}return /[sxz]$/.test(w)?w:w+"s"}).join(" ")};
+ const mineTxt=()=>{const L=ME.map(([k,v])=>v+" "+plu(v,k));return "Dont "+(L.length>1?L.slice(0,-1).join(", ")+" et "+L[L.length-1]:L[0])+" pour moi"};
  const gids=o.gun?[...new Set(f.tirs.filter(q=>q.r).map(q=>q.gun).filter(g=>gunOf(g)))]:[],guns=gids.map(gunOf);
  const n=a.n,shot=f.tirs.some(q=>q.r),uu=muU(a);
  const ims={};for(const[k]of[...MI,...TI])if(!(k in ims))ims[k]=await silImg(k);
@@ -1186,22 +1189,24 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
   const ml=wrap(meta,F(500,30),W-2*PX);ml.forEach(l=>{y+=40;if(D){x.font=F(500,30);x.fillStyle="#cfd8c0";x.fillText(l,W/2,y)}});
   const sec=t=>{y+=70;if(D){x.font=F(800,26);try{x.letterSpacing="4px"}catch(er){}x.fillStyle="#e8c27a";x.fillText(t.toUpperCase(),W/2,y);const tw=x.measureText(t.toUpperCase()).width;try{x.letterSpacing="0px"}catch(er){}
    [[PX,W/2-tw/2-24],[W/2+tw/2+24,W-PX]].forEach(([a1,b1])=>{const g=x.createLinearGradient(a1,0,b1,0);g.addColorStop(0,"rgba(232,194,122,0)");g.addColorStop(.5,"rgba(232,194,122,.55)");g.addColorStop(1,"rgba(232,194,122,0)");x.fillStyle=g;x.fillRect(a1,y-10,b1-a1,2)})}y+=30};
-  const grid=(items,big)=>{for(let r=0;r<items.length;r+=3){const row=items.slice(r,r+3),one=row.length==1&&big,cw2=one?380:300,ih=big?(items.length<=2?230:190):(items.some(z=>z[1])?160:180),gap=18,tot=row.length*cw2+(row.length-1)*gap;
+  const grid=(items,big,sm)=>{const per=sm?4:3;for(let r=0;r<items.length;r+=per){const row=items.slice(r,r+per),one=row.length==1&&big,cw2=one?380:sm?215:300,ih=big?(items.length<=2?230:190):sm?110:(items.some(z=>z[1])?160:180),gap=18,tot=row.length*cw2+(row.length-1)*gap;
     const yb=y+ih;row.forEach(([k,v],i)=>{const cx=W/2-tot/2+i*(cw2+gap),im=ims[k];if(D){let iw=0;if(im){const sc=Math.min((cw2-(v?70:0))/im.width,ih/im.height),dw=im.width*sc,dh=im.height*sc;iw=dw;const ix=cx+(cw2-dw-(v?70:0))/2;x.save();x.shadowColor="rgba(0,0,0,.65)";x.shadowBlur=18;x.shadowOffsetY=12;x.drawImage(im,ix,yb-dh,dw,dh);x.restore();
       if(v){x.font=F(800,44);x.fillStyle="#fff";x.textAlign="left";x.fillText("× "+v,ix+dw+8,yb-10);x.textAlign="center"}}
      x.font=F(600,24);x.fillStyle="#dfe6d2";let lb=k;while(x.measureText(lb).width>cw2-10&&lb.length>4)lb=lb.slice(0,-2);if(lb!=k)lb=lb.slice(0,-1)+"…";x.fillText(lb,cx+cw2/2,yb+38)}});y=yb+38+34}};
   const rTxt="🎯 "+a.p+" sur "+a.a+" · "+a.re+" % de réussite"+(o.eff&&a.p&&a.n?" · "+effTxt(a.n,a.p,uu):"");
   if(o.mine&&!PI){sec("Mes pièces");
   if(MI.length)grid(MI,true);else{y+=30;if(D){x.font=F(500,28);x.fillStyle="#cfd8c0";x.fillText(shot?"Pas de prélèvement pour moi aujourd'hui.":"Pas de tir aujourd'hui.",W/2,y)}y+=40}}
-  if(o.st=="tro"&&shot&&(o.reus||o.eff)&&a.a){y+=60;y=pill(D,y,o.reus?rTxt:"🎯 "+effTxt(a.n,a.p,uu))}
+  
   if(guns.length){const seen=new Set();guns.forEach(g=>{const t=wImg(g.type);if(seen.has(t))return;seen.add(t);const im=gimg[t];if(!im)return;const gw=t=="fusil"?560:540,gh=im.height*gw/im.width;
     if(D){x.save();x.shadowColor="rgba(0,0,0,.55)";x.shadowBlur=16;x.shadowOffsetY=10;x.drawImage(im,W/2-gw/2,y,gw,gh);x.restore()}y+=gh+12});
    y+=22;if(D){x.font=F(600,26);x.fillStyle="#dfe6d2";x.fillText(guns.map(g=>[g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")).join("   ·   "),W/2,y)}y+=10}
   if(o.st=="com"&&shot&&a.a){y+=70;const st=[[String(a.a),(a.a>1?"animaux":"animal")+" tiré"+(a.a>1?"s":"")],[String(a.p),"prélevé"+(a.p>1?"s":"")]];if(o.reus)st.push([a.re+" %","réussite"]);if(o.eff&&a.p&&a.n)st.push([String(Math.round(a.n/a.p*10)/10).replace(".",","),(uu=="b"?"balles":uu=="c"?"cartouches":uu=="f"?"flèches":"munitions")+" / pièce"]);
    if(D){x.font=F(800,52);const cws=st.map(([v,l])=>{x.font=F(800,52);const a1=x.measureText(v).width;x.font=F(500,26);return Math.max(a1,x.measureText(l).width)+52}),tw=cws.reduce((u,v)=>u+v,0);let sx=W/2-tw/2;
     st.forEach(([v,l],i)=>{const m=sx+cws[i]/2;x.font=F(800,52);x.fillStyle="#fff";x.fillText(v,m,y);x.font=F(500,26);x.fillStyle="#cfd8c0";x.fillText(l,m,y+36);if(i){x.fillStyle="rgba(255,255,255,.17)";x.fillRect(sx,y-46,1.5,90)}sx+=cws[i]})}y+=50}
-  if(o.tab&&TI.length){sec("Tableau de la journée · "+tabTot+" pièce"+(tabTot>1?"s":""));grid(TI,false)}
-  if(PI&&(o.mine||o.reus)&&shot){y+=50;y=pill(D,y,(o.mine&&a.p?"Dont "+a.p+" pièce"+(a.p>1?"s":"")+" pour moi":"Mes tirs")+(o.reus&&a.a?" · 🎯 "+a.re+" %":""))}
+  if(o.tab&&TI.length){const TG=o.tg||"A",pc=n=>n+" pièce"+(n>1?"s":""),rule=()=>{y+=6;if(D){const g=x.createLinearGradient(PX+120,0,W-PX-120,0);g.addColorStop(0,"rgba(232,194,122,0)");g.addColorStop(.5,"rgba(232,194,122,.45)");g.addColorStop(1,"rgba(232,194,122,0)");x.fillStyle=g;x.fillRect(PX+120,y,W-2*PX-240,2)}y+=22};
+  if(TG=="A"){if(TIB.length){sec("Grand gibier · "+pc(nB));grid(TIB,false)}if(TIS.length){sec("Petit gibier · "+pc(nS));grid(TIS,false,true)}}
+  else{sec("Tableau de la journée · "+pc(tabTot));const A1=TG=="C"?[TIS,true]:[TIB,false],A2=TG=="C"?[TIB,false]:[TIS,true];if(A1[0].length)grid(A1[0],false,A1[1]);if(A1[0].length&&A2[0].length)rule();if(A2[0].length)grid(A2[0],false,A2[1])}}
+  if(PI&&(o.mine||o.reus)&&shot){y+=50;const t1=o.mine&&a.p?mineTxt():"",t2=o.reus&&a.a?"🎯 "+a.re+" % de réussite":"";x.font=F(800,34);const one=[t1,t2].filter(Boolean).join(" · ");if(one&&x.measureText(one).width<W-220)y=pill(D,y,one);else{if(t1)y=pill(D,y,t1);if(t1&&t2)y+=34;if(t2)y=pill(D,y,t2)}}
   y+=40;if(D){x.font=F(500,22);x.fillStyle="#9fb08a";x.fillText("Encodé avec ChasseLog · chasselog.be",W/2,y)}
   x.textAlign="left";return y+200};
  const H2=run(false);c.height=H2;x=c.getContext("2d");

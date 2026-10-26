@@ -39,6 +39,7 @@ jobs:
         run: |
           set -o pipefail
           ./gradlew assembleRelease --no-daemon --stacktrace 2>&1 | tee -a ../../build.log
+          ./gradlew bundleRelease --no-daemon --stacktrace 2>&1 | tee -a ../../build.log
       - name: Publier sur la branche apk-builds
         if: always()
         run: |
@@ -47,6 +48,8 @@ jobs:
           APK=$(ls capacitor/android/app/build/outputs/apk/release/*.apk 2>/dev/null | head -1 || true)
           V=$(grep -o 'const APP_V="[^"]*"' index.html | cut -d'"' -f2)
           if [ -n "$APK" ]; then cp "$APK" /tmp/out/chasselog-$V-test.apk; R=ok; else R=echec; fi
+          AAB=$(ls capacitor/android/app/build/outputs/bundle/release/*.aab 2>/dev/null | head -1 || true)
+          if [ -n "$AAB" ]; then cp "$AAB" /tmp/out/chasselog-$V-build${{ github.run_number }}-a-signer.aab; fi
           tail -c 400000 build.log > /tmp/out/build.log 2>/dev/null || true
           cp capacitor/android/app/src/main/AndroidManifest.xml /tmp/out/ 2>/dev/null || true
           printf 'resultat=%s\nversion=%s\nbuild=%s\ncommit=%s\ndate=%s\n' "$R" "$V" "${{ github.run_number }}" "${{ github.sha }}" "$(date -u +%FT%TZ)" > /tmp/out/info.txt

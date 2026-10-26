@@ -1193,7 +1193,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
     const yb=y+ih;row.forEach(([k,v],i)=>{const cx=W/2-tot/2+i*(cw2+gap),im=ims[k];if(D){let iw=0;if(im){const sc=Math.min((cw2-(v?70:0))/im.width,ih/im.height),dw=im.width*sc,dh=im.height*sc;iw=dw;const ix=cx+(cw2-dw-(v?70:0))/2;x.save();x.shadowColor="rgba(0,0,0,.65)";x.shadowBlur=18;x.shadowOffsetY=12;x.drawImage(im,ix,yb-dh,dw,dh);x.restore();
       if(v){x.font=F(800,44);x.fillStyle="#fff";x.textAlign="left";x.fillText("× "+v,ix+dw+8,yb-10);x.textAlign="center"}}
      x.font=F(600,24);x.fillStyle="#dfe6d2";let lb=k;while(x.measureText(lb).width>cw2-10&&lb.length>4)lb=lb.slice(0,-2);if(lb!=k)lb=lb.slice(0,-1)+"…";x.fillText(lb,cx+cw2/2,yb+38)}});y=yb+38+34}};
-  const rTxt="🎯 "+a.p+" sur "+a.a+" · "+a.re+" % de réussite"+(o.eff&&a.p&&a.n?" · "+effTxt(a.n,a.p,uu):"");
+  
   if(o.mine&&!PI){sec("Mes pièces");
   if(MI.length)grid(MI,true);else{y+=30;if(D){x.font=F(500,28);x.fillStyle="#cfd8c0";x.fillText(shot?"Pas de prélèvement pour moi aujourd'hui.":"Pas de tir aujourd'hui.",W/2,y)}y+=40}}
   
@@ -1203,9 +1203,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
   if(o.st=="com"&&shot&&a.a){y+=70;const st=[[String(a.a),(a.a>1?"animaux":"animal")+" tiré"+(a.a>1?"s":"")],[String(a.p),"prélevé"+(a.p>1?"s":"")]];if(o.reus)st.push([a.re+" %","réussite"]);if(o.eff&&a.p&&a.n)st.push([String(Math.round(a.n/a.p*10)/10).replace(".",","),(uu=="b"?"balles":uu=="c"?"cartouches":uu=="f"?"flèches":"munitions")+" / pièce"]);
    if(D){x.font=F(800,52);const cws=st.map(([v,l])=>{x.font=F(800,52);const a1=x.measureText(v).width;x.font=F(500,26);return Math.max(a1,x.measureText(l).width)+52}),tw=cws.reduce((u,v)=>u+v,0);let sx=W/2-tw/2;
     st.forEach(([v,l],i)=>{const m=sx+cws[i]/2;x.font=F(800,52);x.fillStyle="#fff";x.fillText(v,m,y);x.font=F(500,26);x.fillStyle="#cfd8c0";x.fillText(l,m,y+36);if(i){x.fillStyle="rgba(255,255,255,.17)";x.fillRect(sx,y-46,1.5,90)}sx+=cws[i]})}y+=50}
-  if(o.tab&&TI.length){const TG=o.tg||"A",pc=n=>n+" pièce"+(n>1?"s":""),rule=()=>{y+=6;if(D){const g=x.createLinearGradient(PX+120,0,W-PX-120,0);g.addColorStop(0,"rgba(232,194,122,0)");g.addColorStop(.5,"rgba(232,194,122,.45)");g.addColorStop(1,"rgba(232,194,122,0)");x.fillStyle=g;x.fillRect(PX+120,y,W-2*PX-240,2)}y+=22};
-  if(TG=="A"){if(TIB.length){sec("Grand gibier · "+pc(nB));grid(TIB,false)}if(TIS.length){sec("Petit gibier · "+pc(nS));grid(TIS,false,true)}}
-  else{sec("Tableau de la journée · "+pc(tabTot));const A1=TG=="C"?[TIS,true]:[TIB,false],A2=TG=="C"?[TIB,false]:[TIS,true];if(A1[0].length)grid(A1[0],false,A1[1]);if(A1[0].length&&A2[0].length)rule();if(A2[0].length)grid(A2[0],false,A2[1])}}
+  if(o.tab&&TI.length){const pc=n=>n+" pièce"+(n>1?"s":"");if(TIB.length){sec("Grand gibier · "+pc(nB));grid(TIB,false)}if(TIS.length){sec("Petit gibier · "+pc(nS));grid(TIS,false,true)}}
   if(PI&&(o.mine||o.reus)&&shot){y+=50;const t1=o.mine&&a.p?mineTxt():"",t2=o.reus&&a.a?"🎯 "+a.re+" % de réussite":"";x.font=F(800,34);const one=[t1,t2].filter(Boolean).join(" · ");if(one&&x.measureText(one).width<W-220)y=pill(D,y,one);else{if(t1)y=pill(D,y,t1);if(t1&&t2)y+=34;if(t2)y=pill(D,y,t2)}}
   y+=40;if(D){x.font=F(500,22);x.fillStyle="#9fb08a";x.fillText("Encodé avec ChasseLog · chasselog.be",W/2,y)}
   x.textAlign="left";return y+200};

@@ -348,7 +348,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-28a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-28b<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></symbol>
 <symbol id="i-tgt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
@@ -1235,7 +1235,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
  // contenu
  const exp=L=>{const n=L.reduce((u,[k,v])=>u+v,0);return n<=9?L.flatMap(([k,v])=>Array(v).fill([k,null])):L.map(([k,v])=>[k,v])};
  const mineM={};f.tirs.forEach(q=>{if(q.p)mineM[tname(q)]=(mineM[tname(q)]||0)+q.p});const ME=Object.entries(mineM),MI=exp(ME);
- const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE),BIG=new Set([...G["Grand gibier"].flatMap(q=>XT[q]||[q]),"Renard","Raton laveur"]),TEB=TE.filter(([k])=>BIG.has(k)),TES=TE.filter(([k])=>!BIG.has(k)),TIB=tabTot<=9?exp(TEB):TEB,TIS=tabTot<=9?exp(TES):TES,nB=TEB.reduce((u,[k,v])=>u+v,0),nS=tabTot-nB;
+ const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE),BIG=new Set(G["Grand gibier"].flatMap(q=>XT[q]||[q])),TEB=TE.filter(([k])=>BIG.has(k)),TES=TE.filter(([k])=>!BIG.has(k)),TIB=tabTot<=9?exp(TEB):TEB,TIS=tabTot<=9?exp(TES):TES,nB=TEB.reduce((u,[k,v])=>u+v,0),nS=tabTot-nB;
  /* « dont 1 brocard et 2 sangliers pour moi » */
  const plu=(n,l)=>{l=l.replace(" – "," ");l=l.charAt(0).toLowerCase()+l.slice(1);if(n<2)return l;let stop=false;return l.split(" ").map(w=>{if(stop||/^(du|de|des|d'|d’)/.test(w)){stop=true;return w}return /[sxz]$/.test(w)?w:w+"s"}).join(" ")};
  const mineTxt=()=>{const L=ME.map(([k,v])=>v+" "+plu(v,k));return "Dont "+(L.length>1?L.slice(0,-1).join(", ")+" et "+L[L.length-1]:L[0])+" pour moi"};
@@ -1295,7 +1295,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
   if(o.st=="com"&&shot&&a.a){y+=70;const st=[[String(a.a),(a.a>1?"animaux":"animal")+" tiré"+(a.a>1?"s":"")],[String(a.p),"prélevé"+(a.p>1?"s":"")]];if(o.reus)st.push([a.re+" %","réussite"]);if(o.eff&&a.p&&a.n)st.push([String(Math.round(a.n/a.p*10)/10).replace(".",","),(uu=="b"?"balles":uu=="c"?"cartouches":uu=="f"?"flèches":"munitions")+" / pièce"]);
    if(D){x.font=F(800,52);const cws=st.map(([v,l])=>{x.font=F(800,52);const a1=x.measureText(v).width;x.font=F(500,26);return Math.max(a1,x.measureText(l).width)+52}),tw=cws.reduce((u,v)=>u+v,0);let sx=W/2-tw/2;
     st.forEach(([v,l],i)=>{const m=sx+cws[i]/2;x.font=F(800,52);x.fillStyle="#fff";x.fillText(v,m,y);x.font=F(500,26);x.fillStyle="#cfd8c0";x.fillText(l,m,y+36);if(i){x.fillStyle="rgba(255,255,255,.17)";x.fillRect(sx,y-46,1.5,90)}sx+=cws[i]})}y+=50}
-  if(o.tab&&TI.length){const pc=n=>n+" pièce"+(n>1?"s":"");if(TIB.length){sec("Grand gibier · "+pc(nB));grid(TIB,false)}if(TIS.length){sec("Petit gibier · "+pc(nS));grid(TIS,false,true)}}
+  if(o.tab&&TI.length){const pc=n=>n+" pièce"+(n>1?"s":"");if(TIB.length){sec("Grand gibier · "+pc(nB));grid(TIB,false)}if(TIS.length){const gs=["Petit gibier","Gibier d'eau","Autre gibier"].filter(g=>TES.some(([k])=>spGrp(k)==g));sec((gs.length>1?gs[0]+" et autres":gs[0]||"Petit gibier")+" · "+pc(nS));grid(TIS,false,true)}}
   if(PI&&(o.mine||o.reus)&&shot){y+=50;const t1=o.mine&&a.p?mineTxt():"",t2=o.reus&&a.a?"🎯 "+a.re+" % de réussite":"";x.font=F(800,34);const one=[t1,t2].filter(Boolean).join(" · ");if(one&&x.measureText(one).width<W-220)y=pill(D,y,one);else{if(t1)y=pill(D,y,t1);if(t1&&t2)y+=34;if(t2)y=pill(D,y,t2)}}
   y+=40;if(D){x.font=F(500,22);x.fillStyle="#9fb08a";x.fillText("Encodé avec ChasseLog · chasselog.be",W/2,y)}
   x.textAlign="left";return y+200};
@@ -1532,7 +1532,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-28a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-10-28b",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));

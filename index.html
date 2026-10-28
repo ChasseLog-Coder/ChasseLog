@@ -111,6 +111,12 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .trw{position:relative}.trw .tln{padding-right:52px}.trw.on .tln{background:color-mix(in srgb,#e8a032 15%,var(--card));border-color:#e8a032;box-shadow:0 0 0 1px #e8a032 inset}
 .trq{position:absolute;right:6px;bottom:4px;width:44px;height:40px;border:0;background:none;padding:6px;color:var(--mut);display:flex;align-items:center;justify-content:center;border-radius:10px}
 .tri{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.trw.on .trq{color:#b97a12}.trw.on .trq .ts{fill:#e8a032}
+.anb{border:1px solid var(--line);border-radius:12px;padding:8px 10px 10px;margin:8px 0;background:var(--bg)}.anb.on{border-color:#e8a032;box-shadow:0 0 0 1px #e8a032 inset;background:color-mix(in srgb,#e8a032 10%,var(--card))}
+.anr{display:flex;align-items:center;gap:8px;font-size:.95rem;color:var(--ink)}.anr .nm{flex:1;min-width:0}.anr input{width:96px;margin:0}
+.anr .tb{width:46px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--mut);display:flex;align-items:center;justify-content:center;padding:0;flex:none}.anr .tb .tri{width:30px;height:30px}.anr .tb.on{background:#f8ecd6;border-color:#e8a032;color:#b97a12}.anr .tb.on .ts{fill:#e8a032}
+.anb .trn{font-size:.78rem;color:#b97a12;margin:4px 2px 0;font-weight:600}.anb .sxa{display:flex;gap:6px;margin:8px 0 0}.anb .sxa button{flex:1;padding:8px 6px;font-size:.9rem}
+.anph{display:flex;align-items:center;gap:10px;margin-top:8px}.anph .th{width:52px;height:52px;border-radius:10px;overflow:hidden;flex:none;padding:0;border:0;background:var(--line)}.anph .th img{width:100%;height:100%;object-fit:cover;display:block}.anph .tx{flex:1;text-align:left;background:none;border:0;padding:0;font-size:.88rem;line-height:1.25;color:var(--ink)}.anph .tx small{display:block;color:var(--mut)}.anph .phb{width:100%;padding:9px;text-align:center;font-size:.9rem}
+.tgh{display:flex;align-items:baseline;justify-content:space-between;margin:12px 2px 8px;font-weight:700;color:var(--ink)}.tgh small{font-weight:500;color:var(--mut);font-size:.85rem}.trmk{font-size:.85em;margin-left:4px}
 .trw .tln .chev{margin-bottom:22px}.trhint{font-size:.82rem;margin:-4px 2px 8px}
 .trf{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}.trf button{flex:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:7px 12px;font:600 .82rem system-ui}.trf button.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .trv{flex:0 0 auto;width:96px;margin:0}.trv button{min-height:36px}
@@ -342,7 +348,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box
 <hr><button class="m" id="m-tour" style="font-weight:700;color:var(--acc)">▶ Découvre l'application</button><button class="m" id="m-rm">Paramètres de rappels</button><button class="m" id="m-st" style="display:none">Statistiques anonymes</button>
 <div style="margin-top:auto"><button id="m-nl" class="m" style="text-align:center;font-weight:600;color:var(--acc);margin-bottom:4px">Être prévenu de la sortie</button><hr><label>Thème</label><div class="seg" id="th"><button data-th="light">Clair</button><button data-th="dark">Sombre</button><button data-th="auto">Auto</button></div><label>Fréquence de synchronisation</label><select id="sy">
 <option value="manual">Manuelle</option><option value="15">Toutes les 15 minutes</option><option value="60">Toutes les heures</option><option value="day">Une fois par jour</option><option value="wifi">Dès que le réseau revient</option></select>
-<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-26f<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
+<button class="m" id="m-sy">Synchroniser maintenant</button><button class="m" id="m-im">Importer un calendrier</button><button class="m" id="m-ex">Exporter mon calendrier</button><button class="m" id="m-bk">Sauvegarde automatique</button><p style="margin:10px 8px 0;font:.75rem system-ui;color:var(--mut)">ChasseLog bêta web · version 2026-10-28a<br>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com</p></div></div></aside>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></symbol>
 <symbol id="i-tgt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></symbol>
@@ -421,6 +427,8 @@ const CLS={"Cerf élaphe":["Cerf mâle","Biche","Bichette","Faon"],"Daim":["Mâl
 const CL={"Cerf élaphe":{m:"mâle",f:"biche",b:"bichette",j:"faon"},"Daim":{m:"mâle",f:"femelle",j:"jeune"},"Chevreuil":{m:"brocard",f:"chevrette",j:"chevrillard"},"Faisan":{m:"coq",f:"poule"}};
 const XT={"Cerf élaphe":["Cerf mâle","Biche","Bichette","Faon"],"Daim":["Daim – mâle","Daim – femelle","Daim – jeune"],"Chevreuil":["Brocard","Chevrette","Chevrillard"],"Faisan":["Faisan – coq","Faisan – poule"]};
 const COR=sp=>sp=="Cerf élaphe"||sp=="Chevreuil";
+/* rubrique d'un nom de tableau (« Faisan – coq », « Chevrette »…) : grand, petit, gibier d'eau ou autre gibier */
+const spGrp=n=>{for(const[g,a]of Object.entries(G))for(const x of a)if(x==n||(XT[x]||[]).includes(n)||n.startsWith(x+" – "))return g;return"Autre gibier"};
 const SXC={"Cerf élaphe":"mfbj"},sxc=sp=>SXC[sp]||"mfj";
 const TN={"Cerf élaphe":{m:"Cerf mâle",f:"Biche",b:"Bichette",j:"Faon"},"Chevreuil":{m:"Brocard",f:"Chevrette",j:"Chevrillard"}};
 const tname=t=>(t.sx&&TN[t.sp]&&TN[t.sp][t.sx])?TN[t.sp][t.sx]:(t.sx&&CL[t.sp]&&CL[t.sp][t.sx])?t.sp+" – "+CL[t.sp][t.sx]:t.sp;
@@ -537,32 +545,41 @@ const VIEWS={};
 /* ---------- Mes trophées : grand gibier prélevé que le chasseur choisit de garder en mémoire (aucun classement, aucune note) ---------- */
 const TRO_ICON='<svg class="tri" viewBox="0 0 32 32" aria-hidden="true"><path class="ta" d="M13.2 14C9.5 13 7 10 6.5 3.5M10.3 12.6C8 13.6 5.8 13.2 4.5 12M8 9C6 9.4 4.4 8.6 3.6 7.4M6.8 5.5C8 4.6 9 3.6 9.4 2.4M12.3 15.4 9.6 16.8M18.8 14C22.5 13 25 10 25.5 3.5M21.7 12.6C24 13.6 26.2 13.2 27.5 12M24 9C26 9.4 27.6 8.6 28.4 7.4M25.2 5.5C24 4.6 23 3.6 22.6 2.4M19.7 15.4 22.4 16.8"/><path class="ts" d="M12 14.6Q16 12.8 20 14.6L18.6 23Q16 26.8 13.4 23Z"/></svg>';
 const troOk=t=>t&&t.r=="p"&&(G["Grand gibier"]||[]).includes(t.sp);
-const isTro=t=>!!(t&&t.tro&&t.tro.on&&troOk(t));
+/* trophées, poids/cors, sexe et photo : un par animal du tir (index i < t.p) */
+const isTroA=(t,i)=>troOk(t)&&i<t.p&&!!((t.tros||[])[i]&&t.tros[i].on);
+const isTro=t=>troOk(t)&&(t.tros||[]).some((x,i)=>x&&x.on&&i<t.p);
+const nTro=t=>troOk(t)?(t.tros||[]).filter((x,i)=>x&&x.on&&i<t.p).length:0;
+const aPh=(t,i)=>(t.pa||[])[i]||null;
+const aFk=t=>t.sx=="m"&&["Cerf élaphe","Chevreuil","Daim"].includes(t.sp)?"c":"w";
+const SGL={m:"mâle",f:"femelle"};
+/* anciennes données : un trophée et des photos par tir → rattachés aux animaux dans l'ordre */
+function migTro(){let ch=0;Object.values(S.ev||{}).forEach(e=>{(e.fiche&&e.fiche.tirs||[]).forEach(t=>{if(t.tro){t.tros=t.tros||[];if(!t.tros[0])t.tros[0]=t.tro;delete t.tro;ch=1}
+ if(troOk(t)&&!t.pa&&!t.pai&&(t.ph||[]).length){t.pa=(t.ph||[]).slice(0,Math.max(1,t.p||1));ch=1}})});return ch}
 /* mensurations par espèce (usages CIC, facultatives) : w et c = poids et cors de la fiche */
-const TROM={"Sanglier":[["w","Poids","kg","",""],["dl","Longueur des défenses","cm","sur la courbe extérieure, de la racine à la pointe","Défenses"],["dw","Largeur des défenses","cm","à l'endroit le plus large","Largeur"],["gr","Circonférence des grès","cm","défenses du haut, au plus large","Grès"]],
+const TROM={"Sanglier":[["w","Poids vidé","kg","",""],["dl","Longueur des défenses","cm","sur la courbe extérieure, de la racine à la pointe","Défenses"],["dw","Largeur des défenses","cm","à l'endroit le plus large","Largeur"],["gr","Circonférence des grès","cm","défenses du haut, au plus large","Grès"]],
  "Cerf élaphe":[["c","Nombre de cors","","",""],["bk","Poids des bois","kg","bois secs, avec le massacre","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"],["mu","Circonférence des meules","cm","moyenne des deux meules","Meules"]],
  "Chevreuil":[["c","Nombre de cors","","",""],["bg","Poids des bois","g","bois secs, avec le massacre","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"]],
  "Daim":[["c","Nombre de cors","","",""],["lb","Longueur des bois","cm","moyenne des deux bois","Bois"],["el","Longueur des empaumures","cm","","Empaumure"],["ew","Largeur des empaumures","cm","","Larg. empaumure"],["bk","Poids des bois","kg","bois secs, avec le massacre","Poids bois"]],
- "Mouflon":[["w","Poids","kg","",""],["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]],
+ "Mouflon":[["w","Poids vidé","kg","",""],["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]],
  "Chamois":[["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]],
  "Isard":[["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]]};
-const troV=(t,k)=>k=="w"?(t.w||[])[0]:k=="c"?(t.c||[])[0]:((t.tro||{}).m||{})[k];
-const troChips=(t,max)=>(TROM[t.sp]||[]).map(([k,l,u,h,sh])=>{const v=troV(t,k);if(v===""||v==null)return"";const n=String(v).replace(".",",");return k=="w"?n+" kg":k=="c"?n+" cors":sh+" "+n+(u?" "+u:"")}).filter(Boolean).slice(0,max);
+const troV=(t,k,i=0)=>k=="w"?(t.w||[])[i]:k=="c"?(t.c||[])[i]:(((t.tros||[])[i]||{}).m||{})[k];
+const troChips=(t,max,i=0)=>(TROM[t.sp]||[]).map(([k,l,u,h,sh])=>{const v=troV(t,k,i);if(v===""||v==null)return"";const n=String(v).replace(".",",");return k=="w"?n+" kg":k=="c"?n+" cors":sh+" "+n+(u?" "+u:"")}).filter(Boolean).slice(0,max);
 const SXL={m:"mâle",f:"femelle",j:"jeune",b:"bichette"};
-const troName=t=>{const n=tname(t);return n!=t.sp||!t.sx?n:n+" · "+(SXL[t.sx]||"")};
-const troAll=()=>evs().filter(e=>e.fiche&&Array.isArray(e.fiche.tirs)).flatMap(e=>e.fiche.tirs.filter(isTro).map(t=>({e,t}))).sort((a,b)=>a.e.date<b.e.date?1:a.e.date>b.e.date?-1:0);
+const troName=(t,i=0)=>{const n=tname(t),g=(t.sg||[])[i];return g&&SGL[g]?n+" · "+SGL[g]:n!=t.sp||!t.sx?n:n+" · "+(SXL[t.sx]||"")};
+const troAll=()=>evs().filter(e=>e.fiche&&Array.isArray(e.fiche.tirs)).flatMap(e=>e.fiche.tirs.filter(isTro).flatMap(t=>Array.from({length:t.p},(_,i)=>i).filter(i=>isTroA(t,i)).map(i=>({e,t,i})))).sort((a,b)=>a.e.date<b.e.date?1:a.e.date>b.e.date?-1:0);
 const fmtS=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{day:"numeric",month:"short",year:"numeric"});
 let troF={sp:"",se:""};
 /* fiche : toucher le massacre ajoute ou retire l'animal (enregistré tout de suite) */
-function troToggle(id){sync();const t=fd.tirs.find(x=>x.id==id);if(!t||!troOk(t))return;const on=!isTro(t);t.tro=Object.assign({m:{},n:""},t.tro||{},{on});
- const sv=S.ev[fe]&&S.ev[fe].fiche&&(S.ev[fe].fiche.tirs||[]).find(x=>x.id==id);if(sv){sv.tro=JSON.parse(JSON.stringify(t.tro));save()}
- track("trophy_toggle",{on,sp:t.sp});toast(on?troName(t)+" ajouté à Mes trophées.":"Retiré de Mes trophées.");render()}
+function troToggle(id,i=0){sync();const t=fd.tirs.find(x=>x.id==id);if(!t||!troOk(t))return;const on=!isTroA(t,i);t.tros=t.tros||[];t.tros[i]=Object.assign({m:{},n:""},t.tros[i]||{},{on});
+ const sv=S.ev[fe]&&S.ev[fe].fiche&&(S.ev[fe].fiche.tirs||[]).find(x=>x.id==id);if(sv){sv.tros=JSON.parse(JSON.stringify(t.tros));["w","c","sg","pa","ph"].forEach(k=>{if(t[k])sv[k]=JSON.parse(JSON.stringify(t[k]))});save()}
+ track("trophy_toggle",{on,sp:t.sp});toast(on?(t.p>1?tname(t)+" "+(i+1):troName(t,i))+" ajouté à Mes trophées.":"Retiré de Mes trophées.");render()}
 function rTro(){const all=troAll(),sps=[...new Set(all.map(x=>x.t.sp))],ses=[...new Set(all.map(x=>season(x.e.date)))];if(troF.sp&&!sps.includes(troF.sp))troF.sp="";if(troF.se&&!ses.includes(troF.se))troF.se="";
  const L=all.filter(x=>(!troF.sp||x.t.sp==troF.sp)&&(!troF.se||season(x.e.date)==troF.se)),gv=S.troV=="g";
- const ph=(t,cls)=>(t.ph||[]).length?`<img class="${cls}" data-pid="${t.ph[0]}" alt="Photo de l'animal">`:`<button class="${cls} trnp" data-tap="${t.id}"><span>📷</span><b>Ajouter une photo</b></button>`;
+ const ph=(x,cls)=>aPh(x.t,x.i)?`<img class="${cls}" data-pid="${aPh(x.t,x.i)}" alt="Photo de l'animal">`:`<button class="${cls} trnp" data-tap="${x.t.id}|${x.i}"><span>📷</span><b>Ajouter une photo</b></button>`;
  const meta=x=>fmtS(x.e.date)+(lieu(x.e.place)&&lieu(x.e.place)!="—"?" · "+esc(lieu(x.e.place)):"");
- const card=x=>gv?`<div class="trg">${ph(x.t,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}"><b>${esc(tname(x.t))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,2).map(c=>`<i>${esc(c)}</i>`).join("")}</span></button></div>`
-  :`<div class="card trl">${ph(x.t,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}"><b>${esc(troName(x.t))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,3).map(c=>`<i>${esc(c)}</i>`).join("")}</span><span class="chev">›</span></button></div>`;
+ const card=x=>gv?`<div class="trg">${ph(x,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}|${x.i}"><b>${esc(tname(x.t))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,2,x.i).map(c=>`<i>${esc(c)}</i>`).join("")}</span></button></div>`
+  :`<div class="card trl">${ph(x,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}|${x.i}"><b>${esc(troName(x.t,x.i))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,3,x.i).map(c=>`<i>${esc(c)}</i>`).join("")}</span><span class="chev">›</span></button></div>`;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes trophées</h1><p class="mut sans" style="margin-top:-6px">Les animaux que tu as choisis de garder en mémoire, du plus récent au plus ancien.</p>
  ${all.length?`<div class="trf"><button data-tsp="" class="${troF.sp?"":"on"}">Tous · ${all.length}</button>${sps.map(sp=>`<button data-tsp="${esc(sp)}" class="${troF.sp==sp?"on":""}">${esc(sp)} · ${all.filter(x=>x.t.sp==sp).length}</button>`).join("")}</div>
  <div class="row sans" style="align-items:center;gap:8px;margin:4px 0 10px">${ses.length>1?`<select id="tr-se" style="flex:1;margin:0"><option value="">Toutes les saisons</option>${ses.sort().reverse().map(x=>`<option ${troF.se==x?"selected":""}>${x}</option>`).join("")}</select>`:`<span class="mut sp" style="flex:1">Saison ${ses[0]||""}</span>`}<div class="seg trv"><button data-tv="l" class="${gv?"":"on"}" aria-label="Liste">☰</button><button data-tv="g" class="${gv?"on":""}" aria-label="Grille">▦</button></div></div>
@@ -572,22 +589,24 @@ function rTro(){const all=troAll(),sps=[...new Set(all.map(x=>x.t.sp))],ses=[...
  document.querySelectorAll("[data-tsp]").forEach(b=>b.onclick=()=>{troF.sp=b.dataset.tsp;render()});
  document.querySelectorAll("[data-tv]").forEach(b=>b.onclick=()=>{S.troV=b.dataset.tv;save();render()});
  if($("#tr-se"))$("#tr-se").onchange=e=>{troF.se=e.target.value;render()};
- document.querySelectorAll("[data-tap]").forEach(b=>b.onclick=()=>{const x=all.find(y=>y.t.id==b.dataset.tap);if(x)troPhoto(x.t)});
- document.querySelectorAll("[data-tro2]").forEach(b=>b.onclick=()=>{const[eid,tid]=b.dataset.tro2.split("|");troOpen(eid,tid)})}
-function troPhoto(t,after){photoPick(async fs=>{t.ph=t.ph||[];for(const f of fs)t.ph.unshift(await addPhoto(f));save();if(after)after();render()},false)}
-function troOpen(eid,tid){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(x=>x.id==tid);if(!t)return;t.tro=Object.assign({m:{},n:""},t.tro);const g=gunOf(t.gun),pl=lieu(e.place);
+ document.querySelectorAll("[data-tap]").forEach(b=>b.onclick=()=>{const[tid,i]=b.dataset.tap.split("|"),x=all.find(y=>y.t.id==tid&&y.i==+i);if(x)troPhoto(x.t,x.i)});
+ document.querySelectorAll("[data-tro2]").forEach(b=>b.onclick=()=>{const[eid,tid,i]=b.dataset.tro2.split("|");troOpen(eid,tid,+i||0)})}
+/* photo d'un animal : une seule par animal (elle remplace la précédente) */
+async function setAPh(t,i,f){const id=await addPhoto(f);t.ph=t.ph||[];t.pa=t.pa||[];const old=t.pa[i];if(old)t.ph=t.ph.filter(x=>x!=old);t.ph.push(id);t.pa[i]=id}
+function troPhoto(t,i,after){photoPick(async fs=>{if(fs[0])await setAPh(t,i,fs[0]);save();if(after)after();render()},false)}
+function troOpen(eid,tid,i=0){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(x=>x.id==tid);if(!t)return;t.tros=t.tros||[];t.tros[i]=Object.assign({m:{},n:""},t.tros[i]);const tr=t.tros[i],g=gunOf(t.gun),pl=lieu(e.place),ap=aPh(t,i);
  const row=(k,v)=>v?`<div class="trr"><span class="mut">${k}</span><b>${v}</b></div>`:"";
- const draw=()=>{modal(`<h2 style="margin:0">${esc(troName(t))}</h2><p class="mut sans" style="margin:2px 0 10px">${esc(fmt(e.date))}</p>
-  ${(t.ph||[]).length?`<img class="trbigph" data-pid="${t.ph[0]}" alt="Photo de l'animal"><button class="lnk sans" id="tr-ph" style="margin:6px 0 4px">📷 Changer la photo</button>`:`<button class="trnp trbigph" id="tr-ph"><span>📷</span><b>Ajouter une photo</b></button>`}
-  <h3 class="trh">L'animal</h3><div class="card sans trcard">${row("Sexe",t.sx?SXL[t.sx]:"")}${row("Lieu",esc(pl&&pl!="—"?pl:"")+(t.poste?" · poste "+esc(t.poste):""))}${row("Journée",esc(e.title))}${row("Arme",g?esc([g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")):"")}</div>
-  <h3 class="trh">Mensurations du trophée</h3><div class="card sans trcard">${(TROM[t.sp]||[]).map(([k,l,u,h])=>`<label class="trm2"><span>${l}${h?`<small>${h}</small>`:""}</span><input type="number" min="0" step="${k=="c"?"1":"0.1"}" inputmode="${k=="c"?"numeric":"decimal"}" data-tm="${k}" value="${esc(troV(t,k)??"")}" placeholder="${u||"—"}"></label>`).join("")}</div>
+ const draw=()=>{const ap=aPh(t,i);modal(`<h2 style="margin:0">${esc(troName(t,i))}</h2><p class="mut sans" style="margin:2px 0 10px">${esc(fmt(e.date))}${t.p>1?` · animal ${i+1} sur ${t.p} de ce tir`:""}</p>
+  ${ap?`<img class="trbigph" data-pid="${ap}" alt="Photo de l'animal"><button class="lnk sans" id="tr-ph" style="margin:6px 0 4px">📷 Changer la photo</button>`:`<button class="trnp trbigph" id="tr-ph"><span>📷</span><b>Ajouter une photo</b></button>`}
+  <h3 class="trh">L'animal</h3><div class="card sans trcard">${row("Sexe",(t.sg||[])[i]?SGL[t.sg[i]]:t.sx?SXL[t.sx]:"")}${row("Lieu",esc(pl&&pl!="—"?pl:"")+(t.poste?" · poste "+esc(t.poste):""))}${row("Journée",esc(e.title))}${row("Arme",g?esc([g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")):"")}</div>
+  <h3 class="trh">Mensurations du trophée</h3><div class="card sans trcard">${(TROM[t.sp]||[]).map(([k,l,u,h])=>`<label class="trm2"><span>${l}${h?`<small>${h}</small>`:""}</span><input type="number" min="0" step="${k=="c"?"1":"0.1"}" inputmode="${k=="c"?"numeric":"decimal"}" data-tm="${k}" value="${esc(troV(t,k,i)??"")}" placeholder="${u||"—"}"></label>`).join("")}</div>
   <p class="mut sans" style="font-size:.8rem;margin:6px 2px 0">Facultatives, inspirées des usages du CIC. ChasseLog ne calcule ni note ni médaille.</p>
-  <h3 class="trh">Souvenir</h3><textarea id="tr-n" rows="3" placeholder="Une note pour toi : les conditions, le moment, ce que tu veux retenir…">${esc(t.tro.n||"")}</textarea>
+  <h3 class="trh">Souvenir</h3><textarea id="tr-n" rows="3" placeholder="Une note pour toi : les conditions, le moment, ce que tu veux retenir…">${esc(tr.n||"")}</textarea>
   <button class="s li" id="tr-x" style="color:var(--acc2);margin-top:14px;text-align:center">Retirer de Mes trophées</button>`);
-  document.querySelectorAll("#mo [data-tm]").forEach(i=>i.onchange=()=>{const k=i.dataset.tm,v=i.value===""?"":+i.value;if(k=="w"||k=="c"){t[k]=t[k]||[];t[k][0]=v}else{if(v==="")delete t.tro.m[k];else t.tro.m[k]=v}save()});
-  $("#tr-n").onchange=ev=>{t.tro.n=ev.target.value.trim();save()};
-  $("#tr-ph").onclick=()=>troPhoto(t,draw);
-  $("#tr-x").onclick=()=>{t.tro.on=false;save();track("trophy_toggle",{on:false,sp:t.sp});closeM();toast("Retiré de Mes trophées.");render()};
+  document.querySelectorAll("#mo [data-tm]").forEach(i=>i.onchange=()=>{const k=i.dataset.tm,v=i.value===""?"":+i.value;if(k=="w"||k=="c"){t[k]=t[k]||[];t[k][i]=v}else{if(v==="")delete tr.m[k];else tr.m[k]=v}save()});
+  $("#tr-n").onchange=ev=>{tr.n=ev.target.value.trim();save()};
+  $("#tr-ph").onclick=()=>troPhoto(t,i,draw);
+  $("#tr-x").onclick=()=>{tr.on=false;save();track("trophy_toggle",{on:false,sp:t.sp});closeM();toast("Retiré de Mes trophées.");render()};
   const m=$("#mo");if(m){const o=new MutationObserver(()=>{if(!document.body.contains(m)){o.disconnect();if(view=="tro")render()}});o.observe(document.body,{childList:true})}};
  draw();track("trophy_opened",{sp:t.sp})}
 function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro})[view]();hydrate()}
@@ -619,11 +638,11 @@ async function hydrate(){await Promise.all([...document.querySelectorAll("img[da
 const compress=(f,max=1600,q=.8)=>new Promise(r=>{const i=new Image,u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext("2d").drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>r(b||f),"image/jpeg",q)};i.onerror=()=>r(f);i.src=u});
 async function addPhoto(f){const b=await compress(f),id=pid();await DB.put(id,b);return id}
 async function migratePhotos(){let ch=0;const mv=async arr=>{for(let i=0;i<arr.length;i++)if(String(arr[i]).startsWith("data:")){const b=await(await fetch(arr[i])).blob(),id=pid();await DB.put(id,b);arr[i]=id;ch=1}};
- for(const e of evs()){const f=e.fiche;if(!f)continue;await mv(f.photos||[]);await mv(f.tabPhotos||[]);for(const t of f.tirs||[])await mv(t.ph||[])}if(ch)save();return ch}
+ for(const e of evs()){const f=e.fiche;if(!f)continue;await mv(f.photos||[]);await mv(f.tabPhotos||[]);for(const t of f.tirs||[]){await mv(t.ph||[]);if(t.pai){t.pa=t.pai.map(j=>j>=0&&t.ph&&t.ph[j]?t.ph[j]:null);delete t.pai;ch=1}}}if(ch)save();return ch}
 async function gc(){try{const used=new Set();evs().forEach(e=>{const f=e.fiche;if(f)[...(f.photos||[]),...(f.tabPhotos||[]),...(f.tirs||[]).flatMap(t=>t.ph||[])].forEach(x=>used.add(x))});for(const k of await DB.keys())if(!used.has(k)&&!String(k).startsWith("_")){await DB.del(k);if(PU[k]){URL.revokeObjectURL(PU[k]);delete PU[k]}}}catch(e){}}
 const b2d=b=>new Promise(r=>{const fr=new FileReader;fr.onload=()=>r(fr.result);fr.readAsDataURL(b)});
 async function exportJSON(noPh,withDocs){const c=JSON.parse(JSON.stringify(S));if(c.docs){if(withDocs){for(const k of Object.keys(c.docs)){try{const b=await DB.get(docKey(k));if(b)c.docs[k].data=await b2d(b);else delete c.docs[k]}catch(e){delete c.docs[k]}}}else delete c.docs}if(noPh)return JSON.stringify(c);const inl=async arr=>(await Promise.all((arr||[]).map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null}))).filter(Boolean);
- for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;f.photos=await inl(f.photos);f.tabPhotos=await inl(f.tabPhotos);for(const t of f.tirs||[])if(t.ph)t.ph=await inl(t.ph)}return JSON.stringify(c)}
+ for(const e of Object.values(c.ev)){const f=e.fiche;if(!f)continue;f.photos=await inl(f.photos);f.tabPhotos=await inl(f.tabPhotos);for(const t of f.tirs||[])if(t.ph){const ids=t.ph,raw=await Promise.all(ids.map(async id=>{if(String(id).startsWith("data:"))return id;const b=await DB.get(id);return b?b2d(b):null})),keep=[],map={};raw.forEach((d,j)=>{if(d){map[ids[j]]=keep.length;keep.push(d)}});if(t.pa){t.pai=t.pa.map(id=>id!=null&&map[id]!=null?map[id]:-1);delete t.pa}t.ph=keep}}return JSON.stringify(c)}
 document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid]");if(i)modal(`<img data-pid="${i.dataset.pid}" alt="Photo" style="width:100%;border-radius:8px;margin-top:22px">`,"3")});
 
 /* ---------- commentaires (bêta) ---------- */
@@ -1216,7 +1235,7 @@ async function dayCanvas(id,o){o=o||SHO_DEF;const e=S.ev[id],f=e.fiche,a=agg([e]
  // contenu
  const exp=L=>{const n=L.reduce((u,[k,v])=>u+v,0);return n<=9?L.flatMap(([k,v])=>Array(v).fill([k,null])):L.map(([k,v])=>[k,v])};
  const mineM={};f.tirs.forEach(q=>{if(q.p)mineM[tname(q)]=(mineM[tname(q)]||0)+q.p});const ME=Object.entries(mineM),MI=exp(ME);
- const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE),BIG=new Set(G["Grand gibier"].flatMap(q=>XT[q]||[q])),TEB=TE.filter(([k])=>BIG.has(k)),TES=TE.filter(([k])=>!BIG.has(k)),TIB=tabTot<=9?exp(TEB):TEB,TIS=tabTot<=9?exp(TES):TES,nB=TEB.reduce((u,[k,v])=>u+v,0),nS=tabTot-nB;
+ const TE=Object.entries(f.tab||{}).filter(([k,v])=>v>0),tabTot=TE.reduce((u,[k,v])=>u+v,0),TI=exp(TE),BIG=new Set([...G["Grand gibier"].flatMap(q=>XT[q]||[q]),"Renard","Raton laveur"]),TEB=TE.filter(([k])=>BIG.has(k)),TES=TE.filter(([k])=>!BIG.has(k)),TIB=tabTot<=9?exp(TEB):TEB,TIS=tabTot<=9?exp(TES):TES,nB=TEB.reduce((u,[k,v])=>u+v,0),nS=tabTot-nB;
  /* « dont 1 brocard et 2 sangliers pour moi » */
  const plu=(n,l)=>{l=l.replace(" – "," ");l=l.charAt(0).toLowerCase()+l.slice(1);if(n<2)return l;let stop=false;return l.split(" ").map(w=>{if(stop||/^(du|de|des|d'|d’)/.test(w)){stop=true;return w}return /[sxz]$/.test(w)?w:w+"s"}).join(" ")};
  const mineTxt=()=>{const L=ME.map(([k,v])=>v+" "+plu(v,k));return "Dont "+(L.length>1?L.slice(0,-1).join(", ")+" et "+L[L.length-1]:L[0])+" pour moi"};
@@ -1513,7 +1532,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-26f",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-10-28a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1922,12 +1941,21 @@ const effTxt=(n,p,u)=>p&&n?(Math.round(n/p*10)/10).toString().replace(".",",")+"
 const tMiss=t=>{const m=[];if(t.p&&CLS[t.sp]&&!t.sx)m.push("à préciser");const k=needK(t);if(t.p&&k){const a=(t[k]||[]).slice(0,t.p);if(a.length<t.p||a.some(v=>v===""||v==null))m.push(k=="w"?"poids à compléter":"cors à compléter")}return m};
 const sumBand=A=>A.a?`<div class="sumb"><div><b>${A.a}</b><span>${A.a>1?"animaux":"animal"} tiré${A.a>1?"s":""}</span></div><div><b>${A.p}</b><span>prélevé${A.p>1?"s":""}</span></div><div><b>${A.re} %</b><span>réussite</span></div></div>`:"";
 const tLine=(t,click)=>{const nm=tname(t),R=RES[t.r]||["cb","À compléter"],ms=tMiss(t);
- return `<${click?`button class="tln" data-o="${t.id}"`:'div class="tln"'}>${sil(nm,44)}<span class="w"><b>${esc(nm)}${t.r!="m"&&t.k>1?" × "+t.k:""}</b><small>${t.n} ${(t.n>1?UL[t.u]:UL[t.u].slice(0,-1)).toLowerCase()}${ms.length?` · <em>${ms.join(" · ")}</em>`:""}${t.loc&&t.loc.gps?" · 📍":""}</small></span><span class="chip2 ${R[0]}">${R[1]}</span>${click?'<span class="chev">›</span>':""}</${click?"button":"div"}>`};
+ return `<${click?`button class="tln" data-o="${t.id}"`:'div class="tln"'}>${sil(nm,44)}<span class="w"><b>${esc(nm)}${t.r!="m"&&t.k>1?" × "+t.k:""}${nTro(t)?` <span class="trmk" title="Dans Mes trophées">🏆${nTro(t)>1?"×"+nTro(t):""}</span>`:""}</b><small>${t.n} ${(t.n>1?UL[t.u]:UL[t.u].slice(0,-1)).toLowerCase()}${ms.length?` · <em>${ms.join(" · ")}</em>`:""}${t.loc&&t.loc.gps?" · 📍":""}</small></span><span class="chip2 ${R[0]}">${R[1]}</span>${click?'<span class="chev">›</span>':""}</${click?"button":"div"}>`};
 let detOpen=new Set();
 function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=>a+b,0):0,Q=quickTid&&fd.tirs.find(t=>t.id==quickTid);
  if(quickTid&&!Q){quickTid=null;setTimeout(()=>go("cal"));return}
- const detail=t=>{const k=needK(t);if(!k||!t.p)return"";t[k]=t[k]||[];
+ const detail=(t,qk)=>{if(troOk(t)&&t.p)return detA(t,qk);const k=needK(t);if(!k||!t.p)return"";t[k]=t[k]||[];
   return `<div class="det"><span class="mut sans">${k=="w"?"Poids (kg)":"Nombre de cors"}</span>${Array.from({length:t.p},(_,i)=>`<label class="dl sans"><span>${k=="w"?"Sanglier":"Mâle"} ${i+1}</span><input type="number" min="0" step="${k=="w"?"0.5":"1"}" inputmode="${k=="w"?"decimal":"numeric"}" data-dk="${t.id}|${k}|${i}" value="${esc(t[k][i]??"")}" placeholder="${k=="w"?"kg":"cors"}"></label>`).join("")}</div>`};
+ /* grand gibier prélevé : un bloc par animal (poids vidé ou cors, sexe du sanglier, photo, trophée) */
+ const detA=(t,qk)=>{const fk=aFk(t),wq=qk&&fk=="w",sg=t.sp=="Sanglier",nm=tname(t),extra=(t.ph||[]).filter(x=>!(t.pa||[]).includes(x));
+  const hd=[wq?"":fk=="w"?"Poids vidé (kg)":"Nombre de cors",sg?"sexe":"","photo et trophée"].filter(Boolean).join(", ");
+  return `<div class="det"><span class="mut sans">${hd[0].toUpperCase()+hd.slice(1)}</span>${Array.from({length:t.p},(_,i)=>{const on=isTroA(t,i),lab=t.p>1?nm+" "+(i+1):nm,p=aPh(t,i),g=(t.sg||[])[i];
+   return `<div class="anb${on?" on":""}"><div class="anr"><span class="nm">${esc(lab)}</span>${wq?"":`<input type="number" min="0" step="${fk=="w"?"0.5":"1"}" inputmode="${fk=="w"?"decimal":"numeric"}" data-dk="${t.id}|${fk}|${i}" value="${esc((t[fk]||[])[i]??"")}" placeholder="${fk=="w"?"kg vidé":"cors"}">`}<button type="button" class="tb${on?" on":""}" data-tka="${t.id}|${i}" aria-pressed="${on}" aria-label="${on?"Retirer de":"Ajouter à"} Mes trophées">${TRO_ICON}</button></div>${on?'<div class="trn">🏆 Dans Mes trophées</div>':""}
+    ${sg?`<div class="seg2 sxa"><button type="button" data-sg="${t.id}|${i}|m" class="${g=="m"?"on":""}">♂ Mâle</button><button type="button" data-sg="${t.id}|${i}|f" class="${g=="f"?"on":""}">♀ Femelle</button></div>`:""}
+    <div class="anph">${p?`<button type="button" class="th" data-aph="${t.id}|${i}" aria-label="Changer la photo"><img data-pid="${p}" alt="Photo de l'animal"></button><button type="button" class="tx" data-aph="${t.id}|${i}"><b>Photo${t.p>1?" – "+esc(lab.toLowerCase()):""}</b><small>touche pour changer</small></button><button type="button" class="d" data-arp="${t.id}|${i}">Retirer</button>`:`<button type="button" class="s sans phb" data-aph="${t.id}|${i}">📷 Photo${t.p>1?" – "+esc(lab.toLowerCase()):" de l'animal"}</button>`}</div></div>`}).join("")}
+   ${extra.length?`<div class="ph">${extra.map(x=>`<div><img data-pid="${x}" alt="Photo"><button class="d" data-rtp="${t.id}|${(t.ph||[]).indexOf(x)}">Retirer</button></div>`).join("")}</div>`:""}
+   <p class="mut sans" style="font-size:.8rem;margin:4px 2px 0;line-height:1.4">${wq?"Le poids vidé s’encode plus tard, dans la fiche de chasse, une fois l’animal pesé. ":fk=="w"?"Poids de l’animal vidé, une fois pesé. ":""}Touche le massacre pour garder cet animal dans Mes trophées, avec sa photo.</p></div>`};
  const stp=(t,lab,key,v,extra)=>`<div class="st2"><div class="lab">${lab}${extra||""}</div><div class="stp"><button data-c="${t.id}:${key}:-1" aria-label="Moins">−</button><b>${v}</b><button data-c="${t.id}:${key}:1" aria-label="Plus">+</button></div></div>`;
  const ed=(t,qk)=>{const nm=tname(t),so=t.r!="m"?SXO(t.sp):null,U=UL[t.u],op=detOpen.has(t.id)||(!qk&&tMiss(t).some(x=>x!="à préciser"));
   return `<div class="card tcard sans" id="tc-${t.id}">
@@ -1937,17 +1965,17 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
   <div class="rt">${[["p","✅","Prélevé",""],["m","❌","Manqué",""],["b","🩸","Blessé","<small>ou je ne sais pas</small>"]].map(([r,i,l,s])=>`<button data-r="${t.id}:${r}" class="r-${r}${t.r==r?" on":""}"><span>${i}</span>${l}${s}</button>`).join("")}</div>
   ${t.r?`<div class="cnt2">${t.r!="m"?stp(t,t.r=="p"?"Animaux prélevés":"Animaux concernés","k",t.k):""}${stp(t,U+" tirées","n",t.n,hasArc()?`<span class="useg">${["b","c","f"].map(u=>`<button data-uu="${t.id}:${u}" class="${t.u==u?"on":""}">${UL[u]}</button>`).join("")}</span>`:`<button class="lnk" data-u="${t.id}">⇄ ${t.u=="b"?"cartouches":"balles"}</button>`)}</div>${t.u=="f"?flPick(t):""}`:'<p class="mut" style="margin:10px 2px 0;font-size:.88rem">Choisis le résultat : tu pourras ensuite indiquer le nombre d\'animaux et de munitions.</p>'}
   <div class="gpsw"><button class="gpsb${t.loc?" on":""}" data-gps="${t.id}"><span class="i">📍</span><span>${t.loc&&t.loc.gps?`Position du tir enregistrée<small>${t.loc.acc!=null?"± "+Math.round(t.loc.acc)+" m · ":""}touche pour mettre à jour</small>`:t.loc?`Lieu du tir : ${esc(lieu(t.loc)=="Lieu du tir"?"point placé sur la carte":lieu(t.loc))}<small>touche pour utiliser plutôt ma position GPS</small>`:`Enregistrer ma position<small>là où je suis posté au moment du tir</small>`}</span></button>${qk?"":`<div class="gpsl"><button type="button" data-l="${t.id}">${t.loc?"🗺 Ajuster sur la carte":"ou 🗺 choisir sur la carte"}</button></div>`}</div>
-  <details class="tdet" data-dt="${t.id}"${op?" open":""}><summary>＋ ${t.r=="p"?(needK(t)?(needK(t)=="w"?"Poids, ":"Cors, "):"")+"photo, arme":"Arme"} <span class="mut">(ou plus tard)</span></summary>
-   ${t.r=="p"?detail(t):""}
+  <details class="tdet" data-dt="${t.id}"${op?" open":""}><summary>＋ ${t.r=="p"?(troOk(t)?((qk&&aFk(t)=="w"?"":aFk(t)=="w"?"Poids vidé, ":"Cors, ")+(t.sp=="Sanglier"?"sexe, ":"")+(t.p>1?"photos, trophées, arme":"photo, trophée, arme")).replace(/^./,c=>c.toUpperCase()):(needK(t)?(needK(t)=="w"?"Poids, ":"Cors, "):"")+"photo, arme"):"Arme"} <span class="mut">(ou plus tard)</span></summary>
+   ${t.r=="p"?detail(t,qk):""}
    ${(S.guns||[]).length?`<label class="sans" style="display:flex;align-items:center;gap:8px;margin-top:10px">${gunIc(16,(gunOf(t.gun)||{}).type||"carabine")}<select data-gn="${t.id}" style="flex:1;margin:0"><option value="">Arme utilisée…</option>${S.guns.map(g=>`<option value="${g.id}" ${t.gun==g.id?"selected":""}>${esc(gl(g))}</option>`).join("")}</select></label>`:`<p class="mut sans" style="margin:10px 0 0">${gunIc(14)} Ajoute tes armes via le menu pour les choisir ici.</p>`}
-   ${t.r=="p"?`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><button type="button" class="s sans" data-tph="${t.id}" style="display:block;width:100%;text-align:center;padding:10px;margin-top:8px">📷 Photo de l'animal</button>`:""}
+   ${t.r=="p"&&!troOk(t)?`<div class="ph">${(t.ph||[]).map((x,i)=>`<div><img data-pid="${x}" alt="Photo de l'animal"><button class="d" data-rtp="${t.id}|${i}">Retirer</button></div>`).join("")}</div><button type="button" class="s sans" data-tph="${t.id}" style="display:block;width:100%;text-align:center;padding:10px;margin-top:8px">📷 Photo de l'animal</button>`:""}
   </details>
   ${qk?"":`<button class="p" data-v="${t.id}" style="width:100%;margin-top:12px">✓ Valider ce tir</button>`}</div>`};
  const A=agg([{fiche:fd}]);
  $("#app").innerHTML=`<h1 style="margin-top:4px">${esc(e.title)}</h1><p class="mut sans" style="margin-top:-6px">${fmt(e.date)} · ${esc(lieu(e.place))}</p>
  ${sumBand(A)}
  <h2>Mes tirs</h2>
- ${fd.tirs.some(troOk)?`<p class="mut sans trhint">Grand gibier prélevé : touche le massacre pour l'ajouter à Mes trophées.</p>`:""}<div>${fd.tirs.map(t=>t.ok===false?ed(t,false):troOk(t)?`<div class="trw${isTro(t)?" on":""}">${tLine(t,true)}<button class="trq" data-trk="${t.id}" aria-pressed="${isTro(t)}" aria-label="${isTro(t)?"Retirer de":"Ajouter à"} Mes trophées">${TRO_ICON}</button></div>`:tLine(t,true)).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
+ ${fd.tirs.some(troOk)?`<p class="mut sans trhint">Grand gibier prélevé : ouvre le tir et touche le massacre d'un animal pour l'ajouter à Mes trophées.</p>`:""}<div>${fd.tirs.map(t=>t.ok===false?ed(t,false):tLine(t,true)).join("")||'<p class="mut">Aucun tir enregistré : une journée sans tir est aussi une journée.</p>'}</div>
  <button class="addt" id="a-b">＋ Ajouter un tir</button>
  <h2>Tableau final</h2>${nt?`<div class="tls" style="margin-bottom:8px">${Object.entries(fd.tab).filter(([k,v])=>v>0).map(([k,v])=>`<div class="tl"><div class="sv">${sil(k,56)}<b>× ${v}</b></div>${esc(k)}</div>`).join("")}</div>`:'<p class="mut sans" style="margin:-4px 0 8px">Les pièces de toute l\'équipe en fin de journée, avec une photo du tableau si tu veux.</p>'}
  <button class="tbb" id="tb">🦌 ${nt?`Modifier le tableau final · ${nt} pièce${nt>1?"s":""}`:"Encoder le tableau final"}</button>
@@ -1955,13 +1983,16 @@ function rFiche(){const e=S.ev[fe],nt=fd.tab?Object.values(fd.tab).reduce((a,b)=
  <label>Notes</label><textarea id="f-notes" rows="3">${esc(fd.notes)}</textarea>
  <p class="mut sans swh">‹ Glisse vers la droite pour modifier la journée (titre, date, lieu…)</p><div style="height:90px"></div>`;
  if(Q){Q.ok=false;$("#app").classList.add("quick");$("#app").innerHTML=`${BKB}<div style="padding-left:48px;min-height:44px"></div>${ed(Q,true)}<div style="height:110px"></div>`;
-  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){track("shot_saved",{result:Q.r,animals:Q.k,ammo:Q.n,gps:!!(Q.loc&&Q.loc.gps),sex:!!Q.sx,from:"bang"});toast(Q.r=="b"?"Tir enregistré. Blessé ou incertain : à confirmer dans « Mes résultats ».":"Tir enregistré.");go("cal");gc();woundSync(true)}},"✓ Enregistrer","Annuler")}
+  $("#bk2").onclick=backFiche;fbar(backFiche,()=>{if(!Q.r)return toast("Choisis le résultat du tir.");Q.ok=true;tfix(Q);syncTab(fd);S.ev[fe].fiche=fd;quickTid=null;detOpen.clear();if(save()){track("shot_saved",{result:Q.r,animals:Q.k,ammo:Q.n,gps:!!(Q.loc&&Q.loc.gps),sex:!!Q.sx||(Q.sg||[]).some(Boolean),from:"bang"});toast(Q.r=="b"?"Tir enregistré. Blessé ou incertain : à confirmer dans « Mes résultats ».":"Tir enregistré.");go("cal");gc();woundSync(true)}},"✓ Enregistrer","Annuler")}
  else if(canClose(e)){fbar(backFiche,saveClose,"Enregistrer et clôturer la journée");const a=document.createElement("button");a.className="s";a.id="f-nc";a.textContent="Enregistrer sans clôturer la journée";a.style.cssText="width:100%;margin-top:10px;font-size:.88rem";a.onclick=saveFiche;const sp=$("#app").lastElementChild;$("#app").insertBefore(a,sp&&sp.style&&sp.style.height?sp:null)}
  else fbar(backFiche,saveFiche);
  const T=id=>fd.tirs.find(t=>t.id==id);
  if($("#a-b"))$("#a-b").onclick=()=>{sync();pickCtx={mode:"fiche"};go("pick")};
  document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{sync();const t=T(b.dataset.v);if(!t.r)return toast("Choisis le résultat du tir.");t.ok=true;tfix(t);detOpen.delete(t.id);render()});
- document.querySelectorAll("[data-trk]").forEach(b=>b.onclick=ev=>{ev.stopPropagation();troToggle(b.dataset.trk)});
+ document.querySelectorAll("[data-tka]").forEach(b=>b.onclick=ev=>{ev.preventDefault();const[id,i]=b.dataset.tka.split("|");troToggle(id,+i)});
+ document.querySelectorAll("[data-sg]").forEach(b=>b.onclick=()=>{sync();const[id,i,x]=b.dataset.sg.split("|"),t=T(id);t.sg=t.sg||[];t.sg[+i]=t.sg[+i]==x?null:x;render()});
+ document.querySelectorAll("[data-aph]").forEach(b=>b.onclick=()=>{sync();const[id,i]=b.dataset.aph.split("|"),t=T(id);photoPick(async fs=>{if(fs[0])await setAPh(t,+i,fs[0]);detOpen.add(t.id);render()},false)});
+ document.querySelectorAll("[data-arp]").forEach(b=>b.onclick=()=>{sync();const[id,i]=b.dataset.arp.split("|"),t=T(id),old=(t.pa||[])[+i];if(old){t.ph=(t.ph||[]).filter(x=>x!=old);t.pa[+i]=null}render()});
  document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{sync();const id=b.dataset.o;T(id).ok=false;render();const c=$("#tc-"+id);if(c)c.scrollIntoView({block:"center"})});
  document.querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{sync();const[id,x]=b.dataset.sx.split(":"),t=T(id);t.sx=t.sx==x?null:x;render()});
  document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{sync();const[id,r]=b.dataset.r.split(":"),t=T(id);t.r=r;t.k=Math.max(1,t.k||1);if(r=="m")t.sx=t.sx||null;tfix(t);render()});
@@ -2144,8 +2175,8 @@ function rStats(){if(!rStats._t||Date.now()-rStats._t>60000){rStats._t=Date.now(
  :`<div class="kp" style="margin-top:12px;grid-template-columns:1fr 1fr"><div class="sc2"><b>${plan}</b><span>journées planifiées</span><small class="mut sans">1 juil. ${seasonF.slice(0,4)} – 30 juin ${seasonF.slice(5)}</small></div><button class="sc2" data-kp="j"><b>${passed}/${plan}</b><span>journées chassées</span><i class="chev">›</i></button></div>`}
  <div class="kp" style="margin-top:8px;grid-template-columns:1fr 1fr"><button class="sc2" data-kp="p"><b>${a.p}</b><span>prélèvements</span><i class="chev">›</i></button><button class="sc2" data-kp="r"><b>${a.m}</b><span>manqués</span><i class="chev">›</i></button></div>
  ${a.a?`<h2>Réussite</h2><div class="pg2"><div class="sc2"><div class="lb" style="justify-content:center">${ic("t",26)}<span style="font:600 .9rem system-ui;color:var(--ink)">Réussite</span></div>${gauge(a.re).replace('width="60" height="36"','width="110" height="66"')}<b>${a.re}%</b><span>${a.p} prélevé${a.p>1?"s":""} sur ${a.a} ${a.a>1?"animaux":"animal"} tiré${a.a>1?"s":""}</span></div>${a.bp&&a.bn?`<div class="sc2"><div class="lb" style="justify-content:center">${ic("b",26)}<span style="font:600 .9rem system-ui;color:var(--ink)">Balles</span></div><b style="font-size:2rem;margin-top:10px">${String(Math.round(a.bn/a.bp*10)/10).replace(".",",")}</b><span>balles par pièce · ${a.bn} tirées</span></div>`:""}${a.cp&&a.cn?`<div class="sc2"><div class="lb" style="justify-content:center">${ic("c",26)}<span style="font:600 .9rem system-ui;color:var(--ink)">Cartouches</span></div><b style="font-size:2rem;margin-top:10px">${String(Math.round(a.cn/a.cp*10)/10).replace(".",",")}</b><span>cartouches par pièce · ${a.cn} tirées</span></div>`:""}${a.fp&&a.fn?`<div class="sc2"><div class="lb" style="justify-content:center">${ic("f",26)}<span style="font:600 .9rem system-ui;color:var(--ink)">Flèches</span></div><b style="font-size:2rem;margin-top:10px">${String(Math.round(a.fn/a.fp*10)/10).replace(".",",")}</b><span>flèches par pièce · ${a.fn} tirées</span></div>`:""}</div>`:""}
- ${Object.keys(bySp).length?`<h2 id="tbc">Tableau de chasse</h2><div class="tls">${Object.entries(bySp).sort((x,y)=>y[1]-x[1]).map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div><p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
- ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier</span></div>`:""}${hc?`<div class="sc2">${sil("Cerf mâle",56)}<b>${hc}</b><span>cors max (cerf)</span></div>`:""}${hb?`<div class="sc2">${sil("Brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
+ ${Object.keys(bySp).length?`<h2 id="tbc">Tableau de chasse</h2>${["Grand gibier","Petit gibier","Gibier d'eau","Autre gibier"].map(g=>{const L=Object.entries(bySp).filter(([k])=>spGrp(k)==g).sort((x,y)=>y[1]-x[1]);if(!L.length)return"";const n=L.reduce((u,[,v])=>u+v,0);return `<div class="tgh sans">${g}<small>${n} pièce${n>1?"s":""}</small></div><div class="tls">${L.map(([k,v])=>`<button class="tl" data-sp="${esc(k)}"><div class="sv">${sil(k,64)}<b>× ${v}</b></div>${esc(k)}</button>`).join("")}</div>`}).join("")}<p class="mut sans">Touche une espèce pour voir le détail.</p>`:""}
+ ${hw||hc||hb?`<h2>Records</h2><div class="kp">${hw?`<div class="sc2">${sil("Sanglier",56)}<b>${hw} kg</b><span>plus lourd sanglier (vidé)</span></div>`:""}${hc?`<div class="sc2">${sil("Cerf mâle",56)}<b>${hc}</b><span>cors max (cerf)</span></div>`:""}${hb?`<div class="sc2">${sil("Brocard",56)}<b>${hb}</b><span>cors max (brocard)</span></div>`:""}</div>`:""}
  ${lucky?`<h2>Poste porte-bonheur</h2><div class="card sans" style="text-align:center">Ton numéro de poste porte-bonheur est le <b style="font-size:1.5rem;color:var(--acc)">${esc(lucky[0])}</b><br><span class="mut">${lucky[1].p} prélèvement${lucky[1].p>1?"s":""} · ${lucky[1].d.size} journée${lucky[1].d.size>1?"s":""} à ce poste</span></div>`:""}
  ${gunStats?`<h2>Par arme</h2>${gunStats}`:""}
  ${shotSec(L)}
@@ -2166,7 +2197,7 @@ function rStats(){if(!rStats._t||Date.now()-rStats._t>60000){rStats._t=Date.now(
   drill(`${sil(k,56)}<span>${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${tot}</b><span>prélèvements</span></div><div class="sc2"><b>${rows.length}</b><span>journées</span></div>${ws.length?`<div class="sc2"><b>${av(ws)}</b><span>kg en moyenne</span></div>`:cs.length?`<div class="sc2"><b>${av(cs)}</b><span>cors en moyenne</span></div>`:""}</div>`,rows)});
  document.querySelectorAll("[data-pl]").forEach(b=>b.onclick=()=>{const k=b.dataset.pl,es=L.filter(e=>place(e)==k);
   drill(`<span>📍 ${esc(k)}</span>`,`<div class="kp" style="margin-bottom:10px"><div class="sc2"><b>${es.length}</b><span>journées</span></div><div class="sc2"><b>${bySec[k]}</b><span>prélèvements</span></div></div>`,es.map(e=>({e,txt:pt(e)+" prélèvement"+(pt(e)>1?"s":"")})))})}
-function migrate(){migTirs();if(S.dep=="75")S.dep=null;
+function migrate(){migTirs();migTro();if(S.dep=="75")S.dep=null;
  /* nouvelle liste des modes de chasse : « Fauconnerie » devient « Chasse au vol (fauconnerie) » ; les anciens modes déjà utilisés deviennent des modes personnels */
  if(!S.md2){S.md2=1;S.cm=S.cm||[];const RN={"Fauconnerie":"Chasse au vol (fauconnerie)"};
   evs().forEach(e=>{if(RN[e.mode])e.mode=RN[e.mode];if(e.mode&&!MODES.includes(e.mode)&&!S.cm.includes(e.mode))S.cm.push(e.mode)});

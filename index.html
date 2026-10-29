@@ -455,6 +455,7 @@ seasonF=season(iso(new Date()));
 const evs=()=>Object.values(S.ev),on=ds=>evs().filter(e=>e.date==ds);
 const coord=l=>l&&l.lat!=null?l.lat.toFixed(5)+", "+l.lng.toFixed(5):"";
 const lieu=l=>l&&(l.name||l.addr||adOf(l)||coord(l))||"non précisé";
+const troPl=(e,t)=>{const p=e.place,n=p&&(p.name||p.addr||adOf(p));if(n)return n;const l=t&&t.loc&&t.loc.lat!=null?t.loc:null;if(l&&adOf(l))return adOf(l);return p&&p.lat!=null?coord(p):""};
 /* adresse lisible d'un point GPS (Nominatim, mise en cache) */
 const adKey=(la,ln)=>(+la).toFixed(4)+","+(+ln).toFixed(4);
 const adOf=l=>l&&l.lat!=null&&S.ad?S.ad[adKey(l.lat,l.lng)]||"":"";
@@ -577,7 +578,7 @@ function troToggle(id,i=0){sync();const t=fd.tirs.find(x=>x.id==id);if(!t||!troO
 function rTro(){const all=troAll(),sps=[...new Set(all.map(x=>x.t.sp))],ses=[...new Set(all.map(x=>season(x.e.date)))];if(troF.sp&&!sps.includes(troF.sp))troF.sp="";if(troF.se&&!ses.includes(troF.se))troF.se="";
  const L=all.filter(x=>(!troF.sp||x.t.sp==troF.sp)&&(!troF.se||season(x.e.date)==troF.se)),gv=S.troV=="g";
  const ph=(x,cls)=>aPh(x.t,x.i)?`<img class="${cls}" data-pid="${aPh(x.t,x.i)}" alt="Photo de l'animal">`:`<button class="${cls} trnp" data-tap="${x.t.id}|${x.i}"><span>📷</span><b>Ajouter une photo</b></button>`;
- const meta=x=>fmtS(x.e.date)+(lieu(x.e.place)&&lieu(x.e.place)!="—"?" · "+esc(lieu(x.e.place)):"");
+ const meta=x=>{const p=troPl(x.e,x.t);return fmtS(x.e.date)+(p?" · "+esc(p):"")};
  const card=x=>gv?`<div class="trg">${ph(x,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}|${x.i}"><b>${esc(tname(x.t))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,2,x.i).map(c=>`<i>${esc(c)}</i>`).join("")}</span></button></div>`
   :`<div class="card trl">${ph(x,"trph")}<button class="trb" data-tro2="${x.e.id}|${x.t.id}|${x.i}"><b>${esc(troName(x.t,x.i))}</b><small>${meta(x)}</small><span class="trc">${troChips(x.t,3,x.i).map(c=>`<i>${esc(c)}</i>`).join("")}</span><span class="chev">›</span></button></div>`;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes trophées</h1><p class="mut sans" style="margin-top:-6px">Les animaux que tu as choisis de garder en mémoire, du plus récent au plus ancien.</p>
@@ -594,11 +595,11 @@ function rTro(){const all=troAll(),sps=[...new Set(all.map(x=>x.t.sp))],ses=[...
 /* photo d'un animal : une seule par animal (elle remplace la précédente) */
 async function setAPh(t,i,f){const id=await addPhoto(f);t.ph=t.ph||[];t.pa=t.pa||[];const old=t.pa[i];if(old)t.ph=t.ph.filter(x=>x!=old);t.ph.push(id);t.pa[i]=id}
 function troPhoto(t,i,after){photoPick(async fs=>{if(fs[0])await setAPh(t,i,fs[0]);save();if(after)after();render()},false)}
-function troOpen(eid,tid,i=0){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(x=>x.id==tid);if(!t)return;t.tros=t.tros||[];t.tros[i]=Object.assign({m:{},n:""},t.tros[i]);const tr=t.tros[i],g=gunOf(t.gun),pl=lieu(e.place),ap=aPh(t,i);
+function troOpen(eid,tid,i=0){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(x=>x.id==tid);if(!t)return;t.tros=t.tros||[];t.tros[i]=Object.assign({m:{},n:""},t.tros[i]);const tr=t.tros[i],g=gunOf(t.gun),pl=troPl(e,t),tl=t.loc&&t.loc.lat!=null?t.loc:null,ap=aPh(t,i);
  const row=(k,v)=>v?`<div class="trr"><span class="mut">${k}</span><b>${v}</b></div>`:"";
  const draw=()=>{const ap=aPh(t,i);modal(`<h2 style="margin:0">${esc(troName(t,i))}</h2><p class="mut sans" style="margin:2px 0 10px">${esc(fmt(e.date))}${t.p>1?` · animal ${i+1} sur ${t.p} de ce tir`:""}</p>
   ${ap?`<img class="trbigph" data-pid="${ap}" alt="Photo de l'animal"><button class="lnk sans" id="tr-ph" style="margin:6px 0 4px">📷 Changer la photo</button>`:`<button class="trnp trbigph" id="tr-ph"><span>📷</span><b>Ajouter une photo</b></button>`}
-  <h3 class="trh">L'animal</h3><div class="card sans trcard">${row("Sexe",(t.sg||[])[i]?SGL[t.sg[i]]:t.sx?SXL[t.sx]:"")}${row("Lieu",esc(pl&&pl!="—"?pl:"")+(t.poste?" · poste "+esc(t.poste):""))}${row("Journée",esc(e.title))}${row("Arme",g?esc([g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")):"")}</div>
+  <h3 class="trh">L'animal</h3><div class="card sans trcard">${row("Sexe",(t.sg||[])[i]?SGL[t.sg[i]]:t.sx?SXL[t.sx]:"")}${row("Lieu",pl?esc(pl)+(t.poste?" · poste "+esc(t.poste):""):t.poste?"poste "+esc(t.poste):"")}${row("Position du tir",tl?(tl.acc!=null?"± "+Math.round(tl.acc)+" m · ":"")+link(tl):"")}${row("Journée",esc(e.title))}${row("Arme",g?esc([g.brand,g.model].filter(Boolean).join(" ")+(g.cal?" · "+g.cal:"")):"")}</div>
   <h3 class="trh">Mensurations du trophée</h3><div class="card sans trcard">${(TROM[t.sp]||[]).map(([k,l,u,h])=>`<label class="trm2"><span>${l}${h?`<small>${h}</small>`:""}</span><input type="number" min="0" step="${k=="c"?"1":"0.1"}" inputmode="${k=="c"?"numeric":"decimal"}" data-tm="${k}" value="${esc(troV(t,k,i)??"")}" placeholder="${u||"—"}"></label>`).join("")}</div>
   <p class="mut sans" style="font-size:.8rem;margin:6px 2px 0">Facultatives, inspirées des usages du CIC. ChasseLog ne calcule ni note ni médaille.</p>
   <h3 class="trh">Souvenir</h3><textarea id="tr-n" rows="3" placeholder="Une note pour toi : les conditions, le moment, ce que tu veux retenir…">${esc(tr.n||"")}</textarea>

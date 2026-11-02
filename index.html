@@ -656,7 +656,7 @@ document.addEventListener("click",e=>{const i=e.target.closest(".ph img[data-pid
 /* ---------- commentaires (bêta) ---------- */
 // Clé d'accès Web3Forms (https://web3forms.com) : elle fait suivre chaque commentaire vers ton adresse e-mail. À renseigner ici.
 const FB_KEY="d25e1cea-b1cc-4d3c-bbb6-cc30decffc29";
-let fbS;const fbReset=()=>fbS={type:"avis",name:"",anon:false,msg:"",q1:[],q2:"",q3:"",q4:null,sent:false,err:"",busy:false};fbReset();
+let fbS;const fbReset=()=>fbS={type:"avis",name:"",mail:"",anon:false,msg:"",q1:[],q2:"",q3:"",q4:null,sent:false,err:"",busy:false};fbReset();
 const FBQ1=["Application Android (Play Store)","Sauvegarde et synchronisation entre téléphones","Partage de la journée avec les autres participants","Carte de mes postes et miradors","Souvenirs (« il y a X ans »)","Bilan de fin de saison","Distance parcourue (GPS)","Mes trophées","Mes chiens","Gestion de la société de chasse (plan de tir, tableaux)"],
  FBQ2=["Carnet papier","Tableur (Excel…)","De mémoire","Une autre application","Je ne note rien"];
 function rFeedback(){const F=fbS;
@@ -671,10 +671,12 @@ function rFeedback(){const F=fbS;
  <label>4. Recommanderais-tu ChasseLog à un ami chasseur ? (0 = non, 10 = oui sans hésiter)</label><div class="nps">${Array.from({length:11},(_,i)=>`<button data-q4="${i}" class="${F.q4===i?"on":""}">${i}</button>`).join("")}</div>`:""}
  <label>${av?"5. Qu'est-ce qui manque ? Une idée, un commentaire ?":"Ton message"}</label><textarea id="fb-m" rows="${av?5:8}" placeholder="${av?"Écris ce qui te passe par la tête…":"Décris ce qui ne va pas…"}">${esc(F.msg)}</textarea>
  <label>Ton nom</label><input id="fb-n" value="${esc(F.name)}" placeholder="Prénom ou nom" ${F.anon?"disabled":""}>
+ <label>Ton adresse e-mail <span class="mut" style="font-weight:400">(facultatif)</span></label><input id="fb-e" type="email" inputmode="email" autocomplete="email" value="${esc(F.mail)}" placeholder="prenom@exemple.com" ${F.anon?"disabled":""}>
+ <p class="mut sans" style="font-size:.8rem;margin:4px 2px 0;line-height:1.4">Pour que je puisse te répondre, te poser une question sur ta suggestion ou te prévenir quand elle arrive dans l'application. Ton adresse ne sert à rien d'autre.</p>
  <label class="ck sans" style="margin-top:8px"><input type="checkbox" id="fb-a" ${F.anon?"checked":""}>Rester anonyme</label>
  <input type="text" id="fb-bot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
  ${F.err?`<p class="sans fberr" style="color:#b3402a;margin:10px 0 0">${esc(F.err)}</p>`:""}
- <button class="p" id="fb-s" style="width:100%;margin-top:14px" ${F.busy?"disabled":""}>${F.busy?"Envoi…":"Envoyer"}</button><p class="mut sans" style="font-size:.8rem">L'envoi nécessite une connexion internet. Rien d'autre n'est transmis que tes réponses, ton nom (si tu le donnes) et la version de l'application.</p><div style="height:60px"></div>`;
+ <button class="p" id="fb-s" style="width:100%;margin-top:14px" ${F.busy?"disabled":""}>${F.busy?"Envoi…":"Envoyer"}</button><p class="mut sans" style="font-size:.8rem">L'envoi nécessite une connexion internet. Rien d'autre n'est transmis que tes réponses, ton nom et ton adresse e-mail (si tu les donnes) et la version de l'application.</p><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
  const clr=()=>{if(F.err){F.err="";const x=$(".fberr");if(x)x.remove()}};
  document.querySelectorAll("[data-ft]").forEach(b=>b.onclick=()=>{F.type=b.dataset.ft;F.err="";render()});
@@ -683,21 +685,23 @@ function rFeedback(){const F=fbS;
  document.querySelectorAll("[data-q4]").forEach(b=>b.onclick=()=>{const v=+b.dataset.q4;F.q4=F.q4===v?null:v;document.querySelectorAll("[data-q4]").forEach(x=>x.classList.toggle("on",+x.dataset.q4===F.q4));clr()});
  if($("#q3"))$("#q3").oninput=e=>{F.q3=e.target.value;clr()};
  $("#fb-n").oninput=e=>F.name=e.target.value;$("#fb-m").oninput=e=>{F.msg=e.target.value;clr()};
- $("#fb-a").onchange=e=>{F.anon=e.target.checked;$("#fb-n").disabled=F.anon};
+ $("#fb-e").oninput=e=>{F.mail=e.target.value;clr()};
+ $("#fb-a").onchange=e=>{F.anon=e.target.checked;$("#fb-n").disabled=F.anon;$("#fb-e").disabled=F.anon};
  $("#fb-s").onclick=async()=>{const msg=F.msg.trim(),has=av?(msg||F.q1.length||F.q2||F.q3.trim()||F.q4!=null):msg;
   if(!has){F.err=av?"Réponds à au moins une question ou écris un message.":"Écris un message avant d'envoyer.";return render()}
   if($("#fb-bot").value)return;
+  const em=F.anon?"":F.mail.trim();if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){F.err="Cette adresse e-mail ne semble pas valide (ou laisse le champ vide).";return render()}
   if(!FB_KEY){F.err="L'envoi des commentaires n'est pas encore configuré dans cette version.";return render()}
   if(!navigator.onLine){F.err="Pas de connexion internet : tes réponses sont conservées, réessaie plus tard.";return render()}
   F.busy=true;F.err="";render();
-  const body={access_key:FB_KEY,subject:"ChasseLog – "+(av?"Avis":"Erreur signalée"),from_name:"ChasseLog bêta",name:F.anon||!F.name.trim()?"Anonyme":F.name.trim(),type:av?"Avis":"Erreur",message:msg||"-",version:APP_V,appareil:navigator.userAgent.slice(0,160)};
+  const body={access_key:FB_KEY,subject:"ChasseLog – "+(av?"Avis":"Erreur signalée"),from_name:"ChasseLog bêta",name:F.anon||!F.name.trim()?"Anonyme":F.name.trim(),type:av?"Avis":"Erreur",message:msg||"-",version:APP_V,appareil:navigator.userAgent.slice(0,160)};if(em){body.email=em;body.recontact="oui, accepte d'être recontacté"}
   if(av)Object.assign(body,{fonctions_souhaitees:F.q1.join(", ")||"-",carnet_actuel:F.q2||"-",agacements:F.q3.trim()||"-",recommandation:F.q4==null?"-":F.q4+"/10"});
   try{const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body)}),j=await r.json();
    if(j&&j.success){F.sent=true;F.busy=false;S.fbAsked=true;save();render()}else throw new Error()}
   catch(e){F.busy=false;F.err="L'envoi a échoué. Tes réponses sont conservées, réessaie dans un instant.";render()}}}
 
 /* ---------- invitation à donner son avis (une seule fois, après quelques minutes d'utilisation) ---------- */
-const ASK_AFTER=180,NL_AFTER=600;// secondes d'utilisation cumulée : avis (3 min), inscription à la sortie (10 min)
+const ASK_AFTER=1800,NL_AFTER=2700;// secondes d'utilisation cumulée : avis (30 min), suivre la page Facebook (45 min)
 const popFree=()=>view=="cal"&&!$("#upd")&&!$("#setup")&&!$("#tour")&&!$("#inst")&&!$(".mo")&&!$("#ff")&&!document.body.classList.contains("dr");
 setInterval(()=>{if(document.visibilityState!="visible"||(S.fbAsked&&S.nlAsked))return;S.useSec=(S.useSec||0)+15;if(S.useSec%60==0)save();
  if(!S.fbAsked&&S.useSec>=ASK_AFTER&&(S.tourAsked||!isSA())&&popFree()){S.fbAsked=true;save();
@@ -706,7 +710,7 @@ setInterval(()=>{if(document.visibilityState!="visible"||(S.fbAsked&&S.nlAsked))
   <p class="mut sans" style="font-size:.8rem;margin-top:10px">Ce message ne s'affichera plus. Tu peux toujours donner ton avis depuis le menu.</p>`);
   $("#ask-y").onclick=()=>{closeM();go("fb")};$("#ask-n").onclick=()=>closeM();return}
  if(S.fbAsked&&!S.nlAsked&&S.useSec>=NL_AFTER&&(S.tourAsked||!isSA())&&popFree()){S.nlAsked=true;save();folModal()}},15000);
-/* après 10 min d'utilisation, une seule fois : suivre la page Facebook (nouveautés, sortie officielle) */
+/* après 45 min d'utilisation, une seule fois : suivre la page Facebook (nouveautés, sortie officielle) */
 function folModal(){track("follow_ask");modal(`<div style="text-align:center"><div style="font-size:2.4rem;line-height:1;margin:2px 0 8px">🦌</div><h2 style="margin:0 0 8px">Tu aimes ChasseLog ?</h2>
  <p class="sans" style="font-size:1.02rem;line-height:1.5;margin:0 0 14px">Suis la page Facebook de ChasseLog : nouveautés, dates d'ouverture, et l'annonce de la sortie officielle.</p></div>
  <button class="p" id="fo-y" style="width:100%">Suivre ChasseLog sur Facebook</button><button class="s" id="fo-n" style="width:100%;margin-top:8px">Non merci</button>
@@ -775,18 +779,19 @@ let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e
  })();
 
 /* ---------- visite guidée « Découvre l'application » ---------- */
-const TAPS={"mn":[30.0,26.0],"ouv":[149.5,174.0],"om":[192.2,102.9],"fab":[344.0,796.0],"title":[195.0,190.8],"ta":[122.6,434.6],"save":[285.5,813.0],"pst":[195.0,26.0],"bang":[195.0,793.0],"psok":[330.8,762.3],"sang":[71.7,172.8],"plus":[80.7,200.5],"ok":[261.3,813.9],"cpl":[283.1,101.5],"sx":[308.0,689.3],"kg":[308.0,689.3],"photo":[195.0,788.6],"tb":[195.0,651.9],"tabplus":[344.0,591.2],"fsave":[261.3,804.8],"share":[195.0,152.3],"stats":[46.0,796.0],"sprev":[248.0,75.6],"mdoc":[149.5,300.0],"dadd":[195.0,220.7],"dvid":[73.3,730.5],"tok":[195.0,1091.9],"muok":[285.0,807.0]};
+const TAPS={"bang":[195,793],"cpl":[283.1,101.5],"dadd":[195,129.1],"dvid":[73.3,421.8],"fab":[344,796],"fsave":[261.3,804.8],"kg":[250,501.3],"mdoc":[149.5,300],"mn":[30,26],"mtro":[149.5,342],"muok":[285,807],"ok":[261.3,813.9],"om":[198.2,156.9],"ouv":[149.5,174],"plus":[80.7,200.5],"psok":[330.8,762.3],"pst":[195,26],"sang":[71.7,172.8],"save":[285.5,813],"share":[195,152.3],"sprev":[258,80.6],"stats":[46,796],"tabplus":[344,464.2],"tb":[195,458],"tgg":[195,484.5],"tgrid":[351.5,171.6],"title":[195,276.5],"tka":[329,501.3],"tok":[195,807.2],"tro1":[249,523.3]};
 // étapes : [titre, texte, actions]. Actions : ["s",écran] afficher, ["sl",écran] défiler, ["t",bouton] toucher, ["n",note] note jaune, ["w",ms] attendre, ["r",bouton] anneau, ["i",image] image par-dessus
 const TOUR=[
  ["Consulte les périodes d'ouverture","Les dates d'ouverture et de fermeture du gibier dans ta région (Wallonie ou ton département en France), selon ton mode de chasse.",[["s","cal0"],["w",1400],["t","mn"],["s","drawer"],["w",1500],["t","ouv"],["s","ouv0"],["n","Ce qui est ouvert aujourd'hui, avec la frise de la saison"],["w",3200],["t","om"],["s","ouv1"],["n","Choisis ton mode : battue, approche et affût, chasse à vol"],["w",2800],["sl","ouv2"],["w",1500]]],
  ["Ajoute une journée de chasse","Touche + pour créer ta journée : titre, type de chasse, heure de rendez-vous et lieu.",[["s","cal0"],["w",1300],["t","fab"],["s","form0"],["n","La météo et les heures de lever et coucher du soleil s'affichent"],["w",3000],["t","title"],["s","form1"],["n","Le lieu se remplit tout seul si tu l'as déjà utilisé"],["w",3000],["t","save"],["s","calday"],["w",1500]]],
  ["Le jour J, le bouton BANG apparaît","Le jour de ta chasse, un gros bouton BANG s'affiche en bas du calendrier.",[["s","calday"],["w",900],["r","bang"],["w",3500]]],
  ["Encode ton numéro de poste","Touche « N° de poste » en haut de l'écran. Il reste affiché toute la journée.",[["s","calday"],["w",1200],["t","pst"],["s","poste"],["n","Tape ton numéro, puis valide"],["w",2600],["t","psok"],["s","calposte"],["n","« Poste n° 7 » reste affiché jusqu'au soir"],["w",2500]]],
- ["Un tir ? Appuie sur BANG !","Pendant ta journée, encode ton tir en quelques secondes, sans rien oublier.",[["s","calposte"],["w",1200],["t","bang"],["s","pick"],["n","Choisis le gibier"],["w",2600],["t","sang"],["s","quick0"],["n","Choisis le résultat : prélevé, manqué ou blessé"],["w",2800],["t","plus"],["s","quick1"],["n","Indique le nombre d'animaux et de munitions, et ta position GPS"],["w",3000],["t","ok"],["s","calsaved"],["n","C'est enregistré !"],["w",2200]]],
- ["Complète les infos en fin de journée","Le soir, ChasseLog te rappelle ce qu'il manque : poids, cors, sexe, photo, tableau final et munitions.",[["s","calmd"],["n","Un rappel apparaît en fin de journée"],["w",2600],["t","cpl"],["s","fiche0"],["w",1500],["t","kg"],["s","fiche1"],["n","Poids, arme utilisée…"],["w",2800],["t","photo"],["n","Ajoute une photo de l'animal"],["w",2200],["sl","fiche2"],["w",1200],["t","tb"],["s","tab1"],["n","Encode le tableau final de la journée"],["w",2600],["t","tabplus"],["s","tab2"],["w",2000],["s","fiche3"],["w",1300],["t","fsave"],["s","mun0"],["n","Vérifie tes munitions de la journée"],["w",2800],["t","muok"],["s","sum0"],["n","Le résumé de ta journée"],["w",2600]]],
+ ["Un tir ? Appuie sur BANG !","Au poste, ton tir est encodé en quelques secondes. Le reste se complète le soir.",[["s","calposte"],["w",1200],["t","bang"],["s","pick"],["n","Choisis le gibier"],["w",2600],["t","sang"],["s","quick0"],["n","Choisis le résultat : prélevé, manqué ou blessé"],["w",2800],["t","plus"],["s","quick1"],["n","Le nombre d'animaux, les munitions, ta position GPS, et le sexe pour un sanglier"],["w",3400],["t","ok"],["s","calsaved"],["n","C'est enregistré !"],["w",2200]]],
+ ["Complète les infos en fin de journée","Le soir, ChasseLog te rappelle ce qu'il manque : poids vidé, cors, sexe, photo, tableau final et munitions.",[["s","calmd"],["n","Un rappel apparaît en fin de journée"],["w",2600],["t","cpl"],["s","fiche0"],["w",1500],["sl","fiche1"],["w",900],["t","kg"],["s","fiche2"],["n","Le poids vidé et la photo de chaque animal"],["w",3000],["sl","fiche2b"],["w",1200],["t","tb"],["s","tab1"],["n","Encode le tableau final de toute l'équipe"],["w",2400],["t","tgg"],["s","tab1b"],["w",1200],["t","tabplus"],["s","tab2"],["w",1800],["s","tab3"],["w",900],["t","tok"],["s","fiche3"],["w",1300],["t","fsave"],["s","mun0"],["n","Vérifie tes munitions de la journée"],["w",2800],["t","muok"],["s","sum0"],["n","Le résumé de ta journée"],["w",2600]]],
  ["Partage ta journée","Choisis le style et ce que tu affiches, puis partage ou télécharge une belle image de ta journée.",[["s","sum0"],["w",1300],["t","share"],["i","share"],["w",4000]]],
+ ["Garde tes plus beaux trophées","Touche le massacre d'un grand gibier prélevé : il rejoint Mes trophées, avec sa photo, son lieu et ses mensurations.",[["s","fiche2"],["w",1300],["t","tka"],["s","fiche2t"],["n","L'animal est ajouté à Mes trophées"],["w",2600],["s","cal0"],["w",900],["t","mn"],["s","drawer"],["w",1200],["t","mtro"],["s","tro0"],["n","Tous tes trophées, avec leur photo"],["w",3000],["t","tro1"],["s","tro1a"],["n","Le lieu, la position du tir, l'arme…"],["w",3000],["sl","tro1"],["n","Les cors à gauche et à droite, les mensurations et un souvenir"],["w",3400],["s","tro0"],["w",900],["t","tgrid"],["s","tro2"],["n","Ou en grille, comme un tableau"],["w",2800]]],
  ["Consulte tes statistiques","La saison en cours et les saisons passées : réussite, prélèvements, records, poste porte-bonheur…",[["s","cal2"],["w",1200],["t","stats"],["s","stats0"],["n","Journées, prélèvements et réussite"],["w",3500],["sl","stats1"],["n","Tes records, ton poste porte-bonheur, tes résultats par arme"],["w",3800],["sl","stats3"],["n","Compare tes saisons et tes lieux de chasse"],["w",3500],["s","stats0"],["w",1000],["t","sprev"],["s","statsP"],["n","Revois une saison passée"],["w",3000]]],
- ["Tes documents toujours à portée de main","Ajoute ton permis de chasse, ton attestation d'assurance et ta carte d'identité : tout est dans ton téléphone, même sans réseau.",[["s","cal0"],["w",1200],["t","mn"],["s","drawer"],["w",1300],["t","mdoc"],["s","docs0"],["n","Prends une photo ou choisis un fichier"],["w",2600],["t","dadd"],["s","docs1"],["n","Indique la date de fin de validité de ton permis et de ton assurance"],["w",3200],["t","dvid"],["s","docs2"],["n","Montre-les en un geste lors d'un contrôle"],["w",3000]]]
+ ["Tes documents toujours à portée de main","Ajoute ton permis de chasse, ton attestation d'assurance et ta carte d'identité : tout est dans ton téléphone, même sans réseau.",[["s","cal0"],["w",1200],["t","mn"],["s","drawer"],["w",1300],["t","mdoc"],["s","docs0"],["n","Prends une photo ou choisis un fichier"],["w",2600],["t","dadd"],["s","docs1"],["n","Indique la date de fin de validité de ton permis et de ton assurance"],["w",3200],["sl","docs1b"],["w",900],["t","dvid"],["s","docs2"],["n","Montre-les en un geste lors d'un contrôle"],["w",3000]]]
 ];
 function startTour(onEnd){if($("#tour"))return;track("tour_started");shut&&document.body.classList.contains("dr")&&shut();
  const o=document.createElement("div");o.id="tour";document.body.appendChild(o);document.documentElement.classList.add("in-on");
@@ -1540,7 +1545,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-10-28b",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-11-02a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));

@@ -552,16 +552,16 @@ const isTroA=(t,i)=>troOk(t)&&i<t.p&&!!((t.tros||[])[i]&&t.tros[i].on);
 const isTro=t=>troOk(t)&&(t.tros||[]).some((x,i)=>x&&x.on&&i<t.p);
 const nTro=t=>troOk(t)?(t.tros||[]).filter((x,i)=>x&&x.on&&i<t.p).length:0;
 const aPh=(t,i)=>(t.pa||[])[i]||null;
-const aFk=t=>t.sx=="m"&&["Cerf élaphe","Chevreuil","Daim"].includes(t.sp)?"c":"w";
+const aFk=t=>t.sx=="m"&&COR(t.sp)?"c":"w";
 const SGL={m:"mâle",f:"femelle"};
 /* anciennes données : un trophée et des photos par tir → rattachés aux animaux dans l'ordre */
 function migTro(){let ch=0;Object.values(S.ev||{}).forEach(e=>{(e.fiche&&e.fiche.tirs||[]).forEach(t=>{if(t.tro){t.tros=t.tros||[];if(!t.tros[0])t.tros[0]=t.tro;delete t.tro;ch=1}
  if(troOk(t)&&!t.pa&&!t.pai&&(t.ph||[]).length){t.pa=(t.ph||[]).slice(0,Math.max(1,t.p||1));ch=1}})});return ch}
 /* mensurations par espèce (usages CIC, facultatives) : w et c = poids et cors de la fiche */
 const TROM={"Sanglier":[["w","Poids vidé","kg","",""],["dl","Longueur des défenses","cm","sur la courbe extérieure, de la racine à la pointe","Défenses"],["dw","Largeur des défenses","cm","à l'endroit le plus large","Largeur"],["gr","Circonférence des grès","cm","défenses du haut, au plus large","Grès"]],
- "Cerf élaphe":[["c","Nombre de cors","","",""],["bk","Poids des bois","kg","bois secs, avec le massacre","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"],["mu","Circonférence des meules","cm","moyenne des deux meules","Meules"]],
- "Chevreuil":[["c","Nombre de cors","","",""],["bg","Poids des bois","g","bois secs, avec le massacre","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"]],
- "Daim":[["c","Nombre de cors","","",""],["lb","Longueur des bois","cm","moyenne des deux bois","Bois"],["el","Longueur des empaumures","cm","","Empaumure"],["ew","Largeur des empaumures","cm","","Larg. empaumure"],["bk","Poids des bois","kg","bois secs, avec le massacre","Poids bois"]],
+ "Cerf élaphe":[["c","Nombre de cors","","",""],["bk","Poids des bois","kg","bois secs, avec le massacre, une fois préparé","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"],["mu","Circonférence des meules","cm","moyenne des deux meules","Meules"]],
+ "Chevreuil":[["c","Nombre de cors","","",""],["bg","Poids des bois","g","bois secs, avec le massacre, une fois préparé","Bois"],["me","Longueur des merrains","cm","moyenne des deux merrains","Merrains"]],
+ "Daim":[["w","Poids vidé","kg","",""],["lb","Longueur des bois","cm","moyenne des deux bois","Bois"],["el","Longueur des empaumures","cm","moyenne des deux empaumures","Empaumure"],["ew","Largeur des empaumures","cm","moyenne des deux empaumures","Larg. empaumure"],["mu","Circonférence des meules","cm","moyenne des deux meules","Meules"],["bk","Poids des bois","kg","bois secs, avec le massacre, une fois préparé","Poids bois"]],
  "Mouflon":[["w","Poids vidé","kg","",""],["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]],
  "Chamois":[["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]],
  "Isard":[["co","Longueur des cornes","cm","sur la courbe extérieure","Cornes"],["ba","Circonférence à la base","cm","","Base"]]};

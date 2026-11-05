@@ -6,9 +6,9 @@ liens externes, barres du système). Sur le site, rien ne change.
 
 - `capacitor.config.json` : identifiant `be.chasselog.app`, réglages Capacitor.
 - `scripts/www.mjs` : copie l'app web dans `www/` (sans service worker ni écran d'installation).
-- `scripts/native.mjs` : ajuste le projet Android généré (autorisations, bord à bord, icônes, démarrage, version, signature de test).
+- `scripts/native.mjs` : ajuste le projet Android généré (autorisations, bord à bord, icônes, démarrage, version).
 - `res/` : icônes ; `assets/logo-1024.png` : logo source.
-- `keys/` : clé de signature des APK de **test** seulement (voir `keys/LISEZMOI.txt`).
+- Aucune clé de signature dans ce dépôt public : le fichier .aab est construit non signé, puis signé hors de GitHub avec la clé d'importation Google Play.
 
 Le dossier `android/` n'est pas versionné : le workflow `.github/workflows/android.yml` le génère à chaque build
-et dépose l'APK sur la branche `apk-builds` (avec `build.log` et `info.txt`).
+et dépose le fichier .aab (non signé) sur la branche `apk-builds` (avec `build.log` et `info.txt`).

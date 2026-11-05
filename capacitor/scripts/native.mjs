@@ -65,18 +65,6 @@ must(appV, "APP_V introuvable dans index.html");
 const code = parseInt(process.env.VERSION_CODE || "1", 10);
 const gradle = join(app, "build.gradle");
 must(edit(gradle, x => x.replace(/versionCode(\s*=?\s*)\d+/, "versionCode$1" + code).replace(/versionName(\s*=?\s*)"[^"]*"/, `versionName$1"${appV}"`)) || readFileSync(gradle, "utf8").includes(`"${appV}"`), "version non modifiable dans build.gradle");
-// 6. Signature des APK de test (clé publique de test, voir keys/LISEZMOI.txt)
-edit(gradle, x => {
-  if (x.includes("signingConfigs.chasselogTest")) return x;
-  must(/buildTypes\s*\{/.test(x) && /release\s*\{/.test(x), "bloc buildTypes/release introuvable");
-  x = x.replace(/(\n\s*)buildTypes\s*\{/, `$1signingConfigs {
-        chasselogTest {
-            storeFile file("../../keys/chasselog-test.jks")
-            storePassword "chasselog-test"
-            keyAlias "chasselog-test"
-            keyPassword "chasselog-test"
-        }
-    }$1buildTypes {`);
-  return x.replace(/(buildTypes\s*\{[\s\S]*?release\s*\{)/, `$1\n            signingConfig signingConfigs.chasselogTest`);
-});
+// 6. Pas de signature ici : le fichier .aab sort NON signé et est signé hors de GitHub avec la clé d'importation Google Play.
+//    (L'ancienne clé de test publique a été retirée le 05/11/2026 : elle ne doit plus jamais servir.)
 console.log("Projet Android ajusté :", cfg.appId, "version", appV, "(" + code + ")");

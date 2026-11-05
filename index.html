@@ -215,6 +215,11 @@ select:disabled{opacity:.45}
 .gcv{min-width:44px;padding:5px 8px;border-radius:10px;border:1.5px solid var(--acc);background:var(--bg);font:800 1.1rem system-ui;color:var(--acc)}.gci{display:inline-flex;align-items:center;justify-content:center;gap:1px;border-color:var(--line)}.gci img{height:22px}.gci small{font-size:.7rem;color:var(--mut)}.z{color:#b9b6a6}.gft tr.tot td{background:#1f3317;color:#f3efe2;border-color:#1f3317}.gft tr.tot td b{color:#e8a032;font-size:1.1rem}.gft tr.tot td:first-child b{color:#f3efe2;font-size:.95rem}
 .gsr{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-family:system-ui}.gsr img{height:32px;width:44px;object-fit:contain}.gsr b{flex:1}.gsr button{flex:none;width:40px;height:40px;border-radius:50%;padding:0;font:700 1.2rem system-ui}.gsr span{min-width:28px;text-align:center;font:800 1.2rem system-ui}
 .gk{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gk div{border:1px solid var(--line);border-radius:12px;padding:10px}.gk b{display:block;font-size:1.6rem;color:var(--acc)}.gk span{font-size:.8rem;color:var(--mut)}.gsp{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.gsp span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 4px;font-size:.88rem}.gsp img{height:24px}.gbt{width:100%;border-collapse:collapse;margin-top:12px;font-size:.88rem}.gbt th{font-size:.7rem;text-transform:uppercase;color:var(--mut);text-align:right;padding:4px}.gbt th:first-child,.gbt td:first-child{text-align:left}.gbt td{border-top:1px solid var(--line);padding:7px 4px;text-align:right}
+.pill{display:inline-block;font:700 .75rem system-ui;padding:3px 9px;border-radius:20px;white-space:nowrap;flex:none}.pill.ok{background:#e3ecd8;color:#3f5a2b}.pill.av{background:#f3e2c2;color:#8a5a10}.pill.no{background:#ebe8de;color:#6d7461}
+.gbr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gbr:first-child{border-top:0}.gbr>span:first-child{flex:1;min-width:0}.gbr small,.gtr small{display:block;color:var(--mut);font-size:.8rem;margin-top:2px}
+.gnp{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.gbn{white-space:nowrap;border:1px solid var(--line);border-radius:10px;padding:5px 9px;font:700 .85rem system-ui;background:var(--bg)}.gbz{white-space:nowrap}.gtt{display:flex;align-items:baseline;gap:6px;background:#1f3317;color:#f3efe2;border-color:#1f3317}.gtt b{font-size:1.7rem;color:#e8a032}.gtt small{margin-left:auto;color:#cfd8c0}
+.gtr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gtr:first-child{border-top:0}.gtr img{width:44px;height:36px;object-fit:contain;flex:none}.gtr>span{flex:1;min-width:0}.gwa{color:var(--acc2);font-style:normal;font-weight:700}
+.gah{padding:0;overflow:hidden;background:linear-gradient(160deg,#33502a,#1f3317);display:flex;justify-content:center;height:160px}.gah img{height:150px;align-self:center}.stp2{display:flex;align-items:center;gap:10px}.stp2 button{width:36px;height:36px;border-radius:50%;padding:0;font:700 1.1rem system-ui}.stp2 b{min-width:22px;text-align:center}
 .mapoff{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;font:.9rem system-ui;color:var(--mut);background:repeating-linear-gradient(0deg,transparent 0 39px,var(--line) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,var(--line) 39px 40px)}
 .ph img{background:var(--line);cursor:zoom-in}
 .chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;padding:2px 4px 2px 10px;margin:3px 4px 0 0;font:.85rem system-ui}.chip button{border:0;background:none;color:var(--mut);padding:4px 6px}
@@ -746,7 +751,7 @@ function rBatE(){S.bat=S.bat||{};const b=S.bat[batId];if(!b){go("bat");return}ba
 function rGm(){const g=gx(),nb=batAll().length,nj=Object.keys(g.jr).length,na=g.act.length,pl=(n,a)=>n+" "+a+(n>1?"s":"");
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mode gestionnaire</h1>
  <input id="gm-n" placeholder="Nom de ta chasse" value="${esc(g.n||"")}">
- <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><div style="height:60px"></div>`;
+ <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;$("#gm-n").onchange=e=>{g.n=e.target.value.trim();save()};
  document.querySelectorAll("[data-gv]").forEach(x=>x.onclick=()=>go(x.dataset.gv))}
 function rGact(){const g=gx();
@@ -803,7 +808,7 @@ function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat
    ${np?`<div class="gsp">${GG.filter(([n])=>T.p[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${T.p[n]}</b></span>`).join("")}</div>`:""}
    ${nSp(T.s)?`<p class="mut" style="margin:10px 0 4px;font-size:.85rem">Sortis à droite</p><div class="gsp">${GG.filter(([n])=>T.s[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${T.s[n]}</b></span>`).join("")}</div>`:""}
    <table class="gbt"><tr><th>Battue</th><th>Balles</th><th>Sortis</th><th>Prélevés</th></tr>${B.map(b=>{const r=T.bt[b.id]||{b:0,s:0,p:{}};return `<tr><td>${esc(b.n||"Battue")}</td><td>${r.b}</td><td>${r.s}</td><td>${nSp(r.p)}</td></tr>`}).join("")}</table></div>`:""}
-  <button class="s" id="gd-ro" style="width:100%;margin-top:8px">Rouvrir la journée</button>`:`<button class="p" id="gd-cl" style="width:100%;margin-top:12px">Clôturer la journée</button>`}
+  ${np?`<button class="p" id="gd-tf" style="width:100%;margin-top:8px">Tableau final et bracelets</button>`:""}<button class="s" id="gd-ro" style="width:100%;margin-top:8px">Rouvrir la journée</button>`:`<button class="p" id="gd-cl" style="width:100%;margin-top:12px">Clôturer la journée</button>`}
  <h2 class="gh">Participants · ${gjPart(j).length}</h2><div class="card sans" style="padding:4px 14px">
   ${g.act.map(a=>`<div class="gar"><span>${esc(a.n)}<small class="mut"> · actionnaire</small></span><div class="seg gps"><button data-gpa="${a.id}|1" class="${ab[a.id]?"":"on"}">Présent</button><button data-gpa="${a.id}|0" class="${ab[a.id]?"on":""}">Absent</button></div></div>`).join("")}
   ${inv.map((n,i)=>`<div class="gar"><span>${esc(n)}<small class="mut"> · invité</small></span><button class="s" data-gpi="${i}" aria-label="Retirer" style="flex:0 0 auto">✕</button></div>`).join("")}
@@ -816,6 +821,7 @@ function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat
  $("#gd-ed").onclick=()=>go("gjf");
  const cl=$("#gd-cl");if(cl)cl.onclick=()=>{if(j.date>iso(new Date())&&!confirm("Cette journée n'a pas encore eu lieu. La clôturer quand même ?"))return;j.clos=1;save();render()};
  const fn=$("#gd-fin");if(fn)fn.onclick=()=>{gfP=null;go("gfin")};
+ const tf=$("#gd-tf");if(tf)tf.onclick=()=>go("gtf");
  const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;save();render()}}
 function spModal(t,sub,o,done){const v=Object.assign({},o);const draw=()=>{const n=nSp(v);modal(`<h2 style="margin-top:0">${t}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p>${GG.map(([s,im])=>`<div class="gsr"><img src="animals/${im}.webp" alt=""><b>${s}</b><button class="s" data-gs="${s}|-1" aria-label="Moins">−</button><span class="${v[s]?"":"z"}">${v[s]||0}</span><button class="s" data-gs="${s}|1" aria-label="Plus">+</button></div>`).join("")}<button class="p" id="gs-ok" style="width:100%;margin-top:12px">OK · ${n} ${n>1?"animaux":"animal"}</button>`);
   document.querySelectorAll("#mo [data-gs]").forEach(x=>x.onclick=()=>{const[s,d]=x.dataset.gs.split("|"),y=$("#mo .sh").scrollTop;v[s]=Math.max(0,(v[s]||0)+(+d));if(!v[s])delete v[s];draw();$("#mo .sh").scrollTop=y});
@@ -844,7 +850,79 @@ function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPos
   else spModal(t=="s"?"Sortis à droite":"Prélevés",sub,t=="s"?c.s:c.p,v=>{c[t]=v;save();render()})});
  const nx=$("#gf-nx");if(nx)nx.onclick=()=>{const i=P.indexOf(gfP);if(i<P.length-1){gfP=P[i+1];render();window.scrollTo(0,0)}else backTo()};
  const tbb=$("#gf-tb");if(tbb)tbb.onclick=backTo}
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin})[view]();hydrate()}
+/* Bracelets (Wallonie) : chaque bracelet a un numéro et la liste des catégories pour lesquelles il est valable (cahier des charges). Tableau final : un animal par ligne, bracelet attribué automatiquement. */
+const GCAT0=["Grand cerf","Petit cerf","Cerf non boisé","Chevreuil","Sanglier","Daim","Mouflon"],GBOIS=["Cerf","Brocard","Daim"];
+const GDEF={Sanglier:"Sanglier",Brocard:"Chevreuil",Chevrette:"Chevreuil",Chevrillard:"Chevreuil",Biche:"Cerf non boisé",Faon:"Cerf non boisé",Daim:"Daim",Mouflon:"Mouflon",Cerf:""};
+let ganId=null,gbF="";
+const gbr=()=>{const g=gx();g.br=g.br||[];g.cat=g.cat||GCAT0.slice();return g};
+const gbSort=(a,b)=>String(a.n).localeCompare(String(b.n),"fr",{numeric:true});
+const gImg=sp=>((GG.find(x=>x[0]==sp)||[])[1])||"cervide";
+function gjAn(j){j.fin=j.fin||{};const A=j.fin.an=j.fin.an||{},want={},d=j.fin.d||{};
+ Object.entries(d).forEach(([k,P])=>{if(!(j.bat||[]).includes(k))return;Object.entries(P).forEach(([po,c])=>Object.entries(c.p||{}).forEach(([sp,n])=>{for(let i=0;i<n;i++){const id=k+"|"+po+"|"+sp+"|"+i;want[id]=1;if(!A[id])A[id]={k,po,sp,cat:GDEF[sp]||""}}}))});
+ Object.keys(A).forEach(id=>{if(!want[id])delete A[id]});return A}
+function gbUsed(){const u={};Object.values(gx().jr).forEach(j=>Object.entries((j.fin&&j.fin.an)||{}).forEach(([id,a])=>{if(a.br)u[a.br]={j,a,id}}));return u}
+function gjAuto(j){const g=gbr(),A=gjAn(j),u=gbUsed();Object.values(A).forEach(a=>{if(a.br&&!g.br.some(b=>b.id==a.br))delete a.br;if(a.br||a.nb||!a.cat)return;
+ const b=g.br.filter(b=>!u[b.id]&&(b.v||[]).includes(a.cat)).sort(gbSort)[0];if(b){a.br=b.id;u[b.id]={j,a}}});save();return A}
+const gaLab=a=>a.sp+(a.cat&&a.cat!=a.sp&&!(a.cat=="Chevreuil"&&["Brocard","Chevrette","Chevrillard"].includes(a.sp))?" · "+a.cat:"");
+const gaCors=a=>GBOIS.includes(a.sp)?corsTxt({cl:[a.cl],cr:[a.cr]}):"";
+const gbChip=b=>b?`<span class="gbn">🏷️ ${esc(b.n)}</span>`:`<span class="pill no gbz">Sans bracelet</span>`;
+function rGbr(){const g=gbr(),u=gbUsed(),L=g.br.slice().sort(gbSort).filter(b=>!gbF||(gbF=="d"?!u[b.id]:!!u[b.id])),nd=g.br.filter(b=>!u[b.id]).length;
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes bracelets</h1><p class="mut sans" style="margin-top:-6px">Wallonie · ${g.br.length} bracelet${g.br.length>1?"s":""} · ${nd} disponible${nd>1?"s":""}</p>
+ <div class="seg bseg">${[["","Tous"],["d","Disponibles"],["a","Attribués"]].map(([k,l])=>`<button data-gbf="${k}" class="${gbF==k?"on":""}">${l}</button>`).join("")}</div>
+ ${L.length?`<div class="card sans" style="padding:2px 14px;margin-top:10px">${L.map(b=>{const x=u[b.id];return `<button class="gbr" data-gbe="${b.id}"><span><b>N° ${esc(b.n)}</b><small>${(b.v||[]).map(esc).join(" · ")||"Aucun animal choisi"}</small></span>${x?`<span class="pill ok">${esc(x.a.sp)} · ${new Date(x.j.date+"T12:00").toLocaleDateString("fr-BE",{day:"2-digit",month:"2-digit"})}</span>`:`<span class="pill av">Disponible</span>`}</button>`}).join("")}</div>`:""}
+ <button class="p" id="gb-add" style="width:100%;margin-top:10px">＋ Ajouter des bracelets</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ document.querySelectorAll("[data-gbf]").forEach(x=>x.onclick=()=>{gbF=x.dataset.gbf;render()});
+ document.querySelectorAll("[data-gbe]").forEach(x=>x.onclick=()=>gbEdit(g.br.find(b=>b.id==x.dataset.gbe)));
+ $("#gb-add").onclick=()=>gbEdit(null)}
+const gbParse=s=>{const o=[];String(s).split(/[,;\s]+/).forEach(t=>{const m=t.match(/^(\d+)-(\d+)$/);if(m&&+m[2]>=+m[1]&&+m[2]-+m[1]<500){for(let i=+m[1];i<=+m[2];i++)o.push(String(i).padStart(m[1].length,"0"))}else if(t)o.push(t)});return[...new Set(o)]};
+function gbEdit(b){const g=gbr(),u=gbUsed(),v=new Set(b?b.v||[]:[]);
+ const calc=()=>{const nums=b?[b.n]:gbParse(($("#gbe-n")||{}).value||window._gbn||""),ex=nums.filter(n=>g.br.some(x=>x.n==n&&x!==b));return[nums,ex]};
+ const upd=()=>{const[nums,ex]=calc(),k=nums.length-ex.length,P=$("#gbe-p"),B=$("#gbe-ok");if(P)P.innerHTML=nums.map(n=>`<span class="pill ${ex.includes(n)?"no":"av"}">${esc(n)}</span>`).join("");if(!b&&B){B.disabled=!k;B.textContent="Ajouter "+k+" bracelet"+(k>1?"s":"")}};
+ const draw=()=>{const[nums,ex]=calc();
+  modal(`<h2 style="margin-top:0">${b?"Bracelet N° "+esc(b.n):"Ajouter des bracelets"}</h2>
+  <label>${b?"Numéro":"Numéros"}</label><input id="gbe-n" value="${esc(b?b.n:(window._gbn||""))}" placeholder="1033, 1036, 1102-1104" ${b&&u[b.id]?"disabled":""}>
+  ${b?"":`<div class="gnp" id="gbe-p"></div>`}
+  <label>Valable pour</label><div class="gbc">${g.cat.map(c=>`<button data-gbv="${esc(c)}" class="${v.has(c)?"on":""}">${esc(c)}</button>`).join("")}<button id="gbe-c">＋ Catégorie</button></div>
+  ${b&&u[b.id]?`<p class="mut sans" style="font-size:.85rem;margin:10px 2px 0">Attribué : ${esc(u[b.id].a.sp)} · ${fmtL(u[b.id].j.date)}</p>`:""}
+  <button class="p" id="gbe-ok" style="width:100%;margin-top:14px" ${!b&&!nums.length?"disabled":""}>${b?"Enregistrer":"Ajouter "+(nums.length-ex.length)+" bracelet"+(nums.length-ex.length>1?"s":"")}</button>
+  ${b&&!u[b.id]?`<button class="s" id="gbe-x" style="width:100%;margin-top:8px;color:var(--acc2)">Supprimer ce bracelet</button>`:""}`);
+  const n=$("#gbe-n");if(!b){n.oninput=()=>{window._gbn=n.value;upd()};upd()}
+  document.querySelectorAll("#mo [data-gbv]").forEach(x=>x.onclick=()=>{const c=x.dataset.gbv;v.has(c)?v.delete(c):v.add(c);x.classList.toggle("on")});
+  $("#gbe-c").onclick=()=>{const c=(prompt("Nouvelle catégorie (ex. CM1)")||"").trim();if(c&&!g.cat.includes(c)){g.cat.push(c);save()}if(c)v.add(c);draw()};
+  $("#gbe-ok").onclick=()=>{const V=g.cat.filter(c=>v.has(c)),[nums,ex]=calc();if(b){const nn=$("#gbe-n").value.trim();if(nn&&!g.br.some(x=>x.n==nn&&x!==b))b.n=nn;b.v=V}else{nums.filter(x=>!ex.includes(x)).forEach(x=>g.br.push({id:uidG("r"),n:x,v:V}));window._gbn=""}
+   save();closeM();toast(b?"Bracelet enregistré.":"Bracelets ajoutés.");render()};
+  const x=$("#gbe-x");if(x)x.onclick=()=>{if(!confirm("Supprimer le bracelet N° "+b.n+" ?"))return;g.br=g.br.filter(y=>y!==b);save();closeM();render()}};
+ draw()}
+function rGtf(){const g=gbr(),j=g.jr[gjId];if(!j){go("gjr");return}const A=gjAuto(j),L=Object.entries(A),bat=k=>(S.bat&&S.bat[k]&&S.bat[k].n)||"Battue",nb=L.filter(([,a])=>a.br).length;
+ const order=Object.fromEntries(GG.map((x,i)=>[x[0],i]));L.sort((x,y)=>(order[x[1].sp]-order[y[1].sp])||String(x[1].po).localeCompare(String(y[1].po),"fr",{numeric:true}));
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Tableau final</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${new Date(j.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"})}</p>
+ <div class="card sans gtt"><b>${L.length}</b> <span>pièce${L.length>1?"s":""} · ${(j.bat||[]).length} battue${(j.bat||[]).length>1?"s":""}</span><small>${nb} bracelet${nb>1?"s":""} attribué${nb>1?"s":""}</small></div>
+ ${L.length?`<div class="card sans" style="padding:2px 14px">${L.map(([id,a])=>{const b=g.br.find(x=>x.id==a.br),c=gaCors(a);return `<button class="gtr" data-gan="${esc(id)}"><img src="animals/${gImg(a.sp)}.webp" alt=""><span><b>${esc(gaLab(a))}</b><small>${[a.kg?a.kg+" kg":"",c,bat(a.k),"poste "+a.po].filter(Boolean).map(esc).join(" · ")}${!a.cat?' · <i class="gwa">catégorie à choisir</i>':""}</small></span>${gbChip(b)}</button>`}).join("")}</div>`:`<div class="card sans mut">Aucune pièce prélevée : encode les prélevés dans les données de fin de journée.</div>`}
+ <div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;document.querySelectorAll("[data-gan]").forEach(x=>x.onclick=()=>{ganId=x.dataset.gan;go("gan")})}
+function rGan(){const g=gbr(),j=g.jr[gjId],A=j?gjAn(j):{},a=A[ganId];if(!a){go("gtf");return}const u=gbUsed(),b=g.br.find(x=>x.id==a.br),bt=S.bat&&S.bat[a.k],who=(j.fin.w||{})[a.po]||"";
+ const ok=g.br.filter(x=>(x.v||[]).includes(a.cat)&&(!u[x.id]||x.id==a.br)).sort(gbSort);
+ const st=(k,l)=>`<div class="gar"><span>${l}</span><div class="stp2"><button class="s" data-gcs="${k}|-1">−</button><b>${a[k]===""||a[k]==null?"–":a[k]}</b><button class="s" data-gcs="${k}|1">+</button></div></div>`;
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Fiche de l'animal</h1><p class="mut sans" style="margin-top:-6px">${esc(gaLab(a))}${b?" · bracelet N° "+esc(b.n):""}</p>
+ <div class="card gah"><img src="animals/${gImg(a.sp)}.webp" alt=""></div>
+ <div class="card sans" style="padding:4px 14px">
+  <div class="gar"><span>Espèce</span><b>${esc(a.sp)}</b></div>
+  <div class="gar"><span>Catégorie</span><select id="ga-c" style="margin:0;width:auto;max-width:60%"><option value="">À choisir</option>${g.cat.map(c=>`<option ${c==a.cat?"selected":""}>${esc(c)}</option>`).join("")}</select></div>
+  <div class="gar"><span>Poids vidé</span><span class="row" style="flex:0 0 auto;gap:6px"><input id="ga-kg" type="number" inputmode="decimal" min="0" value="${a.kg||""}" style="margin:0;width:90px;text-align:right">kg</span></div>
+  ${GBOIS.includes(a.sp)?st("cl","Cors gauche")+st("cr","Cors droite")+`<div class="gar"><span>Cors</span><b>${esc(gaCors(a)||"–")}</b></div>`:""}
+  <div class="gar"><span>Bracelet</span><select id="ga-b" style="margin:0;width:auto;max-width:60%"><option value="">Sans bracelet</option>${ok.map(x=>`<option value="${x.id}" ${x.id==a.br?"selected":""}>N° ${esc(x.n)}</option>`).join("")}</select></div>
+  <div class="gar"><span>Date</span><b>${fmtL(j.date)}</b></div>
+  <div class="gar"><span>Battue</span><b>${esc((bt&&bt.n)||"Battue")}</b></div>
+  <div class="gar"><span>Poste</span><b>${esc(String(a.po))}${who?" · "+esc(who):""}</b></div></div>
+ ${a.cat&&!ok.length?`<p class="mut sans" style="font-size:.85rem">Aucun bracelet disponible pour « ${esc(a.cat)} ».</p>`:""}
+ <div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ $("#ga-c").onchange=e=>{a.cat=e.target.value;const cb=g.br.find(x=>x.id==a.br);if(cb&&!(cb.v||[]).includes(a.cat))delete a.br;delete a.nb;save();gjAuto(j);render()};
+ $("#ga-kg").onchange=e=>{const v=e.target.value.replace(",",".");a.kg=v===""?"":Math.max(0,+v||0);save()};
+ $("#ga-b").onchange=e=>{if(e.target.value){a.br=e.target.value;delete a.nb}else{delete a.br;a.nb=1}save();render()};
+ document.querySelectorAll("[data-gcs]").forEach(x=>x.onclick=()=>{const[k,d]=x.dataset.gcs.split("|"),c=a[k]===""||a[k]==null?0:+a[k];a[k]=Math.max(0,Math.min(30,c+(+d)));if(a[k]==0&&+d<0&&c==0)a[k]="";save();render()})}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan})[view]();hydrate()}
 function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */

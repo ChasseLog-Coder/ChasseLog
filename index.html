@@ -217,6 +217,7 @@ select:disabled{opacity:.45}
 .gk,.gsp,.gpc{font-family:system-ui,sans-serif}.gk{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gk div{border:1px solid var(--line);border-radius:12px;padding:10px}.gk b{display:block;font-size:1.6rem;color:var(--acc)}.gk span{font-size:.8rem;color:var(--mut)}.gsp{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.gsp span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 4px;font-size:.88rem}.gsp img{height:24px}.gbt{width:100%;border-collapse:collapse;margin-top:12px;font-size:.88rem}.gbt th{font-size:.7rem;text-transform:uppercase;color:var(--mut);text-align:right;padding:4px}.gbt th:first-child,.gbt td:first-child{text-align:left}.gbt td{border-top:1px solid var(--line);padding:7px 4px;text-align:right}
 .pill{display:inline-block;font:700 .75rem system-ui;padding:3px 9px;border-radius:20px;white-space:nowrap;flex:none}.pill.ok{background:#e3ecd8;color:#3f5a2b}.pill.av{background:#f3e2c2;color:#8a5a10}.pill.no{background:#ebe8de;color:#6d7461}
 .gps button[data-gpa$="|1"].on{background:#3f7d2b;color:#fff;border-color:#3f7d2b}.gps button[data-gpa$="|0"].on{background:#a4452c;color:#fff;border-color:#a4452c}.gpc .gsx{min-width:0;padding:0 12px;font-size:.88rem}.gbar{height:7px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:5px}.gbar i{display:block;height:100%;background:var(--acc)}
+.gsum{display:block;width:100%;text-align:left;line-height:1.6;position:relative;padding-right:36px;font:1rem system-ui,sans-serif;color:inherit}.gse{position:absolute;right:12px;top:10px;color:var(--acc);font-size:1.1rem}
 .gbr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gbr:first-child{border-top:0}.gbr>span:first-child{flex:1;min-width:0}.gbr small,.gtr small{display:block;color:var(--mut);font-size:.8rem;margin-top:2px}
 .gnp{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.gbn{white-space:nowrap;border:1px solid var(--line);border-radius:10px;padding:5px 9px;font:700 .85rem system-ui;background:var(--bg)}.gbz{white-space:nowrap}.gtt{display:flex;align-items:baseline;gap:6px;background:#1f3317;color:#f3efe2;border-color:#1f3317}.gtt b{font-size:1.7rem;color:#e8a032}.gtt small{margin-left:auto;color:#cfd8c0}
 .gtr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gtr:first-child{border-top:0}.gtr img{width:44px;height:36px;object-fit:contain;flex:none}.gtr>span{flex:1;min-width:0}.gwa{color:var(--acc2);font-style:normal;font-weight:700}
@@ -757,7 +758,7 @@ function rBatE(){const b=gB()[batId];if(!b){go("bat");return}batFix(b);batCur=nu
 function rGm(){const g=gx(),nb=batAll().length,nj=Object.keys(g.jr).length,na=g.act.length,pl=(n,a)=>n+" "+a+(n>1?"s":"");
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mode gestionnaire</h1>
  ${chSel()}<input id="gm-n" placeholder="Nom de la chasse" value="${esc(g.n||"")}" style="margin-top:8px">
- <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")],["gsa","tgt","Mes saisons","Statistiques"]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><button class="s" id="gm-up" style="width:100%;margin-top:16px">🔄 Mettre à jour la version de test</button><div style="height:60px"></div>`;
+ <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")],["gsa","tgt","Mes saisons","Statistiques"],["gex","ul","Exporter mes données","JSON"]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><button class="s" id="gm-up" style="width:100%;margin-top:16px">🔄 Mettre à jour la version de test</button><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;$("#gm-n").onchange=e=>{g.n=e.target.value.trim();save();render()};chBind();
  $("#gm-up").onclick=async()=>{toast("Mise à jour…");try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.unregister();const k=await caches.keys();await Promise.all(k.map(x=>caches.delete(x)))}catch(e){}location.replace(location.pathname+"?v="+Date.now())};
  document.querySelectorAll("[data-gv]").forEach(x=>x.onclick=()=>go(x.dataset.gv))}
@@ -798,7 +799,10 @@ function rGjf(){const g=gx(),j=gjId&&g.jr[gjId]?g.jr[gjId]:{date:iso(new Date())
  $("#gf-c").onclick=backTo;
  $("#gf-ok").onclick=()=>{const d=$("#gf-d").value;if(!d)return toast("Choisis une date.");const id=gjId||uidG("j"),x=g.jr[id]||{id,clos:0};
   Object.assign(x,{date:d,time:$("#gf-h").value,title:$("#gf-t").value.trim(),mode:$("#gf-m").value,pl:$("#gf-l").value.trim(),desc:$("#gf-n").value.trim(),bat:sb});g.jr[id]=x;save();gjId=id;const r=vst.lastIndexOf("gjr");if(r>=0)vst=vst.slice(0,r+1);view="gjd";render();window.scrollTo(0,0)};
- const x=$("#gf-x");if(x)x.onclick=()=>{if(!confirm("Supprimer cette journée ?"))return;delete g.jr[gjId];save();gjId=null;vst=vst.filter(v=>v!="gjd");go("gjr")}}
+ const x=$("#gf-x");if(x)x.onclick=()=>gjDel(g.jr[gjId])}
+function gjDel(j){if(!j)return;modal(`<div style="text-align:center"><div style="font-size:2.2rem">⚠️</div><h2 style="margin:4px 0 6px">Supprimer la journée ?</h2><p class="sans" style="line-height:1.5;margin:0 0 12px">« ${esc(j.title||"Journée")} » du ${fmtL(j.date)} sera supprimée avec <b>toutes ses données encodées</b> : participants, fin de journée, tableau final. Ses bracelets redeviendront disponibles.</p></div>
+ <button class="p" id="gdl-y" style="width:100%;background:var(--acc2);border-color:var(--acc2)">Oui, supprimer</button><button class="s" id="gdl-n" style="width:100%;margin-top:8px">Annuler</button>`);
+ $("#gdl-n").onclick=()=>closeM();$("#gdl-y").onclick=()=>{delete gx().jr[j.id];save();closeM();toast("Journée supprimée.");gjId=null;vst=vst.filter(v=>!["gjd","gjf","gfin","gtf","gan"].includes(v));go("gjr")}}
 const gjPart=j=>[...gx().act.filter(a=>!(j.ab||{})[a.id]).map(a=>a.n),...(j.inv||[])];
 const gjPostes=j=>{const s=new Set();(j.bat||[]).forEach(k=>{const b=gB()&&gB()[k];if(b)(b.po||[]).forEach(p=>s.add(String(p.n)))});return[...s].sort((a,b)=>(+a||0)-(+b||0)||a.localeCompare(b))};
 const gjCell=(j,k,p)=>{j.fin=j.fin||{};j.fin.d=j.fin.d||{};const d=j.fin.d[k]=j.fin.d[k]||{};return d[p]=d[p]||{b:0,s:{},p:{}}};
@@ -808,25 +812,25 @@ function gjTot(j){const T={b:0,s:{},p:{},bt:{}};const d=(j.fin&&j.fin.d)||{};Obj
 function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat||[]).map(k=>gB()&&gB()[k]).filter(Boolean),ab=j.ab=j.ab||{},inv=j.inv=j.inv||[];
  const T=j.clos?gjTot(j):null,np=T?nSp(T.p):0;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(j.title||"Journée")}</h1><p class="mut sans" style="margin-top:-6px">${fmtL(j.date)}${j.clos?" · ✓ clôturée":""}</p>
- <div class="card sans" style="line-height:1.6">${j.time?`🕣 Rendez-vous à ${j.time.replace(":","h")}<br>`:""}${j.pl?`📍 ${esc(j.pl)}<br>`:""}🦌 ${esc(j.mode||"")}${j.desc?`<br>📝 ${esc(j.desc)}`:""}</div>
+ <button class="card sans gsum" id="gd-sum">${j.time?`🕣 Rendez-vous à ${j.time.replace(":","h")}<br>`:""}${j.pl?`📍 ${esc(j.pl)}<br>`:""}🦌 ${esc(j.mode||"")}${j.desc?`<br>📝 ${esc(j.desc)}`:""}<span class="gse" aria-hidden="true">✎</span></button>
  <h2 class="gh">Battues réalisées</h2>${B.length?`<div class="card sans" style="padding:4px 14px">${B.map((b,i)=>`<div class="gar"><span><b>${i+1}.</b> ${esc(b.n||"Battue sans nom")}</span><small class="mut">${(b.po||[]).length} postes</small></div>`).join("")}</div>`:`<p class="mut sans">Aucune.</p>`}
  ${j.clos?`<button class="p" id="gd-fin" style="width:100%;margin-top:12px">Données de fin de journée</button>
   ${T&&(T.b||np||nSp(T.s))?`<h2 class="gh">Tableau de la journée</h2><div class="card sans gtb"><div class="gk"><div><b>${np}</b><span>pièce${np>1?"s":""} prélevée${np>1?"s":""}</span></div><div><b>${T.b}</b><span>balle${T.b>1?"s":""} tirée${T.b>1?"s":""}</span></div><div><b>${np?(T.b/np).toLocaleString("fr-BE",{maximumFractionDigits:1}):"–"}</b><span>balles par pièce</span></div><div><b>${nSp(T.s)}</b><span>sortis à droite</span></div></div>
    ${np?`<div class="gsp">${GG.filter(([n])=>T.p[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${T.p[n]}</b></span>`).join("")}</div>`:""}
    ${nSp(T.s)?`<p class="mut" style="margin:10px 0 4px;font-size:.85rem">Sortis à droite</p><div class="gsp">${GG.filter(([n])=>T.s[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${T.s[n]}</b></span>`).join("")}</div>`:""}
    <table class="gbt"><tr><th>Battue</th><th>Balles</th><th>Sortis</th><th>Prélevés</th></tr>${B.map(b=>{const r=T.bt[b.id]||{b:0,s:0,p:{}};return `<tr><td>${esc(b.n||"Battue")}</td><td>${r.b}</td><td>${r.s}</td><td>${nSp(r.p)}</td></tr>`}).join("")}</table></div>`:""}
-  ${np?`<button class="p" id="gd-tf" style="width:100%;margin-top:8px">Tableau final et bracelets</button>`:""}<button class="s" id="gd-ro" style="width:100%;margin-top:8px">Rouvrir la journée</button>`:`<button class="p" id="gd-cl" style="width:100%;margin-top:12px">Clôturer la journée</button>`}
+  ${np?`<button class="p" id="gd-tf" style="width:100%;margin-top:8px">Tableau final et bracelets</button>`:""}<button class="s" id="gd-ro" style="width:100%;margin-top:8px">Rouvrir la journée</button>`:`<button class="p" id="gd-cl" style="width:100%;margin-top:12px" ${j.date>iso(new Date())?"disabled":""}>Clôturer la journée</button>`}
  <h2 class="gh">Participants · ${gjPart(j).length}</h2><div class="card sans" style="padding:4px 14px">
   ${g.act.map(a=>`<div class="gar"><span>${esc(a.n)}<small class="mut"> · actionnaire</small></span><div class="seg gps"><button data-gpa="${a.id}|1" class="${ab[a.id]?"":"on"}">Présent</button><button data-gpa="${a.id}|0" class="${ab[a.id]?"on":""}">Absent</button></div></div>`).join("")}
   ${inv.map((n,i)=>`<div class="gar"><span>${esc(n)}<small class="mut"> · invité</small></span><button class="s" data-gpi="${i}" aria-label="Retirer" style="flex:0 0 auto">✕</button></div>`).join("")}
   <div class="row" style="gap:6px;padding:8px 0"><input id="gd-in" placeholder="Ajouter un invité" style="margin:0;flex:1"><button class="s" id="gd-ia" style="flex:0 0 auto">Ajouter</button></div></div>
- <button class="s" id="gd-ed" style="width:100%;margin-top:12px">Modifier la journée</button><div style="height:60px"></div>`;
+ <button class="s" id="gd-x" style="width:100%;margin-top:16px;color:var(--acc2)">Supprimer la journée</button><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
  document.querySelectorAll("[data-gpa]").forEach(x=>x.onclick=()=>{const[id,v]=x.dataset.gpa.split("|");if(v=="1")delete ab[id];else ab[id]=1;save();render()});
  document.querySelectorAll("[data-gpi]").forEach(x=>x.onclick=()=>{inv.splice(+x.dataset.gpi,1);save();render()});
  const ia=()=>{const v=$("#gd-in").value.trim();if(!v)return;inv.push(v);save();render()};$("#gd-ia").onclick=ia;$("#gd-in").onkeydown=e=>{if(e.key=="Enter")ia()};
- $("#gd-ed").onclick=()=>go("gjf");
- const cl=$("#gd-cl");if(cl)cl.onclick=()=>{if(j.date>iso(new Date())&&!confirm("Cette journée n'a pas encore eu lieu. La clôturer quand même ?"))return;j.clos=1;save();render()};
+ $("#gd-sum").onclick=()=>go("gjf");$("#gd-x").onclick=()=>gjDel(j);
+ const cl=$("#gd-cl");if(cl)cl.onclick=()=>{if(j.date>iso(new Date()))return;j.clos=1;save();render()};
  const fn=$("#gd-fin");if(fn)fn.onclick=()=>{gfP=null;go("gfin")};
  const tf=$("#gd-tf");if(tf)tf.onclick=()=>go("gtf");
  const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;save();render()}}
@@ -953,7 +957,22 @@ function rGsa(){const g=gbr(),J=Object.values(g.jr),cs=season(iso(new Date())),s
  ${cats.length?`<h2 class="gh">Bracelets</h2><div class="card sans" style="padding:4px 14px">${cats.map(c=>{const n=g.br.filter(b=>(b.v||[]).includes(c)).length,k=brU(c);return `<div class="gar" style="display:block"><div class="row"><span style="flex:1">${esc(c)}</span><small class="mut">${k} / ${n} utilisé${k>1?"s":""}</small></div><div class="gbar"><i style="width:${n?Math.min(100,Math.round(k/n*100)):0}%"></i></div></div>`}).join("")}</div>`:""}
  ${!C.length?`<div class="card sans mut" style="margin-top:12px">Aucune journée clôturée pour la saison ${gsaS}.</div>`:""}<div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;chBind();document.querySelectorAll("[data-gss]").forEach(x=>x.onclick=()=>{gsaS=x.dataset.gss;render()})}
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan,gsa:rGsa})[view]();hydrate()}
+/* Exporter mes données : la chasse choisie, pour une ou plusieurs saisons (JSON). Le rapport PDF de fin de saison viendra ici aussi. */
+let gexS=null;
+function rGex(){const g=gbr(),J=Object.values(g.jr),cs=season(iso(new Date())),ses=[...new Set([cs,...J.map(j=>season(j.date))])].sort().reverse();
+ if(!gexS||gexS.c!=g.id)gexS={c:g.id,s:new Set([cs])};const sel=gexS.s,L=J.filter(j=>sel.has(season(j.date))),nc=L.filter(j=>j.clos).length;
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Exporter mes données</h1>${chSel()}
+ <label>Saisons</label><div class="gbc">${ses.map(x=>`<button data-gxs="${x}" class="${sel.has(x)?"on":""}">${x}</button>`).join("")}</div>
+ <div class="card sans" style="margin-top:12px;line-height:1.6">${L.length} journée${L.length>1?"s":""} · ${nc} clôturée${nc>1?"s":""}<br>${Object.keys(g.bat).length} battue${Object.keys(g.bat).length>1?"s":""} · ${g.act.length} actionnaire${g.act.length>1?"s":""} · ${g.br.length} bracelet${g.br.length>1?"s":""}</div>
+ <button class="p" id="gx-ok" style="width:100%;margin-top:12px" ${sel.size?"":"disabled"}>Exporter (JSON)</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;chBind();
+ document.querySelectorAll("[data-gxs]").forEach(x=>x.onclick=()=>{const k=x.dataset.gxs;sel.has(k)?sel.delete(k):sel.add(k);render()});
+ $("#gx-ok").onclick=async()=>{const S2=[...sel].sort(),d={app:"ChasseLog",type:"gestionnaire",version:1,date:new Date().toISOString(),saisons:S2,
+  chasse:{n:g.n||"",bat:g.bat,act:g.act,br:g.br,cat:g.cat,jr:Object.fromEntries(L.map(j=>[j.id,j]))}};
+  const sl=x=>(x||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),n=`chasselog-gestion-${sl(g.n)||"chasse"}-${S2.join("_")}.json`,c=JSON.stringify(d,null,1);
+  try{const f=new File([c],n,{type:"application/json"});if(!IS_APP&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Données de chasse"});return}}catch(e){if(e&&e.name=="AbortError")return}
+  dl(n,"application/json",c);toast("Export prêt.")}}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan,gsa:rGsa,gex:rGex})[view]();hydrate()}
 function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */

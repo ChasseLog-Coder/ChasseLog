@@ -214,8 +214,9 @@ select:disabled{opacity:.45}
 .gft{width:100%;border-collapse:separate;border-spacing:0 6px;font-family:system-ui}.gft th{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);font-weight:700;padding:2px}.gft th:first-child{text-align:left;padding-left:12px}.gft td{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 4px;text-align:center}.gft td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px;text-align:left;padding-left:12px}.gft td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}
 .gcv{min-width:44px;padding:5px 8px;border-radius:10px;border:1.5px solid var(--acc);background:var(--bg);font:800 1.1rem system-ui;color:var(--acc)}.gci{display:inline-flex;align-items:center;justify-content:center;gap:1px;border-color:var(--line)}.gci img{height:22px}.gci small{font-size:.7rem;color:var(--mut)}.z{color:#b9b6a6}.gft tr.tot td{background:#1f3317;color:#f3efe2;border-color:#1f3317}.gft tr.tot td b{color:#e8a032;font-size:1.1rem}.gft tr.tot td:first-child b{color:#f3efe2;font-size:.95rem}
 .gsr{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-family:system-ui}.gsr img{height:32px;width:44px;object-fit:contain}.gsr b{flex:1}.gsr button{flex:none;width:40px;height:40px;border-radius:50%;padding:0;font:700 1.2rem system-ui}.gsr span{min-width:28px;text-align:center;font:800 1.2rem system-ui}
-.gk{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gk div{border:1px solid var(--line);border-radius:12px;padding:10px}.gk b{display:block;font-size:1.6rem;color:var(--acc)}.gk span{font-size:.8rem;color:var(--mut)}.gsp{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.gsp span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 4px;font-size:.88rem}.gsp img{height:24px}.gbt{width:100%;border-collapse:collapse;margin-top:12px;font-size:.88rem}.gbt th{font-size:.7rem;text-transform:uppercase;color:var(--mut);text-align:right;padding:4px}.gbt th:first-child,.gbt td:first-child{text-align:left}.gbt td{border-top:1px solid var(--line);padding:7px 4px;text-align:right}
+.gk,.gsp,.gpc{font-family:system-ui,sans-serif}.gk{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gk div{border:1px solid var(--line);border-radius:12px;padding:10px}.gk b{display:block;font-size:1.6rem;color:var(--acc)}.gk span{font-size:.8rem;color:var(--mut)}.gsp{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.gsp span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:20px;padding:4px 10px 4px 4px;font-size:.88rem}.gsp img{height:24px}.gbt{width:100%;border-collapse:collapse;margin-top:12px;font-size:.88rem}.gbt th{font-size:.7rem;text-transform:uppercase;color:var(--mut);text-align:right;padding:4px}.gbt th:first-child,.gbt td:first-child{text-align:left}.gbt td{border-top:1px solid var(--line);padding:7px 4px;text-align:right}
 .pill{display:inline-block;font:700 .75rem system-ui;padding:3px 9px;border-radius:20px;white-space:nowrap;flex:none}.pill.ok{background:#e3ecd8;color:#3f5a2b}.pill.av{background:#f3e2c2;color:#8a5a10}.pill.no{background:#ebe8de;color:#6d7461}
+.gps button[data-gpa$="|1"].on{background:#3f7d2b;color:#fff;border-color:#3f7d2b}.gps button[data-gpa$="|0"].on{background:#a4452c;color:#fff;border-color:#a4452c}.gpc .gsx{min-width:0;padding:0 12px;font-size:.88rem}.gbar{height:7px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:5px}.gbar i{display:block;height:100%;background:var(--acc)}
 .gbr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gbr:first-child{border-top:0}.gbr>span:first-child{flex:1;min-width:0}.gbr small,.gtr small{display:block;color:var(--mut);font-size:.8rem;margin-top:2px}
 .gnp{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.gbn{white-space:nowrap;border:1px solid var(--line);border-radius:10px;padding:5px 9px;font:700 .85rem system-ui;background:var(--bg)}.gbz{white-space:nowrap}.gtt{display:flex;align-items:baseline;gap:6px;background:#1f3317;color:#f3efe2;border-color:#1f3317}.gtt b{font-size:1.7rem;color:#e8a032}.gtt small{margin-left:auto;color:#cfd8c0}
 .gtr{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 0;font:inherit;color:inherit}.gtr:first-child{border-top:0}.gtr img{width:44px;height:36px;object-fit:contain;flex:none}.gtr>span{flex:1;min-width:0}.gwa{color:var(--acc2);font-style:normal;font-weight:700}
@@ -634,14 +635,19 @@ function troOpen(eid,tid,i=0){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(
   $("#tr-x").onclick=()=>{tr.on=false;save();track("trophy_toggle",{on:false,sp:t.sp});closeM();toast("Retiré de Mes trophées.");render()};
   const m=$("#mo");if(m){const o=new MutationObserver(()=>{if(!document.body.contains(m)){o.disconnect();if(view=="tro")render()}});o.observe(document.body,{childList:true})}};
  draw();track("trophy_opened",{sp:t.sp})}
-/* Mode gestionnaire : battues (cadastre wallon, lignes, zones, postes), actionnaires, journées de la chasse, fin de journée par poste. Données : S.bat (battues), S.gx (chasse gérée). */
+/* Mode gestionnaire : battues (cadastre wallon, lignes, zones, postes), actionnaires, journées de la chasse, fin de journée par poste. Données : S.gch (sociétés de chasse). */
 const CAD_URL="https://geoservices.wallonie.be/arcgis/rest/services/PLAN_REGLEMENT/CADMAP_2024_PARCELLES/MapServer/0/query",CAD_Z=16,CAD={},CADB=[];
 const GG=[["Sanglier","sanglier"],["Brocard","brocard"],["Chevrette","chevrette"],["Chevrillard","chevrillard"],["Cerf","cerf"],["Biche","biche"],["Faon","faon"],["Daim","daim"],["Mouflon","mouflon"]];
 let batId=null,batMap=null,batT="p",batCur=null,batEd=false,batSel=null,gjId=null,gfP=null;
-const gx=()=>{S.gx=S.gx||{};S.gx.act=S.gx.act||[];S.gx.jr=S.gx.jr||{};return S.gx};
+/* plusieurs sociétés de chasse : S.gch = {cur, L:{id:{id,n,bat,act,jr,br,cat}}} ; reprise des anciennes données S.gx / gB() */
+const gx=()=>{let G=S.gch;if(!G){G=S.gch={cur:"",L:{}};const o=S.gx||{};if(o.n||(o.act||[]).length||Object.keys(o.jr||{}).length||Object.keys(S.bat||{}).length||(o.br||[]).length){G.L.c1=Object.assign({},o,{id:"c1",bat:S.bat||{}});G.cur="c1"}delete S.gx;delete S.bat}
+ let c=G.L[G.cur];if(!c){const k=Object.keys(G.L)[0];if(k){G.cur=k;c=G.L[k]}else{const id=uidG("c");c=G.L[id]={id,n:""};G.cur=id}}c.act=c.act||[];c.jr=c.jr||{};c.bat=c.bat||{};return c};
+const gB=()=>gx().bat;
+const chSel=()=>{gx();const G=S.gch;return `<div class="row" style="gap:6px;margin-top:4px"><select id="gch" style="margin:0;flex:1" aria-label="Société de chasse">${Object.values(G.L).map(c=>`<option value="${c.id}" ${c.id==G.cur?"selected":""}>${esc(c.n||"Chasse sans nom")}</option>`).join("")}</select><button class="s" id="gch-add" style="flex:0 0 auto">＋ Chasse</button></div>`};
+const chBind=()=>{const s=$("#gch");if(s)s.onchange=e=>{S.gch.cur=e.target.value;save();render()};const a=$("#gch-add");if(a)a.onclick=()=>{const n=(prompt("Nom de la nouvelle chasse")||"").trim();if(!n)return;const id=uidG("c");S.gch.L[id]={id,n};S.gch.cur=id;save();toast("Chasse ajoutée.");render()}};
 const uidG=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
 const fmtL=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-const batAll=()=>Object.values(S.bat||{}).sort((a,b)=>(a.n||"").localeCompare(b.n||"","fr")||a.id.localeCompare(b.id));
+const batAll=()=>Object.values(gB()||{}).sort((a,b)=>(a.n||"").localeCompare(b.n||"","fr")||a.id.localeCompare(b.id));
 const ringA=r=>{if(!r||r.length<3)return 0;const k=111320,kx=k*Math.cos(r[0][0]*Math.PI/180);let a=0;for(let i=0,j=r.length-1;i<r.length;j=i++)a+=r[j][1]*kx*r[i][0]*k-r[i][1]*kx*r[j][0]*k;return Math.abs(a/2)};
 const cadG=g=>{const P=!g?[]:g.type=="Polygon"?[g.coordinates]:g.type=="MultiPolygon"?g.coordinates:[];return P.map(pl=>pl.map(r=>r.map(([x,y])=>[+(+y).toFixed(6),+(+x).toFixed(6)])))};
 const cadA=G=>G.reduce((s,pl)=>s+Math.max(0,ringA(pl[0])-pl.slice(1).reduce((u,h)=>u+ringA(h),0)),0);
@@ -660,14 +666,14 @@ function batOutline(W,b){const Lr=W.Layer.extend({onAdd(m){this._m=m;this._c=W.D
   x.setTransform(d,0,0,d,0,0);x.lineJoin="round";x.lineCap="round";x.strokeStyle="#a4452c";x.lineWidth=6;each(()=>x.stroke());
   (b.ln||[]).forEach(l=>{x.beginPath();ring(l.p);x.stroke()});
   x.globalCompositeOperation="destination-out";each(()=>x.fill("evenodd"));x.globalCompositeOperation="source-over";x.fillStyle="rgba(232,160,50,.38)";each(()=>x.fill("evenodd"))}});return new Lr()}
-function rBat(){S.bat=S.bat||{};const L=batAll();
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes battues</h1>
+function rBat(){const L=batAll();
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes battues</h1>${gx().n?`<p class="mut sans" style="margin-top:-6px">${esc(gx().n)}</p>`:""}
  ${L.map(b=>`<button class="card sans bli" data-bat="${b.id}"><b>${esc(b.n||"Battue sans nom")}</b><small>${batSum(batFix(b))}</small><span class="chev">›</span></button>`).join("")}
  <button class="p" id="bat-new" style="width:100%;margin-top:6px">+ Nouvelle battue</button><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
  document.querySelectorAll("[data-bat]").forEach(x=>x.onclick=()=>{batId=x.dataset.bat;batEd=false;go("bate")});
- $("#bat-new").onclick=()=>{const id="b"+Date.now().toString(36);S.bat[id]={id,n:"",pc:{},zn:[],ln:[],po:[]};save();batId=id;batT="p";batEd=true;go("bate")}}
-function rBatE(){S.bat=S.bat||{};const b=S.bat[batId];if(!b){go("bat");return}batFix(b);batCur=null;batSel=null;const ed=batEd;
+ $("#bat-new").onclick=()=>{const id="b"+Date.now().toString(36);gB()[id]={id,n:"",pc:{},zn:[],ln:[],po:[]};save();batId=id;batT="p";batEd=true;go("bate")}}
+function rBatE(){const b=gB()[batId];if(!b){go("bat");return}batFix(b);batCur=null;batSel=null;const ed=batEd;
  if(batMap){try{batMap.remove()}catch(e){}batMap=null}
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${ed?"Battue":esc(b.n||"Battue sans nom")}</h1>
  ${ed?`<input id="bt-n" placeholder="Nom de la battue" value="${esc(b.n||"")}">
@@ -682,7 +688,7 @@ function rBatE(){S.bat=S.bat||{};const b=S.bat[batId];if(!b){go("bat");return}ba
  if(!ed){$("#bt-ed").onclick=()=>{batEd=true;batT="p";render()}}
  else{$("#bt-n").onchange=e=>{b.n=e.target.value.trim();save()};
   $("#bt-ok").onclick=()=>{b.n=$("#bt-n").value.trim();save();toast("Battue enregistrée.");batEd=false;render()};
-  $("#bt-x").onclick=()=>{if(!confirm("Supprimer la battue « "+(b.n||"sans nom")+" » ?"))return;delete S.bat[b.id];save();batId=null;batEd=false;go("bat")}}
+  $("#bt-x").onclick=()=>{if(!confirm("Supprimer la battue « "+(b.n||"sans nom")+" » ?"))return;delete gB()[b.id];save();batId=null;batEd=false;go("bat")}}
  if(!W){$("#bmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b></div>';return}
  W.Icon.Default.imagePath="lib/leaflet/images/";
  const m=batMap=W.map("bmap",{doubleClickZoom:false,zoomAnimation:ed});m.attributionControl.setPrefix(false);
@@ -750,12 +756,13 @@ function rBatE(){S.bat=S.bat||{};const b=S.bat[batId];if(!b){go("bat");return}ba
 /* page d'accueil du mode gestionnaire */
 function rGm(){const g=gx(),nb=batAll().length,nj=Object.keys(g.jr).length,na=g.act.length,pl=(n,a)=>n+" "+a+(n>1?"s":"");
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mode gestionnaire</h1>
- <input id="gm-n" placeholder="Nom de ta chasse" value="${esc(g.n||"")}">
- <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><div style="height:60px"></div>`;
- $("#bk2").onclick=backTo;$("#gm-n").onchange=e=>{g.n=e.target.value.trim();save()};
+ ${chSel()}<input id="gm-n" placeholder="Nom de la chasse" value="${esc(g.n||"")}" style="margin-top:8px">
+ <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")],["gsa","tgt","Mes saisons","Statistiques"]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><button class="s" id="gm-up" style="width:100%;margin-top:16px">🔄 Mettre à jour la version de test</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;$("#gm-n").onchange=e=>{g.n=e.target.value.trim();save();render()};chBind();
+ $("#gm-up").onclick=async()=>{toast("Mise à jour…");try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.unregister();const k=await caches.keys();await Promise.all(k.map(x=>caches.delete(x)))}catch(e){}location.replace(location.pathname+"?v="+Date.now())};
  document.querySelectorAll("[data-gv]").forEach(x=>x.onclick=()=>go(x.dataset.gv))}
 function rGact(){const g=gx();
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes actionnaires</h1>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes actionnaires</h1>${gx().n?`<p class="mut sans" style="margin-top:-6px">${esc(gx().n)}</p>`:""}
  <div class="row" style="gap:6px"><input id="ga-n" placeholder="Prénom et nom" style="margin:0;flex:1"><button class="p" id="ga-add" style="flex:0 0 auto">Ajouter</button></div>
  ${g.act.length?`<div class="card sans" style="padding:2px 14px;margin-top:10px">${g.act.map(a=>`<div class="gar"><button class="gan" data-gae="${a.id}">${esc(a.n)}</button><button class="s" data-gad="${a.id}" aria-label="Retirer" style="flex:0 0 auto">✕</button></div>`).join("")}</div>`:""}<div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
@@ -782,27 +789,27 @@ function rGjf(){const g=gx(),j=gjId&&g.jr[gjId]?g.jr[gjId]:{date:iso(new Date())
  <label>Type de chasse</label><select id="gf-m">${MODES.map(x=>`<option ${x==j.mode?"selected":""}>${x}</option>`).join("")}</select>
  <label>Lieu de RDV</label><input id="gf-l" value="${esc(j.pl||"")}" placeholder="Chalet du Vallon">
  <label>Consignes et notes</label><textarea id="gf-n" rows="3">${esc(j.desc||"")}</textarea>
- <label>Battues prévues</label><div class="gbc" id="gf-b">${B.length?B.map(b=>`<button data-gb="${b.id}"></button>`).join(""):`<span class="mut sans">Aucune battue : crée-les dans Mes battues.</span>`}</div>
+ <label>Battues</label><div class="gbc" id="gf-b">${B.length?B.map(b=>`<button data-gb="${b.id}"></button>`).join(""):`<span class="mut sans">Aucune battue : crée-les dans Mes battues.</span>`}</div>
  <div class="row" style="gap:8px;margin-top:16px"><button class="s" id="gf-c" style="flex:1">Annuler</button><button class="p" id="gf-ok" style="flex:1">Enregistrer</button></div>
  ${gjId?`<button class="s" id="gf-x" style="width:100%;margin-top:8px;color:var(--acc2)">Supprimer la journée</button>`:""}<div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
- const chips=()=>document.querySelectorAll("[data-gb]").forEach(x=>{const i=sb.indexOf(x.dataset.gb),b=S.bat[x.dataset.gb];x.className=i>=0?"on":"";x.innerHTML=(i>=0?`<i>${i+1}</i>`:"")+esc(b.n||"Battue sans nom")});chips();
+ const chips=()=>document.querySelectorAll("[data-gb]").forEach(x=>{const i=sb.indexOf(x.dataset.gb),b=gB()[x.dataset.gb];x.className=i>=0?"on":"";x.innerHTML=(i>=0?`<i>${i+1}</i>`:"")+esc(b.n||"Battue sans nom")});chips();
  document.querySelectorAll("[data-gb]").forEach(x=>x.onclick=()=>{const k=x.dataset.gb,i=sb.indexOf(k);if(i>=0)sb.splice(i,1);else sb.push(k);chips()});
  $("#gf-c").onclick=backTo;
  $("#gf-ok").onclick=()=>{const d=$("#gf-d").value;if(!d)return toast("Choisis une date.");const id=gjId||uidG("j"),x=g.jr[id]||{id,clos:0};
   Object.assign(x,{date:d,time:$("#gf-h").value,title:$("#gf-t").value.trim(),mode:$("#gf-m").value,pl:$("#gf-l").value.trim(),desc:$("#gf-n").value.trim(),bat:sb});g.jr[id]=x;save();gjId=id;const r=vst.lastIndexOf("gjr");if(r>=0)vst=vst.slice(0,r+1);view="gjd";render();window.scrollTo(0,0)};
  const x=$("#gf-x");if(x)x.onclick=()=>{if(!confirm("Supprimer cette journée ?"))return;delete g.jr[gjId];save();gjId=null;vst=vst.filter(v=>v!="gjd");go("gjr")}}
 const gjPart=j=>[...gx().act.filter(a=>!(j.ab||{})[a.id]).map(a=>a.n),...(j.inv||[])];
-const gjPostes=j=>{const s=new Set();(j.bat||[]).forEach(k=>{const b=S.bat&&S.bat[k];if(b)(b.po||[]).forEach(p=>s.add(String(p.n)))});return[...s].sort((a,b)=>(+a||0)-(+b||0)||a.localeCompare(b))};
+const gjPostes=j=>{const s=new Set();(j.bat||[]).forEach(k=>{const b=gB()&&gB()[k];if(b)(b.po||[]).forEach(p=>s.add(String(p.n)))});return[...s].sort((a,b)=>(+a||0)-(+b||0)||a.localeCompare(b))};
 const gjCell=(j,k,p)=>{j.fin=j.fin||{};j.fin.d=j.fin.d||{};const d=j.fin.d[k]=j.fin.d[k]||{};return d[p]=d[p]||{b:0,s:{},p:{}}};
 const nSp=o=>Object.values(o||{}).reduce((s,v)=>s+(+v||0),0);
 const spIco=(o,mx=3)=>{const L=GG.filter(([n])=>(o||{})[n]>0).flatMap(([n,im])=>Array(o[n]).fill(im));return L.length?L.slice(0,mx).map(im=>`<img src="animals/${im}.webp" alt="">`).join("")+(L.length>mx?`<small>+${L.length-mx}</small>`:""):'<b class="z">0</b>'};
 function gjTot(j){const T={b:0,s:{},p:{},bt:{}};const d=(j.fin&&j.fin.d)||{};Object.entries(d).forEach(([k,P])=>{if(!(j.bat||[]).includes(k))return;const r=T.bt[k]={b:0,s:0,p:{}};Object.values(P).forEach(c=>{T.b+=+c.b||0;r.b+=+c.b||0;r.s+=nSp(c.s);Object.entries(c.s||{}).forEach(([n,v])=>T.s[n]=(T.s[n]||0)+v);Object.entries(c.p||{}).forEach(([n,v])=>{T.p[n]=(T.p[n]||0)+v;r.p[n]=(r.p[n]||0)+v})})});return T}
-function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat||[]).map(k=>S.bat&&S.bat[k]).filter(Boolean),ab=j.ab=j.ab||{},inv=j.inv=j.inv||[];
+function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat||[]).map(k=>gB()&&gB()[k]).filter(Boolean),ab=j.ab=j.ab||{},inv=j.inv=j.inv||[];
  const T=j.clos?gjTot(j):null,np=T?nSp(T.p):0;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(j.title||"Journée")}</h1><p class="mut sans" style="margin-top:-6px">${fmtL(j.date)}${j.clos?" · ✓ clôturée":""}</p>
  <div class="card sans" style="line-height:1.6">${j.time?`🕣 Rendez-vous à ${j.time.replace(":","h")}<br>`:""}${j.pl?`📍 ${esc(j.pl)}<br>`:""}🦌 ${esc(j.mode||"")}${j.desc?`<br>📝 ${esc(j.desc)}`:""}</div>
- <h2 class="gh">Battues prévues</h2>${B.length?`<div class="card sans" style="padding:4px 14px">${B.map((b,i)=>`<div class="gar"><span><b>${i+1}.</b> ${esc(b.n||"Battue sans nom")}</span><small class="mut">${(b.po||[]).length} postes</small></div>`).join("")}</div>`:`<p class="mut sans">Aucune.</p>`}
+ <h2 class="gh">Battues réalisées</h2>${B.length?`<div class="card sans" style="padding:4px 14px">${B.map((b,i)=>`<div class="gar"><span><b>${i+1}.</b> ${esc(b.n||"Battue sans nom")}</span><small class="mut">${(b.po||[]).length} postes</small></div>`).join("")}</div>`:`<p class="mut sans">Aucune.</p>`}
  ${j.clos?`<button class="p" id="gd-fin" style="width:100%;margin-top:12px">Données de fin de journée</button>
   ${T&&(T.b||np||nSp(T.s))?`<h2 class="gh">Tableau de la journée</h2><div class="card sans gtb"><div class="gk"><div><b>${np}</b><span>pièce${np>1?"s":""} prélevée${np>1?"s":""}</span></div><div><b>${T.b}</b><span>balle${T.b>1?"s":""} tirée${T.b>1?"s":""}</span></div><div><b>${np?(T.b/np).toLocaleString("fr-BE",{maximumFractionDigits:1}):"–"}</b><span>balles par pièce</span></div><div><b>${nSp(T.s)}</b><span>sortis à droite</span></div></div>
    ${np?`<div class="gsp">${GG.filter(([n])=>T.p[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${T.p[n]}</b></span>`).join("")}</div>`:""}
@@ -823,10 +830,12 @@ function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat
  const fn=$("#gd-fin");if(fn)fn.onclick=()=>{gfP=null;go("gfin")};
  const tf=$("#gd-tf");if(tf)tf.onclick=()=>go("gtf");
  const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;save();render()}}
-function spModal(t,sub,o,done){const v=Object.assign({},o);const draw=()=>{const n=nSp(v);modal(`<h2 style="margin-top:0">${t}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p>${GG.map(([s,im])=>`<div class="gsr"><img src="animals/${im}.webp" alt=""><b>${s}</b><button class="s" data-gs="${s}|-1" aria-label="Moins">−</button><span class="${v[s]?"":"z"}">${v[s]||0}</span><button class="s" data-gs="${s}|1" aria-label="Plus">+</button></div>`).join("")}<button class="p" id="gs-ok" style="width:100%;margin-top:12px">OK · ${n} ${n>1?"animaux":"animal"}</button>`);
-  document.querySelectorAll("#mo [data-gs]").forEach(x=>x.onclick=()=>{const[s,d]=x.dataset.gs.split("|"),y=$("#mo .sh").scrollTop;v[s]=Math.max(0,(v[s]||0)+(+d));if(!v[s])delete v[s];draw();$("#mo .sh").scrollTop=y});
-  $("#gs-ok").onclick=()=>{closeM();done(v)}};draw()}
-function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPostes(j),B=(j.bat||[]).map(k=>S.bat&&S.bat[k]).filter(Boolean);
+function spModal(t,sub,o,done){const v=Object.assign({},o);
+ modal(`<h2 style="margin-top:0">${t}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p>${GG.map(([s,im])=>`<div class="gsr"><img src="animals/${im}.webp" alt=""><b>${s}</b><button class="s" data-gs="${s}|-1" aria-label="Moins">−</button><span data-gsv="${s}"></span><button class="s" data-gs="${s}|1" aria-label="Plus">+</button></div>`).join("")}<button class="p" id="gs-ok" style="width:100%;margin-top:12px"></button>`);
+ const upd=()=>{document.querySelectorAll("#mo [data-gsv]").forEach(e=>{const n=v[e.dataset.gsv]||0;e.textContent=n;e.className=n?"":"z"});const n=nSp(v);$("#gs-ok").textContent=`OK · ${n} ${n>1?"animaux":"animal"}`};upd();
+ document.querySelectorAll("#mo [data-gs]").forEach(x=>x.onclick=()=>{const[s,d]=x.dataset.gs.split("|");v[s]=Math.max(0,(v[s]||0)+(+d));if(!v[s])delete v[s];upd()});
+ $("#gs-ok").onclick=()=>{closeM();done(v)}}
+function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPostes(j),B=(j.bat||[]).map(k=>gB()&&gB()[k]).filter(Boolean);
  if(!P.includes(gfP))gfP=P[0]||null;j.fin=j.fin||{};j.fin.w=j.fin.w||{};
  const rows=gfP?B.filter(b=>(b.po||[]).some(p=>String(p.n)==gfP)):[];
  const cells=rows.map(b=>[b,gjCell(j,b.id,gfP)]),tb=cells.reduce((s,[,c])=>s+(+c.b||0),0),ts=cells.reduce((s,[,c])=>s+nSp(c.s),0),tp=cells.reduce((s,[,c])=>s+nSp(c.p),0);
@@ -844,9 +853,9 @@ function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPos
  const ed=$("#gf-ed");if(ed)ed.onclick=()=>go("gjf");
  document.querySelectorAll("[data-gp]").forEach(x=>x.onclick=()=>{gfP=x.dataset.gp;render()});
  const sw=$("#gfw");if(sw)sw.onchange=e=>{if(e.target.value)j.fin.w[gfP]=e.target.value;else delete j.fin.w[gfP];save()};
- document.querySelectorAll("[data-gc]").forEach(x=>x.onclick=()=>{const[k,t]=x.dataset.gc.split("|"),b=S.bat[k],c=gjCell(j,k,gfP),sub="Poste "+gfP+" · "+(b.n||"Battue");
-  if(t=="b"){let n=+c.b||0;const dr=()=>{modal(`<h2 style="margin-top:0">Balles tirées</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p><div class="gsr" style="justify-content:center;border:0"><button class="s" id="gb-m">−</button><span style="font-size:1.8rem;min-width:56px">${n}</span><button class="s" id="gb-p">+</button></div><button class="p" id="gb-ok" style="width:100%;margin-top:12px">OK</button>`);
-    $("#gb-m").onclick=()=>{n=Math.max(0,n-1);dr()};$("#gb-p").onclick=()=>{n++;dr()};$("#gb-ok").onclick=()=>{c.b=n;save();closeM();render()}};dr()}
+ document.querySelectorAll("[data-gc]").forEach(x=>x.onclick=()=>{const[k,t]=x.dataset.gc.split("|"),b=gB()[k],c=gjCell(j,k,gfP),sub="Poste "+gfP+" · "+(b.n||"Battue");
+  if(t=="b"){let n=+c.b||0;modal(`<h2 style="margin-top:0">Balles tirées</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p><div class="gsr" style="justify-content:center;border:0"><button class="s" id="gb-m">−</button><span id="gb-v" style="font-size:1.8rem;min-width:56px">${n}</span><button class="s" id="gb-p">+</button></div><button class="p" id="gb-ok" style="width:100%;margin-top:12px">OK</button>`);
+    const u=()=>{$("#gb-v").textContent=n};$("#gb-m").onclick=()=>{n=Math.max(0,n-1);u()};$("#gb-p").onclick=()=>{n++;u()};$("#gb-ok").onclick=()=>{c.b=n;save();closeM();render()}}
   else spModal(t=="s"?"Sortis à droite":"Prélevés",sub,t=="s"?c.s:c.p,v=>{c[t]=v;save();render()})});
  const nx=$("#gf-nx");if(nx)nx.onclick=()=>{const i=P.indexOf(gfP);if(i<P.length-1){gfP=P[i+1];render();window.scrollTo(0,0)}else backTo()};
  const tbb=$("#gf-tb");if(tbb)tbb.onclick=backTo}
@@ -894,14 +903,14 @@ function gbEdit(b){const g=gbr(),u=gbUsed(),v=new Set(b?b.v||[]:[]);
    save();closeM();toast(b?"Bracelet enregistré.":"Bracelets ajoutés.");render()};
   const x=$("#gbe-x");if(x)x.onclick=()=>{if(!confirm("Supprimer le bracelet N° "+b.n+" ?"))return;g.br=g.br.filter(y=>y!==b);save();closeM();render()}};
  draw()}
-function rGtf(){const g=gbr(),j=g.jr[gjId];if(!j){go("gjr");return}const A=gjAuto(j),L=Object.entries(A),bat=k=>(S.bat&&S.bat[k]&&S.bat[k].n)||"Battue",nb=L.filter(([,a])=>a.br).length;
+function rGtf(){const g=gbr(),j=g.jr[gjId];if(!j){go("gjr");return}const A=gjAuto(j),L=Object.entries(A),bat=k=>(gB()&&gB()[k]&&gB()[k].n)||"Battue",nb=L.filter(([,a])=>a.br).length;
  const order=Object.fromEntries(GG.map((x,i)=>[x[0],i]));L.sort((x,y)=>(order[x[1].sp]-order[y[1].sp])||String(x[1].po).localeCompare(String(y[1].po),"fr",{numeric:true}));
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Tableau final</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${new Date(j.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"})}</p>
  <div class="card sans gtt"><b>${L.length}</b> <span>pièce${L.length>1?"s":""} · ${(j.bat||[]).length} battue${(j.bat||[]).length>1?"s":""}</span><small>${nb} bracelet${nb>1?"s":""} attribué${nb>1?"s":""}</small></div>
  ${L.length?`<div class="card sans" style="padding:2px 14px">${L.map(([id,a])=>{const b=g.br.find(x=>x.id==a.br),c=gaCors(a);return `<button class="gtr" data-gan="${esc(id)}"><img src="animals/${gImg(a.sp)}.webp" alt=""><span><b>${esc(gaLab(a))}</b><small>${[a.kg?a.kg+" kg":"",c,bat(a.k),"poste "+a.po].filter(Boolean).map(esc).join(" · ")}${!a.cat?' · <i class="gwa">catégorie à choisir</i>':""}</small></span>${gbChip(b)}</button>`}).join("")}</div>`:`<div class="card sans mut">Aucune pièce prélevée : encode les prélevés dans les données de fin de journée.</div>`}
  <div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;document.querySelectorAll("[data-gan]").forEach(x=>x.onclick=()=>{ganId=x.dataset.gan;go("gan")})}
-function rGan(){const g=gbr(),j=g.jr[gjId],A=j?gjAn(j):{},a=A[ganId];if(!a){go("gtf");return}const u=gbUsed(),b=g.br.find(x=>x.id==a.br),bt=S.bat&&S.bat[a.k],who=(j.fin.w||{})[a.po]||"";
+function rGan(){const g=gbr(),j=g.jr[gjId],A=j?gjAn(j):{},a=A[ganId];if(!a){go("gtf");return}const u=gbUsed(),b=g.br.find(x=>x.id==a.br),bt=gB()&&gB()[a.k],who=(j.fin.w||{})[a.po]||"";
  const ok=g.br.filter(x=>(x.v||[]).includes(a.cat)&&(!u[x.id]||x.id==a.br)).sort(gbSort);
  const st=(k,l)=>`<div class="gar"><span>${l}</span><div class="stp2"><button class="s" data-gcs="${k}|-1">−</button><b>${a[k]===""||a[k]==null?"–":a[k]}</b><button class="s" data-gcs="${k}|1">+</button></div></div>`;
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Fiche de l'animal</h1><p class="mut sans" style="margin-top:-6px">${esc(gaLab(a))}${b?" · bracelet N° "+esc(b.n):""}</p>
@@ -922,7 +931,29 @@ function rGan(){const g=gbr(),j=g.jr[gjId],A=j?gjAn(j):{},a=A[ganId];if(!a){go("
  $("#ga-kg").onchange=e=>{const v=e.target.value.replace(",",".");a.kg=v===""?"":Math.max(0,+v||0);save()};
  $("#ga-b").onchange=e=>{if(e.target.value){a.br=e.target.value;delete a.nb}else{delete a.br;a.nb=1}save();render()};
  document.querySelectorAll("[data-gcs]").forEach(x=>x.onclick=()=>{const[k,d]=x.dataset.gcs.split("|"),c=a[k]===""||a[k]==null?0:+a[k];a[k]=Math.max(0,Math.min(30,c+(+d)));if(a[k]==0&&+d<0&&c==0)a[k]="";save();render()})}
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan})[view]();hydrate()}
+/* Mes saisons : statistiques de la société de chasse sélectionnée (journées clôturées) */
+let gsaS="";
+function rGsa(){const g=gbr(),J=Object.values(g.jr),cs=season(iso(new Date())),ses=[...new Set([cs,...J.map(j=>season(j.date))])].sort().reverse();if(!ses.includes(gsaS))gsaS=cs;
+ const L=J.filter(j=>season(j.date)==gsaS),C=L.filter(j=>j.clos),T={b:0,s:{},p:{}},BT={},PO={},CH={},add=(o,k,n)=>o[k]=(o[k]||0)+n,bn=k=>(g.bat[k]&&g.bat[k].n)||"Battue";
+ C.forEach(j=>{const d=(j.fin&&j.fin.d)||{},w=(j.fin&&j.fin.w)||{};(j.bat||[]).forEach(k=>{const r=BT[k]=BT[k]||{j:0,b:0,s:0,p:0};r.j++;Object.entries(d[k]||{}).forEach(([po,c])=>{const b=+c.b||0,ns=nSp(c.s),np=nSp(c.p);
+  T.b+=b;r.b+=b;r.s+=ns;r.p+=np;Object.entries(c.s||{}).forEach(([n,v])=>add(T.s,n,v));Object.entries(c.p||{}).forEach(([n,v])=>add(T.p,n,v));
+  const q=k+"|"+po;PO[q]=PO[q]||{k,po,p:0,s:0};PO[q].p+=np;PO[q].s+=ns;
+  const who=w[po];if(who){const h=CH[who]=CH[who]||{p:0,b:0,j:new Set()};h.p+=np;h.b+=b;h.j.add(j.id)}})})});
+ const np=nSp(T.p),ns=nSp(T.s),f1=x=>x.toLocaleString("fr-BE",{maximumFractionDigits:1}),sp=o=>`<div class="gsp">${GG.filter(([n])=>o[n]).map(([n,im])=>`<span><img src="animals/${im}.webp" alt="">${n} <b>${o[n]}</b></span>`).join("")}</div>`;
+ const u=gbUsed(),cats=g.cat.filter(c=>g.br.some(b=>(b.v||[]).includes(c))),brU=c=>Object.entries(u).filter(([id,x])=>season(x.j.date)==gsaS&&x.a.cat==c).length;
+ const tP=Object.values(PO).filter(x=>x.p).sort((a,b)=>b.p-a.p||b.s-a.s).slice(0,5),tC=Object.entries(CH).sort((a,b)=>b[1].p-a[1].p||a[0].localeCompare(b[0])).slice(0,8);
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes saisons</h1>${chSel()}
+ <div class="gpc" style="margin-top:10px">${ses.map(x=>`<button data-gss="${x}" class="gsx${x==gsaS?" on":""}">${x}</button>`).join("")}</div>
+ <div class="gk" style="margin-top:10px"><div><b>${C.length}/${L.length}</b><span>journées clôturées</span></div><div><b>${np}</b><span>pièce${np>1?"s":""} prélevée${np>1?"s":""}</span></div><div><b>${T.b}</b><span>balle${T.b>1?"s":""} tirée${T.b>1?"s":""}</span></div><div><b>${np?f1(T.b/np):"–"}</b><span>balles par pièce</span></div></div>
+ ${np?`<h2 class="gh">Gibier prélevé</h2>${sp(T.p)}`:""}
+ ${ns?`<h2 class="gh">Sortis à droite · ${ns}</h2>${sp(T.s)}`:""}
+ ${Object.keys(BT).length?`<h2 class="gh">Par battue</h2><div class="card sans" style="padding:4px 12px"><table class="gbt" style="margin:0"><tr><th>Battue</th><th>Jours</th><th>Balles</th><th>Sortis</th><th>Pièces</th><th>Balles/pièce</th></tr>${Object.entries(BT).sort((a,b)=>b[1].p-a[1].p).map(([k,r])=>`<tr><td>${esc(bn(k))}</td><td>${r.j}</td><td>${r.b}</td><td>${r.s}</td><td><b>${r.p}</b></td><td>${r.p?f1(r.b/r.p):"–"}</td></tr>`).join("")}</table></div>`:""}
+ ${tP.length?`<h2 class="gh">Meilleurs postes</h2><div class="card sans" style="padding:4px 14px">${tP.map(x=>`<div class="gar"><span>${esc(bn(x.k))} · poste ${esc(x.po)}</span><b>${x.p} pièce${x.p>1?"s":""}</b></div>`).join("")}</div>`:""}
+ ${tC.length?`<h2 class="gh">Par chasseur</h2><div class="card sans" style="padding:4px 12px"><table class="gbt" style="margin:0"><tr><th>Chasseur</th><th>Jours</th><th>Balles</th><th>Pièces</th></tr>${tC.map(([n,h])=>`<tr><td>${esc(n)}</td><td>${h.j.size}</td><td>${h.b}</td><td><b>${h.p}</b></td></tr>`).join("")}</table></div>`:""}
+ ${cats.length?`<h2 class="gh">Bracelets</h2><div class="card sans" style="padding:4px 14px">${cats.map(c=>{const n=g.br.filter(b=>(b.v||[]).includes(c)).length,k=brU(c);return `<div class="gar" style="display:block"><div class="row"><span style="flex:1">${esc(c)}</span><small class="mut">${k} / ${n} utilisé${k>1?"s":""}</small></div><div class="gbar"><i style="width:${n?Math.min(100,Math.round(k/n*100)):0}%"></i></div></div>`}).join("")}</div>`:""}
+ ${!C.length?`<div class="card sans mut" style="margin-top:12px">Aucune journée clôturée pour la saison ${gsaS}.</div>`:""}<div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;chBind();document.querySelectorAll("[data-gss]").forEach(x=>x.onclick=()=>{gsaS=x.dataset.gss;render()})}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan,gsa:rGsa})[view]();hydrate()}
 function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */

@@ -36,6 +36,7 @@ Cible : chasseurs belges (Wallonie surtout) et français. Propriétaire : Maxime
 - Sobre et indépendant : pas de charte ni de lien d'un club ou partenaire imposé dans l'app.
 - Couleurs (`:root`) : fond `#f1efe6`, vert `#3f5a2b`, accent brique `#a4452c`. Vert forêt `#1f3326` pour les Reels.
 - Textes courts, tutoiement, vocabulaire de chasse exact (brocard, chevrillard, cors, poids vidé, tableau, poste, battue, approche/affût).
+- **Keep it simple** : pas de texte explicatif sous chaque bouton ou réglage. Un réglage = un interrupteur ou un champ, directement là où on l'attend, sans page supplémentaire si ce n'est pas indispensable.
 - Confidentialité des documents : n'afficher que ce que l'utilisateur a ajouté (un contrôle ne doit pas révéler de documents manquants).
 - Données personnelles (ex. `mon-calendrier-chasse.json`) : jamais dans le dépôt public.
 

@@ -203,6 +203,9 @@ select:disabled{opacity:.45}
 .x{position:absolute;right:6px;top:6px;border:0;background:none;color:var(--mut);font-size:1.2rem;padding:8px}
 .li{display:block;width:100%;text-align:left;margin-bottom:8px}
 #pmap{height:260px;border:1px solid var(--line);border-radius:10px;margin:10px 0;background:var(--bg);overflow:hidden}
+#bmap{height:58vh;min-height:320px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}.bwr{position:relative;margin-top:8px}.bmsg{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:500;background:#26301fe6;color:#fff;border-radius:16px;padding:6px 12px;font:600 .8rem system-ui;white-space:nowrap;pointer-events:none}
+.bli{display:block;width:100%;text-align:left;position:relative;margin-bottom:10px;padding-right:34px}.bli small{display:block;color:var(--mut);margin-top:2px}.bli .chev{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mut)}.bseg{margin:10px 0 0}.bseg button{flex:1}
+.bpo{width:28px;height:28px;border-radius:50%;background:#a4452c;color:#fff;border:2px solid #fff;font:800 .8rem/24px system-ui;text-align:center;box-shadow:0 1px 4px #0006}.bvx{width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid #a4452c}
 .mapoff{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;font:.9rem system-ui;color:var(--mut);background:repeating-linear-gradient(0deg,transparent 0 39px,var(--line) 39px 40px),repeating-linear-gradient(90deg,transparent 0 39px,var(--line) 39px 40px)}
 .ph img{background:var(--line);cursor:zoom-in}
 .chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:99px;padding:2px 4px 2px 10px;margin:3px 4px 0 0;font:.85rem system-ui}.chip button{border:0;background:none;color:var(--mut);padding:4px 6px}
@@ -340,7 +343,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box
 <aside id="dr"><div class="dhd"><b>ChasseLog</b><button class="dchip" id="m-reg" aria-label="Changer de région"></button></div>
 <div class="dlab">Affichage</div><div class="dseg"><button data-cv="year">Année</button><button data-cv="month">Mois</button><button data-cv="week">Sem.</button><button data-cv="day">Jour</button></div>
 <div class="dlab">Ma chasse</div>
-<button class="m mi2" id="m-ouv"><svg class="mi" aria-hidden="true"><use href="#i-sun"/></svg>Périodes d'ouverture</button><button class="m mi2" id="m-mg"><svg class="mi" aria-hidden="true"><use href="#i-leaf"/></svg>Mes favoris</button><button class="m mi2" id="m-ar"><svg class="mi" aria-hidden="true"><use href="#i-tgt"/></svg>Mes armes</button><button class="m mi2" id="m-doc"><svg class="mi" aria-hidden="true"><use href="#i-doc"/></svg>Mes documents</button><button class="m mi2" id="m-tro"><svg class="mi" aria-hidden="true"><use href="#i-tro"/></svg>Mes trophées</button>
+<button class="m mi2" id="m-ouv"><svg class="mi" aria-hidden="true"><use href="#i-sun"/></svg>Périodes d'ouverture</button><button class="m mi2" id="m-mg"><svg class="mi" aria-hidden="true"><use href="#i-leaf"/></svg>Mes favoris</button><button class="m mi2" id="m-ar"><svg class="mi" aria-hidden="true"><use href="#i-tgt"/></svg>Mes armes</button><button class="m mi2" id="m-doc"><svg class="mi" aria-hidden="true"><use href="#i-doc"/></svg>Mes documents</button><button class="m mi2" id="m-tro"><svg class="mi" aria-hidden="true"><use href="#i-tro"/></svg>Mes trophées</button><button class="m mi2" id="m-bat" hidden><svg class="mi" aria-hidden="true"><use href="#i-pin"/></svg>Mes battues</button>
 <div style="margin-top:auto;padding-top:10px"><hr>
 <button class="m mi2" id="m-set"><svg class="mi" aria-hidden="true"><use href="#i-gear"/></svg>Paramètres<span class="dch">›</span></button><button class="m mi2" id="m-inv"><svg class="mi" aria-hidden="true"><use href="#i-usr"/></svg>Inviter un ami</button><button class="m mi2" id="m-fol"><svg class="mi" aria-hidden="true"><use href="#i-heart"/></svg>Suivez-nous !</button><button class="m mi2" id="m-sup"><svg class="mi" aria-hidden="true"><use href="#i-cup"/></svg>Soutenir ChasseLog</button>
 <button id="m-fb" class="dfb"><svg class="mi" aria-hidden="true"><use href="#i-msg"/></svg>Donner mon avis</button><p class="dver" id="dver"></p></div>
@@ -617,7 +620,82 @@ function troOpen(eid,tid,i=0){const e=S.ev[eid],t=e&&e.fiche&&e.fiche.tirs.find(
   $("#tr-x").onclick=()=>{tr.on=false;save();track("trophy_toggle",{on:false,sp:t.sp});closeM();toast("Retiré de Mes trophées.");render()};
   const m=$("#mo");if(m){const o=new MutationObserver(()=>{if(!document.body.contains(m)){o.disconnect();if(view=="tro")render()}});o.observe(document.body,{childList:true})}};
  draw();track("trophy_opened",{sp:t.sp})}
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro})[view]();hydrate()}
+/* Mode gestionnaire : battues (parcelles du cadastre wallon, lignes de fermeture, postes). Données dans S.bat. */
+const CAD_URL="https://geoservices.wallonie.be/arcgis/rest/services/PLAN_REGLEMENT/CADMAP_2024_PARCELLES/MapServer/0/query",CAD_Z=16,CAD={},CADB=[];
+let batId=null,batMap=null,batT="p",batCur=null;
+const batAll=()=>Object.values(S.bat||{}).sort((a,b)=>(a.n||"").localeCompare(b.n||"","fr")||a.id.localeCompare(b.id));
+const ringA=r=>{if(!r||r.length<3)return 0;const k=111320,kx=k*Math.cos(r[0][0]*Math.PI/180);let a=0;for(let i=0,j=r.length-1;i<r.length;j=i++)a+=r[j][1]*kx*r[i][0]*k-r[i][1]*kx*r[j][0]*k;return Math.abs(a/2)};
+const cadG=g=>{const P=!g?[]:g.type=="Polygon"?[g.coordinates]:g.type=="MultiPolygon"?g.coordinates:[];return P.map(pl=>pl.map(r=>r.map(([x,y])=>[+(+y).toFixed(6),+(+x).toFixed(6)])))};
+const cadA=G=>G.reduce((s,pl)=>s+Math.max(0,ringA(pl[0])-pl.slice(1).reduce((u,h)=>u+ringA(h),0)),0);
+const batArea=b=>Object.values(b.pc||{}).reduce((s,p)=>s+(p.a||0),0);
+const batSum=b=>{const n=Object.keys(b.pc||{}).length,p=(b.po||[]).length;return `${n} parcelle${n>1?"s":""} · ${(batArea(b)/1e4).toLocaleString("fr-BE",{maximumFractionDigits:1})} ha · ${p} poste${p>1?"s":""}`};
+async function cadGet(bb){const p=new URLSearchParams({where:"1=1",geometry:[bb.getWest(),bb.getSouth(),bb.getEast(),bb.getNorth()].map(x=>x.toFixed(6)).join(","),geometryType:"esriGeometryEnvelope",inSR:"4326",spatialRel:"esriSpatialRelIntersects",outFields:"CAPAKEY,NOM_COMMUNE",returnGeometry:"true",outSR:"4326",f:"geojson"});
+ const r=await fetch(CAD_URL+"?"+p);if(!r.ok)throw new Error("http "+r.status);const j=await r.json();if(j.error)throw new Error("arcgis");
+ (j.features||[]).forEach(f=>{const pr=f.properties||{},k=pr.CAPAKEY||pr.capakey;if(!k||CAD[k])return;const g=cadG(f.geometry);if(g.length)CAD[k]={c:pr.NOM_COMMUNE||"",g,a:Math.round(cadA(g))}});return(j.features||[]).length}
+function rBat(){S.bat=S.bat||{};const L=batAll();
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes battues</h1>
+ ${L.map(b=>`<button class="card sans bli" data-bat="${b.id}"><b>${esc(b.n||"Battue sans nom")}</b><small>${batSum(b)}</small><span class="chev">›</span></button>`).join("")}
+ <button class="p" id="bat-new" style="width:100%;margin-top:6px">+ Nouvelle battue</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ document.querySelectorAll("[data-bat]").forEach(x=>x.onclick=()=>{batId=x.dataset.bat;go("bate")});
+ $("#bat-new").onclick=()=>{const id="b"+Date.now().toString(36);S.bat[id]={id,n:"",pc:{},ln:[],po:[]};save();batId=id;batT="p";go("bate")}}
+function rBatE(){S.bat=S.bat||{};const b=S.bat[batId];if(!b){go("bat");return}b.pc=b.pc||{};b.ln=b.ln||[];b.po=b.po||[];batCur=null;
+ if(batMap){try{batMap.remove()}catch(e){}batMap=null}
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Battue</h1>
+ <input id="bt-n" placeholder="Nom de la battue" value="${esc(b.n||"")}">
+ <div class="row" style="gap:6px;margin-top:8px"><input id="bt-q" placeholder="Commune ou lieu-dit" style="margin:0;flex:1"><button class="s" id="bt-qs" style="flex:0 0 auto" aria-label="Chercher">🔍</button><button class="s" id="bt-me" style="flex:0 0 auto" aria-label="Ma position">📍</button></div>
+ <div class="seg bseg" id="bt-t">${[["p","Parcelles"],["l","Ligne"],["o","Postes"]].map(([k,l])=>`<button data-bt="${k}" class="${batT==k?"on":""}">${l}</button>`).join("")}</div>
+ <div class="bwr"><div id="bmap"></div><div class="bmsg" id="bt-msg" hidden></div></div>
+ <div class="row" id="bt-bar" style="gap:6px;margin-top:8px"></div>
+ <p class="sans" id="bt-sum" style="margin:8px 2px;font-weight:600"></p>
+ <button class="s" id="bt-x" style="width:100%;color:var(--acc2);margin-top:6px">Supprimer la battue</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ $("#bt-n").onchange=e=>{b.n=e.target.value.trim();save()};
+ $("#bt-x").onclick=()=>{if(!confirm("Supprimer la battue « "+(b.n||"sans nom")+" » ?"))return;delete S.bat[b.id];save();batId=null;go("bat")};
+ const W=window.L,msg=t=>{const x=$("#bt-msg");x.hidden=!t;x.textContent=t||""},sum=()=>{$("#bt-sum").textContent=batSum(b)};sum();
+ if(!W){$("#bmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b></div>';return}
+ W.Icon.Default.imagePath="lib/leaflet/images/";
+ const m=batMap=W.map("bmap",{doubleClickZoom:false});m.attributionControl.setPrefix(false);
+ W.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+ m.attributionControl.addAttribution('Parcelles <a href="https://opendata.fin.belgium.be" target="_blank" rel="noopener">© SPF Finances – AGDP</a>');
+ const gAll=W.layerGroup().addTo(m),gSel=W.layerGroup().addTo(m),gLn=W.layerGroup().addTo(m),gCur=W.layerGroup().addTo(m),gPo=W.layerGroup().addTo(m);
+ const ST={color:"#1f3326",weight:1,opacity:.55,fillColor:"#ffffff",fillOpacity:.06},SS={color:"#a4452c",weight:2,opacity:1,fillColor:"#e8a032",fillOpacity:.45};
+ const tog=k=>{if(batT!="p")return false;if(b.pc[k])delete b.pc[k];else{const p=CAD[k];if(!p)return true;b.pc[k]={c:p.c,g:p.g,a:p.a}}save();drawP();sum();return true};
+ const poly=(k,g,st)=>{const y=W.polygon(g,st);y.on("click",e=>{if(tog(k))W.DomEvent.stop(e)});return y};
+ function drawP(){gAll.clearLayers();gSel.clearLayers();if(m.getZoom()>=CAD_Z){const bb=m.getBounds().pad(.2);Object.entries(CAD).forEach(([k,p])=>{if(b.pc[k])return;const B=W.latLngBounds(p.g.flat(2));if(bb.intersects(B))gAll.addLayer(poly(k,p.g,ST))})}
+  Object.entries(b.pc).forEach(([k,p])=>gSel.addLayer(poly(k,p.g,SS)))}
+ function drawL(){gLn.clearLayers();gCur.clearLayers();b.ln.forEach((l,i)=>{const y=W.polyline(l,{color:"#a4452c",weight:4});y.on("click",e=>{if(batT!="l"||batCur)return;W.DomEvent.stop(e);if(confirm("Effacer cette ligne ?")){b.ln.splice(i,1);save();drawL()}});gLn.addLayer(y)});
+  if(batCur){gCur.addLayer(W.polyline(batCur,{color:"#a4452c",weight:4,dashArray:"6 6"}));batCur.forEach(p=>gCur.addLayer(W.marker(p,{icon:W.divIcon({className:"",html:'<div class="bvx"></div>',iconSize:[18,18]}),interactive:false})))}}
+ const pIco=n=>W.divIcon({className:"",html:`<div class="bpo">${esc(String(n))}</div>`,iconSize:[28,28]});
+ function drawO(){gPo.clearLayers();b.po.forEach(po=>{const mk=W.marker([po.lat,po.lng],{icon:pIco(po.n),draggable:batT=="o"});
+  mk.on("dragend",()=>{const q=mk.getLatLng();po.lat=+q.lat.toFixed(6);po.lng=+q.lng.toFixed(6);save()});
+  mk.on("click",e=>{W.DomEvent.stop(e);if(batT!="o")return;poEd(po)});gPo.addLayer(mk)})}
+ function poEd(po){modal(`<h2 style="margin-top:0">Poste</h2><label>Numéro</label><input id="po-n" value="${esc(String(po.n))}" inputmode="numeric"><button class="p" id="po-ok" style="width:100%;margin-top:10px">OK</button><button class="s" id="po-x" style="width:100%;margin-top:8px;color:var(--acc2)">Supprimer ce poste</button>`);
+  $("#po-ok").onclick=()=>{const v=$("#po-n").value.trim();if(v)po.n=/^\d+$/.test(v)?+v:v;save();closeM();drawO();sum()};
+  $("#po-x").onclick=()=>{b.po.splice(b.po.indexOf(po),1);save();closeM();drawO();sum()}}
+ const nextN=()=>b.po.reduce((x,p)=>Math.max(x,+p.n||0),0)+1;
+ const addPo=q=>{b.po.push({n:nextN(),lat:+q.lat.toFixed(6),lng:+q.lng.toFixed(6)});save();drawO();sum()};
+ const gps=f=>{if(!navigator.geolocation){toast("Position indisponible.");return}toast("Recherche de ta position…");navigator.geolocation.getCurrentPosition(p=>f(W.latLng(p.coords.latitude,p.coords.longitude)),()=>toast("Position indisponible."),{enableHighAccuracy:true,timeout:15000})};
+ function bar(){const B=$("#bt-bar");
+  if(batT=="p")B.innerHTML="";
+  else if(batT=="l")B.innerHTML=batCur?`<button class="s" id="bl-u" style="flex:1">↶ Dernier point</button><button class="p" id="bl-ok" style="flex:1" ${batCur.length<2?"disabled":""}>Terminer la ligne</button>`:"";
+  else B.innerHTML=`<button class="s" id="bo-me" style="flex:1">📍 Poste à ma position</button>`;
+  const u=$("#bl-u");if(u)u.onclick=()=>{batCur.pop();if(!batCur.length)batCur=null;drawL();bar()};
+  const ok=$("#bl-ok");if(ok)ok.onclick=()=>{if(batCur&&batCur.length>1){b.ln.push(batCur);save()}batCur=null;drawL();bar()};
+  const me=$("#bo-me");if(me)me.onclick=()=>gps(q=>{addPo(q);m.setView(q,Math.max(m.getZoom(),17))});
+  msg(batT=="p"&&m.getZoom()<CAD_Z?"Zoome pour afficher les parcelles":"")}
+ m.on("click",e=>{const q=[+e.latlng.lat.toFixed(6),+e.latlng.lng.toFixed(6)];if(batT=="l"){batCur=batCur||[];batCur.push(q);drawL();bar()}else if(batT=="o")addPo(e.latlng)});
+ let tm=0;const load=()=>{clearTimeout(tm);if(m.getZoom()<CAD_Z){drawP();bar();return}tm=setTimeout(async()=>{const bb=m.getBounds().pad(.15);drawP();if(CADB.some(x=>x.contains(bb))){bar();return}msg("Chargement des parcelles…");
+  try{const n=await cadGet(bb);CADB.push(bb);if(batMap!==m)return;drawP();bar();if(!n)msg("Pas de parcelle cadastrale ici")}catch(e){if(batMap===m)msg("Le cadastre ne répond pas")}},350)};
+ m.on("moveend",load);
+ document.querySelectorAll("[data-bt]").forEach(x=>x.onclick=()=>{batT=x.dataset.bt;batCur=null;document.querySelectorAll("[data-bt]").forEach(y=>y.classList.toggle("on",y==x));drawL();drawO();bar()});
+ $("#bt-me").onclick=()=>gps(q=>m.setView(q,17));
+ const srch=async()=>{const q=$("#bt-q").value.trim();if(!q)return;try{const j=await(await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=be&accept-language=fr&q="+encodeURIComponent(q))).json();if(j[0])m.setView([+j[0].lat,+j[0].lon],15);else toast("Lieu introuvable.")}catch(e){toast("Recherche indisponible.")}};
+ $("#bt-qs").onclick=srch;$("#bt-q").onkeydown=e=>{if(e.key=="Enter")srch()};
+ const all=[...Object.values(b.pc).flatMap(p=>p.g.flat(2)),...b.ln.flat(),...b.po.map(p=>[p.lat,p.lng])];
+ if(all.length)m.fitBounds(all,{maxZoom:17,padding:[20,20]});else m.setView([50.3,5.2],9);
+ drawP();drawL();drawO();bar();setTimeout(()=>{m.invalidateSize();load()},200)}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE})[view]();hydrate()}
 function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */
@@ -1577,7 +1655,7 @@ const shut=()=>document.body.classList.remove("dr");
   setTimeout(reset,270)};
  document.addEventListener("touchend",end);document.addEventListener("touchcancel",end)})();
 document.querySelectorAll("[data-cv]").forEach(b=>b.onclick=()=>{cv=b.dataset.cv;if(cv=="day")cur=new Date();shut();go("cal")});
-$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-doc").onclick=()=>{shut();go("docs")};$("#m-tro").onclick=()=>{shut();track("trophies_viewed",{n:troAll().length});go("tro")};
+$("#m-ar").onclick=()=>{shut();go("ar")};$("#m-doc").onclick=()=>{shut();go("docs")};$("#m-tro").onclick=()=>{shut();track("trophies_viewed",{n:troAll().length});go("tro")};$("#m-bat").onclick=()=>{shut();go("bat")};$("#m-bat").hidden=!S.gm;
 const FB_PAGE="https://www.facebook.com/share/14xCaJZ8BXr/";
 const drChip=()=>{const c=$("#m-reg");if(c)c.textContent=regFlag()+" "+(S.reg=="fr"?(S.dep?S.dep+" · "+frNom(S.dep):"France"):S.reg=="xx"?"Autre pays":"Wallonie")};drChip();$("#dver").textContent="Version "+APP_V;
 $("#m-reg").onclick=()=>{shut();regModal(false)};$("#m-set").onclick=()=>{shut();go("set")};
@@ -1597,7 +1675,8 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Paramètres</h1>
  <div class="sgl">Général</div><div class="sgg">${row("sg-reg","pin","Région",esc(regLbl()))}
   <div class="sgr">${ic("moon")}<span>Thème</span><div class="seg" id="sg-th">${[["light","Clair"],["dark","Sombre"],["auto","Auto"]].map(([k,l])=>`<button data-th2="${k}" class="${(S.theme||"light")==k?"on":""}">${l}</button>`).join("")}</div></div>
-  ${row("sg-rm","bell","Rappels","")}</div>
+  ${row("sg-rm","bell","Rappels","")}
+  <label class="sgr shtg" style="margin:0">${ic("pin")}<span>Mode gestionnaire</span><input type="checkbox" id="sg-gm" ${S.gm?"checked":""}><i></i></label></div>
  <div class="sgl">Données</div><div class="sgg">
   ${row("sg-im","dl","Importer un calendrier","",".ics de ton agenda ou sauvegarde .json")}${row("sg-ex","ul","Exporter mon calendrier","")}${row("sg-bk","save","Sauvegarde automatique","")}</div>
  <div class="sgl">Confidentialité</div><div class="sgg">${PH_KEY?`<label class="sgr shtg" style="margin:0">${ic("eye")}<span>Statistiques anonymes<small>Compte l'utilisation de l'app pour l'améliorer${IS_APP?", avec la province où tu chasses":""}. Jamais tes tirs, tes lieux${IS_APP?" précis":""} ni tes documents.</small></span><input type="checkbox" id="sg-st" ${S.stats===true?"checked":""}><i></i></label>`:""}<a class="sgr" href="${PRIV_URL}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">${ic("info")}<span>Politique de confidentialité<small>Ce que l'app garde, ce qu'elle envoie et à qui</small></span><span class="sv"></span></a></div>
@@ -1608,6 +1687,7 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
  document.querySelectorAll("[data-th2]").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th2;save();applyTheme();thSet();render()});
  const fire=(id,leg)=>{$(id).onclick=()=>$(leg).click()};fire("#sg-rm","#m-rm");fire("#sg-im","#m-im");fire("#sg-ex","#m-ex");fire("#sg-bk","#m-bk");fire("#sg-fol","#m-fol");fire("#sg-fb","#m-fb");$("#sg-sup").onclick=()=>supModal("settings");
  $("#sg-tour").onclick=()=>{go("cal");$("#m-tour").click()};
+ $("#sg-gm").onchange=e=>{S.gm=e.target.checked;save();$("#m-bat").hidden=!S.gm;if(S.gm)toast("Mes battues est dans le menu ☰.")};
  const st=$("#sg-st");if(st)st.onchange=e=>{S.stats=e.target.checked;if(!S.stats){S.phq=[];phOptout()}else track("stats_optin");save()}}
 if(PH_KEY)$("#m-st").style.display="block";
 $("#m-st").onclick=()=>{shut();const draw=()=>{modal(`<h2 style="margin-top:0">Statistiques anonymes</h2><p class="sans" style="line-height:1.5">ChasseLog peut compter, de façon anonyme, l'utilisation de l'app (journées créées, BANG, partages${IS_APP?", province où tu chasses":""}…) pour savoir ce qui est utile et s'améliorer.</p><p class="mut sans" style="font-size:.88rem">🔒 Jamais tes tirs, tes lieux${IS_APP?" précis":""}, tes positions GPS ni tes documents.</p><label class="shtg"><span>Partager des statistiques anonymes</span><input type="checkbox" id="st-t" ${S.stats===true?"checked":""}><i></i></label>`);$("#st-t").onchange=e=>{S.stats=e.target.checked;if(!S.stats)S.phq=[];else track("stats_optin");save()}};draw()};$("#m-ouv").onclick=()=>{shut();go("ouv")};$("#m-fb").onclick=()=>{shut();go("fb")};$("#m-inv").onclick=()=>{shut();invite()};$("#m-nl").onclick=()=>{shut();nlModal(false)};$("#m-bk").onclick=()=>{shut();bkSettings()};

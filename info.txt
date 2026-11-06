@@ -1,0 +1,5 @@
+resultat=ok
+version=2026-11-06a
+build=13
+commit=d198889026e3e4fe80d7e0824672608a0551559b
+date=2026-11-06T12:13:50Z

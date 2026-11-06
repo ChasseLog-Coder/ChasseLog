@@ -27,6 +27,22 @@ edit(manifest, x => {
   return x;
 });
 
+// 1 bis. Liens d'invitation : https://chasselog.be/i.html s'ouvre directement dans l'app (vérifié par chasselog.be/.well-known/assetlinks.json)
+edit(manifest, x => {
+  if (x.includes('android:host="chasselog.be"')) return x;
+  const filt = `
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="chasselog.be" android:pathPrefix="/i" />
+            </intent-filter>
+`;
+  const i = x.indexOf("</activity>");
+  must(i > 0, "activité principale introuvable dans AndroidManifest.xml");
+  return x.slice(0, i) + filt + "        " + x.slice(i);
+});
+
 // 2. Bord à bord (Android 15+) : recommandé par Capacitor quand SystemBars gère les marges
 const pkgPath = cfg.appId.split(".");
 const act = join(main, "java", ...pkgPath, "MainActivity.java");

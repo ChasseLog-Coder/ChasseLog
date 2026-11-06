@@ -1656,7 +1656,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-11-02a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-11-06-test",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1710,7 +1710,7 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
   <div class="sgr">${ic("moon")}<span>Thème</span><div class="seg" id="sg-th">${[["light","Clair"],["dark","Sombre"],["auto","Auto"]].map(([k,l])=>`<button data-th2="${k}" class="${(S.theme||"light")==k?"on":""}">${l}</button>`).join("")}</div></div>
   <label class="sgr shtg" style="margin:0">${ic("bell")}<span>Notifications de rappel</span><input type="checkbox" id="sg-nt" ${S.notif!==false?"checked":""}><i></i></label></div>
  <div class="sgl">Données</div><div class="sgg">
-  ${row("sg-im","dl","Importer un calendrier","",".ics de ton agenda ou sauvegarde .json")}${row("sg-ex","ul","Exporter mon calendrier","")}${row("sg-iv","msg","Ouvrir un lien d'invitation","")}${row("sg-bk","save","Sauvegarde automatique","")}</div>
+  ${row("sg-im","dl","Importer un calendrier","",".ics de ton agenda ou sauvegarde .json")}${row("sg-ex","ul","Exporter mon calendrier","")}${row("sg-iv","msg","Ouvrir un lien d'invitation","")}${location.hostname=="raw.githack.com"?row("sg-up","dl","🔄 Mettre à jour la version de test",""):""}${row("sg-bk","save","Sauvegarde automatique","")}</div>
  <div class="sgl">Confidentialité</div><div class="sgg">${PH_KEY?`<label class="sgr shtg" style="margin:0">${ic("eye")}<span>Statistiques anonymes<small>Compte l'utilisation de l'app pour l'améliorer${IS_APP?", avec la province où tu chasses":""}. Jamais tes tirs, tes lieux${IS_APP?" précis":""} ni tes documents.</small></span><input type="checkbox" id="sg-st" ${S.stats===true?"checked":""}><i></i></label>`:""}<a class="sgr" href="${PRIV_URL}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">${ic("info")}<span>Politique de confidentialité<small>Ce que l'app garde, ce qu'elle envoie et à qui</small></span><span class="sv"></span></a></div>
  <div class="sgl">Aide</div><div class="sgg">${row("sg-tour","play","Revoir la visite guidée","")}${row("sg-fol","heart","Suivez-nous sur Facebook","")}${row("sg-fb","msg","Donner mon avis","")}${row("sg-sup","cup","Soutenir ChasseLog","","Un petit don pour couvrir les frais")}</div>
  <div class="sgl">À propos</div><div class="sgg"><div class="sgr">${ic("info")}<span>${IS_APP?"ChasseLog pour Android (test)":"ChasseLog bêta web"} · version ${APP_V}<small>Météo : KNMI Harmonie (2 km) et ECMWF, via Open-Meteo.com${IS_APP&&window.__insetsUsed?` · écran ${Math.round(__insetsUsed.t)}/${Math.round(__insetsUsed.b)} (web ${Math.round(__insetsUsed.web.t)}/${Math.round(__insetsUsed.web.b)})`:""}</small></span></div></div><div style="height:70px"></div>`;
@@ -1719,6 +1719,7 @@ function rSet(){const ic=i=>`<svg class="mi" aria-hidden="true"><use href="#i-${
  document.querySelectorAll("[data-th2]").forEach(b=>b.onclick=()=>{S.theme=b.dataset.th2;save();applyTheme();thSet();render()});
  const fire=(id,leg)=>{$(id).onclick=()=>$(leg).click()};fire("#sg-im","#m-im");fire("#sg-ex","#m-ex");fire("#sg-bk","#m-bk");fire("#sg-fol","#m-fol");fire("#sg-fb","#m-fb");$("#sg-sup").onclick=()=>supModal("settings");
  $("#sg-tour").onclick=()=>{go("cal");$("#m-tour").click()};
+ if($("#sg-up"))$("#sg-up").onclick=async()=>{toast("Mise à jour…");try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.unregister();const k=await caches.keys();await Promise.all(k.map(x=>caches.delete(x)))}catch(e){}location.replace(location.pathname+"?v="+Date.now())};
  $("#sg-iv").onclick=async()=>{let t="";try{t=await navigator.clipboard.readText()}catch(x){}if(!/#[ir]=/.test(t))t=prompt("Colle ici le lien reçu :")||"";go("cal");if(t&&!ivLink(t))toast("Ce lien n'est pas une invitation ChasseLog.")};
  $("#sg-nt").onchange=async e=>{S.notif=e.target.checked;save();if(S.notif&&IS_APP)await natNotifOk(true);ficheRemSync();woundSync(false)};
  const st=$("#sg-st");if(st)st.onchange=e=>{S.stats=e.target.checked;if(!S.stats){S.phq=[];phOptout()}else track("stats_optin");save()}}

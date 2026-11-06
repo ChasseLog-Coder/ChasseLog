@@ -30,7 +30,7 @@ Cible : chasseurs belges (Wallonie surtout) et français. Propriétaire : Maxime
 - `main` = production (GitHub Pages → chasselog.be). **Ne jamais pousser directement sur `main` sans accord explicite.**
 - Nouvelle idée : branche `prep-<sujet>`, commits « Proposition : … » ou « Maquette : … », puis validation par Maxime.
 - Mise en production : commit « Version AAAA-MM-JJx : résumé » qui incrémente **ensemble** `APP_V` dans `index.html` et `V = "carnet-vNN"` dans `sw.js` (sinon les téléphones ne voient pas la mise à jour).
-- Si un écran change, vérifier si la visite guidée (`tour/*.webp`, 10 étapes) et les visuels `promo/` doivent être refaits.
+- Si un écran change, vérifier si la visite guidée (`tour/*.webp`, 12 étapes) et les visuels `promo/` doivent être refaits.
 
 ## Produit et ton
 - Sobre et indépendant : pas de charte ni de lien d'un club ou partenaire imposé dans l'app.

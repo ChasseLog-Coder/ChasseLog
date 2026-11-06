@@ -671,8 +671,8 @@ function otQuiz(){const sg=otSp=="sanglier",SV=DENTS.svg,Q=otQ,opt=(k,v,l,on)=>`
  if(sg){if(Q.m==3)h+=res(OT_SG[3],"P4 bilobée et 3 molaires : denture d'adulte.");
   else{h+=q(2,"La P4 a-t-elle 3 lobes ?","La 4e prémolaire, juste devant les molaires : trilobée = dent de lait (p4), bilobée = définitive (P4).",SV.sp4,`<button class="dcm${Q.l===3?" on":""}" data-oa="l|3">${SV.l3}<b>Oui, trilobée</b>dent de lait (p4)</button><button class="dcm${Q.l===2?" on":""}" data-oa="l|2">${SV.l2}<b>Non, bilobée</b>dent définitive (P4)</button>`,"ot-last");
    if(Q.l==null)return h;h=h.replace(' id="ot-last"','');const ok=(Q.m<2?3:2)==Q.l;h+=res(OT_SG[Q.m],ok?"Molaires et 4e prémolaire concordent.":"La P4 ne correspond pas au nombre de molaires : vérifie, ou affine avec les incisives.")}
-  if(Q.r==null)return h+`<button class="s" data-oa="r|1" style="width:100%;margin-top:8px">Affiner avec les incisives ›</button><button class="s" id="ot-re" style="width:100%;margin-top:8px">Recommencer</button>`;
-  h=h.replace(' id="ot-last"','');h+=q(3,"Les incisives du bas","Regarde-les par-dessus et choisis le dessin le plus proche (dent en surbrillance = celle qui change).",`<div class="dop6">${SV.inc.map((s,i)=>`<button class="${Q.i===i?"on":""}" data-oa="i|${i}">${s}<b>${DENTS.sp.sanglier.inc[i][0]}</b>${DENTS.sp.sanglier.inc[i][1]}</button>`).join("")}</div>`,"","ot-last");
+  if(Q.r==null||Q.m==3)return h+`${Q.m<3?`<button class="s" data-oa="r|1" style="width:100%;margin-top:8px">Affiner avec les incisives ›</button>`:""}<button class="s" id="ot-re" style="width:100%;margin-top:8px">Recommencer</button>`;
+  h=h.replace(' id="ot-last"','');const OK=[[0,1],[0,1,2],[2,3,4,5]][Q.m];h+=q(3,"Les incisives du bas","Regarde-les par-dessus et choisis le dessin le plus proche (dent en surbrillance = celle qui change).",`<div class="dop6">${SV.inc.map((s,i)=>OK.includes(i)?`<button class="${Q.i===i?"on":""}" data-oa="i|${i}">${s}<b>${DENTS.sp.sanglier.inc[i][0]}</b>${DENTS.sp.sanglier.inc[i][1]}</button>`:"").join("")}</div>`,"","ot-last");
   if(Q.i==null)return h;h=h.replace(' id="ot-last"','');return h+res(OT_SI[Q.i],"D'après les incisives du bas.")+`<button class="s" id="ot-re" style="width:100%;margin-top:8px">Recommencer</button>`}
  const C=OT_CV[otSp];if(Q.m<3)return h+res(C.m[Q.m-1],"Il manque encore des molaires : c'est un jeune.")+`<button class="s" id="ot-re" style="width:100%;margin-top:8px">Recommencer</button>`;
  h+=q(2,"La P4 a-t-elle 3 lobes ?","La dernière prémolaire, juste devant les molaires. Compte les bosses sur le dessus : 3 lobes = dent de lait (p4), 2 lobes = définitive (P4).",SV.cp,`<button class="dcm${Q.l===3?" on":""}" data-oa="l|3">${SV.l3}<b>Oui, 3 lobes</b>dent de lait</button><button class="dcm${Q.l===2?" on":""}" data-oa="l|2">${SV.l2}<b>Non, 2 lobes</b>dent définitive</button>`,"ot-last");
@@ -1120,14 +1120,9 @@ function welcome(){S.tourAsked=true;S.newsDocs=true;S.upNote=UPN;save();const o=
 const firstRun=()=>!S.tourAsked&&isSA()&&!evs().length;
 if(firstRun())onboard();else setTimeout(tourAsk,1800);
 /* note de mise à jour (une fois) */
-function upNote(){if(S.upNote==UPN)return;if(!evs().length&&!S.tourAsked){S.upNote=UPN;save();return}if(!popFree()){setTimeout(upNote,3000);return}
- S.upNote=UPN;save();modal(`<div style="text-align:center"><div style="font-size:2.6rem;line-height:1;margin:4px 0 8px">🦌</div><h2 style="margin:0 0 8px">Nouveau : Mes trophées</h2><p class="sans" style="font-size:1rem;line-height:1.55;margin:0 0 10px">Vous étiez nombreux à le demander. Dans la fiche de chasse, <b>touche le massacre</b> d'un grand gibier prélevé : il rejoint <b>Mes trophées</b>, dans le menu ☰.</p><p class="sans" style="font-size:1rem;line-height:1.55;margin:0 0 16px">Chaque trophée garde sa photo, sa date, son lieu et ses mensurations. Pas de classement, juste le souvenir de chaque animal. 🦌</p><button class="p li" id="un-ok" style="text-align:center">C'est parti !</button></div>`);$("#un-ok").onclick=()=>closeM()}
-setTimeout(upNote,1500);
-/* ---------- nouveauté : mes documents (une seule fois) ---------- */
-function newsDocs(){if(S.newsDocs)return;if(S.upNote!=UPN){setTimeout(newsDocs,4000);return}if(S.docs&&Object.keys(S.docs).length){S.newsDocs=true;save();return}if(!popFree()||(!S.tourAsked&&isSA())){setTimeout(newsDocs,4000);return}
- S.newsDocs=true;save();modal(`<div style="text-align:center"><div style="font-size:2.6rem;line-height:1;margin:4px 0 8px">📜🛡️🪪</div><span style="display:inline-block;background:var(--acc);color:#fff;font:700 .78rem/1 system-ui,sans-serif;letter-spacing:.06em;padding:5px 10px;border-radius:99px;margin-bottom:8px">NOUVEAU !</span><h2 style="margin:0 0 6px">Mes documents</h2><p class="sans" style="font-size:1rem;line-height:1.5;margin:0 0 16px">Ajoute ton permis, ton assurance, ta carte d'identité et garde toujours tes documents à portée de main !</p>
- <button class="p li" id="nd-go">Ajouter mes documents</button><button class="s li" id="nd-no">Plus tard</button><p class="mut sans" style="font-size:.82rem;margin:10px 0 0">Tu les retrouves dans le menu ☰ › Mes documents.</p></div>`);
- $("#nd-go").onclick=()=>{closeM();go("docs")};$("#nd-no").onclick=()=>closeM()}
+/* plus de fenêtre « Nouveau » : les nouveautés passent par la visite guidée */
+function upNote(){if(S.upNote!=UPN||!S.newsDocs){S.upNote=UPN;S.newsDocs=true;save()}}
+function newsDocs(){upNote()}
 setTimeout(newsDocs,2600);
 
 /* ---------- inviter un ami ---------- */
@@ -1139,7 +1134,8 @@ async function invite(){
  try{await navigator.clipboard.writeText(text+" "+INV_URL);toast("Lien d'invitation copié : colle-le dans un message.")}catch(e){prompt("Copie ce lien et envoie-le :",INV_URL)}}
 
 /* ---------- invitation à une journée (chasseur) : tout passe par le lien (#i= / #r=), rien n'est envoyé à un serveur ---------- */
-const IV_BASE=IS_APP?"https://chasselog-coder.github.io/ChasseLog/":location.origin+location.pathname;
+/* lien universel : avec l'app Android installée, chasselog.be/i.html s'ouvre dans l'app (fichier de liaison du site), sinon il mène à la version web */
+const IV_BASE=/^(raw\.githack\.com|localhost)$/.test(location.hostname)?location.origin+location.pathname:"https://chasselog.be/i.html";
 const b64e=o=>btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
 const b64d=t=>{try{t=t.replace(/-/g,"+").replace(/_/g,"/");return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(t),c=>c.charCodeAt(0))))}catch(x){return null}};
 const dLong=d=>new Date(d+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"});
@@ -1152,7 +1148,7 @@ function ivCard(e){if(!ivOk(e)&&!e.ivt)return"";const v=e.ivt;
  if(!v||v.st=="no"&&!ivOk(e))return v?"":`<div class="card sans ivc"><h3>👥 Invitation</h3><button class="p" id="o-iv" style="width:100%">📨 Inviter quelqu'un</button></div>`;
  const L={w:["En attente","wt"],ok:["✓ Accepté","ok"],no:["Refusé","no"]}[v.st];
  return `<div class="card sans ivc"><h3>👥 Invitation <span>${v.st=="w"?"envoyée le "+dmy(v.at):"répondue le "+dmy(v.rt)}</span></h3><div class="ivr"><span class="av">${esc((v.to||"?")[0].toUpperCase())}</span><div>${esc(v.to)}</div><span class="stt ${L[1]}">${L[0]}</span></div>
- ${v.st=="w"?`<button class="s" id="o-ivs" style="width:100%;margin-top:6px">Renvoyer l'invitation</button>`:v.st=="no"&&ivOk(e)?`<button class="p" id="o-iv" style="width:100%;margin-top:6px">📨 Inviter quelqu'un d'autre</button>`:""}</div>`}
+ ${v.st=="w"?`<div class="row" style="gap:6px;margin-top:6px"><button class="s" data-ivm="ok">✓ Il vient</button><button class="s" data-ivm="no">✗ Il ne vient pas</button></div><button class="s" id="o-ivs" style="width:100%;margin-top:6px">Renvoyer l'invitation</button>`:v.st=="no"&&ivOk(e)?`<button class="p" id="o-iv" style="width:100%;margin-top:6px">📨 Inviter quelqu'un d'autre</button>`:""}</div>`}
 function ivText(e,v){const p={v:1,k:"i",id:v.id,f:v.f,to:v.to,t:e.title,d:e.date,h:e.time||"",m:e.mode||"",g:e.gp||"",p:{n:e.place&&e.place.name||"",la:e.place&&e.place.lat,lo:e.place&&e.place.lng},n:e.desc||""};
  return `Salut ${v.to} ! Je t'invite à la ${e.title} 🦌 ${dLong(e.date)}${e.time?", RDV "+e.time.replace(":","h"):""}${p.p.n?" au "+p.p.n:""}. Toutes les infos et ta réponse ici :\n${IV_BASE}#i=${b64e(p)}`}
 function ivModal(id){const e=S.ev[id];if(!e)return;
@@ -1179,8 +1175,9 @@ function ivReply(p){if(!p||!p.id)return;const e=evs().find(x=>x.ivt&&x.ivt.id==p
  if(!e){modal(`<h2 style="margin-top:0">Invitation introuvable</h2><p class="sans">Ouvre ce lien sur le téléphone qui a envoyé l'invitation.</p><button class="p" id="iv-x" style="width:100%">OK</button>`);$("#iv-x").onclick=()=>closeM();return}
  const v=e.ivt;if(v.st!="w"){modal(`<div style="text-align:center"><div style="font-size:2.2rem">🔒</div><h2 style="margin:4px 0 6px">Réponse déjà reçue</h2><p class="sans" style="margin:0 0 12px;line-height:1.5">${esc(v.to)} a déjà répondu le ${dmy(v.rt)} : <b>${v.st=="ok"?"accepté":"refusé"}</b>.</p></div><button class="p" id="iv-x" style="width:100%">OK</button>`);$("#iv-x").onclick=()=>closeM();return}
  v.st=p.st=="ok"?"ok":"no";v.rt=Date.now();if(v.st=="ok"&&!(e.guests||[]).includes(v.to)){e.guests=e.guests||[];e.guests.push(v.to)}save();sel=e.date;cur=new Date(e.date+"T12:00");go("cal");toast(v.st=="ok"?"✅ "+v.to+" a accepté":v.to+" ne pourra pas venir");setTimeout(()=>openEv(e.id),400)}
-function ivLink(t){const m=String(t||"").match(/#([ir])=([A-Za-z0-9_-]+)/);if(!m)return false;const p=b64d(m[2]);if(!p)return false;(m[1]=="i"?ivShow:ivReply)(p);return true}
+let ivLast="";function ivLink(t){const m=String(t||"").match(/#([ir])=([A-Za-z0-9_-]+)/);if(!m)return false;if(ivLast==m[2])return true;ivLast=m[2];setTimeout(()=>{ivLast=""},8000);const p=b64d(m[2]);if(!p)return false;(m[1]=="i"?ivShow:ivReply)(p);return true}
 (()=>{const h=location.hash;if(!/^#[ir]=/.test(h))return;history.replaceState(history.state,"",location.pathname+location.search);let n=0;const w=()=>{if(n++<90&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||view!="cal"))return setTimeout(w,1500);ivLink(h)};setTimeout(w,1200)})();
+if(IS_APP){const A=NP("App");if(A){try{A.addListener("appUrlOpen",d=>{if(d&&d.url)ivLink(d.url)});A.getLaunchUrl&&A.getLaunchUrl().then(d=>{if(d&&d.url&&/#[ir]=/.test(d.url)){let n=0;const w=()=>{if(n++<90&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||view!="cal"))return setTimeout(w,1500);ivLink(d.url)};setTimeout(w,1200)}}).catch(()=>{})}catch(x){}}}
 window.addEventListener("hashchange",()=>{const h=location.hash;if(/^#[ir]=/.test(h)){history.replaceState(history.state,"",location.pathname+location.search);ivLink(h)}});
 
 /* ---------- sauvegarde automatique ---------- */
@@ -1656,7 +1653,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-11-06-test",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-11-06a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
@@ -1839,7 +1836,7 @@ function openEv(id){const e=S.ev[id],can=e.date<=iso(new Date());
  modal(`<h2>${esc(e.title)}</h2><p class="sans" style="margin:0 0 8px">${fmt(e.date)}${e.time?" · RDV à "+e.time.replace(":","h"):""}</p><div class="sunb" id="o-sun"></div>
  <div class="card sans" id="o-c" style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><div style="flex:1">${e.nh?"Évènement hors chasse":`Type de chasse : ${esc(e.mode||"à préciser")}${e.gp?" · "+(e.gp=="g"?"gros":"petit")+" gibier":""}<br>Rôle : ${roleTxt(e)}`}<br>Lieu${e.nh?"":" de RDV"} : ${esc(lieu(e.place))} ${link(e.place)}${e.desc?"<br>Notes : "+esc(e.desc).replace(/\n/g,"<br>"):""}</div><button class="d" id="o-x" aria-label="Supprimer l'évènement"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 10v7M14 10v7"/></svg></button></div>
  ${ivCard(e)}${e.role=="trq"?`<div class="trn sans">🐕 Journée de traque : comptée dans Statistiques › Traque.</div>`:""}<button class="p" id="o-f" style="width:100%;${e.nh||e.role=="trq"?"display:none":""}" ${can?"":"disabled"}>${e.fiche?"Consulter la fiche de chasse":"Remplir la fiche de chasse"}</button>${canClose(e)?`<button class="s" id="o-cl" style="width:100%;margin-top:8px">✓ Clôturer la journée</button>`:""}<div class="row" style="margin-top:8px;align-items:center"><span class="mut sans" style="flex:1">${can||e.nh||e.role=="trq"?"":"Disponible à partir du "+e.date.split("-").reverse().join("/")+"."}</span><button class="s" id="o-a" style="flex:0 0 auto">+ Ajouter un évènement</button></div>`);
- $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};if($("#o-iv"))$("#o-iv").onclick=()=>ivModal(id);if($("#o-ivs"))$("#o-ivs").onclick=()=>shareMsg(ivText(e,e.ivt),"Invitation ChasseLog");sunBand($("#o-sun"),e.date,e.place,e.time);
+ $("#o-a").onclick=()=>{closeM();openForm(null,e.date)};if($("#o-iv"))$("#o-iv").onclick=()=>ivModal(id);if($("#o-ivs"))$("#o-ivs").onclick=()=>shareMsg(ivText(e,e.ivt),"Invitation ChasseLog");document.querySelectorAll("[data-ivm]").forEach(b=>b.onclick=()=>{const v=e.ivt;v.st=b.dataset.ivm;v.rt=Date.now();v.man=1;if(v.st=="ok"&&!(e.guests||[]).includes(v.to)){e.guests=e.guests||[];e.guests.push(v.to)}save();openEv(id)});sunBand($("#o-sun"),e.date,e.place,e.time);
  $("#o-f").onclick=()=>{if(!can)return;fe=id;closeM();if(e.fiche)go("sum");else openFiche(id)};if($("#o-cl"))$("#o-cl").onclick=()=>{const doIt=()=>{e.fiche=e.fiche||{tirs:[],photos:[],notes:"",tab:null,tabPhotos:[]};e.closed=true;save();closeM();toast("Journée clôturée. Bonne fin de journée !");render();woundSync(true)};closeM();if(!closeWarn(e.fiche,doIt,()=>{fe=id;openFiche(id)}))doIt()};$("#o-c").onclick=ev=>{if(ev.target.closest("a")||ev.target.closest("#o-x"))return;openForm(id)};
  $("#o-x").onclick=()=>{modal(`<h2>Supprimer ${e.nh?"cet évènement":"cette journée"} ?</h2><p class="sans">${esc(e.title)} · ${e.date.split("-").reverse().join("/")}${e.fiche?`<br><b>La fiche de chasse sera aussi supprimée</b>${(e.fiche.tirs||[]).length?" ("+e.fiche.tirs.length+" tir"+(e.fiche.tirs.length>1?"s":"")+")":""}. Cette action est définitive.`:""}</p><div class="row"><button class="s" id="c-n">Annuler</button><button class="p" id="c-y" style="background:var(--acc2)">Supprimer</button></div>`,"2");$("#c-n").onclick=()=>closeM("2");$("#c-y").onclick=()=>{delete S.ev[id];save();closeM("2");closeM();render();gc()}}}
 

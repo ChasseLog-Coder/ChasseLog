@@ -813,7 +813,7 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
 let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;const b=document.getElementById("in-go");if(b)b.hidden=false});
 (()=>{if(IS_APP)return;const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
  const sa=["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
- if(q==null){if(sa||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(/[?&]web\b/.test(location.search))sessionStorage.setItem("chasselog-skipinst","1");if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
+ if(q==null){if(sa||location.hostname=="raw.githack.com"||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(/[?&]web\b/.test(location.search))sessionStorage.setItem("chasselog-skipinst","1");if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
  let ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
  if(q=="ios"||q=="ios26"){ios=true;and=false}else if(q=="android"){and=true;ios=false}
  if(!ios&&!and)return;

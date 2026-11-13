@@ -1,0 +1,16 @@
+name: Sonde orthophotos Wallonie
+on:
+  push:
+    branches: [prep-carte-photo]
+    paths: [".github/workflows/sonde.yml"]
+jobs:
+  sonde:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          B=https://geoservices.wallonie.be/arcgis
+          echo "== dossier IMAGERIE"; curl -s "$B/rest/services/IMAGERIE?f=json" | python3 -c "import sys,json;[print(s['name'],s['type']) for s in json.load(sys.stdin)['services']]" | grep -i ortho
+          for S in ORTHO_LAST ORTHO_2024 ORTHO_2023_ETE; do echo "== $S cache"; curl -s "$B/rest/services/IMAGERIE/$S/MapServer?f=json" | python3 -c "import sys,json;d=json.load(sys.stdin);print('cache',d.get('singleFusedMapCache'),'sr',d.get('spatialReference'),'err',d.get('error'))"
+            echo "== $S WMS CRS"; curl -s "$B/services/IMAGERIE/$S/MapServer/WMSServer?request=GetCapabilities&service=WMS" | grep -o "<CRS>[^<]*</CRS>" | sort -u | head -12; done
+          echo "== test GetMap 3857"; curl -s -o /tmp/t.jpg -w "%{http_code} %{content_type} %{size_download}\n" "$B/services/IMAGERIE/ORTHO_2024/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=0&STYLES=&FORMAT=image/jpeg&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&BBOX=471800,6470000,474200,6472400"
+          echo "== export REST 3857"; curl -s -o /tmp/e.jpg -w "%{http_code} %{content_type} %{size_download}\n" "$B/rest/services/IMAGERIE/ORTHO_2024/MapServer/export?bbox=471800,6470000,474200,6472400&bboxSR=3857&imageSR=3857&size=256,256&format=jpg&f=image"

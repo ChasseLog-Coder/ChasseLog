@@ -1,0 +1,15 @@
+name: Sonde relief
+on:
+  push:
+    branches: [prep-carte-photo]
+    paths: [".github/workflows/sonde.yml"]
+jobs:
+  sonde:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          B=https://geoservices.wallonie.be/arcgis
+          curl -s "$B/rest/services?f=json" | python3 -c "import sys,json;print(json.load(sys.stdin).get('folders'))"
+          for F in RELIEF ; do curl -s "$B/rest/services/$F?f=json" | python3 -c "import sys,json;[print(s['name'],s['type']) for s in json.load(sys.stdin).get('services',[])]"; done
+          echo "== OTM"; curl -s -o /dev/null -w "%{http_code} %{size_download}\n" -A "ChasseLog" https://a.tile.opentopomap.org/14/8386/5531.png
+          echo "== IGN ombrage"; curl -s -o /dev/null -w "%{http_code} %{size_download}\n" "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ELEVATION.ELEVATIONGRIDCOVERAGE.SHADOW&STYLE=estompage_grayscale&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX=14&TILEROW=5560&TILECOL=8406"

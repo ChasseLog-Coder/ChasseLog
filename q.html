@@ -59,7 +59,7 @@ async function send(auto){const b=$("#go");if(b){b.disabled=true;b.textContent="
   msg("⚠️","Fiche refusée","Recharge la page et réessaie.","Recharger")}
  catch(e){msg("📶","Pas de réseau","Ta fiche est gardée sur ce téléphone : elle partira toute seule dès que le réseau revient.","Réessayer maintenant")}}
 function done(){P=P||J.par.find(q=>q.p==st.p);D=st.d||{};let bl=0,pr=0,vu=0;Object.values(D).forEach(d=>{bl+=d.b||0;pr+=Object.values(d.p||{}).reduce((a,b)=>a+b,0);vu+=Object.values(d.s||{}).reduce((a,b)=>a+b,0)});
- M(`<div class="ctr"><div class="big">✅</div><h2>Merci ${esc((P&&P.n||"").split(" ")[0])} !</h2><p class="mut">Ta fiche est arrivée chez le gestionnaire.<br>${bl} balle${bl>1?"s":""} · ${pr} prélevé${pr>1?"s":""} · ${vu} animal${vu>1?"aux":""} vu${vu>1?"s":""}</p><button class="s" id="co" style="margin-top:16px">Corriger ma fiche</button></div>`);
+ M(`<div class="ctr"><div class="big">✅</div><h2>Merci ${esc((P&&P.n||"").split(" ")[0])} !</h2><p class="mut">Ta fiche est arrivée chez le gestionnaire.<br>${bl} balle${bl>1?"s":""} · ${pr} prélevé${pr>1?"s":""} · ${vu} ${vu>1?"animaux":"animal"} vu${vu>1?"s":""}</p><button class="s" id="co" style="margin-top:16px">Corriger ma fiche</button></div>`);
  $("#co").onclick=()=>{st.done=0;sv();fiche(st.p)}}
 addEventListener("online",()=>{st=ld();if(st.pend)send(1)});addEventListener("hashchange",()=>location.reload());
 load();

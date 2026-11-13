@@ -231,6 +231,8 @@ select:disabled{opacity:.45}
 .qx-st{display:flex;align-items:center;gap:8px;font:600 .95rem system-ui;color:var(--ink)}.qx-dot{width:10px;height:10px;border-radius:50%;background:#3a9a3a;box-shadow:0 0 0 4px #3a9a3a22}.qx-dot.off{background:#b9b3a3;box-shadow:none}
 .qx-bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:10px 0 4px}.qx-bar i{display:block;height:100%;background:var(--acc)}
 .qx-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font:.92rem system-ui;color:var(--ink)}.qx-row:first-child{border-top:0}.qx-row span:last-child{flex:1}.qx-row small{color:var(--mut)}.qx-ok{color:#2f7d32;font-weight:700}.qx-w{color:var(--mut)}
+.gdly{width:42px;height:42px;border-radius:50%;border:0;background:#fff;box-shadow:0 1px 5px #0005;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.gdl3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}.gdl3 button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:6px;font:600 .85rem system-ui;color:var(--ink);cursor:pointer}.gdl3 img{width:84px;height:84px;border-radius:16px;object-fit:cover;border:3px solid transparent;background:#e9e6d6}.gdl3 .on img{border-color:#3f5a2b}.gdl3 .on{color:#3f5a2b}
 .gkb{position:relative}.gkb i{position:absolute;right:12px;top:12px;font-style:normal;font-size:.85rem;color:var(--mut)}.gkb i.ch{top:50%;transform:translateY(-50%);font-size:1.4rem}
 .gdx{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:10px 0 4px}.gdx button{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);cursor:pointer}.gdx button.on{border-color:var(--acc);box-shadow:inset 0 0 0 1.5px var(--acc)}.gdx img{height:40px;max-width:90%;object-fit:contain}.gdx b{font:800 1.4rem system-ui;color:var(--acc)}.gdx span{font:.75rem system-ui;color:var(--mut)}
 .gdfl{display:flex;align-items:center;gap:8px;margin:12px 0 0;font:.9rem system-ui;color:var(--ink)}.gdfl button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;font:.8rem system-ui;color:var(--acc2);cursor:pointer}
@@ -725,7 +727,7 @@ function rBatE(){const b=gB()[batId];if(!b){go("bat");return}batFix(b);batCur=nu
  if(!W){$("#bmap").innerHTML='<div class="mapoff"><b>Carte indisponible</b></div>';return}
  W.Icon.Default.imagePath="lib/leaflet/images/";
  const m=batMap=W.map("bmap",{doubleClickZoom:false,zoomAnimation:ed});m.attributionControl.setPrefix(false);
- W.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+ mapLay(W,m);
  m.attributionControl.addAttribution('Parcelles <a href="https://opendata.fin.belgium.be" target="_blank" rel="noopener">© SPF Finances – AGDP</a>');
  const all=[...batShapes(b).flat(3),...Object.values(b.pc).flatMap(p=>p.g.flat(2)),...b.ln.flatMap(l=>l.p),...b.po.map(p=>[p.lat,p.lng])];
  const pIco=n=>W.divIcon({className:"",html:`<div class="bpo">${esc(String(n))}</div>`,iconSize:[28,28]});
@@ -1037,6 +1039,21 @@ function rGfi(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPk(j
  ${W.length?`<h2 class="gh">Pas encore encodé</h2><div class="card sans" style="padding:2px 14px">${W.map(p=>`<div class="qx-row qx-w"><span>○</span><span>${esc(p.n)}</span></div>`).join("")}</div>`:""}
  ${j.qo?`<button class="s" id="gfi-r" style="width:100%;margin-top:12px">Actualiser</button>`:""}<div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;const r=$("#gfi-r");if(r)r.onclick=()=>{r.disabled=true;gqSync(g,j)};if(j.qo&&(!j.qt||Date.now()-j.qt>15000))gqSync(g,j)}
+/* ---------- fonds de carte : Plan (OpenStreetMap) · Photo (orthophotos SPW en Wallonie, IGN en France) · Relief (OpenTopoMap) ; jamais mis en cache ---------- */
+const MSPW="https://geoservices.wallonie.be/arcgis/services/IMAGERIE/ORTHO_LAST/MapServer/WMSServer",MIGN="https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/jpeg&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",MOTM="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png";
+const mapWal=c=>c.lat>49.48&&c.lat<50.82&&c.lng>2.84&&c.lng<6.41&&!(c.lat>50.68&&c.lng<4.0)&&S.reg!="fr";
+let mapLive=[];
+function mapBase(W,m){const k=S.mapL||"osm",c=m.getCenter(),w=mapWal(c);if(m._gl)m.removeLayer(m._gl);
+ const l=k=="photo"?(w?W.tileLayer.wms(MSPW,{layers:"0",format:"image/jpeg",version:"1.3.0",maxZoom:20,attribution:"Orthophoto © SPW"}):W.tileLayer(MIGN,{maxNativeZoom:19,maxZoom:20,attribution:"Orthophoto © IGN"}))
+  :k=="relief"?W.tileLayer(MOTM,{maxNativeZoom:17,maxZoom:20,attribution:"© OpenStreetMap · relief © OpenTopoMap (CC-BY-SA)"}):W.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"});
+ m._gl=l.addTo(m);l.bringToBack()}
+function mapPick(W,m){const c=m.getCenter(),w=mapWal(c),z=14,n=2**z,x=Math.floor((c.lng+180)/360*n),la=c.lat*Math.PI/180,y=Math.floor((1-Math.log(Math.tan(la)+1/Math.cos(la))/Math.PI)/2*n),R=6378137*Math.PI,t=2*R/n,bb=[-R+x*t,R-(y+1)*t,-R+(x+1)*t,R-y*t].join(",");
+ const th={osm:`https://tile.openstreetmap.org/${z}/${x}/${y}.png`,photo:w?`${MSPW}?SERVICE=WMS&REQUEST=GetMap&VERSION=1.3.0&LAYERS=0&STYLES=&FORMAT=image/jpeg&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&BBOX=${bb}`:MIGN.replace("{z}",z).replace("{x}",x).replace("{y}",y),relief:`https://a.tile.opentopomap.org/${z}/${x}/${y}.png`},k0=S.mapL||"osm";
+ modal(`<h2 style="margin-top:0">Type de carte</h2><div class="gdl3">${[["osm","Plan"],["photo","Photo"],["relief","Relief"]].map(([k,l])=>`<button data-mpl="${k}" class="${k==k0?"on":""}"><img src="${th[k]}" alt="">${l}</button>`).join("")}</div>`);
+ document.querySelectorAll("#mo [data-mpl]").forEach(b=>b.onclick=()=>{S.mapL=b.dataset.mpl;save();closeM();mapLive=mapLive.filter(x=>x.getContainer().isConnected);mapLive.forEach(x=>mapBase(W,x))})}
+function mapLay(W,m){mapLive=mapLive.filter(x=>x.getContainer().isConnected);mapLive.push(m);
+ const C=W.Control.extend({options:{position:"topright"},onAdd(){const b=W.DomUtil.create("button","gdly");b.type="button";b.setAttribute("aria-label","Type de carte");b.innerHTML='<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#3f5a2b" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z" fill="#3f5a2b22"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg>';
+  W.DomEvent.disableClickPropagation(b);W.DomEvent.on(b,"click",e=>{W.DomEvent.stop(e);mapPick(W,m)});return b}});new C().addTo(m);m.whenReady(()=>mapBase(W,m))}
 /* ---------- tableau de la journée : du global au détail (gdT "p" pièces prélevées, "s" sortis à droite) ---------- */
 const GRP={Brocard:"Chevreuil",Chevrette:"Chevreuil",Chevrillard:"Chevreuil",Cerf:"Cerf",Biche:"Cerf",Bichette:"Cerf",Faon:"Cerf"},GPL={Chevreuil:"Chevreuils",Cerf:"Cerfs",Sanglier:"Sangliers",Daim:"Daims",Mouflon:"Mouflons",Renard:"Renards",Lièvre:"Lièvres",Faisan:"Faisans",Grive:"Grives",Chamois:"Chamois",Isard:"Isards"};
 const grpS=s=>GRP[s]||s,gPl=(k,n)=>n>1?(GPL[k]||k):k,gGi=k=>({Chevreuil:"chevreuil",Cerf:"cerf"})[k]||gSpF(k);
@@ -1047,7 +1064,7 @@ function gdRows(j){const R=[],B=j.bat||[];if(gdT=="s"){const d=(j.fin&&j.fin.d)|
 function gdMap(el,b,R){const W=window.L,P={};R.forEach(r=>{const q=(b.po||[]).find(p=>String(p.n)==String(r.po)&&p.lat!=null);if(!q)return;const o=P[r.po]=P[r.po]||{q,s:{}};o.s[r.sp]=(o.s[r.sp]||0)+r.n});
  const K=Object.keys(P);if(!W||!K.length){el.remove();return}W.Icon.Default.imagePath="lib/leaflet/images/";
  const m=W.map(el,{zoomControl:false,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,touchZoom:false,boxZoom:false,keyboard:false,zoomAnimation:false,tap:false});gdM.push(m);m.attributionControl.setPrefix(false);
- W.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);batOutline(W,b).addTo(m);
+ mapLay(W,m);batOutline(W,b).addTo(m);
  K.forEach(po=>{const o=P[po],h=`<div class="gdk"><span class="n">${esc(po)}</span><span class="a">${Object.entries(o.s).map(([s,v])=>`<img src="animals/${gSpF(s)}.webp" alt="">${v>1?`<em>×${v}</em>`:""}`).join("")}</span></div>`;W.marker([o.q.lat,o.q.lng],{icon:W.divIcon({className:"",html:h,iconSize:null,iconAnchor:[13,13]}),interactive:false}).addTo(m)});
  const pts=[...batShapes(b).flat(3),...K.map(k=>[P[k].q.lat,P[k].q.lng])];m.fitBounds(pts.length>1?pts:[pts[0],pts[0]],{padding:[22,22],maxZoom:16})}
 function rGdt(){gdM.forEach(m=>{try{m.remove()}catch(e){}});gdM=[];const g=gbr(),j=g.jr[gjId];if(!j){go("gjr");return}const NU=gjO(j).nu,P=gdT=="p",B=(j.bat||[]).map(k=>gB()[k]).filter(Boolean),R=gdRows(j);
@@ -1185,7 +1202,7 @@ function rGsb(){const g=gbr(),b=g.bat[gsbK];if(batMap){try{batMap.remove()}catch
  document.querySelectorAll("[data-gsj]").forEach(x=>x.onclick=()=>{gjId=x.dataset.gsj;gpT=null;gkT=null;go("gjd")});
  if(!hasM)return;W.Icon.Default.imagePath="lib/leaflet/images/";
  const m=batMap=W.map("gsbm",{zoomAnimation:false});m.attributionControl.setPrefix(false);
- W.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+ mapLay(W,m);
  m.attributionControl.addAttribution('Parcelles <a href="https://opendata.fin.belgium.be" target="_blank" rel="noopener">© SPF Finances – AGDP</a>');
  batOutline(W,b).addTo(m);const H=W.layerGroup().addTo(m),mix=t=>{const a=[243,210,122],z=[164,69,44];return `rgb(${a.map((v,i)=>Math.round(v+(z[i]-v)*t)).join(",")})`};
  const draw=()=>{H.clearLayers();const mx=Math.max(1,...b.po.map(p=>(PO[String(p.n)]||{})[gsbM]||0));

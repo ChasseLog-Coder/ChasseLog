@@ -222,6 +222,16 @@ select:disabled{opacity:.45}
 .gbt.hb .c-b,.gbt.hs .c-s,.gbt.hp .c-p{background:#e6ecd9}.gbl{cursor:pointer}
 .gch{display:flex;align-items:center;gap:8px;margin:0 0 4px}.gch h2{margin:0;font-size:1.45rem;font-weight:800;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gchs{position:relative;flex:none;width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:1.15rem}.gchs select{position:absolute;inset:0;opacity:0;margin:0;width:100%;height:100%;padding:0}.gcha{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--acc);background:var(--card);color:var(--acc);font:700 1.35rem/1 system-ui;padding:0;cursor:pointer}
 .gach small{min-width:92px;text-align:center;font:700 .7rem system-ui;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}.gan small{display:block;font-size:.78rem;margin-top:2px}.gch h2{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.gst{display:flex;align-items:center;gap:6px;margin-top:3px}.gst button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:700 .95rem/1 system-ui;padding:0}.gst b{font:600 .8rem system-ui;color:var(--mut);min-width:56px;text-align:center}.gft.lk button:disabled,.gnr button:disabled,.gtg:disabled,.gnu:disabled{opacity:1;cursor:default}.gft.lk tr.off .gcv{opacity:.35}.gbl td:first-child{color:var(--acc);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.qsw{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font:600 .95rem system-ui;color:var(--ink)}.qsw:first-child{border-top:0}.qsw span{flex:1}
+.qsw button{flex:none;width:50px;height:30px;border-radius:15px;border:0;padding:0;background:#d6d2c4;position:relative;cursor:pointer;transition:background .2s}.qsw button:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0004;transition:left .2s}.qsw button.on{background:#3f7d2b}.qsw button.on:after{left:23px}.qsw button:disabled{opacity:.6}
+.qgp{border-top:1px solid var(--line);padding:2px 0 8px}.qgp:first-of-type{border-top:0}.qgh{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 4px;font:700 .9rem system-ui;color:var(--ink)}.qgh small{font:400 .75rem system-ui;color:var(--mut)}
+.qsl{display:flex;align-items:center;gap:8px;padding:4px 0}.qsl input{flex:1;margin:0;min-width:0;padding:9px 11px;font-size:.95rem}.qsl input::placeholder{color:#a9a595;opacity:1}
+.qx-qr{background:#fff;border-radius:14px;padding:14px;margin:6px auto 10px;max-width:240px;box-shadow:0 1px 3px #0002}
+.gqsp{width:100%;display:flex;align-items:center;gap:10px;margin-top:12px;padding:12px 14px;text-align:left}.gqsp span{flex:1;display:flex;flex-direction:column;min-width:0}.gqsp small{font-size:.82rem}
+.qx-st{display:flex;align-items:center;gap:8px;font:600 .95rem system-ui;color:var(--ink)}.qx-dot{width:10px;height:10px;border-radius:50%;background:#3a9a3a;box-shadow:0 0 0 4px #3a9a3a22}.qx-dot.off{background:#b9b3a3;box-shadow:none}
+.qx-bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:10px 0 4px}.qx-bar i{display:block;height:100%;background:var(--acc)}
+.qx-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font:.92rem system-ui;color:var(--ink)}.qx-row:first-child{border-top:0}.qx-row span:last-child{flex:1}.qx-row small{color:var(--mut)}.qx-ok{color:#2f7d32;font-weight:700}.qx-w{color:var(--mut)}
+.qdn{display:block;font:600 .68rem system-ui;color:#2f7d32}.gok{color:#2f7d32}
 .gpt{margin:0 0 8px}.gpk{font:700 .85rem system-ui;color:var(--acc);padding:9px 0 3px}
 .gtg{flex:none;min-width:92px;padding:7px 12px;border-radius:20px;border:0;font:700 .85rem system-ui;color:#fff;background:#3f7d2b;cursor:pointer}.gtg.no{background:#a4452c}.gtg.gr{background:#dedbd0;color:#6d7461}
 .gpw{display:flex;align-items:center;gap:8px;max-width:122px}.gpw .gpn{width:32px;height:32px;font-size:.9rem;border:0;padding:0;cursor:pointer;position:relative}.gpn.off{background:#d6d3c8;color:#9a9c90}.gpn.off:after{content:"";position:absolute;inset:5px;background:linear-gradient(45deg,transparent 45%,#6d7461 45%,#6d7461 55%,transparent 55%),linear-gradient(-45deg,transparent 45%,#6d7461 45%,#6d7461 55%,transparent 55%)}.gft tr.off td{background:#ebe8de}.gft tr.off .gcv{opacity:.35}
@@ -769,10 +779,10 @@ function rBatE(){const b=gB()[batId];if(!b){go("bat");return}batFix(b);batCur=nu
  if(all.length)m.fitBounds(all,{maxZoom:17,padding:[20,20]});else m.setView([50.3,5.2],9);
  drawP();drawL();drawO();bar();setTimeout(()=>{m.invalidateSize();load()},200)}
 /* page d'accueil du mode gestionnaire */
-function rGm(){gx();let sy=0;Object.values(S.gch.L).forEach(c=>Object.values(c.jr||{}).forEach(j=>{if(!j.ev){gjEv(j);sy=1}}));if(sy)save();const g=gx(),nb=batAll().length,nj=Object.keys(g.jr).length,na=gacA(g,season(iso(new Date()))).length,pl=(n,a)=>n+" "+a+(n>1?"s":"");
+function rGm(){gx();gjAC();let sy=0;Object.values(S.gch.L).forEach(c=>Object.values(c.jr||{}).forEach(j=>{if(!j.ev){gjEv(j);sy=1}}));if(sy)save();const g=gx(),nb=batAll().length,nj=Object.keys(g.jr).length,na=gacA(g,season(iso(new Date()))).length,pl=(n,a)=>n+" "+a+(n>1?"s":"");
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mode gestionnaire</h1>
  ${chSel(1)}
- <div class="gmt">${[["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")],["gsa","tgt","Mes saisons","Statistiques"],["gex","ul","Exporter mes données","JSON"]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}"><svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg><b>${t}</b><small>${s}</small></button>`).join("")}</div><button class="s" id="gm-up" style="width:100%;margin-top:16px">🔄 Mettre à jour la version de test</button><div style="height:60px"></div>`;
+ <div class="gmt">${[["gqr","qr","QR code du cabanon","À imprimer une fois"],["bat","pin","Mes battues",pl(nb,"battue")],["gjr","sun","Mes journées",pl(nj,"journée")],["gact","usr","Mes actionnaires",pl(na,"actionnaire")],["gbr","doc","Mes bracelets",pl((g.br||[]).length,"bracelet")],["gsa","tgt","Mes saisons","Statistiques"],["gex","ul","Exporter mes données","JSON"]].map(([v,i,t,s])=>`<button class="card gmc" data-gv="${v}">${i=="qr"?'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>':`<svg class="mi" aria-hidden="true"><use href="#i-${i}"/></svg>`}<b>${t}</b><small>${s}</small></button>`).join("")}</div><button class="s" id="gm-up" style="width:100%;margin-top:16px">🔄 Mettre à jour la version de test</button><div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;chBind();
  $("#gm-up").onclick=async()=>{toast("Mise à jour…");try{const r=await navigator.serviceWorker.getRegistration();if(r)await r.unregister();const k=await caches.keys();await Promise.all(k.map(x=>caches.delete(x)))}catch(e){}location.replace(location.pathname+"?v="+Date.now())};
  document.querySelectorAll("[data-gv]").forEach(x=>x.onclick=()=>go(x.dataset.gv))}
@@ -803,7 +813,7 @@ function rGact(){const g=gx(),cs=season(iso(new Date())),nx=(+cs.slice(0,4)+1)+"
   $("#gae-m").onclick=()=>{n=Math.max(1,n-1);$("#gae-v").textContent=n};$("#gae-p").onclick=()=>{n=Math.min(9,n+1);$("#gae-v").textContent=n};
   $("#gae-ok").onclick=()=>{const v=$("#gae-n").value.trim();if(v)a.n=v;if(n!=gacN(a,gacS))sv(a).n=n;save();closeM();render()};
   $("#gae-x").onclick=()=>{if(!confirm("Retirer "+a.n+" de la saison "+gacS+" ?"))return;const L=gacMk(g,gacS),i=L.indexOf(a.id);if(i>=0)L.splice(i,1);save();closeM();render()}})}
-function rGjr(){const g=gx(),L=Object.values(g.jr).sort((a,b)=>a.date.localeCompare(b.date)||(a.time||"").localeCompare(b.time||""));
+function rGjr(){gjAC();const g=gx(),L=Object.values(g.jr).sort((a,b)=>a.date.localeCompare(b.date)||(a.time||"").localeCompare(b.time||""));
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes journées</h1>${g.n?`<p class="mut sans" style="margin-top:-6px">${esc(g.n)}</p>`:""}
  ${L.map(j=>`<button class="card sans bli" data-gj="${j.id}"><b>${esc(j.title||"Journée")}</b><small>${fmtL(j.date)}${j.time?" · "+j.time.replace(":","h"):""}${j.clos?" · ✓ clôturée":""}</small><span class="chev">›</span></button>`).join("")}
  <button class="p" id="gj-new" style="width:100%;margin-top:6px">+ Nouvelle journée</button>
@@ -829,7 +839,7 @@ function rGjf(){const g=gx(),j=gjId&&g.jr[gjId]?g.jr[gjId]:{date:iso(new Date())
  const chips=()=>document.querySelectorAll("[data-gb]").forEach(x=>{const i=sb.indexOf(x.dataset.gb),b=gB()[x.dataset.gb];x.className=i>=0?"on":"";x.innerHTML=(i>=0?`<i>${i+1}</i>`:"")+esc(b.n||"Battue sans nom")});chips();
  document.querySelectorAll("[data-gb]").forEach(x=>x.onclick=()=>{const k=x.dataset.gb,i=sb.indexOf(k);if(i>=0)sb.splice(i,1);else sb.push(k);chips()});
  $("#gf-c").onclick=backTo;
- $("#gf-ok").onclick=()=>{const d=$("#gf-d").value;if(!d)return toast("Choisis une date.");const id=gjId||uidG("j"),x=g.jr[id]||{id,clos:0};
+ $("#gf-ok").onclick=()=>{const d=$("#gf-d").value;if(!d)return toast("Choisis une date.");const id=gjId||uidG("j"),x=g.jr[id]||{id,clos:0,v2:1,opt:Object.assign({},(Object.values(g.jr).sort((a,b)=>a.date.localeCompare(b.date)).pop()||{}).opt||{})};
   Object.assign(x,{date:d,time:$("#gf-h").value,title:$("#gf-t").value.trim(),mode:$("#gf-m").value,pl:$("#gf-l").value.trim(),desc:$("#gf-n").value.trim(),bat:sb});g.jr[id]=x;gjEv(x);save();gjId=id;const r=vst.lastIndexOf("gjr");if(r>=0)vst=vst.slice(0,r+1);view="gjd";render();window.scrollTo(0,0)};
  const x=$("#gf-x");if(x)x.onclick=()=>gjDel(g.jr[gjId])}
 function gjDel(j){if(!j)return;modal(`<div style="text-align:center"><div style="font-size:2.2rem">⚠️</div><h2 style="margin:4px 0 6px">Supprimer la journée ?</h2><p class="sans" style="line-height:1.5;margin:0 0 12px">« ${esc(j.title||"Journée")} » du ${fmtL(j.date)} sera supprimée avec <b>toutes ses données encodées</b> : participants, fin de journée, tableau final, ainsi que la journée de ton calendrier${(()=>{const n=((S.ev["gx"+j.id]||{}).fiche||{}).tirs;return n&&n.length?` et <b>${n.length>1?"tes "+n.length+" tirs":"ton tir"} BANG</b>`:""})()}. Ses bracelets redeviendront disponibles.</p></div>
@@ -839,43 +849,60 @@ const gjPart=j=>[...gx().act.filter(a=>!(j.ab||{})[a.id]).map(a=>a.n),...(j.inv|
 const gjPostes=j=>{const s=new Set();(j.bat||[]).forEach(k=>{const b=gB()&&gB()[k];if(b)(b.po||[]).forEach(p=>s.add(String(p.n)))});return[...s].sort((a,b)=>(+a||0)-(+b||0)||a.localeCompare(b))};
 const gjCell=(j,k,p)=>{j.fin=j.fin||{};j.fin.d=j.fin.d||{};const d=j.fin.d[k]=j.fin.d[k]||{};return d[p]=d[p]||{b:0,s:{},p:{}}};
 const nSp=o=>Object.values(o||{}).reduce((s,v)=>s+(+v||0),0);
-const spIco=(o,mx=3)=>{const L=GG.filter(([n])=>(o||{})[n]>0).flatMap(([n,im])=>Array(o[n]).fill(im));return L.length?L.slice(0,mx).map(im=>`<img src="animals/${im}.webp" alt="">`).join("")+(L.length>mx?`<small>+${L.length-mx}</small>`:""):'<b class="z">0</b>'};
+const spIco=(o,mx=3)=>{const L=Object.keys(o||{}).filter(n=>o[n]>0).flatMap(n=>Array(o[n]).fill(gSpF(n)));return L.length?L.slice(0,mx).map(im=>`<img src="animals/${im}.webp" alt="">`).join("")+(L.length>mx?`<small>+${L.length-mx}</small>`:""):'<b class="z">0</b>'};
 function gjTot(j){const T={b:0,s:{},p:{},bt:{}};const d=(j.fin&&j.fin.d)||{};Object.entries(d).forEach(([k,P])=>{if(!(j.bat||[]).includes(k))return;const r=T.bt[k]={b:0,s:0,p:{}};Object.values(P).forEach(c=>{T.b+=+c.b||0;r.b+=+c.b||0;r.s+=nSp(c.s);Object.entries(c.s||{}).forEach(([n,v])=>T.s[n]=(T.s[n]||0)+v);Object.entries(c.p||{}).forEach(([n,v])=>{T.p[n]=(T.p[n]||0)+v;r.p[n]=(r.p[n]||0)+v})})});return T}
 let gpT=null,gkT=null;
-const gjPk=j=>{const g=gx(),ab=j.ab||{};return[...gacA(g,season(j.date)).map(a=>({k:a.id,n:a.n,t:"actionnaire",in:!ab[a.id]})),...(j.inv||[]).map((n,i)=>({k:"i:"+n,n,t:"invité",i,in:!ab["i:"+n]}))]};
-function rGjd(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const B=(j.bat||[]).map(k=>gB()&&gB()[k]).filter(Boolean),ab=j.ab=j.ab||{},inv=j.inv=j.inv||[],ch=j.ch=j.ch||{},rp=j.rp=j.rp||{};
+/* participants : 1 action = 1 poste ; j.sl {actionnaire:[nom du poste 0, invité 1, …]} (poste 0 : undefined = l'actionnaire, "" = invité à nommer) ; j.inv = anciens invités libres */
+const gjV2=j=>j.v2||(!j.clos&&!(j.inv||[]).length&&(j.v2=1));
+const gjPk=j=>{const g=gx(),ab=j.ab||{},se=season(j.date),o=[],v2=gjV2(j);gacA(g,se).forEach(a=>{const n=v2?gacN(a,se):1,L=(j.sl||{})[a.id]||[];let e=0;
+ for(let i=0;i<n;i++){const v=L[i],k=i?a.id+"#"+i:a.id,me=i==0&&v==null,ph=!me&&!v;let nm=me?a.n:(v||"Invité de "+a.n);if(ph&&++e>1)nm+=" ("+e+")";o.push({k,n:nm,t:me?"actionnaire":"invité",a,i,ph,in:!ab[k]})}});
+ (j.inv||[]).forEach((n,i)=>o.push({k:"i:"+n,n,t:"invité",x:1,i,in:!ab["i:"+n]}));return o};
+const gjO=j=>Object.assign({nu:1,ch:1,rp:1},j.opt||{});
+/* clôture automatique : une journée passée se verrouille à la première ouverture après minuit (sauf si rouverte aujourd'hui) */
+function gjAC(){const t=iso(new Date());let c=0;Object.values((S.gch||{}).L||{}).forEach(g=>Object.values(g.jr||{}).forEach(j=>{if(!j.clos&&j.date<t&&!(j.reo&&j.reo>=t)){j.clos=1;j.ac=1;c=1;if(j.qo&&typeof gqEnd=="function")gqEnd(g,j)}}));if(c)save()}
+const gPoL=(j,po)=>String(po).startsWith("@")?(gjPk(j).find(p=>"@"+p.k==po)||{n:"—"}).n:"poste "+po;
+function rGjd(){gjAC();const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const O=gjO(j);if(gpT&&gpT!="pr"&&!O[gpT])gpT=null;const B=(j.bat||[]).map(k=>gB()&&gB()[k]).filter(Boolean),ab=j.ab=j.ab||{},inv=j.inv=j.inv||[],ch=j.ch=j.ch||{},rp=j.rp=j.rp||{};
  const T=gjTot(j),np=nSp(T.p),ns=nSp(T.s),P=gjPk(j),PR=P.filter(p=>p.in),N=gjNumI(j),lk=!!j.clos,D=lk?"disabled":"";
  const pv=(t,k)=>t=="pr"?(ab[k]?["Absent","no"]:["Présent",""]):t=="ch"?(ch[k]?["Payé",""]:["Non payé","gr"]):(rp[k]?["Oui",""]:["Non","gr"]);
  const pk=()=>{const R=gjPk(j).filter(p=>p.in),n=gpT=="pr"?R.length:R.filter(p=>gpT=="nu"?N[p.k]:(gpT=="ch"?ch:rp)[p.k]).length,t=gpT=="pr"?gjPk(j).length:R.length;return `${n} ${gpT=="pr"?"présent"+(n>1?"s":""):gpT=="nu"?"numéroté"+(n>1?"s":""):gpT=="ch"?"payé"+(n>1?"s":""):"repas"} sur ${t}`};
  const L=gpT=="pr"?P:PR;
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(j.title||"Journée")}</h1><p class="mut sans" style="margin-top:-6px">${fmtL(j.date)}${j.clos?" · ✓ clôturée":""}</p>
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(j.title||"Journée")}</h1><p class="mut sans" style="margin-top:-6px">${fmtL(j.date)}${j.clos?(j.ac?' · <b class="gok">✓ clôturée automatiquement à minuit</b>':" · ✓ clôturée"):""}</p>
  <${lk?"div":"button"} class="card sans gsum" id="gd-sum">${j.time?`🕣 Rendez-vous à ${j.time.replace(":","h")}<br>`:""}${j.pl?`📍 ${esc(j.pl)}<br>`:""}🦌 ${esc(j.mode||"")}${j.desc?`<br>📝 ${esc(j.desc)}`:""}${lk?"</div>":`<span class="gse" aria-hidden="true">✎</span></button>`}
  <h2 class="gh">Battues</h2>${B.length?`<div class="card sans" style="padding:4px 14px">${B.map((b,i)=>`<button class="gar gab" data-gdb="${b.id}"><span><b>${i+1}.</b> ${esc(b.n||"Battue sans nom")}</span><small class="mut">${(b.po||[]).length?(b.po.length+" poste"+(b.po.length>1?"s":"")):"sans postes"}</small><b class="mut">›</b></button>`).join("")}</div>`:`<p class="mut sans">Aucune.</p>`}
+ ${gqBlock(g,j)}
  <h2 class="gh">Tableau de la journée</h2><div class="card sans gtb"><div class="gk">${[["p",np,`pièce${np>1?"s":""} prélevée${np>1?"s":""}`],["b",T.b,`balle${T.b>1?"s":""} tirée${T.b>1?"s":""}`],["r",np?(T.b/np).toLocaleString("fr-BE",{maximumFractionDigits:1}):"–","balles par pièce"],["s",ns,"sortis à droite"]].map(([k,v,l])=>k=="r"?`<div><b>${v}</b><span>${l}</span></div>`:`<button data-gk="${k}" class="${gkT==k?"on":""}"><b>${v}</b><span>${l}</span></button>`).join("")}</div>
    <div id="gd-tb" ${gkT?"":"hidden"}><table class="gbt${gkT?" h"+gkT:""}"><tr><th>Battue</th><th class="c-b">Balles</th><th class="c-s">Sortis</th><th class="c-p">Prélevés</th></tr>${B.map(b=>{const r=T.bt[b.id]||{b:0,s:0,p:{}};return `<tr><td>${esc(b.n||"Battue")}</td><td class="c-b">${r.b}</td><td class="c-s">${r.s}</td><td class="c-p">${nSp(r.p)}</td></tr>`}).join("")}</table></div></div>
   ${np?`<button class="p" id="gd-tf" style="width:100%;margin-top:8px">Tableau final et bracelets</button>`:""}
- <h2 class="gh">Participants</h2><div class="seg gpt">${[["pr","Présence"],["nu","Numéros"],["ch","Chapeau"],["rp","Repas"]].map(([k,l])=>`<button data-gpt="${k}" class="${gpT==k?"on":""}">${l}</button>`).join("")}</div>
+ <h2 class="gh">Participants</h2><div class="card sans" style="padding:2px 14px;margin-bottom:10px">${[["nu","Numéros de poste"],["ch","Chapeau"],["rp","Repas"]].map(([k,l])=>`<div class="qsw"><span>${l}</span><button role="switch" aria-checked="${!!O[k]}" aria-label="${l}" class="${O[k]?"on":""}" data-gop="${k}" ${D}></button></div>`).join("")}</div>
+ <div class="seg gpt">${[["pr","Présence"],["nu","Numéros"],["ch","Chapeau"],["rp","Repas"]].filter(([k])=>k=="pr"||O[k]).map(([k,l])=>`<button data-gpt="${k}" class="${gpT==k?"on":""}">${l}</button>`).join("")}</div>
  ${gpT?`<div class="card sans" style="padding:4px 14px"><div class="gpk" id="gd-pk">${pk()}</div>
-  ${L.map(p=>{const[l,c]=gpT=="nu"?[]:pv(gpT,p.k);return `<div class="gar"><span>${esc(p.n)}<small class="mut"> · ${p.t}</small></span>${gpT=="nu"?`<button class="gpn gnu${N[p.k]?"":" z"}" data-gn="${esc(p.k)}" ${D}>${N[p.k]?esc(N[p.k]):"–"}</button>`:`<button class="gtg ${c}" data-gt="${gpT}|${esc(p.k)}" ${D}>${l}</button>`}${gpT=="pr"&&p.t=="invité"&&!lk?`<button class="s" data-gpi="${p.i}" aria-label="Retirer" style="flex:0 0 auto;padding:6px 10px">✕</button>`:""}</div>`}).join("")||`<p class="mut" style="margin:8px 0">Personne de présent.</p>`}
-  ${gpT=="pr"&&!lk?`<div class="row" style="gap:6px;padding:8px 0"><input id="gd-in" placeholder="Ajouter un invité" style="margin:0;flex:1"><button class="s" id="gd-ia" style="flex:0 0 auto">Ajouter</button></div>`:""}</div>`:""}
+  ${gpT=="pr"?gjPres(j,P,pv,D):L.map(p=>{const[l,c]=gpT=="nu"?[]:pv(gpT,p.k);return `<div class="gar"><span>${esc(p.n)}<small class="mut"> · ${p.t}</small></span>${gpT=="nu"?`<button class="gpn gnu${N[p.k]?"":" z"}" data-gn="${esc(p.k)}" ${D}>${N[p.k]?esc(N[p.k]):"–"}</button>`:`<button class="gtg ${c}" data-gt="${gpT}|${esc(p.k)}" ${D}>${l}</button>`}${gpT=="pr"&&p.t=="invité"&&!lk?`<button class="s" data-gpi="${p.i}" aria-label="Retirer" style="flex:0 0 auto;padding:6px 10px">✕</button>`:""}</div>`}).join("")||`<p class="mut" style="margin:8px 0">Personne de présent.</p>`}
+</div>`:""}
  ${lk?`<button class="s" id="gd-ro" style="width:100%;margin-top:18px">Éditer les encodages</button>`:`<button class="p" id="gd-cl" style="width:100%;margin-top:18px" ${j.date>iso(new Date())?"disabled":""}>Enregistrer et clôturer la journée</button>`}
  <button class="s" id="gd-x" style="width:100%;margin-top:8px;color:var(--acc2)">Supprimer la journée</button><div style="height:60px"></div>`;
- $("#bk2").onclick=backTo;
+ $("#bk2").onclick=backTo;gqBind(g,j);
  document.querySelectorAll("[data-gpt]").forEach(x=>x.onclick=()=>{gpT=gpT==x.dataset.gpt?null:x.dataset.gpt;render()});
+ document.querySelectorAll("[data-gop]").forEach(x=>x.onclick=()=>{const k=x.dataset.gop;j.opt=gjO(j);j.opt[k]=j.opt[k]?0:1;save();render()});
+ document.querySelectorAll("[data-gsl]").forEach(x=>x.onchange=()=>{const[a,i]=x.dataset.gsl.split("|"),A=g.act.find(y=>y.id==a);if(!A)return;const S2=j.sl=j.sl||{},L2=S2[a]=S2[a]||[],v=x.value.trim();if(+i==0&&v==A.n)L2[0]=null;else L2[+i]=v;save();render()});
  document.querySelectorAll("[data-gt]").forEach(x=>x.onclick=()=>{const s=x.dataset.gt,t=s.slice(0,2),k=s.slice(3),o=t=="pr"?ab:t=="ch"?ch:rp;if(o[k])delete o[k];else o[k]=1;save();const[l,c]=pv(t,k);x.textContent=l;x.className="gtg "+c;$("#gd-pk").textContent=pk()});
  document.querySelectorAll("[data-gpi]").forEach(x=>x.onclick=()=>{const n=inv[+x.dataset.gpi];inv.splice(+x.dataset.gpi,1);["i:"+n].forEach(k=>{delete ab[k];delete ch[k];delete rp[k]});save();render()});
- const ia=()=>{const v=$("#gd-in").value.trim();if(!v)return;if(inv.includes(v)||g.act.some(a=>a.n==v))return toast("Déjà dans la liste.");inv.push(v);save();render()};if($("#gd-ia")){$("#gd-ia").onclick=ia;$("#gd-in").onkeydown=e=>{if(e.key=="Enter")ia()}}
  document.querySelectorAll("[data-gk]").forEach(x=>x.onclick=()=>{gkT=gkT==x.dataset.gk?null:x.dataset.gk;document.querySelectorAll("[data-gk]").forEach(y=>y.classList.toggle("on",y.dataset.gk==gkT));$("#gd-tb").hidden=!gkT;$("#gd-tb table").className="gbt"+(gkT?" h"+gkT:"")});
  document.querySelectorAll("[data-gn]").forEach(x=>x.onclick=()=>{const k=x.dataset.gn,p=PR.find(q=>q.k==k);if(!p)return;const occ=n=>{const q=PR.find(q=>q.k!=k&&String(N[q.k])==String(n));return q?q.n:""};
   const U=new Set(PR.map(q=>N[q.k]).filter(Boolean).map(String));B.forEach(b=>(b.po||[]).forEach(q=>U.add(String(q.n))));for(let i=1;i<=PR.length;i++)U.add(String(i));
   gnPick(p.n,"Numéro pour toute la journée",[...U].sort(gnS).map(n=>[n,occ(n)]),N[k],n=>{if(n==null)delete N[k];else{PR.forEach(q=>{if(q.k!=k&&String(N[q.k])==n)delete N[q.k]});N[k]=n}save();render()},1)});
  document.querySelectorAll("[data-gdb]").forEach(x=>x.onclick=()=>{gfB=x.dataset.gdb;go("gfin")});
  if(!lk)$("#gd-sum").onclick=()=>go("gjf");$("#gd-x").onclick=()=>gjDel(j);
- const cl=$("#gd-cl");if(cl)cl.onclick=()=>{if(j.date>iso(new Date()))return;j.clos=1;save();render();toast("Journée enregistrée et clôturée.")};
+ const cl=$("#gd-cl");if(cl)cl.onclick=()=>{if(j.date>iso(new Date()))return;j.clos=1;j.ac=0;if(j.qo&&typeof gqEnd=="function")gqEnd(g,j);save();render();toast("Journée enregistrée et clôturée.")};
  const tf=$("#gd-tf");if(tf)tf.onclick=()=>go("gtf");
- const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;save();render()}}
-function spModal(t,sub,o,done){const v=Object.assign({},o);
- modal(`<h2 style="margin-top:0">${t}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p>${GG.map(([s,im])=>`<div class="gsr"><img src="animals/${im}.webp" alt=""><b>${s}</b><button class="s" data-gs="${s}|-1" aria-label="Moins">−</button><span data-gsv="${s}"></span><button class="s" data-gs="${s}|1" aria-label="Plus">+</button></div>`).join("")}<button class="p" id="gs-ok" style="width:100%;margin-top:12px"></button>`);
+ const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;j.ac=0;j.reo=iso(new Date());save();render()}}
+/* liste de présence : un bloc par actionnaire, un champ par poste (action) */
+function gjPres(j,P,pv,D){const tg=p=>{const[l,c]=pv("pr",p.k);return `<button class="gtg ${c}" data-gt="pr|${esc(p.k)}" ${D}>${l}</button>`};let h="",cur=null;
+ P.filter(p=>!p.x).forEach(p=>{if(p.a!==cur){if(cur)h+="</div>";cur=p.a;const n=P.filter(q=>q.a===p.a).length;h+=`<div class="qgp"><div class="qgh">${esc(p.a.n)}<small>${n} poste${n>1?"s":""}</small></div>`}
+  const L=(j.sl||{})[p.a.id]||[],v=p.i==0?(L[0]==null?p.a.n:L[0]):(L[p.i]||"");h+=`<div class="qsl"><input data-gsl="${p.a.id}|${p.i}" value="${esc(v)}" placeholder="Invité de ${esc(p.a.n)}" aria-label="Poste ${p.i+1} de ${esc(p.a.n)}" ${D}>${tg(p)}</div>`});if(cur)h+="</div>";
+ const X=P.filter(p=>p.x);if(X.length)h+=`<div class="qgp"><div class="qgh">Autres invités</div>${X.map(p=>`<div class="qsl"><span style="flex:1">${esc(p.n)}</span>${tg(p)}${D?"":`<button class="s" data-gpi="${p.i}" aria-label="Retirer" style="flex:0 0 auto;padding:6px 10px">✕</button>`}</div>`).join("")}</div>`;
+ return h||`<p class="mut" style="margin:8px 0">Aucun actionnaire pour cette saison.</p>`}
+function spModal(t,sub,o,done){const v=Object.assign({},o),g=gx(),L=[...new Set([...gSpL(g),...Object.keys(v)])];
+ modal(`<h2 style="margin-top:0">${t}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p>${L.map(s=>[s,gSpF(s)]).map(([s,im])=>`<div class="gsr"><img src="animals/${im}.webp" alt=""><b>${s}</b><button class="s" data-gs="${s}|-1" aria-label="Moins">−</button><span data-gsv="${s}"></span><button class="s" data-gs="${s}|1" aria-label="Plus">+</button></div>`).join("")}<button class="p" id="gs-ok" style="width:100%;margin-top:12px"></button>`);
  const upd=()=>{document.querySelectorAll("#mo [data-gsv]").forEach(e=>{const n=v[e.dataset.gsv]||0;e.textContent=n;e.className=n?"":"z"});const n=nSp(v);$("#gs-ok").textContent=`OK · ${n} ${n>1?"animaux":"animal"}`};upd();
  document.querySelectorAll("#mo [data-gs]").forEach(x=>x.onclick=()=>{const[s,d]=x.dataset.gs.split("|");v[s]=Math.max(0,(v[s]||0)+(+d));if(!v[s])delete v[s];upd()});
  $("#gs-ok").onclick=()=>{closeM();done(v)}}
@@ -887,17 +914,20 @@ function gjBN(j,b){const N=gjNumI(j),fin=j.fin=j.fin||{},o=(fin.o||{})[b.id]||{}
  [...PR].sort((a,c)=>(c.k in o)-(a.k in o)).forEach(p=>{const n=eff(p);if(n==null||n===""||M[n]||(PS.length&&(!PS.includes(String(n))||off[n])))bad.add(p.k);else M[n]=p});
  const R=PS.length?[...PS]:[...new Set([...Object.keys(M),...Object.keys((fin.d||{})[b.id]||{})])];R.sort(gnS);
  return{M,R,off,PS,PR,red:PR.filter(p=>bad.has(p.k))}}
-const gjWho=(j,k,po)=>{const b=gB()&&gB()[k];if(b){const r=gjBN(j,b);if(r.M[po])return r.M[po].n}return((j.fin&&j.fin.w)||{})[po]||""};
+/* journée sans numéros : une ligne par participant présent, case « @participant » */
+function gjBX(j){const PR=gjPk(j).filter(p=>p.in),M={};PR.forEach(p=>M["@"+p.k]=p);return{M,R:Object.keys(M),off:{},PS:[],PR,red:[]}}
+const gjWho=(j,k,po)=>{if(String(po).startsWith("@"))return(gjPk(j).find(p=>"@"+p.k==po)||{n:""}).n;const b=gB()&&gB()[k];if(b){const r=gjBN(j,b);if(r.M[po])return r.M[po].n}return((j.fin&&j.fin.w)||{})[po]||""};
 function gnPick(t,sub,O,cur,done,none){modal(`<h2 style="margin-top:0">${esc(t)}</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p><div class="gng">${O.map(([n,w],i)=>`<button data-gng="${i}" class="${String(n)==String(cur)?"on":""}">${esc(n)}<small>${w?esc(w):"&nbsp;"}</small></button>`).join("")}</div>${none?`<button class="s" id="gng-0" style="width:100%;margin-top:10px">Sans numéro</button>`:""}`);
  document.querySelectorAll("#mo [data-gng]").forEach(y=>y.onclick=()=>{closeM();done(String(O[+y.dataset.gng][0]))});const z=$("#gng-0");if(z)z.onclick=()=>{closeM();done(null)}}
 function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const b=gB()&&gB()[gfB];if(!b||!(j.bat||[]).includes(gfB)){backTo();return}
- const N=gjNumI(j);j.fin=j.fin||{};
- if(!(b.po||[]).length){const PR=gjPk(j).filter(p=>p.in),o=(j.fin.o||{})[b.id]||{},u=new Set(PR.map(p=>N[p.k]).filter(Boolean).map(String));let c=0;PR.forEach(p=>{if(N[p.k]||p.k in o)return;let n=1;while(u.has(String(n)))n++;N[p.k]=String(n);u.add(String(n));c=1});if(c)save()}
- const{M,R,off,PS,PR,red}=gjBN(j,b),C=R.map(p=>[p,gjCell(j,b.id,p)]),tb=C.reduce((s,[,c])=>s+(+c.b||0),0),ts=C.reduce((s,[,c])=>s+nSp(c.s),0),tp=C.reduce((s,[,c])=>s+nSp(c.p),0);
- $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(b.n||"Battue sans nom")}</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${new Date(j.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"})} · ${PS.length?PS.length+" poste"+(PS.length>1?"s":""):"sans postes"}${j.clos?" · ✓ clôturée":""}</p>
+ const N=gjNumI(j),NU=gjO(j).nu;j.fin=j.fin||{};
+ if(NU&&!(b.po||[]).length){const PR=gjPk(j).filter(p=>p.in),o=(j.fin.o||{})[b.id]||{},u=new Set(PR.map(p=>N[p.k]).filter(Boolean).map(String));let c=0;PR.forEach(p=>{if(N[p.k]||p.k in o)return;let n=1;while(u.has(String(n)))n++;N[p.k]=String(n);u.add(String(n));c=1});if(c)save()}
+ if(j.fq&&!j.clos)gqPlace(j);
+ const{M,R,off,PS,PR,red}=NU?gjBN(j,b):gjBX(j),C=R.map(p=>[p,gjCell(j,b.id,p)]),tb=C.reduce((s,[,c])=>s+(+c.b||0),0),ts=C.reduce((s,[,c])=>s+nSp(c.s),0),tp=C.reduce((s,[,c])=>s+nSp(c.p),0);
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">${esc(b.n||"Battue sans nom")}</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${new Date(j.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"})} · ${!NU?"sans numéros":PS.length?PS.length+" poste"+(PS.length>1?"s":""):"sans postes"}${j.clos?" · ✓ clôturée":""}</p>
  ${red.length?`<div class="gnr">Sans numéro ${red.map(p=>`<button data-gnr="${esc(p.k)}">${esc(p.n)}</button>`).join("")}</div>`:""}
  ${R.length?`<table class="gft${j.clos?" lk":""}"><tr><th>Poste</th><th>Balles<br>tirées</th><th>Sortis à<br>droite</th><th>Prélevés</th></tr>
- ${C.map(([p,c])=>{const x=off[p]?"disabled":"";return `<tr class="${off[p]?"off":""}"><td><div class="gpw"><button class="gpn${off[p]?" off":""}" data-gpo="${esc(p)}" aria-label="Ouvrir ou fermer le poste ${esc(p)}">${esc(p)}</button><button class="gwn${M[p]?"":" mut"}" data-gw="${esc(p)}" ${x}>${off[p]?"Fermé":M[p]?esc(M[p].n):"—"}</button></div></td><td><button class="gcv" data-gc="${esc(p)}|b" ${x}>${+c.b||0}</button></td><td><button class="gcv" data-gc="${esc(p)}|s" ${x}>${nSp(c.s)}</button></td><td><button class="gcv gci" data-gc="${esc(p)}|p" ${x}>${spIco(c.p)}</button></td></tr>`}).join("")}
+ ${C.map(([p,c])=>{const x=off[p]?"disabled":"";return `<tr class="${off[p]?"off":""}"><td><div class="gpw">${NU?`<button class="gpn${off[p]?" off":""}" data-gpo="${esc(p)}" aria-label="Ouvrir ou fermer le poste ${esc(p)}">${esc(p)}</button><button class="gwn${M[p]?"":" mut"}" data-gw="${esc(p)}" ${x}>`:`<span class="gwn">`}${off[p]?"Fermé":M[p]?esc(M[p].n):"—"}${M[p]&&(j.fr||{})[M[p].k]?'<small class="qdn">✓ fiche reçue</small>':""}${NU?"</button>":"</span>"}</div></td><td><button class="gcv" data-gc="${esc(p)}|b" ${x}>${+c.b||0}</button></td><td><button class="gcv" data-gc="${esc(p)}|s" ${x}>${nSp(c.s)}</button></td><td><button class="gcv gci" data-gc="${esc(p)}|p" ${x}>${spIco(c.p)}</button></td></tr>`}).join("")}
  <tr class="tot"><td><b>Total</b></td><td><b>${tb}</b></td><td><b>${ts}</b></td><td><b>${tp}</b></td></tr></table>
  <p class="mut sans" style="font-size:.82rem;margin:10px 2px 0">➡️ Posté dos au bois, chaque chasseur compte le gibier sorti sur sa droite : avec ses voisins, toute la ligne est couverte.</p>`
  :`<div class="card sans">Aucun participant présent.</div>`}<div style="height:60px"></div>`;
@@ -913,18 +943,100 @@ function rGfin(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const b=gB()&
  document.querySelectorAll("[data-gpo]").forEach(x=>x.onclick=()=>{const n=x.dataset.gpo;if(!PS.length)return;const F=j.fin.cl=j.fin.cl||{},o=F[b.id]=F[b.id]||{};
   if(o[n]){delete o[n];save();render();toast("Poste ouvert");return}
   const c=gjCell(j,b.id,n);if(+c.b||nSp(c.s)||nSp(c.p))return toast("Remets d'abord les données du poste à 0.");o[n]=1;save();render();toast("Poste fermé")});
- document.querySelectorAll("[data-gc]").forEach(x=>x.onclick=()=>{const s=x.dataset.gc,i=s.lastIndexOf("|"),p=s.slice(0,i),t=s.slice(i+1),c=gjCell(j,b.id,p),sub="Poste "+p+(M[p]?" · "+M[p].n:"");
+ document.querySelectorAll("[data-gc]").forEach(x=>x.onclick=()=>{const s=x.dataset.gc,i=s.lastIndexOf("|"),p=s.slice(0,i),t=s.slice(i+1),c=gjCell(j,b.id,p),sub=(NU?"Poste "+p:"")+(M[p]?(NU?" · ":"")+M[p].n:"");
   if(t=="b"){let n=+c.b||0;modal(`<h2 style="margin-top:0">Balles tirées</h2><p class="mut sans" style="margin:-6px 0 6px">${esc(sub)}</p><div class="gsr" style="justify-content:center;border:0"><button class="s" id="gb-m">−</button><span id="gb-v" style="font-size:1.8rem;min-width:56px">${n}</span><button class="s" id="gb-p">+</button></div><button class="p" id="gb-ok" style="width:100%;margin-top:12px">OK</button>`);
-    const u=()=>{$("#gb-v").textContent=n};$("#gb-m").onclick=()=>{n=Math.max(0,n-1);u()};$("#gb-p").onclick=()=>{n++;u()};$("#gb-ok").onclick=()=>{c.b=n;save();closeM();render()}}
-  else spModal(t=="s"?"Sortis à droite":"Prélevés",sub,t=="s"?c.s:c.p,v=>{c[t]=v;save();render()})});
+    const u=()=>{$("#gb-v").textContent=n};$("#gb-m").onclick=()=>{n=Math.max(0,n-1);u()};$("#gb-p").onclick=()=>{n++;u()};$("#gb-ok").onclick=()=>{c.b=n;c.m=1;save();closeM();render()}}
+  else spModal(t=="s"?"Sortis à droite":"Prélevés",sub,t=="s"?c.s:c.p,v=>{c[t]=v;c.m=1;save();render()})});
  if(j.clos)document.querySelectorAll("#app .gft button,#app .gnr button").forEach(x=>x.disabled=true)}
+/* ---------- QR code du cabanon : relais Cloudflare (relais/worker.js), une clé publique g.qr.k (imprimée) + un secret g.qr.a (jamais imprimé) ---------- */
+const RELAIS="https://chasselog-relais.chasselog.workers.dev",Q_BASE=IS_APP?"https://chasselog-coder.github.io/ChasseLog/q.html":new URL("q.html",location.href.split(/[?#]/)[0]).href;
+const rndK=n=>{const A="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",b=crypto.getRandomValues(new Uint8Array(n));return[...b].map(x=>A[x%62]).join("")};
+const gqK=g=>{if(!g.qr){g.qr={k:rndK(22),a:rndK(32)};save()}return g.qr};
+const gqUrl=g=>Q_BASE+"#k="+gqK(g).k;
+const ldQR=()=>window.qrcode?Promise.resolve():new Promise((r,f)=>{const s=document.createElement("script");s.src="lib/qrcode/qrcode.min.js";s.onload=r;s.onerror=f;document.head.appendChild(s)});
+/* chemin SVG du QR code (carrés noirs) dans un carré de côté w placé en x,y */
+function qrPath(t,x,y,w){const q=qrcode(0,"M");q.addData(t);q.make();const n=q.getModuleCount(),c=w/n;let d="";for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))d+=`M${(x+k*c).toFixed(2)} ${(y+r*c).toFixed(2)}h${c.toFixed(2)}v${c.toFixed(2)}h-${c.toFixed(2)}z`;return d}
+const qrSvg=t=>`<svg viewBox="0 0 100 100" style="width:100%;height:auto;display:block" role="img" aria-label="QR code"><rect width="100" height="100" fill="#fff"/><path d="${qrPath(t,4,4,92)}" fill="#000"/></svg>`;
+/* affiche A5 (559 × 794) */
+function gqPoster(g){const W=559,H=794,u=gqUrl(g),n=esc(g.n||"Chasse sans nom");return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"><rect width="${W}" height="${H}" fill="#f1efe6"/><rect x="7" y="7" width="${W-14}" height="${H-14}" fill="none" stroke="#3f5a2b" stroke-width="14"/>
+<text x="${W/2}" y="78" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-weight="800" font-size="15" letter-spacing="3" fill="#a4452c">CHASSELOG</text>
+<text x="${W/2}" y="122" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-weight="800" font-size="${n.length>24?24:32}" fill="#1f3326">${n}</text>
+<rect x="${W/2-155}" y="170" width="310" height="310" rx="18" fill="#fff"/><path d="${qrPath(u,W/2-140,185,280)}" fill="#000"/>
+<text x="${W/2}" y="575" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-weight="800" font-size="27" fill="#1f3326">Fin de journée ?</text>
+<text x="${W/2}" y="612" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-size="18" fill="#1f3326">Scanne et encode tes tirs,</text>
+<text x="${W/2}" y="637" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-size="18" fill="#1f3326">ton gibier vu et prélevé.</text>
+<text x="${W/2}" y="700" text-anchor="middle" font-family="system-ui,Arial,sans-serif" font-size="13" fill="#6b6656">Sans application ni compte · chasselog.be</text></svg>`}
+function gqPrint(g){const f=document.createElement("iframe");f.style.cssText="position:fixed;width:0;height:0;border:0;right:0;bottom:0";f.srcdoc=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(g.n||"Affiche")}</title><style>@page{size:A5;margin:0}html,body{margin:0}svg{width:100vw;height:100vh;display:block}</style></head><body>${gqPoster(g)}</body></html>`;
+ f.onload=()=>{setTimeout(()=>{try{f.contentWindow.focus();f.contentWindow.print()}catch(e){toast("Impression impossible : partage l'affiche.")}setTimeout(()=>f.remove(),60000)},300)};document.body.appendChild(f)}
+async function gqShare(g){const sv=gqPoster(g),img=new Image();img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(sv);await img.decode();const c=document.createElement("canvas");c.width=1118;c.height=1588;c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+ const b=await new Promise(r=>c.toBlob(r,"image/png")),nm="affiche-qr-"+((g.n||"chasse").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"chasse")+".png",f=new File([b],nm,{type:"image/png"});
+ try{if(!IS_APP&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Affiche du cabanon"});return}}catch(e){if(e.name=="AbortError")return}dl(nm,"image/png",b)}
+async function gqApi(path,o){const r=await fetch(RELAIS+path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)});let x={};try{x=await r.json()}catch(e){}if(!x.ok)throw Object.assign(new Error(x.err||"reseau"),{code:x.err||"reseau"});return x}
+function rGqr(){const g=gx(),sp=gSpL(g);
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">QR code du cabanon</h1><p class="mut sans" style="margin-top:-6px">${esc(g.n||"Chasse sans nom")}</p>
+ <div class="card sans" style="text-align:center"><div class="qx-qr" id="gq-qr"><span class="mut">…</span></div><p style="margin:4px 0 0;font:600 1rem system-ui">Le même pour toutes tes journées</p></div>
+ <button class="card sans gqsp" id="gq-sp"><span><b>Gibiers comptés</b><small class="mut">${sp.map(esc).join(", ")}</small></span><b class="mut">›</b></button>
+ <button class="p" id="gq-pr" style="width:100%;margin-top:12px">Imprimer l'affiche</button><button class="s" id="gq-sh" style="width:100%;margin-top:8px">Partager l'affiche</button>
+ <button class="s" id="gq-rt" style="width:100%;margin-top:24px;color:var(--acc2)">Remplacer le QR code</button><div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ ldQR().then(()=>{const e=$("#gq-qr");if(e)e.innerHTML=qrSvg(gqUrl(g))}).catch(()=>{const e=$("#gq-qr");if(e)e.textContent="QR code indisponible hors ligne."});
+ $("#gq-sp").onclick=()=>go("gsp");
+ $("#gq-pr").onclick=()=>ldQR().then(()=>gqPrint(g)).catch(()=>toast("Connexion nécessaire."));
+ $("#gq-sh").onclick=()=>ldQR().then(()=>gqShare(g)).catch(()=>toast("Partage impossible."));
+ $("#gq-rt").onclick=()=>{modal(`<div style="text-align:center"><div style="font-size:2rem">🔁</div><h2 style="margin:4px 0 6px">Remplacer le QR code ?</h2><p class="sans" style="line-height:1.5;margin:0 0 12px">L'affiche actuelle ne fonctionnera plus : il faudra imprimer la nouvelle.</p></div><button class="p" id="gqr-y" style="width:100%;color:#fff;background:var(--acc2)">Remplacer</button><button class="s" id="gqr-n" style="width:100%;margin-top:8px">Annuler</button>`);
+  $("#gqr-n").onclick=()=>closeM();$("#gqr-y").onclick=async()=>{const q=gqK(g),nk=rndK(22);if(Object.values(g.jr).some(j=>j.qo))return toast("Ferme d'abord l'encodage en cours.");
+   if(q.on){try{await gqApi("/rotate",{k:q.k,a:q.a,nk})}catch(e){if(e.code!="refuse")return toast("Pas de connexion : réessaie plus tard.")}}g.qr={k:nk,a:q.a,on:q.on};save();closeM();toast("Nouveau QR code créé.");render()}}}
+/* gibiers comptés par la société (fiche du cabanon et fin de journée) */
+const gSpL=g=>g.sp&&g.sp.length?g.sp:GG.map(x=>x[0]);
+const gSpF=n=>{const x=GG.find(y=>y[0]==n);if(x)return x[1];const t=silType(n);return t&&PIC.has(t)?t:"cervide"};
+function rGsp(){const g=gx(),sel=gSpL(g),grp=Object.assign({"Grand gibier":GG.map(x=>x[0])},Object.fromEntries(Object.entries(G).filter(([k])=>k!="Grand gibier")));
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Gibiers comptés</h1><p class="mut sans" style="margin-top:-6px">${esc(g.n||"Chasse sans nom")} · <b>${sel.length}</b> gibier${sel.length>1?"s":""}</p>`
+ +Object.entries(grp).map(([t,a])=>`<h3>${esc(t)}</h3><div class="fvg">${a.map(x=>`<button class="fvs${sel.includes(x)?" on":""}" data-gsp="${esc(x)}" aria-pressed="${sel.includes(x)}"><img src="animals/${gSpF(x)}.webp" alt="" style="height:48px;max-width:90%;object-fit:contain"><span>${esc(x)}</span></button>`).join("")}</div>`).join("")+`<div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;
+ document.querySelectorAll("[data-gsp]").forEach(x=>x.onclick=()=>{const n=x.dataset.gsp,L=gSpL(g).slice(),i=L.indexOf(n);if(i>=0){if(L.length==1)return toast("Garde au moins un gibier.");L.splice(i,1)}else L.push(n);
+  const all=Object.values(grp).flat();g.sp=all.filter(y=>L.includes(y));save();render()})}
+/* ---------- encodage au cabanon (gestionnaire) ---------- */
+const qhm=t=>new Date(t).toLocaleTimeString("fr-BE",{hour:"2-digit",minute:"2-digit"}).replace(":","h");
+function gqPay(g,j){const B=(j.bat||[]).map(k=>gB()[k]).filter(Boolean),NU=gjO(j).nu,PR=gjPk(j).filter(p=>p.in),BN={};if(NU)B.forEach(b=>BN[b.id]=gjBN(j,b));
+ return{id:j.id,date:j.date,title:j.title||"Journée",soc:g.n||"",nu:NU?1:0,bat:B.map(b=>({id:b.id,n:b.n||"Battue",po:NU?(BN[b.id].PS.length?BN[b.id].PS.filter(n=>!BN[b.id].off[n]):null):null})),
+  par:PR.map(p=>({p:p.k,n:p.n,po:NU?Object.fromEntries(B.map(b=>[b.id,(Object.keys(BN[b.id].M).find(n=>BN[b.id].M[n].k==p.k))||""])):{}})),sp:gSpL(g).map(n=>({n,im:gSpF(n)}))}}
+async function gqOpen(g,j){const q=gqK(g),pay=gqPay(g,j);try{const r=await gqApi("/open",{k:q.k,a:q.a,j:pay});q.on=1;j.qo=Object.assign({at:Date.now()},j.qo||{},{until:r.until,h:JSON.stringify(pay)});save();return 1}catch(e){toast(e.code=="passee"?"Journée passée : encodage impossible.":e.code=="refuse"?"Ce QR code appartient à un autre téléphone.":"Pas de connexion : réessaie.");return 0}}
+const gqClean=o=>{const r={};Object.entries(o||{}).forEach(([k,v])=>{v=Math.max(0,Math.min(99,parseInt(v)||0));if(v&&typeof k=="string"&&k.length<40)r[k]=v});return r};
+/* fiches reçues gardées telles quelles (j.fq) puis placées dans les cases : rejouable si un numéro change ; une case corrigée à la main (c.m) n'est plus touchée */
+function gqApply(j,f){const p=gjPk(j).find(x=>x.k==f.p);if(!p||!f.d)return;j.fq=j.fq||{};j.fq[p.k]={d:f.d,ts:f.ts};j.fr=j.fr||{};j.fr[p.k]={ts:f.ts};
+ if(gjO(j).nu)(j.bat||[]).forEach(bid=>{const d=f.d[bid],b=gB()[bid];if(!d||!b)return;const r=gjBN(j,b),cur=Object.keys(r.M).find(n=>r.M[n].k==p.k),w=d.po!=null?String(d.po).trim():"",set=n=>{j.fin=j.fin||{};const F=j.fin.o=j.fin.o||{};(F[bid]=F[bid]||{})[p.k]=n};
+  if(w&&w!==cur&&!r.M[w]&&!(r.PS.length&&(!r.PS.includes(w)||r.off[w])))set(w);else if(!cur&&!r.PS.length){let n=1;while(r.M[String(n)])n++;set(String(n))}});gqPlace(j)}
+function gqPlace(j){const Q=j.fq||{},NU=gjO(j).nu,P=gjPk(j).filter(p=>p.in);(j.bat||[]).forEach(bid=>{const b=gB()[bid];if(!b)return;const r=NU?gjBN(j,b):gjBX(j),D=((j.fin||{}).d||{})[bid]||{},key=k=>NU?Object.keys(r.M).find(n=>r.M[n].k==k):"@"+k;
+ Object.entries(D).forEach(([po,c])=>{if(c.q&&!c.m&&key(c.q)!==po){c.b=0;c.s={};c.p={};delete c.q}});
+ P.forEach(p=>{const f=Q[p.k],d=f&&f.d[bid];if(!d)return;const kk=key(p.k);if(!kk)return;const c=gjCell(j,bid,kk);if(c.m)return;c.b=Math.max(0,Math.min(99,parseInt(d.b)||0));c.s=gqClean(d.s);c.p=gqClean(d.p);c.q=p.k})})}
+let gqBusy=0;
+async function gqSync(g,j,re){if(gqBusy||!g.qr)return;gqBusy=1;try{const r=await gqApi("/fiches",{k:g.qr.k,a:g.qr.a,since:j.qs||0});r.f.forEach(f=>{gqApply(j,f);j.qs=Math.max(j.qs||0,f.ts)});j.qt=Date.now();save();if(re!==0&&["gjd","gfi","gfin"].includes(view))render()}catch(e){}finally{gqBusy=0}}
+async function gqEnd(g,j){if(!j.qo||!g.qr)return;await gqSync(g,j,0);try{await gqApi("/close",{k:g.qr.k,a:g.qr.a});delete j.qo;save();if(["gjd","gfi"].includes(view))render()}catch(e){}}
+let gqTm=null;
+function gqTick(g,j){clearInterval(gqTm);if(!j.qo)return;if(j.clos)return gqEnd(g,j);
+ if(j.qo.until>Date.now()){const h=JSON.stringify(gqPay(g,j));if(h!==j.qo.h)gqOpen(g,j)}if(!j.qt||Date.now()-j.qt>30000)gqSync(g,j);
+ gqTm=setInterval(()=>{if(!["gjd","gfi","gfin"].includes(view)||!j.qo)return clearInterval(gqTm);if(document.visibilityState=="visible")gqSync(g,j)},120000)}
+function gqBlock(g,j){const PR=gjPk(j).filter(p=>p.in),fr=j.fr||{},n=PR.filter(p=>fr[p.k]).length,t=PR.length,today=iso(new Date());
+ if(j.qo)return `<h2 class="gh">Encodage au cabanon</h2><div class="card sans"><div class="qx-st"><i class="qx-dot${j.qo.until>Date.now()?"":" off"}"></i>${j.qo.until>Date.now()?"Ouvert depuis "+qhm(j.qo.at):"Fermé à minuit"}</div><div class="qx-bar"><i style="width:${t?Math.round(n/t*100):0}%"></i></div><div class="mut" style="font-size:.85rem">${n} fiche${n>1?"s":""} reçue${n>1?"s":""} sur ${t} participant${t>1?"s":""}${j.qt?" · actualisé à "+qhm(j.qt):""}</div><div class="row" style="gap:8px;margin-top:12px"><button class="p" id="gq-vf" style="flex:1">Voir les fiches</button><button class="s" id="gq-cl" style="flex:1">Fermer</button></div></div>`;
+ if(j.clos||j.date<today)return n?`<h2 class="gh">Encodage au cabanon</h2><button class="card sans gqsp" id="gq-vf"><span><b>${n} fiche${n>1?"s":""} reçue${n>1?"s":""}</b><small class="mut">sur ${t} participant${t>1?"s":""}</small></span><b class="mut">›</b></button>`:"";
+ return `<h2 class="gh">Encodage au cabanon</h2><div class="card sans"><div class="qx-st"><i class="qx-dot off"></i>Fermé</div><button class="p" id="gq-op" style="width:100%;margin-top:12px">Ouvrir l'encodage</button></div>`}
+function gqBind(g,j){const o=$("#gq-op"),v=$("#gq-vf"),c=$("#gq-cl");
+ if(o)o.onclick=async()=>{if(!gjPk(j).some(p=>p.in))return toast("Aucun participant présent.");o.disabled=true;if(await gqOpen(g,j)){toast("Encodage ouvert : les participants peuvent scanner le QR code.");render()}else o.disabled=false};
+ if(v)v.onclick=()=>go("gfi");if(c)c.onclick=async()=>{c.disabled=true;await gqEnd(g,j);if(j.qo){c.disabled=false;toast("Pas de connexion : réessaie.")}else toast("Encodage fermé.")};gqTick(g,j)}
+function rGfi(){const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const P=gjPk(j).filter(p=>p.in),fr=j.fr||{},R=P.filter(p=>fr[p.k]).sort((a,b)=>fr[a.k].ts-fr[b.k].ts),W=P.filter(p=>!fr[p.k]),NU=gjO(j).nu,B=(j.bat||[]).map(k=>gB()[k]).filter(Boolean);
+ const po=p=>NU?B.map(b=>{const r=gjBN(j,b);return Object.keys(r.M).find(n=>r.M[n].k==p.k)||"–"}).join(" · "):"";
+ $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Fiches reçues</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${R.length} sur ${P.length}${j.qt?" · actualisé à "+qhm(j.qt):""}</p>
+ ${R.length?`<div class="card sans" style="padding:2px 14px">${R.map(p=>`<div class="qx-row"><span class="qx-ok">✓</span><span>${esc(p.n)}<br><small>${NU?"Poste"+(B.length>1?"s ":" ")+po(p)+" · ":""}${qhm(fr[p.k].ts)}</small></span></div>`).join("")}</div>`:`<div class="card sans mut">Aucune fiche reçue pour l'instant.</div>`}
+ ${W.length?`<h2 class="gh">Pas encore encodé</h2><div class="card sans" style="padding:2px 14px">${W.map(p=>`<div class="qx-row qx-w"><span>○</span><span>${esc(p.n)}</span></div>`).join("")}</div>`:""}
+ ${j.qo?`<button class="s" id="gfi-r" style="width:100%;margin-top:12px">Actualiser</button>`:""}<div style="height:60px"></div>`;
+ $("#bk2").onclick=backTo;const r=$("#gfi-r");if(r)r.onclick=()=>{r.disabled=true;gqSync(g,j)};if(j.qo&&(!j.qt||Date.now()-j.qt>15000))gqSync(g,j)}
 /* Bracelets (Wallonie) : chaque bracelet a un numéro et la liste des catégories pour lesquelles il est valable (cahier des charges). Tableau final : un animal par ligne, bracelet attribué automatiquement. */
 const GCAT0=["Grand cerf","Petit cerf","Cerf non boisé","Chevreuil","Sanglier","Daim","Mouflon"],GBOIS=["Cerf","Brocard","Daim"];
 const GDEF={Sanglier:"Sanglier",Brocard:"Chevreuil",Chevrette:"Chevreuil",Chevrillard:"Chevreuil",Biche:"Cerf non boisé",Faon:"Cerf non boisé",Daim:"Daim",Mouflon:"Mouflon",Cerf:""};
 let ganId=null,gbF="";
 const gbr=()=>{const g=gx();g.br=g.br||[];g.cat=g.cat||GCAT0.slice();return g};
 const gbSort=(a,b)=>String(a.n).localeCompare(String(b.n),"fr",{numeric:true});
-const gImg=sp=>((GG.find(x=>x[0]==sp)||[])[1])||"cervide";
+const gImg=sp=>gSpF(sp);
 function gjAn(j){j.fin=j.fin||{};const A=j.fin.an=j.fin.an||{},want={},d=j.fin.d||{};
  Object.entries(d).forEach(([k,P])=>{if(!(j.bat||[]).includes(k))return;Object.entries(P).forEach(([po,c])=>Object.entries(c.p||{}).forEach(([sp,n])=>{for(let i=0;i<n;i++){const id=k+"|"+po+"|"+sp+"|"+i;want[id]=1;if(!A[id])A[id]={k,po,sp,cat:GDEF[sp]||""}}}))});
  Object.keys(A).forEach(id=>{if(!want[id])delete A[id]});return A}
@@ -963,10 +1075,10 @@ function gbEdit(b){const g=gbr(),u=gbUsed(),v=new Set(b?b.v||[]:[]);
   const x=$("#gbe-x");if(x)x.onclick=()=>{if(!confirm("Supprimer le bracelet N° "+b.n+" ?"))return;g.br=g.br.filter(y=>y!==b);save();closeM();render()}};
  draw()}
 function rGtf(){const g=gbr(),j=g.jr[gjId];if(!j){go("gjr");return}const A=gjAuto(j),L=Object.entries(A),bat=k=>(gB()&&gB()[k]&&gB()[k].n)||"Battue",nb=L.filter(([,a])=>a.br).length;
- const order=Object.fromEntries(GG.map((x,i)=>[x[0],i]));L.sort((x,y)=>(order[x[1].sp]-order[y[1].sp])||String(x[1].po).localeCompare(String(y[1].po),"fr",{numeric:true}));
+ const order=Object.fromEntries(GG.map((x,i)=>[x[0],i]));L.sort((x,y)=>((order[x[1].sp]??99)-(order[y[1].sp]??99))||String(x[1].po).localeCompare(String(y[1].po),"fr",{numeric:true}));
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Tableau final</h1><p class="mut sans" style="margin-top:-6px">${esc(j.title||"Journée")} · ${new Date(j.date+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"})}</p>
  <div class="card sans gtt"><b>${L.length}</b> <span>pièce${L.length>1?"s":""} · ${(j.bat||[]).length} battue${(j.bat||[]).length>1?"s":""}</span><small>${nb} bracelet${nb>1?"s":""} attribué${nb>1?"s":""}</small></div>
- ${L.length?`<div class="card sans" style="padding:2px 14px">${L.map(([id,a])=>{const b=g.br.find(x=>x.id==a.br),c=gaCors(a);return `<button class="gtr" data-gan="${esc(id)}"><img src="animals/${gImg(a.sp)}.webp" alt=""><span><b>${esc(gaLab(a))}</b><small>${[a.kg?a.kg+" kg":"",c,bat(a.k),"poste "+a.po].filter(Boolean).map(esc).join(" · ")}${!a.cat?' · <i class="gwa">catégorie à choisir</i>':""}</small></span>${gbChip(b)}</button>`}).join("")}</div>`:`<div class="card sans mut">Aucune pièce prélevée : encode les prélevés dans les données de fin de journée.</div>`}
+ ${L.length?`<div class="card sans" style="padding:2px 14px">${L.map(([id,a])=>{const b=g.br.find(x=>x.id==a.br),c=gaCors(a);return `<button class="gtr" data-gan="${esc(id)}"><img src="animals/${gImg(a.sp)}.webp" alt=""><span><b>${esc(gaLab(a))}</b><small>${[a.kg?a.kg+" kg":"",c,bat(a.k),gPoL(j,a.po)].filter(Boolean).map(esc).join(" · ")}${!a.cat?' · <i class="gwa">catégorie à choisir</i>':""}</small></span>${gbChip(b)}</button>`}).join("")}</div>`:`<div class="card sans mut">Aucune pièce prélevée : encode les prélevés dans les données de fin de journée.</div>`}
  <div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;document.querySelectorAll("[data-gan]").forEach(x=>x.onclick=()=>{ganId=x.dataset.gan;go("gan")})}
 function rGan(){const g=gbr(),j=g.jr[gjId],A=j?gjAn(j):{},a=A[ganId];if(!a){go("gtf");return}const u=gbUsed(),b=g.br.find(x=>x.id==a.br),bt=gB()&&gB()[a.k],who=gjWho(j,a.k,a.po);
@@ -1057,7 +1169,7 @@ function rGex(){const g=gbr(),J=Object.values(g.jr),cs=season(iso(new Date())),s
   const sl=x=>(x||"").toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""),n=`chasselog-gestion-${sl(g.n)||"chasse"}-${S2.join("_")}.json`,c=JSON.stringify(d,null,1);
   try{const f=new File([c],n,{type:"application/json"});if(!IS_APP&&navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Données de chasse"});return}}catch(e){if(e&&e.name=="AbortError")return}
   dl(n,"application/json",c);toast("Export prêt.")}}
-function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan,gsa:rGsa,gsb:rGsb,gex:rGex})[view]();hydrate()}
+function render(){rmBar();if(view!="cal")["#mdb","#bkb"].forEach(q=>{const x=$(q);if(x)x.remove()});$("#app").className=view=="cal"?"full":"";document.body.classList.toggle("cal",view=="cal");document.querySelectorAll("[data-cv]").forEach(b=>b.classList.toggle("on",b.dataset.cv==cv&&view=="cal"));({cal:rCal,stats:rStats,fiche:rFiche,sum:rSum,sj:rJours,sr:rRates,ar:rArmes,docs:rDocs,set:rSet,fb:rFeedback,pick:rPick,ouv:rOuv,fav:rFav,tro:rTro,bat:rBat,bate:rBatE,gm:rGm,gact:rGact,gjr:rGjr,gjf:rGjf,gjd:rGjd,gfin:rGfin,gbr:rGbr,gtf:rGtf,gan:rGan,gsa:rGsa,gsb:rGsb,gex:rGex,gqr:rGqr,gsp:rGsp,gfi:rGfi})[view]();hydrate()}
 function dl(n,t,c){if(IS_APP)return natExport(new File([c],n,{type:t}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
 /* modèle de tir : r = résultat (p prélevé · m manqué · b blessé / je ne sais pas), k = nombre d'animaux, n = munitions tirées.
    p, m, h sont dérivés : p = animaux prélevés, m = 1 animal manqué, h = animaux blessés / incertains */

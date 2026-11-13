@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>ChasseLog · encodage de fin de journée</title><meta name="theme-color" content="#3f5a2b"><link rel="icon" href="icons/icon-192.png">
+<style>
+:root{--bg:#f1efe6;--card:#faf8f1;--ink:#26301f;--mut:#6d7461;--line:#dedbd0;--acc:#3f5a2b;--acc2:#a4452c;--or:#d99a2b}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.hd{background:var(--acc);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 18px 16px}.hd small{opacity:.8;font-size:.8rem;display:block}.hd h1{margin:2px 0;font-size:1.35rem}
+main{max-width:560px;margin:0 auto;padding:16px 16px 40px}h2{margin:0 0 8px;font-size:1.15rem}.mut{color:var(--mut)}
+button{font:inherit;cursor:pointer}.p,.s{width:100%;padding:13px;border-radius:12px;font-weight:600;font-size:1rem}.p{background:var(--acc);color:#fff;border:0}.p:disabled{opacity:.5}.s{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+input{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;margin:0 0 8px}
+.lst{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}.lst button{display:block;width:100%;text-align:left;padding:13px 14px;border:0;border-top:1px solid var(--line);background:none;font-weight:600;color:var(--ink)}.lst button:first-child{border-top:0}
+.b{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;background:var(--card)}
+.bh{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700;margin-bottom:4px}.po{background:var(--or);color:#fff;border:0;border-radius:999px;padding:4px 11px;font-weight:700;font-size:.85rem;white-space:nowrap}
+.l{font:600 .76rem system-ui;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;margin:12px 0 6px}
+.stp{display:flex;align-items:center;gap:16px}.stp button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--acc);background:none;color:var(--acc);font-size:1.3rem;font-weight:700}.stp b{font-size:1.45rem;min-width:28px;text-align:center}
+.sp{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.sp div{position:relative}.sp button.t{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;padding:6px 2px 4px;font-size:.72rem;color:var(--ink);display:flex;flex-direction:column;align-items:center;min-height:62px}.sp img{height:32px;max-width:90%;object-fit:contain}
+.sp .on{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}.sp em{position:absolute;top:-7px;right:-4px;background:var(--acc);color:#fff;border-radius:999px;font:700 .78rem system-ui;font-style:normal;min-width:22px;padding:2px 6px;text-align:center;pointer-events:none}
+.sp .mn{position:absolute;top:-7px;left:-4px;width:24px;height:24px;border-radius:50%;border:0;background:var(--acc2);color:#fff;font-weight:800;line-height:1;padding:0}
+.ctr{text-align:center;padding:36px 8px}.big{font-size:3rem}.nt{font-size:.85rem;margin-top:24px}
+</style></head><body>
+<div class="hd"><small>ChasseLog · encodage de fin de journée</small><h1 id="soc">…</h1><small id="sub"></small></div>
+<main id="m"><p class="mut">Chargement…</p></main>
+<script>
+const RELAIS="https://chasselog-relais.chasselog.workers.dev",K=(location.hash.match(/k=([A-Za-z0-9_-]+)/)||[])[1]||"",LS="cq:"+K;
+const $=s=>document.querySelector(s),esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let J=null,P=null,D={},st={};
+const ld=()=>{try{return JSON.parse(localStorage.getItem(LS))||{}}catch(e){return{}}},sv=()=>{try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){}};
+const M=h=>{$("#m").innerHTML=h;window.scrollTo(0,0)};
+const fd=d=>new Date(d+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long"});
+function head(){$("#soc").textContent=J&&J.soc||"Chasse";$("#sub").textContent=J?(J.title||"Journée")+" · "+fd(J.date):""}
+function msg(ic,t,x,btn){M(`<div class="ctr"><div class="big">${ic}</div><h2>${t}</h2><p class="mut">${x}</p>${btn?`<button class="p" id="re" style="margin-top:16px">${btn}</button>`:""}</div>`);const r=$("#re");if(r)r.onclick=load}
+async function load(){if(!K)return msg("❓","QR code incomplet","Scanne à nouveau le QR code du cabanon.");msg("⏳","Chargement…","");
+ try{const r=await fetch(RELAIS+"/j?k="+encodeURIComponent(K)),x=await r.json();
+  if(!x.ok)return msg("🔁","QR code plus valable","Le gestionnaire a remplacé ce QR code : scanne la nouvelle affiche.");
+  if(!x.open){J=null;head();return msg("🔒","Encodage fermé","Le gestionnaire n'a pas encore ouvert l'encodage de la journée.<br>Réessaie un peu plus tard.","Réessayer")}
+  J=x.j;head();st=ld();if(st.jid!==J.id)st={jid:J.id};
+  if(st.pend)return send(1);if(st.p&&J.par.some(q=>q.p==st.p))return st.done?done():fiche(st.p);names()}
+ catch(e){st=ld();if(st.pend)return msg("📶","Pas de réseau","Ta fiche est gardée sur ce téléphone : elle partira dès que le réseau revient.","Réessayer");msg("📶","Pas de réseau","Réessaie quand tu as du réseau.","Réessayer")}}
+function names(){M(`<h2>Qui es-tu ?</h2><input id="f" placeholder="🔍 Cherche ton nom" autocomplete="off"><div class="lst" id="ls"></div>`);
+ const L=J.par.slice().sort((a,b)=>a.n.localeCompare(b.n,"fr")),dr=()=>{const q=$("#f").value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  $("#ls").innerHTML=L.filter(p=>p.n.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)).map(p=>`<button data-p="${esc(p.p)}">${esc(p.n)}</button>`).join("")||`<p class="mut" style="padding:12px 14px;margin:0">Personne avec ce nom : demande au gestionnaire.</p>`;
+  document.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{st={jid:J.id,p:b.dataset.p};sv();fiche(st.p)})};$("#f").oninput=dr;dr()}
+function fiche(p){P=J.par.find(q=>q.p==p);if(!P)return names();D=st.d||{};J.bat.forEach(b=>{const d=D[b.id]=D[b.id]||{b:0,s:{},p:{}};if(J.nu&&d.po==null)d.po=(P.po||{})[b.id]||""});draw()}
+function tiles(bid,t){const o=D[bid][t];return `<div class="sp">${J.sp.map(x=>{const n=o[x.n]||0;return `<div><button class="t${n?" on":""}" data-a="${bid}|${t}|${esc(x.n)}"><img src="animals/${esc(x.im)}.webp" alt="">${esc(x.n)}</button>${n?`<em>${n}</em><button class="mn" data-r="${bid}|${t}|${esc(x.n)}" aria-label="Retirer un ${esc(x.n)}">−</button>`:""}</div>`}).join("")}</div>`}
+function draw(){M(`<h2 style="margin:0">${esc(P.n)}</h2><p class="mut" style="margin:2px 0 4px">Pas toi ? <u id="ch" style="cursor:pointer">Changer</u></p>
+ ${J.bat.map((b,i)=>{const d=D[b.id];return `<div class="b"><div class="bh">${i+1}. ${esc(b.n)}${J.nu?`<button class="po" data-po="${b.id}">Poste ${d.po?esc(d.po):"?"} ✎</button>`:""}</div>
+ <div class="l">Balles tirées</div><div class="stp"><button data-bm="${b.id}" aria-label="Moins">−</button><b>${d.b||0}</b><button data-bp="${b.id}" aria-label="Plus">+</button></div>
+ <div class="l">Sortis à droite (gibier vu)</div>${tiles(b.id,"s")}<div class="l">Prélevés</div>${tiles(b.id,"p")}</div>`}).join("")}
+ <button class="p" id="go" style="margin-top:6px">Envoyer ma fiche</button>`);
+ $("#ch").onclick=()=>{st={jid:J.id};sv();names()};const keep=()=>{const y=window.scrollY;st.d=D;sv();draw();window.scrollTo(0,y)};
+ document.querySelectorAll("[data-bm],[data-bp]").forEach(x=>x.onclick=()=>{const k=x.dataset.bm||x.dataset.bp,d=D[k];d.b=Math.max(0,Math.min(99,(d.b||0)+(x.dataset.bp?1:-1)));keep()});
+ document.querySelectorAll("[data-a],[data-r]").forEach(x=>x.onclick=()=>{const[k,t,n]=(x.dataset.a||x.dataset.r).split("|"),o=D[k][t];o[n]=Math.max(0,Math.min(99,(o[n]||0)+(x.dataset.a?1:-1)));if(!o[n])delete o[n];keep()});
+ document.querySelectorAll("[data-po]").forEach(x=>x.onclick=()=>{const d=D[x.dataset.po],B=J.bat.find(b=>b.id==x.dataset.po),v=prompt("Numéro de poste"+(B&&B.po?" ("+B.po.join(", ")+")":""),d.po||"");if(v==null)return;const w=v.trim();if(w&&B&&B.po&&!B.po.includes(w))return alert("Ce poste n'existe pas dans cette battue.");d.po=w;keep()});
+ $("#go").onclick=()=>{st.d=D;st.pend=1;sv();send()}}
+async function send(auto){const b=$("#go");if(b){b.disabled=true;b.textContent="Envoi…"}
+ try{const r=await fetch(RELAIS+"/f",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({k:K,jid:st.jid,p:st.p,d:st.d})}),x=await r.json();
+  if(x.ok){st.pend=0;st.done=1;sv();if(!P)P=J.par.find(q=>q.p==st.p);D=st.d;return done()}
+  st.pend=0;sv();if(x.err=="ferme")return msg("🔒","Encodage fermé","Le gestionnaire a fermé l'encodage : ta fiche n'a pas pu être envoyée. Donne-lui tes chiffres de vive voix.");
+  msg("⚠️","Fiche refusée","Recharge la page et réessaie.","Recharger")}
+ catch(e){msg("📶","Pas de réseau","Ta fiche est gardée sur ce téléphone : elle partira toute seule dès que le réseau revient.","Réessayer maintenant")}}
+function done(){P=P||J.par.find(q=>q.p==st.p);D=st.d||{};let bl=0,pr=0,vu=0;Object.values(D).forEach(d=>{bl+=d.b||0;pr+=Object.values(d.p||{}).reduce((a,b)=>a+b,0);vu+=Object.values(d.s||{}).reduce((a,b)=>a+b,0)});
+ M(`<div class="ctr"><div class="big">✅</div><h2>Merci ${esc((P&&P.n||"").split(" ")[0])} !</h2><p class="mut">Ta fiche est arrivée chez le gestionnaire.<br>${bl} balle${bl>1?"s":""} · ${pr} prélevé${pr>1?"s":""} · ${vu} animal${vu>1?"aux":""} vu${vu>1?"s":""}</p><button class="s" id="co" style="margin-top:16px">Corriger ma fiche</button></div>`);
+ $("#co").onclick=()=>{st.done=0;sv();fiche(st.p)}}
+addEventListener("online",()=>{st=ld();if(st.pend)send(1)});addEventListener("hashchange",()=>location.reload());
+load();
+</script></body></html>

@@ -1,8 +1,8 @@
 /* ChasseLog – relais du QR code du cabanon (Cloudflare Workers + D1, offre gratuite).
    Une société = une clé publique k (dans le QR code) + un secret gestionnaire a (jamais imprimé, seul son hash est stocké).
-   Une seule journée ouverte à la fois par société ; tout est effacé à la fermeture ou à minuit (heure belge). */
+   Une seule journée ouverte à la fois par société ; envois acceptés jusqu'à minuit (heure belge) ; tout est effacé à la fermeture par le gestionnaire, ou 7 jours après minuit. */
 const ORIG=[/^https:\/\/chasselog\.be$/,/^https:\/\/chasselog-coder\.github\.io$/,/^https:\/\/raw\.githack\.com$/,/^https?:\/\/localhost(:\d+)?$/,/^capacitor:\/\/localhost$/];
-const MAXF=8000,MAXJ=60000,MAXN=200,KEY=/^[A-Za-z0-9_-]{16,64}$/;
+const GARDE=7*864e5,MAXF=8000,MAXJ=60000,MAXN=200,KEY=/^[A-Za-z0-9_-]{16,64}$/;
 const now=()=>Date.now();
 const hash=async s=>[...new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,"0")).join("");
 /* minuit suivant la date de la journée, à l'heure de Bruxelles */
@@ -53,6 +53,6 @@ export default{
     await env.DB.batch([env.DB.prepare("DELETE FROM fic WHERE k=?").bind(s.k),env.DB.prepare("UPDATE soc SET k=?,open=0,j=NULL,until=0,ts=? WHERE k=?").bind(b.nk,now(),s.k)]);return out(req,{ok:true})}
    return out(req,{ok:false,err:"route"},404)
   }catch(e){return out(req,{ok:false,err:"erreur",m:String(e.message||e).slice(0,120)},400)}},
- /* chaque heure : ferme et efface les journées passées minuit */
- async scheduled(ev,env){const r=await env.DB.prepare("SELECT k FROM soc WHERE until>0 AND until<=?").bind(now()).all();for(const x of r.results)await purge(env,x.k)}
+ /* chaque heure : efface les journées 7 jours après minuit si le gestionnaire ne l'a pas fait (les envois s'arrêtent à minuit) */
+ async scheduled(ev,env){const r=await env.DB.prepare("SELECT k FROM soc WHERE until>0 AND until<=?").bind(now()-GARDE).all();for(const x of r.results)await purge(env,x.k)}
 };

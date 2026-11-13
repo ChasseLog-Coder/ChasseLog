@@ -4,7 +4,7 @@ const V = "carnet-v79-g9";
 const FILES = [
   "./", "index.html", "manifest.webmanifest", "data/ouv-fr.json",
   "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "icons/apple-touch-icon.png",
-  "lib/leaflet/leaflet.js", "lib/leaflet/leaflet.css",
+  "lib/leaflet/leaflet.js", "lib/leaflet/leaflet.css", "lib/qrcode/qrcode.min.js", "q.html",
   "lib/leaflet/images/marker-icon.png", "lib/leaflet/images/marker-icon-2x.png",
   "lib/leaflet/images/marker-shadow.png", "lib/leaflet/images/layers.png", "lib/leaflet/images/layers-2x.png",
   "weapons/carabine.webp", "weapons/fusil.webp",
@@ -19,6 +19,11 @@ self.addEventListener("activate", e => {
 self.addEventListener("fetch", e => {
   const r = e.request, u = new URL(r.url);
   if (r.method !== "GET" || u.origin !== location.origin) return;
+  if (r.mode === "navigate" && u.pathname.endsWith("/q.html")) {
+    // Page du QR code du cabanon : réseau d'abord, sans toucher à index.html en cache.
+    e.respondWith(fetch(r).then(x => { const y = x.clone(); caches.open(V).then(c => c.put("q.html", y)); return x; }).catch(() => caches.match("q.html")));
+    return;
+  }
   if (r.mode === "navigate") {
     // En ligne : version la plus récente. Hors ligne : version en cache.
     e.respondWith(fetch(r).then(x => { const y = x.clone(); caches.open(V).then(c => c.put("index.html", y)); return x; })

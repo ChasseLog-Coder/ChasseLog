@@ -37,4 +37,4 @@ jobs:
           npx wrangler deploy | tee /tmp/deploy.txt
           URL=$(grep -o 'https://[a-z0-9.-]*workers.dev' /tmp/deploy.txt | head -1)
           echo "RELAIS: $URL" >> $GITHUB_STEP_SUMMARY; echo "RELAIS=$URL"
-          sleep 5; curl -s "$URL/ping"
+          sleep 5; curl -s "$URL/ping"; echo; curl -s -i -H "Origin: https://raw.githack.com" "$URL/ping" | grep -i "access-control-allow-origin"

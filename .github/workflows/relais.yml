@@ -1,0 +1,40 @@
+name: Relais Cloudflare (QR code du cabanon)
+on:
+  workflow_dispatch:
+  push:
+    branches: [prep-gestionnaire]
+    paths: ["relais/**", ".github/workflows/relais.yml"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Secrets présents ?
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ] || [ -z "$CLOUDFLARE_ACCOUNT_ID" ]; then
+            echo "::warning::Secrets CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID absents : rien n'est publié."; echo "SKIP=1" >> $GITHUB_ENV; fi
+      - if: env.SKIP != '1'
+        working-directory: relais
+        run: npm i -s --no-save wrangler@3
+      - name: Base D1 (création si besoin) et schéma
+        if: env.SKIP != '1'
+        working-directory: relais
+        run: |
+          ID=$(npx wrangler d1 list --json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const x=JSON.parse(s).find(d=>d.name=="chasselog-relais");console.log(x?x.uuid:"")})')
+          if [ -z "$ID" ]; then npx wrangler d1 create chasselog-relais --location weur
+            ID=$(npx wrangler d1 list --json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{console.log(JSON.parse(s).find(d=>d.name=="chasselog-relais").uuid)})'); fi
+          sed -i "s/A_REMPLIR_PAR_LE_ROBOT/$ID/" wrangler.toml
+          npx wrangler d1 execute chasselog-relais --remote --file=schema.sql -y
+      - name: Publier
+        if: env.SKIP != '1'
+        working-directory: relais
+        run: |
+          npx wrangler deploy | tee /tmp/deploy.txt
+          URL=$(grep -o 'https://[a-z0-9.-]*workers.dev' /tmp/deploy.txt | head -1)
+          echo "RELAIS: $URL" >> $GITHUB_STEP_SUMMARY; echo "RELAIS=$URL"
+          sleep 5; curl -s "$URL/ping"

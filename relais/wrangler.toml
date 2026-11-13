@@ -1,0 +1,12 @@
+name = "chasselog-relais"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[triggers]
+crons = ["5 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "chasselog-relais"
+database_id = "A_REMPLIR_PAR_LE_ROBOT"

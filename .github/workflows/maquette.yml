@@ -1,0 +1,15 @@
+name: Maquette carte (captures avec tuiles)
+on:
+  push:
+    branches: [prep-carte-photo]
+    paths: ["tools/maquette/**", ".github/workflows/maquette.yml"]
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i -s --no-save playwright@1.49.1 && npx playwright install --with-deps chromium >/dev/null
+      - run: (python3 -m http.server 8000 >/dev/null 2>&1 &) ; sleep 2; node tools/maquette/run.js out
+      - uses: actions/upload-artifact@v4
+        with: { name: maquette, path: out }

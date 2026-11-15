@@ -844,15 +844,17 @@ function rGjf(){const g=gx(),j=gjId&&g.jr[gjId]?g.jr[gjId]:{date:iso(new Date())
  <label>Type de chasse</label><select id="gf-m">${MODES.map(x=>`<option ${x==j.mode?"selected":""}>${x}</option>`).join("")}</select>
  <label>Lieu de RDV</label><input id="gf-l" value="${esc(j.pl||"")}" placeholder="Chalet du Vallon">
  <label>Consignes et notes</label><textarea id="gf-n" rows="3">${esc(j.desc||"")}</textarea>
+ <div class="qsw" style="border:0;padding:14px 0 4px"><span>Invités</span><button role="switch" id="gf-iv" aria-label="Invités"></button></div>
  <label>Battues</label><div class="gbc" id="gf-b">${B.length?B.map(b=>`<button data-gb="${b.id}"></button>`).join(""):`<span class="mut sans">Aucune battue : crée-les dans Mes battues.</span>`}</div>
  <div class="row" style="gap:8px;margin-top:16px"><button class="s" id="gf-c" style="flex:1">Annuler</button><button class="p" id="gf-ok" style="flex:1">Enregistrer</button></div>
  ${gjId?`<button class="s" id="gf-x" style="width:100%;margin-top:8px;color:var(--acc2)">Supprimer la journée</button>`:""}<div style="height:60px"></div>`;
  $("#bk2").onclick=backTo;
  const chips=()=>document.querySelectorAll("[data-gb]").forEach(x=>{const i=sb.indexOf(x.dataset.gb),b=gB()[x.dataset.gb];x.className=i>=0?"on":"";x.innerHTML=(i>=0?`<i>${i+1}</i>`:"")+esc(b.n||"Battue sans nom")});chips();
  document.querySelectorAll("[data-gb]").forEach(x=>x.onclick=()=>{const k=x.dataset.gb,i=sb.indexOf(k);if(i>=0)sb.splice(i,1);else sb.push(k);chips()});
+ let iv=gjId&&g.jr[gjId]?gjO(g.jr[gjId]).iv:1;const ivd=()=>{const e=$("#gf-iv");e.className=iv?"on":"";e.setAttribute("aria-checked",!!iv)};ivd();$("#gf-iv").onclick=()=>{iv=iv?0:1;ivd()};
  $("#gf-c").onclick=backTo;
  $("#gf-ok").onclick=()=>{const d=$("#gf-d").value;if(!d)return toast("Choisis une date.");const id=gjId||uidG("j"),x=g.jr[id]||{id,clos:0,v2:1,opt:Object.assign({},(Object.values(g.jr).sort((a,b)=>a.date.localeCompare(b.date)).pop()||{}).opt||{})};
-  Object.assign(x,{date:d,time:$("#gf-h").value,title:$("#gf-t").value.trim(),mode:$("#gf-m").value,pl:$("#gf-l").value.trim(),desc:$("#gf-n").value.trim(),bat:sb});g.jr[id]=x;gjEv(x);save();gjId=id;const r=vst.lastIndexOf("gjr");if(r>=0)vst=vst.slice(0,r+1);view="gjd";render();window.scrollTo(0,0)};
+  Object.assign(x,{date:d,time:$("#gf-h").value,title:$("#gf-t").value.trim(),mode:$("#gf-m").value,pl:$("#gf-l").value.trim(),desc:$("#gf-n").value.trim(),bat:sb});x.opt=Object.assign({},x.opt||{},{iv});g.jr[id]=x;gjEv(x);save();gjId=id;const r=vst.lastIndexOf("gjr");if(r>=0)vst=vst.slice(0,r+1);view="gjd";render();window.scrollTo(0,0)};
  const x=$("#gf-x");if(x)x.onclick=()=>gjDel(g.jr[gjId])}
 function gjDel(j){if(!j)return;modal(`<div style="text-align:center"><h2 style="margin:4px 0 6px">Supprimer la journée ?</h2><p class="sans" style="line-height:1.5;margin:0 0 12px">« ${esc(j.title||"Journée")} » du ${fmtL(j.date)} sera supprimée avec <b>toutes ses données encodées</b> : participants, fin de journée, tableau final, ainsi que la journée de ton calendrier${(()=>{const n=((S.ev["gx"+j.id]||{}).fiche||{}).tirs;return n&&n.length?` et <b>${n.length>1?"tes "+n.length+" tirs":"ton tir"} BANG</b>`:""})()}. Ses bracelets redeviendront disponibles.</p></div>
  <button class="p" id="gdl-y" style="width:100%;background:var(--acc2);border-color:var(--acc2)">Oui, supprimer</button><button class="s" id="gdl-n" style="width:100%;margin-top:8px">Annuler</button>`);
@@ -866,10 +868,10 @@ function gjTot(j){const T={b:0,s:{},p:{},bt:{}};const d=(j.fin&&j.fin.d)||{};Obj
 let gpT=null,gkT=null;
 /* participants : 1 action = 1 poste ; j.sl {actionnaire:[nom du poste 0, invité 1, …]} (poste 0 : undefined = l'actionnaire, "" = invité à nommer) ; j.inv = anciens invités libres */
 const gjV2=j=>j.v2||(!j.clos&&!(j.inv||[]).length&&(j.v2=1));
-const gjPk=j=>{const g=gx(),ab=j.ab||{},se=season(j.date),o=[],v2=gjV2(j);gacA(g,se).forEach(a=>{const n=v2?gacN(a,se):1,L=(j.sl||{})[a.id]||[];let e=0;
+const gjPk=j=>{const g=gx(),ab=j.ab||{},se=season(j.date),o=[],v2=gjV2(j),iv=gjO(j).iv;gacA(g,se).forEach(a=>{const n=v2&&iv?gacN(a,se):1,L=(j.sl||{})[a.id]||[];let e=0;
  for(let i=0;i<n;i++){const v=L[i],k=i?a.id+"#"+i:a.id,me=i==0&&v==null,ph=!me&&!v;let nm=me?a.n:(v||"Invité de "+a.n);if(ph&&++e>1)nm+=" ("+e+")";o.push({k,n:nm,t:me?"actionnaire":"invité",a,i,ph,in:!ab[k]})}});
  (j.inv||[]).forEach((n,i)=>o.push({k:"i:"+n,n,t:"invité",x:1,i,in:!ab["i:"+n]}));return o};
-const gjO=j=>Object.assign({nu:1,ch:1,rp:1},j.opt||{});
+const gjO=j=>Object.assign({iv:1,nu:1,ch:1,rp:1},j.opt||{});
 /* clôture automatique : une journée passée se verrouille à la première ouverture après minuit (sauf si rouverte aujourd'hui) */
 function gjAC(){const t=iso(new Date());let c=0;Object.values((S.gch||{}).L||{}).forEach(g=>Object.values(g.jr||{}).forEach(j=>{if(!j.clos&&j.date<t&&!(j.reo&&j.reo>=t)){j.clos=1;j.ac=1;c=1;if(j.qo&&typeof gqEnd=="function")gqEnd(g,j)}}));if(c)save()}
 const gPoL=(j,po)=>String(po).startsWith("@")?(gjPk(j).find(p=>"@"+p.k==po)||{n:"—"}).n:"poste "+po;
@@ -908,7 +910,7 @@ function rGjd(){gjAC();const g=gx(),j=g.jr[gjId];if(!j){go("gjr");return}const O
  const ro=$("#gd-ro");if(ro)ro.onclick=()=>{j.clos=0;j.ac=0;j.reo=iso(new Date());save();render()}}
 /* liste de présence : un bloc par actionnaire, un champ par poste (action) */
 function gjPres(j,P,pv,D){const tg=p=>{const[l,c]=pv("pr",p.k);return `<button class="gtg ${c}" data-gt="pr|${esc(p.k)}" ${D}>${l}</button>`};let h="",cur=null;
- P.filter(p=>!p.x).forEach(p=>{if(p.a!==cur){if(cur)h+="</div>";cur=p.a;const n=P.filter(q=>q.a===p.a).length;h+=`<div class="qgp"><div class="qgh">${esc(p.a.n)}<small>${n} poste${n>1?"s":""}</small></div>`}
+ P.filter(p=>!p.x).forEach(p=>{if(p.a!==cur){if(cur)h+="</div>";cur=p.a;const n=P.filter(q=>q.a===p.a).length;h+=`<div class="qgp"><div class="qgh">${esc(p.a.n)}${gjO(j).iv?`<small>${n} poste${n>1?"s":""}</small>`:""}</div>`}
   const L=(j.sl||{})[p.a.id]||[],v=p.i==0?(L[0]==null?p.a.n:L[0]):(L[p.i]||"");h+=`<div class="qsl"><input data-gsl="${p.a.id}|${p.i}" value="${esc(v)}" placeholder="Invité de ${esc(p.a.n)}" aria-label="Poste ${p.i+1} de ${esc(p.a.n)}" ${D}>${tg(p)}</div>`});if(cur)h+="</div>";
  const X=P.filter(p=>p.x);if(X.length)h+=`<div class="qgp"><div class="qgh">Autres invités</div>${X.map(p=>`<div class="qsl"><span style="flex:1">${esc(p.n)}</span>${tg(p)}${D?"":`<button class="s" data-gpi="${p.i}" aria-label="Retirer" style="flex:0 0 auto;padding:6px 10px">✕</button>`}</div>`).join("")}</div>`;
  return h||`<p class="mut" style="margin:8px 0">Aucun actionnaire pour cette saison.</p>`}

@@ -694,13 +694,15 @@ async function cadGet(bb){const p=new URLSearchParams({where:"1=1",geometry:[bb.
  const r=await fetch(CAD_URL+"?"+p);if(!r.ok)throw new Error("http "+r.status);const j=await r.json();if(j.error)throw new Error("arcgis");
  (j.features||[]).forEach(f=>{const pr=f.properties||{},k=pr.CAPAKEY||pr.capakey;if(!k||CAD[k])return;const g=cadG(f.geometry);if(g.length)CAD[k]={c:pr.NOM_COMMUNE||"",g,a:Math.round(cadA(g))}});return(j.features||[]).length}
 /* contour d'une battue enregistrée : une seule bordure extérieure, sans les limites entre parcelles */
-function batOutline(W,b){const Lr=W.Layer.extend({onAdd(m){this._m=m;this._c=W.DomUtil.create("canvas","",m.getPane("overlayPane"));this._c.style.pointerEvents="none";m.on("moveend zoomend resize",this._r,this);this._r()},
+/* o.fill : opacité du remplissage, appliquée une seule fois à l'ensemble (les formes qui se chevauchent ne foncent pas) ; o.line=false : remplissage seul */
+function batOutline(W,b,o){o=Object.assign({fill:.38,line:true},o);const Lr=W.Layer.extend({onAdd(m){this._m=m;this._c=W.DomUtil.create("canvas","",m.getPane("overlayPane"));this._c.style.pointerEvents="none";m.on("moveend zoomend resize",this._r,this);this._r()},
  onRemove(m){m.off("moveend zoomend resize",this._r,this);this._c.remove()},
  _r(){const m=this._m,s=m.getSize(),c=this._c,d=window.devicePixelRatio||1;c.width=s.x*d;c.height=s.y*d;c.style.width=s.x+"px";c.style.height=s.y+"px";W.DomUtil.setPosition(c,m.containerPointToLayerPoint([0,0]));
   const x=c.getContext("2d"),P=q=>m.latLngToContainerPoint(q),ring=r=>r.forEach((q,i)=>{const p=P(q);i?x.lineTo(p.x,p.y):x.moveTo(p.x,p.y)}),each=f=>batShapes(b).forEach(G=>G.forEach(pl=>{x.beginPath();pl.forEach(r=>{ring(r);x.closePath()});f()}));
-  x.setTransform(d,0,0,d,0,0);x.lineJoin="round";x.lineCap="round";x.strokeStyle="#a4452c";x.lineWidth=6;each(()=>x.stroke());
-  (b.ln||[]).forEach(l=>{x.beginPath();ring(l.p);x.stroke()});
-  x.globalCompositeOperation="destination-out";each(()=>x.fill("evenodd"));x.globalCompositeOperation="source-over";x.fillStyle="rgba(232,160,50,.38)";each(()=>x.fill("evenodd"))}});return new Lr()}
+  x.setTransform(d,0,0,d,0,0);x.lineJoin="round";x.lineCap="round";x.strokeStyle="#a4452c";x.lineWidth=6;if(o.line){each(()=>x.stroke());(b.ln||[]).forEach(l=>{x.beginPath();ring(l.p);x.stroke()});x.globalCompositeOperation="destination-out";each(()=>x.fill("evenodd"));x.globalCompositeOperation="source-over"}
+  const f=document.createElement("canvas");f.width=c.width;f.height=c.height;const y=f.getContext("2d"),Q=q=>m.latLngToContainerPoint(q);y.setTransform(d,0,0,d,0,0);y.fillStyle="#e8a032";
+  batShapes(b).forEach(G=>G.forEach(pl=>{y.beginPath();pl.forEach(r=>{r.forEach((q,i)=>{const p=Q(q);i?y.lineTo(p.x,p.y):y.moveTo(p.x,p.y)});y.closePath()});y.fill("evenodd")}));
+  x.setTransform(1,0,0,1,0,0);x.globalAlpha=o.fill;x.drawImage(f,0,0);x.globalAlpha=1}});return new Lr()}
 function rBat(){const L=batAll();
  $("#app").innerHTML=`${BKB}<h1 style="margin-top:4px;padding-left:48px">Mes battues</h1>${gx().n?`<p class="mut sans" style="margin-top:-6px">${esc(gx().n)}</p>`:""}
  ${L.map(b=>`<button class="card sans bli" data-bat="${b.id}"><b>${esc(b.n||"Battue sans nom")}</b><small>${batSum(batFix(b))}</small><span class="chev">›</span></button>`).join("")}
@@ -734,12 +736,12 @@ function rBatE(){const b=gB()[batId];if(!b){go("bat");return}batFix(b);batCur=nu
  if(!ed){batOutline(W,b).addTo(m);b.po.forEach(po=>W.marker([po.lat,po.lng],{icon:pIco(po.n),interactive:false}).addTo(m));
   if(all.length)m.fitBounds(all,{maxZoom:17,padding:[20,20]});else m.setView([50.3,5.2],9);setTimeout(()=>m.invalidateSize(),200);return}
  const gAll=W.layerGroup().addTo(m),gSel=W.layerGroup().addTo(m),gLn=W.layerGroup().addTo(m),gCur=W.layerGroup().addTo(m),gPo=W.layerGroup().addTo(m);
- const ST={color:"#1f3326",weight:1,opacity:.55,fillColor:"#ffffff",fillOpacity:.06},SS={color:"#a4452c",weight:2,opacity:1,fillColor:"#e8a032",fillOpacity:.45},SZ={color:"#a4452c",weight:2,dashArray:"5 5",fillColor:"#e8a032",fillOpacity:.08},SH={color:"#1f6fd1",weight:5,opacity:1,fillColor:"#1f6fd1",fillOpacity:.25};
+ const gFill=batOutline(W,b,{line:false,fill:.45}).addTo(m),ST={color:"#1f3326",weight:1,opacity:.55,fillColor:"#ffffff",fillOpacity:.06},SS={color:"#a4452c",weight:2,opacity:1,fillColor:"#e8a032",fillOpacity:0},SZ={color:"#a4452c",weight:2,dashArray:"5 5",fillColor:"#e8a032",fillOpacity:.08},SH={color:"#1f6fd1",weight:5,opacity:1,fillColor:"#1f6fd1",fillOpacity:.25};
  const tog=k=>{if(batT!="p")return false;if(b.pc[k])delete b.pc[k];else{const p=CAD[k];if(!p)return true;b.pc[k]={c:p.c,g:p.g,a:p.a}}save();drawP();sum();return true};
  const poly=(k,g,st)=>{const y=W.polygon(g,st);y.on("click",e=>{if(tog(k))W.DomEvent.stop(e)});return y};
  function drawP(){gAll.clearLayers();gSel.clearLayers();if(m.getZoom()>=CAD_Z){const bb=m.getBounds().pad(.2);Object.entries(CAD).forEach(([k,p])=>{if(b.pc[k])return;if(bb.intersects(W.latLngBounds(p.g.flat(2))))gAll.addLayer(poly(k,p.g,ST))})}
   Object.entries(b.pc).forEach(([k,p])=>gSel.addLayer(poly(k,p.g,SS)));
-  b.zn.forEach(z=>{const y=W.polygon(z.g,batSel&&batSel.id==z.id?SH:z.on?SS:SZ);y.on("click",e=>{if(batT=="p"){W.DomEvent.stop(e);z.on=!z.on;save();drawP();sum()}else if(batT=="l"&&!batCur){W.DomEvent.stop(e);batSel={t:"z",id:z.id};drawP();drawL();bar()}});gSel.addLayer(y)})}
+  if(gFill._m)gFill._r();b.zn.forEach(z=>{const y=W.polygon(z.g,batSel&&batSel.id==z.id?SH:z.on?SS:SZ);y.on("click",e=>{if(batT=="p"){W.DomEvent.stop(e);z.on=!z.on;save();drawP();sum()}else if(batT=="l"&&!batCur){W.DomEvent.stop(e);batSel={t:"z",id:z.id};drawP();drawL();bar()}});gSel.addLayer(y)})}
  function drawL(){gLn.clearLayers();gCur.clearLayers();b.ln.forEach(l=>{const y=W.polyline(l.p,batSel&&batSel.id==l.id?{color:"#1f6fd1",weight:7}:{color:"#a4452c",weight:4});y.on("click",e=>{if(batT!="l"||batCur)return;W.DomEvent.stop(e);batSel={t:"l",id:l.id};drawP();drawL();bar()});gLn.addLayer(y)});
   if(batCur){gCur.addLayer(W.polyline(batCur,{color:"#a4452c",weight:4,dashArray:"6 6"}));batCur.forEach((p,i)=>gCur.addLayer(W.marker(p,{icon:W.divIcon({className:"",html:`<div class="bvx${i?"":" b0"}"></div>`,iconSize:[18,18]}),interactive:false})))}}
  function drawO(){gPo.clearLayers();b.po.forEach(po=>{const mk=W.marker([po.lat,po.lng],{icon:pIco(po.n),draggable:batT=="o"});

@@ -409,6 +409,13 @@ const natOpen=url=>{const L=NP("AppLauncher");if(L)L.openUrl({url}).catch(()=>{t
 const openExt=url=>{if(IS_APP)return natOpen(url);const w=window.open(url,"_blank","noopener");if(!w)location.href=url};
 /* photo prise avec l'appareil : copie dans l'album « ChasseLog » de la galerie */
 async function natAlbum(f){const M=NP("ChasseLogMedia");if(!M)return false;try{const d=new Date(),p=n=>String(n).padStart(2,"0");await M.savePhoto({data:await b64of(f),mime:f.type||"image/jpeg",name:`ChasseLog_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}.jpg`});return true}catch(e){return false}}
+/* widget calendrier (app Android) : copie des journées vers le widget, reprise des journées ajoutées depuis le widget, ouverture d'un jour touché */
+function widgetSync(){const W=NP("ChasseLogWidget");if(!W)return;const ev=Object.values(S.ev||{}).map(e=>({id:e.id,d:e.date,t:String(e.title||"").replace(/^Chasse\s+(?:du|de la|des|de|aux|au|à la)\s+|^Chasse\s+d'\s*/i,"")||e.title||"",f:e.fiche?1:0,nh:e.nh?1:0,pn:e.place&&e.place.name||"",la:e.place&&e.place.lat!=null?+e.place.lat:null,lo:e.place&&e.place.lat!=null?+e.place.lng:null}));
+ W.sync({data:JSON.stringify({reg:S.reg||"be",ev})}).catch(()=>{})}
+function widgetPull(){const W=NP("ChasseLogWidget");if(!W)return;W.pending().then(r=>{let a=[];try{a=JSON.parse(r&&r.data||"[]")}catch(x){}if(!a.length)return;
+ a.forEach(p=>{if(!p||!p.id||!/^\d{4}-\d{2}-\d{2}$/.test(p.d||"")||S.ev[p.id])return;const g=p.r=="guest";S.ev[p.id]={id:p.id,date:p.d,title:String(p.t||"").trim()||p.m||"Chasse",mode:p.m||"",role:["part","guest","trq"].includes(p.r)?p.r:"part",host:g?String(p.host||"").trim():"",guests:[],place:{name:String(p.pl||"").trim(),lat:null,lng:null},desc:String(p.n||"").trim()};if(/^\d{2}:\d{2}$/.test(p.h||""))S.ev[p.id].time=p.h});
+ if(save())W.clear().then(()=>{try{widgetSync()}catch(x){}}).catch(()=>{});if(view=="cal")render()}).catch(()=>{})}
+function widgetDay(u){const m=String(u||"").match(/^chasselog:\/\/day\?d=(\d{4}-\d{2}-\d{2})/);if(!m)return false;let n=0;const w=()=>{if(n++<40&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||$("#welc")))return setTimeout(w,800);if(view!="cal")go("cal");cur=new Date(m[1]+"T12:00");sel=m[1];render();if(on(m[1]).length)tapDay(m[1])};setTimeout(w,300);return true}
 /* notifications locales (rappels) : uniquement dans l'app Android */
 const natLN=()=>NP("LocalNotifications");
 async function natNotifOk(ask){const L=natLN();if(!L)return false;try{let p=await L.checkPermissions();if(p.display=="prompt"||p.display=="prompt-with-rationale"){if(!ask)return false;p=await L.requestPermissions()}return p.display=="granted"}catch(e){return false}}
@@ -461,7 +468,7 @@ const hasArc=()=>(S.guns||[]).some(g=>g.type=="arc");const UL={b:"Balles",c:"Car
 const $=s=>document.querySelector(s);
 let S={ev:{},custom:[],sync:"manual",hm:[],hs:[],theme:"light"},view="cal",cv="month",cur=new Date(),fe=null,fd=null,seasonF="all",sel=null;
 {let r=null;try{r=localStorage.getItem("carnet2");if(r)S=Object.assign(S,JSON.parse(r))}catch(e){/* mémoire illisible : copie de secours avant tout nouvel enregistrement */try{if(r&&!localStorage.getItem("carnet2-secours"))localStorage.setItem("carnet2-secours",r)}catch(x){}}}
-let frT=0;function save(){if(IS_APP){clearTimeout(frT);frT=setTimeout(()=>{try{ficheRemSync()}catch(x){}},1500)}try{localStorage.setItem("carnet2",JSON.stringify(S));return true}catch(e){alert("Stockage plein : retire des photos ou exporte tes données.");return false}}
+let frT=0;function save(){if(IS_APP){clearTimeout(frT);frT=setTimeout(()=>{try{ficheRemSync()}catch(x){}try{widgetSync()}catch(x){}},1500)}try{localStorage.setItem("carnet2",JSON.stringify(S));return true}catch(e){alert("Stockage plein : retire des photos ou exporte tes données.");return false}}
 let _seasonInit=0;
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1181,7 +1188,7 @@ function ivReply(p){if(!p||!p.id)return;const e=evs().find(x=>x.ivt&&x.ivt.id==p
  v.st=p.st=="ok"?"ok":"no";v.rt=Date.now();if(v.st=="ok"&&!(e.guests||[]).includes(v.to)){e.guests=e.guests||[];e.guests.push(v.to)}save();sel=e.date;cur=new Date(e.date+"T12:00");go("cal");toast(v.st=="ok"?""+v.to+" a accepté":v.to+" ne pourra pas venir");setTimeout(()=>openEv(e.id),400)}
 let ivLast="";function ivLink(t){const m=String(t||"").match(/#([ir])=([A-Za-z0-9_-]+)/);if(!m)return false;if(ivLast==m[2])return true;ivLast=m[2];setTimeout(()=>{ivLast=""},8000);const p=b64d(m[2]);if(!p)return false;(m[1]=="i"?ivShow:ivReply)(p);return true}
 (()=>{const h=location.hash;if(!/^#[ir]=/.test(h))return;history.replaceState(history.state,"",location.pathname+location.search);let n=0;const w=()=>{if(n++<90&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||view!="cal"))return setTimeout(w,1500);ivLink(h)};setTimeout(w,1200)})();
-if(IS_APP){const A=NP("App");if(A){try{A.addListener("appUrlOpen",d=>{if(d&&d.url)ivLink(d.url)});A.getLaunchUrl&&A.getLaunchUrl().then(d=>{if(d&&d.url&&/#[ir]=/.test(d.url)){let n=0;const w=()=>{if(n++<90&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||view!="cal"))return setTimeout(w,1500);ivLink(d.url)};setTimeout(w,1200)}}).catch(()=>{})}catch(x){}}}
+if(IS_APP){const A=NP("App");if(A){try{A.addListener("appUrlOpen",d=>{if(d&&d.url&&!widgetDay(d.url))ivLink(d.url)});A.getLaunchUrl&&A.getLaunchUrl().then(d=>{if(d&&d.url&&widgetDay(d.url))return;if(d&&d.url&&/#[ir]=/.test(d.url)){let n=0;const w=()=>{if(n++<90&&($(".mo")||$("#onb")||$("#setup")||$("#tour")||view!="cal"))return setTimeout(w,1500);ivLink(d.url)};setTimeout(w,1200)}}).catch(()=>{})}catch(x){}}}
 window.addEventListener("hashchange",()=>{const h=location.hash;if(/^#[ir]=/.test(h)){history.replaceState(history.state,"",location.pathname+location.search);ivLink(h)}});
 
 /* ---------- sauvegarde automatique ---------- */
@@ -2371,7 +2378,7 @@ if(!S.tabSync1){let ch=0;evs().forEach(e=>{if(e.fiche&&syncTab(e.fiche))ch=1});S
 if(!S.tabFx1){let ch=0;evs().forEach(e=>{if(e.fiche&&fixTab(e.fiche))ch=1});S.tabFx1=1;save();if(ch)render()}
 migratePhotos().then(c=>{if(c)render()}).catch(()=>{});
 setTimeout(woundAsk,3500);setInterval(woundAsk,60000);document.addEventListener("visibilitychange",()=>{if(document.visibilityState=="visible")setTimeout(woundAsk,1800)});
-if(IS_APP){woundSync(false);ficheRemSync();const L=natLN();if(L)try{L.addListener("localNotificationActionPerformed",a=>{const x=a&&a.notification&&a.notification.extra;if(x&&x.fr){if(S.ev[x.ev]){S.ev[x.ev].remDone=1;save()}openFicheId(x.ev)}else if(x&&x.ev)openWound(x.ev,x.tir)})}catch(e){}}
+if(IS_APP){woundSync(false);ficheRemSync();widgetPull();widgetSync();document.addEventListener("visibilitychange",()=>{if(!document.hidden)widgetPull()});const L=natLN();if(L)try{L.addListener("localNotificationActionPerformed",a=>{const x=a&&a.notification&&a.notification.extra;if(x&&x.fr){if(S.ev[x.ev]){S.ev[x.ev].remDone=1;save()}openFicheId(x.ev)}else if(x&&x.ev)openWound(x.ev,x.tir)})}catch(e){}}
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 </script>
 <script>

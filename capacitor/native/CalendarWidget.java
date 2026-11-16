@@ -7,7 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.net.Uri;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.RemoteViews;
 import java.util.ArrayList;
@@ -85,6 +89,22 @@ public class CalendarWidget extends AppWidgetProvider {
         return PendingIntent.getActivity(c, 0, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
     }
 
+    // Texte d'une journée : heure en gras, titre, puis le premier invité (comme dans le calendrier de l'app)
+    private static CharSequence label(String[] e) {
+        SpannableStringBuilder b = new SpannableStringBuilder();
+        if (e.length > 2 && !e[2].isEmpty()) {
+            b.append(e[2]);
+            b.setSpan(new StyleSpan(Typeface.BOLD), 0, b.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            b.append("\n");
+        }
+        String t = e[0].replaceFirst("(?i)^Chasse\\s+(?:du|de la|des|de|aux|au|à la)\\s+|^Chasse\\s+d'\\s*", "");
+        int at = b.length();
+        b.append(t.isEmpty() ? e[0] : t);
+        b.setSpan(new StyleSpan(Typeface.BOLD), at, b.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (e.length > 3 && !e[3].isEmpty()) b.append("\n").append(e[3]);
+        return b;
+    }
+
     static RemoteViews build(Context c, int id) {
         SharedPreferences p = WidgetStore.prefs(c);
         int mode = p.getInt("bg_" + id, 0);
@@ -116,7 +136,7 @@ public class CalendarWidget extends AppWidgetProvider {
                 String st = nh ? "nh" : e.optInt("f", 0) == 1 ? "ok" : d.compareTo(td) < 0 ? "todo" : "fut";
                 List<String[]> l = days.get(d);
                 if (l == null) { l = new ArrayList<>(); days.put(d, l); }
-                l.add(new String[] {e.optString("t", ""), st});
+                l.add(new String[] {e.optString("t", ""), st, e.optString("h", ""), e.optString("g", "")});
                 if (!nh && !e.isNull("la") && d.compareTo(td) >= 0 && (best == null || d.compareTo(best) < 0)) {
                     best = d; lat = e.optDouble("la"); lng = e.optDouble("lo"); placeName = e.optString("pn", "");
                 }
@@ -129,9 +149,10 @@ public class CalendarWidget extends AppWidgetProvider {
                 String t = e.optString("t", "");
                 if (t.isEmpty()) t = e.optString("m", "");
                 if (t.isEmpty()) t = "Chasse";
+                String h = e.optString("h", "").replace(":", "h");
                 List<String[]> l = days.get(d);
                 if (l == null) { l = new ArrayList<>(); days.put(d, l); }
-                l.add(new String[] {t, d.compareTo(td) < 0 ? "todo" : "fut"});
+                l.add(new String[] {t, d.compareTo(td) < 0 ? "todo" : "fut", h, ""});
             }
         } catch (Exception ignored) {}
 
@@ -177,22 +198,20 @@ public class CalendarWidget extends AppWidgetProvider {
                 cell.setInt(R.id.c_day, "setBackgroundResource", isToday ? (dark ? R.drawable.w_today_d : R.drawable.w_today_l) : 0);
                 List<String[]> l = out ? null : days.get(ds);
                 int n = l == null ? 0 : l.size();
+                // comme dans l'app : deux journées au plus, chacune occupe sa part de la case (heure, titre, invités), puis « +n »
                 int[] slots = {R.id.c_e1, R.id.c_e2};
                 for (int s = 0; s < 2; s++) {
                     if (s >= n) { cell.setViewVisibility(slots[s], View.GONE); continue; }
-                    cell.setViewVisibility(slots[s], View.VISIBLE);
-                    if (s == 1 && n > 2) {
-                        cell.setTextViewText(slots[s], "+" + (n - 1));
-                        cell.setTextColor(slots[s], mut);
-                        cell.setInt(slots[s], "setBackgroundResource", 0);
-                        continue;
-                    }
                     String[] e = l.get(s);
                     boolean ok = "ok".equals(e[1]), fut = "fut".equals(e[1]);
-                    cell.setTextViewText(slots[s], e[0]);
+                    cell.setViewVisibility(slots[s], View.VISIBLE);
+                    cell.setTextViewText(slots[s], label(e));
+                    cell.setInt(slots[s], "setMaxLines", n > 1 ? 3 : 6);
                     cell.setTextColor(slots[s], ok ? onAcc : fut ? ink : mut);
                     cell.setInt(slots[s], "setBackgroundResource", ok ? (dark ? R.drawable.w_ok_d : R.drawable.w_ok_l) : fut ? (dark ? R.drawable.w_fut_d : R.drawable.w_fut_l) : (dark ? R.drawable.w_todo_d : R.drawable.w_todo_l));
                 }
+                cell.setViewVisibility(R.id.c_more, n > 2 ? View.VISIBLE : View.GONE);
+                if (n > 2) { cell.setTextViewText(R.id.c_more, "+" + (n - 2)); cell.setTextColor(R.id.c_more, mut); }
                 if (!out) cell.setOnClickPendingIntent(R.id.c_root, n > 0 ? open(c, ds) : add(c, ds));
                 row.addView(R.id.r_cells, cell);
                 d.add(Calendar.DAY_OF_MONTH, 1);

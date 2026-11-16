@@ -20,14 +20,17 @@
     </style>
     <style name="ChasseLogWidgetDay">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">1dp</item>
-        <item name="android:paddingLeft">2dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingTop">2dp</item>
         <item name="android:paddingRight">2dp</item>
-        <item name="android:maxLines">1</item>
+        <item name="android:gravity">top|start</item>
+        <item name="android:maxLines">6</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:textSize">9sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingMultiplier">0.95</item>
+        <item name="android:textSize">10sp</item>
     </style>
     <style name="ChasseLogDialog" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="windowNoTitle">true</item>

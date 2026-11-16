@@ -8,7 +8,8 @@
     android:orientation="vertical"
     android:paddingLeft="1dp"
     android:paddingTop="2dp"
-    android:paddingRight="1dp">
+    android:paddingRight="1dp"
+    android:paddingBottom="2dp">
     <TextView
         android:id="@+id/c_day"
         android:layout_width="22dp"
@@ -17,4 +18,11 @@
         android:textSize="12sp" />
     <TextView android:id="@+id/c_e1" style="@style/ChasseLogWidgetDay" />
     <TextView android:id="@+id/c_e2" style="@style/ChasseLogWidgetDay" />
+    <TextView
+        android:id="@+id/c_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="9sp"
+        android:visibility="gone" />
 </LinearLayout>

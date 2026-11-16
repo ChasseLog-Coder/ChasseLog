@@ -8,9 +8,10 @@ Cible : chasseurs belges (Wallonie surtout) et français. Propriétaire : Maxime
 2. **Simple d'abord.** La solution la plus courte qui marche. Pas de framework, pas de dépendance, pas de build : tout reste en HTML/CSS/JS natif.
 3. **Modifications chirurgicales.** Ne toucher qu'à ce qui est demandé. Ne pas reformater, renommer ni « nettoyer » le reste de `index.html`.
 4. **Vérifier.** Contrôler le résultat (syntaxe JS, rendu, capture d'écran si possible) avant d'annoncer que c'est fait. Dire clairement ce qui n'a pas pu être testé.
+5. Générer des visuels et les présenter avant de coder.
 
 ## Architecture
-- **PWA 100 % locale**, sans serveur ni compte. Tout est dans `index.html` (~2 250 lignes, CSS + JS inline, code compact et minifié à la main : garder ce style).
+- **PWA 100 % locale**, sans serveur ni compte (de base, un serveur sera ajouté par après). Tout est dans `index.html` (~2 250 lignes, CSS + JS inline, code compact et minifié à la main : garder ce style).
 - Données : `localStorage` clé `carnet2` (objet global `S`, sauvé par `save()`), copie `carnet2-secours` si lecture impossible. Photos et rappels : IndexedDB `carnet-photos`.
 - Toute nouvelle donnée doit passer par `S` et survivre à **Menu › Exporter / Importer** (JSON complet, photos incluses). Ne jamais casser la lecture d'anciennes données : prévoir des valeurs par défaut, garder les anciens champs affichés (ex. anciennes « photos de la journée »).
 - Carte : Leaflet local (`lib/leaflet/`) + tuiles OpenStreetMap, jamais mises en cache, attribution visible.

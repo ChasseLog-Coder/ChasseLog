@@ -47,8 +47,30 @@ edit(manifest, x => {
 const pkgPath = cfg.appId.split(".");
 const act = join(main, "java", ...pkgPath, "MainActivity.java");
 must(existsSync(act), "MainActivity.java introuvable (" + act + ")");
-for (const f of ["MainActivity.java", "ChasseLogMediaPlugin.java"])
+for (const f of readdirSync(join(cap, "native")).filter(n => n.endsWith(".java")))
   writeFileSync(join(dirname(act), f), readFileSync(join(cap, "native", f), "utf8").replace(/__PKG__/g, cfg.appId));
+
+// 2 bis. Widget calendrier : récepteur du widget, ajout rapide et réglages (fenêtres par-dessus l'écran d'accueil)
+edit(manifest, x => {
+  if (x.includes(".CalendarWidget")) return x;
+  const w = `
+        <receiver android:name=".CalendarWidget" android:exported="false" android:label="ChasseLog">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/chasselog_widget" />
+        </receiver>
+        <activity android:name=".QuickAddActivity" android:exported="false" android:theme="@style/ChasseLogDialog" android:taskAffinity="" android:excludeFromRecents="true" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".WidgetConfigActivity" android:exported="true" android:theme="@style/ChasseLogDialog" android:taskAffinity="" android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+`;
+  const i = x.lastIndexOf("</application>");
+  must(i > 0, "balise </application> introuvable dans AndroidManifest.xml");
+  return x.slice(0, i) + w.slice(1) + "    " + x.slice(i);
+});
 
 // 3. Icônes (préparées dans capacitor/res)
 cpSync(join(cap, "res"), res, { recursive: true });

@@ -8,6 +8,7 @@ liens externes, barres du système). Sur le site, rien ne change.
 - `scripts/www.mjs` : copie l'app web dans `www/` (sans service worker ni écran d'installation).
 - `scripts/native.mjs` : ajuste le projet Android généré (autorisations, bord à bord, icônes, démarrage, version).
 - `res/` : icônes ; `assets/logo-1024.png` : logo source.
+- `native/` : code natif (Java). Widget calendrier : `CalendarWidget` (affichage), `QuickAddActivity` (ajout rapide), `WidgetConfigActivity` (réglages par appui long), `ChasseLogWidgetPlugin` (lien avec l'app : `widgetSync` / `widgetPull` dans `index.html`), `WidgetStore` (données gardées sur le téléphone). Mises en page et couleurs dans `res/layout`, `res/drawable`, `res/values*`.
 - Aucune clé de signature dans ce dépôt public : le fichier .aab est construit non signé, puis signé hors de GitHub avec la clé d'importation Google Play.
 
 Le dossier `android/` n'est pas versionné : le workflow `.github/workflows/android.yml` le génère à chaque build

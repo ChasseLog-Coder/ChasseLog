@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cl_dialog"
+    android:orientation="vertical"
+    android:padding="18dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Réglages du widget"
+        android:textColor="@color/cl_ink"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+    <TextView style="@style/ChasseLogLabel" android:text="Arrière-plan" />
+    <LinearLayout
+        android:id="@+id/k_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal" />
+    <TextView android:id="@+id/k_alpha_label" style="@style/ChasseLogLabel" android:text="Transparence" />
+    <SeekBar
+        android:id="@+id/k_alpha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:max="100" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/k_cancel"
+            style="@style/ChasseLogChoice"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Annuler"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/k_save"
+            style="@style/ChasseLogChoice"
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/cl_chip_on"
+            android:text="Enregistrer"
+            android:textColor="@color/cl_on_acc"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

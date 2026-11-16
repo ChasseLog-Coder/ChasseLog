@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cl_card">#FBFAF5</color>
+    <color name="cl_bg">#F1EFE6</color>
+    <color name="cl_ink">#26301F</color>
+    <color name="cl_mut">#6D7461</color>
+    <color name="cl_acc">#3F5A2B</color>
+    <color name="cl_on_acc">#FBFAF5</color>
+    <color name="cl_line">#D9D6C5</color>
+    <string name="w_desc">Calendrier du mois : tes journées de chasse, lever et coucher du soleil.</string>
+    <string name="w_prev">Mois précédent</string>
+    <string name="w_next">Mois suivant</string>
+    <string name="w_add">Ajouter une journée</string>
+    <style name="ChasseLogWidgetWeekday">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="ChasseLogWidgetDay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ChasseLogDialog" parent="Theme.AppCompat.DayNight.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="colorAccent">@color/cl_acc</item>
+    </style>
+    <style name="ChasseLogField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/cl_field</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/cl_ink</item>
+        <item name="android:textColorHint">@color/cl_mut</item>
+    </style>
+    <style name="ChasseLogChoice">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/cl_chip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/cl_ink</item>
+    </style>
+    <style name="ChasseLogLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/cl_mut</item>
+    </style>
+</resources>

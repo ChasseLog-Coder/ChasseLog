@@ -14,6 +14,7 @@ public class MainActivity extends BridgeActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         registerPlugin(ChasseLogMediaPlugin.class);
+        registerPlugin(ChasseLogWidgetPlugin.class);
         super.onCreate(savedInstanceState);
         // après super.onCreate : le thème de l'app est alors en place (sinon Android affiche une barre de titre)
         EdgeToEdge.enable(this);

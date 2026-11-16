@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/w_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no"
+        android:src="@drawable/w_bg" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingTop="8dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/w_prev"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/w_prev"
+                android:gravity="center"
+                android:text="‹"
+                android:textSize="24sp" />
+            <TextView
+                android:id="@+id/w_title"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/w_next"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/w_next"
+                android:gravity="center"
+                android:text="›"
+                android:textSize="24sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+            <TextView
+                android:id="@+id/w_add"
+                android:layout_width="44dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/w_add"
+                android:gravity="center"
+                android:text="+"
+                android:textSize="24sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/w_sun_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingBottom="4dp">
+            <TextView
+                android:id="@+id/w_sun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/w_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:maxWidth="130dp"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp">
+            <TextView android:id="@+id/wd0" style="@style/ChasseLogWidgetWeekday" android:text="lun" />
+            <TextView android:id="@+id/wd1" style="@style/ChasseLogWidgetWeekday" android:text="mar" />
+            <TextView android:id="@+id/wd2" style="@style/ChasseLogWidgetWeekday" android:text="mer" />
+            <TextView android:id="@+id/wd3" style="@style/ChasseLogWidgetWeekday" android:text="jeu" />
+            <TextView android:id="@+id/wd4" style="@style/ChasseLogWidgetWeekday" android:text="ven" />
+            <TextView android:id="@+id/wd5" style="@style/ChasseLogWidgetWeekday" android:text="sam" />
+            <TextView android:id="@+id/wd6" style="@style/ChasseLogWidgetWeekday" android:text="dim" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/w_rows"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+    </LinearLayout>
+</FrameLayout>

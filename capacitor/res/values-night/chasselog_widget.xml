@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cl_card">#20261B</color>
+    <color name="cl_bg">#171B14</color>
+    <color name="cl_ink">#E8EAD9</color>
+    <color name="cl_mut">#9AA28A</color>
+    <color name="cl_acc">#8FB56A</color>
+    <color name="cl_on_acc">#20261B</color>
+    <color name="cl_line">#333B2B</color>
+</resources>

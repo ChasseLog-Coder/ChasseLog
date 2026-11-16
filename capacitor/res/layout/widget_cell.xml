@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/c_root"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="1dp"
+    android:paddingTop="2dp"
+    android:paddingRight="1dp">
+    <TextView
+        android:id="@+id/c_day"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:gravity="center"
+        android:textSize="12sp" />
+    <TextView android:id="@+id/c_e1" style="@style/ChasseLogWidgetDay" />
+    <TextView android:id="@+id/c_e2" style="@style/ChasseLogWidgetDay" />
+</LinearLayout>

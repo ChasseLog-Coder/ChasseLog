@@ -23,7 +23,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-// Widget « calendrier du mois » : journées de chasse du mois, lever et coucher du soleil, ajout rapide.
+// Widget « calendrier du mois » : journées de chasse du mois (traque en orange), ajout rapide.
 public class CalendarWidget extends AppWidgetProvider {
     static final String NAV = "__PKG__.WIDGET_NAV";
     private static final String[] MONTHS = {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"};
@@ -59,10 +59,6 @@ public class CalendarWidget extends AppWidgetProvider {
 
     private static String iso(Calendar d) {
         return String.format(Locale.US, "%04d-%02d-%02d", d.get(Calendar.YEAR), d.get(Calendar.MONTH) + 1, d.get(Calendar.DAY_OF_MONTH));
-    }
-
-    private static String hm(int minutes) {
-        return String.format(Locale.US, "%02dh%02d", minutes / 60, minutes % 60);
     }
 
     private static PendingIntent nav(Context c, int id, int delta) {
@@ -123,9 +119,6 @@ public class CalendarWidget extends AppWidgetProvider {
 
         // journées par date : celles de l'app, puis celles ajoutées depuis le widget et pas encore reprises par l'app
         Map<String, List<String[]>> days = new HashMap<>();
-        String placeName = null;
-        double lat = 0, lng = 0;
-        String best = null;
         try {
             JSONArray ev = WidgetStore.data(c).optJSONArray("ev");
             for (int k = 0; ev != null && k < ev.length(); k++) {
@@ -133,13 +126,10 @@ public class CalendarWidget extends AppWidgetProvider {
                 String d = e.optString("d", "");
                 if (d.length() != 10) continue;
                 boolean nh = e.optInt("nh", 0) == 1;
-                String st = nh ? "nh" : e.optInt("f", 0) == 1 ? "ok" : d.compareTo(td) < 0 ? "todo" : "fut";
+                String st = nh ? "nh" : e.optInt("tq", 0) == 1 ? "tq" : e.optInt("f", 0) == 1 ? "ok" : d.compareTo(td) < 0 ? "todo" : "fut";
                 List<String[]> l = days.get(d);
                 if (l == null) { l = new ArrayList<>(); days.put(d, l); }
                 l.add(new String[] {e.optString("t", ""), st, e.optString("h", ""), e.optString("g", "")});
-                if (!nh && !e.isNull("la") && d.compareTo(td) >= 0 && (best == null || d.compareTo(best) < 0)) {
-                    best = d; lat = e.optDouble("la"); lng = e.optDouble("lo"); placeName = e.optString("pn", "");
-                }
             }
             JSONArray pe = WidgetStore.pending(c);
             for (int k = 0; k < pe.length(); k++) {
@@ -150,9 +140,11 @@ public class CalendarWidget extends AppWidgetProvider {
                 if (t.isEmpty()) t = e.optString("m", "");
                 if (t.isEmpty()) t = "Chasse";
                 String h = e.optString("h", "").replace(":", "h");
+                boolean tq = "trq".equals(e.optString("r", ""));
+                if (tq && !t.toLowerCase(Locale.FRENCH).contains("traque")) t = "Traque " + t.replaceFirst("(?i)^Chasse\\s+", "");
                 List<String[]> l = days.get(d);
                 if (l == null) { l = new ArrayList<>(); days.put(d, l); }
-                l.add(new String[] {t, d.compareTo(td) < 0 ? "todo" : "fut", h, ""});
+                l.add(new String[] {t, tq ? "tq" : d.compareTo(td) < 0 ? "todo" : "fut", h, ""});
             }
         } catch (Exception ignored) {}
 
@@ -169,17 +161,6 @@ public class CalendarWidget extends AppWidgetProvider {
         v.setOnClickPendingIntent(R.id.w_title, nav(c, id, 0));
         v.setOnClickPendingIntent(R.id.w_add, add(c, td));
         for (int k = 0; k < 7; k++) v.setTextColor(WEEKDAYS[k], k == 6 ? red : mut);
-
-        int[] sun = best == null ? null : WidgetStore.sun(lat, lng, today);
-        if (sun == null) {
-            v.setViewVisibility(R.id.w_sun_row, View.GONE);
-        } else {
-            v.setViewVisibility(R.id.w_sun_row, View.VISIBLE);
-            v.setTextViewText(R.id.w_sun, "Lever " + hm(sun[0]) + " · Coucher " + hm(sun[1]));
-            v.setTextViewText(R.id.w_place, placeName == null ? "" : placeName);
-            v.setTextColor(R.id.w_sun, mut);
-            v.setTextColor(R.id.w_place, mut);
-        }
 
         Calendar d = (Calendar) first.clone();
         d.add(Calendar.DAY_OF_MONTH, -((first.get(Calendar.DAY_OF_WEEK) + 5) % 7));
@@ -203,12 +184,12 @@ public class CalendarWidget extends AppWidgetProvider {
                 for (int s = 0; s < 2; s++) {
                     if (s >= n) { cell.setViewVisibility(slots[s], View.GONE); continue; }
                     String[] e = l.get(s);
-                    boolean ok = "ok".equals(e[1]), fut = "fut".equals(e[1]);
+                    boolean ok = "ok".equals(e[1]), tq = "tq".equals(e[1]), fut = tq || "fut".equals(e[1]);
                     cell.setViewVisibility(slots[s], View.VISIBLE);
                     cell.setTextViewText(slots[s], label(e));
                     cell.setInt(slots[s], "setMaxLines", n > 1 ? 3 : 6);
                     cell.setTextColor(slots[s], ok ? onAcc : fut ? ink : mut);
-                    cell.setInt(slots[s], "setBackgroundResource", ok ? (dark ? R.drawable.w_ok_d : R.drawable.w_ok_l) : fut ? (dark ? R.drawable.w_fut_d : R.drawable.w_fut_l) : (dark ? R.drawable.w_todo_d : R.drawable.w_todo_l));
+                    cell.setInt(slots[s], "setBackgroundResource", tq ? R.drawable.w_tq : ok ? (dark ? R.drawable.w_ok_d : R.drawable.w_ok_l) : fut ? (dark ? R.drawable.w_fut_d : R.drawable.w_fut_l) : (dark ? R.drawable.w_todo_d : R.drawable.w_todo_l));
                 }
                 cell.setViewVisibility(R.id.c_more, n > 2 ? View.VISIBLE : View.GONE);
                 if (n > 2) { cell.setTextViewText(R.id.c_more, "+" + (n - 2)); cell.setTextColor(R.id.c_more, mut); }

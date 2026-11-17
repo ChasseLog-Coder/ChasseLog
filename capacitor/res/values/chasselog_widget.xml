@@ -7,7 +7,7 @@
     <color name="cl_acc">#3F5A2B</color>
     <color name="cl_on_acc">#FBFAF5</color>
     <color name="cl_line">#D9D6C5</color>
-    <string name="w_desc">Calendrier du mois : tes journées de chasse, lever et coucher du soleil.</string>
+    <string name="w_desc">Calendrier du mois : tes journées de chasse et de traque.</string>
     <string name="w_prev">Mois précédent</string>
     <string name="w_next">Mois suivant</string>
     <string name="w_add">Ajouter une journée</string>

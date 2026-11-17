@@ -469,7 +469,7 @@ const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 const fmt=ds=>new Date(ds+"T12:00").toLocaleDateString("fr-BE",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
 const season=ds=>{const y=+ds.slice(0,4),a=+ds.slice(5,7)>=7?y:y-1;return a+"-"+(a+1)};
 seasonF=season(iso(new Date()));
-const evs=()=>Object.values(S.ev),on=ds=>evs().filter(e=>e.date==ds);
+const evs=()=>Object.values(S.ev),on=ds=>evs().filter(e=>e.date==ds).sort((a,b)=>(a.time||"99")<(b.time||"99")?-1:(a.time||"99")>(b.time||"99")?1:0);/* journées d'un même jour : par heure, sans heure en dernier */
 const coord=l=>l&&l.lat!=null?l.lat.toFixed(5)+", "+l.lng.toFixed(5):"";
 const lieu=l=>l&&(l.name||l.addr||adOf(l)||coord(l))||"non précisé";
 const troPl=(e,t)=>{const p=e.place,n=p&&(p.name||p.addr||adOf(p));if(n)return n;const l=t&&t.loc&&t.loc.lat!=null?t.loc:null;if(l&&adOf(l))return adOf(l);return p&&p.lat!=null?coord(p):""};

@@ -69,7 +69,7 @@ body.dr #dr{transform:none}
 .mini i{font-style:normal}.mini .hv{background:var(--acc);color:var(--bg);border-radius:50%}
 .wk{display:flex;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:6px;cursor:pointer;min-height:54px}
 .wk>div:first-child{flex:0 0 46px;text-align:center;font:.8rem system-ui;color:var(--mut)}.wk>div:first-child b{display:block;font-size:1.2rem;color:var(--ink)}
-.wk u{display:block;text-decoration:none;background:var(--acc2);color:var(--bg);font:.8rem system-ui;border-radius:4px;padding:3px 6px;margin-bottom:3px}
+.wk u{display:block;text-decoration:none;background:none;border:1.5px solid var(--acc);color:var(--ink);font:.8rem system-ui;border-radius:4px;padding:3px 6px;margin-bottom:3px}
 main.full{height:100dvh;max-width:640px;padding:6px 0 0;display:flex;flex-direction:column}
 body.cal{overflow:hidden;overscroll-behavior:none}body.cal #page{height:100dvh;min-height:0;overflow:hidden}
 .hd{justify-content:space-between;padding:0 10px;margin:0;flex:none}
@@ -109,7 +109,8 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 .tg{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}.tg input{width:22px;height:22px}
 .dc{display:flex;flex-direction:column;align-items:stretch}.dc .dn{align-self:center}
 .dc u.ev{flex:1 1 auto;min-height:18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;white-space:normal;text-align:left;font:600 .6rem/1.22 system-ui;padding:3px;border-radius:5px;margin:2px 1px 1px;word-break:break-word;hyphens:auto}
-.dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo{border-color:var(--mut);color:var(--mut)}
+.dc u.ev2{flex:1 1 0;-webkit-line-clamp:2}.dc u.todo,.wk u.todo{border-color:var(--mut);color:var(--mut)}
+.dc u.tq,.wk u.tq{border:1.5px solid #ff6a00;background:none;color:var(--ink)}
 .wx{font:.56rem/1.1 system-ui;color:var(--mut);white-space:nowrap;overflow:hidden}
 #bang{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));width:78px;height:78px;border-radius:50%;border:0;background:radial-gradient(circle at 35% 28%,#5a5f66,#26292d 60%,#0e0f11);z-index:5;padding:0;display:flex;align-items:center;justify-content:center}
 #bang:active{transform:translateX(-50%) scale(.93)}
@@ -201,7 +202,7 @@ button.sc2{font:inherit;color:inherit;cursor:pointer}button.sc2:active,button.tl
 #welc img{width:96px;height:96px;border-radius:24px;margin-bottom:18px}#welc h1{font-size:2rem;margin:0 0 10px}#welc p{font-size:1.02rem;line-height:1.5;opacity:.9;margin:0 0 22px;max-width:340px}
 #welc .go{width:100%;max-width:340px;border:0;border-radius:8px;background:none;border:1.5px solid var(--acc);color:var(--acc);font:800 1.1rem system-ui;padding:16px}#welc .lt{border:0;background:none;color:#cfd8c0;font:500 .95rem system-ui;margin-top:16px;padding:8px;text-decoration:underline}
 
-.dc u.nh,.wk u.nh{background:#5d6d7e;color:#fff}.dc u.ev b{display:block;font-weight:800}
+.dc u.nh,.wk u.nh{background:#5d6d7e;border-color:#5d6d7e;color:#fff}.dc u.ev b{display:block;font-weight:800}
 .ob{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px}
 .oh{display:flex;align-items:center;gap:10px}.oh b{font:700 1rem system-ui}.on2{flex:1;min-width:0}
 .orow{margin-top:8px;font:.88rem system-ui}.orow .ol{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.orow .od{font-weight:700;white-space:nowrap}
@@ -410,7 +411,7 @@ const openExt=url=>{if(IS_APP)return natOpen(url);const w=window.open(url,"_blan
 /* photo prise avec l'appareil : copie dans l'album « ChasseLog » de la galerie */
 async function natAlbum(f){const M=NP("ChasseLogMedia");if(!M)return false;try{const d=new Date(),p=n=>String(n).padStart(2,"0");await M.savePhoto({data:await b64of(f),mime:f.type||"image/jpeg",name:`ChasseLog_${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}.jpg`});return true}catch(e){return false}}
 /* widget calendrier (app Android) : copie des journées vers le widget, reprise des journées ajoutées depuis le widget, ouverture d'un jour touché */
-function widgetSync(){const W=NP("ChasseLogWidget");if(!W)return;const ev=Object.values(S.ev||{}).map(e=>({id:e.id,d:e.date,t:String(e.title||"").replace(/^Chasse\s+(?:du|de la|des|de|aux|au|à la)\s+|^Chasse\s+d'\s*/i,"")||e.title||"",f:e.fiche?1:0,nh:e.nh?1:0,h:e.time?e.time.replace(":","h"):"",g:(e.role!="guest"&&(e.guests||[]).length)?String(e.guests[0]).split(" ")[0]+(e.guests.length>1?" +"+(e.guests.length-1):""):"",pn:e.place&&e.place.name||"",la:e.place&&e.place.lat!=null?+e.place.lat:null,lo:e.place&&e.place.lat!=null?+e.place.lng:null}));
+function widgetSync(){const W=NP("ChasseLogWidget");if(!W)return;const ev=Object.values(S.ev||{}).map(e=>({id:e.id,d:e.date,t:e.title?evT(e):"",tq:e.role=="trq"?1:0,f:e.fiche?1:0,nh:e.nh?1:0,h:e.time?e.time.replace(":","h"):"",g:(e.role!="guest"&&(e.guests||[]).length)?String(e.guests[0]).split(" ")[0]+(e.guests.length>1?" +"+(e.guests.length-1):""):""}));
  W.sync({data:JSON.stringify({reg:S.reg||"be",ev})}).catch(()=>{})}
 function widgetPull(){const W=NP("ChasseLogWidget");if(!W)return;W.pending().then(r=>{let a=[];try{a=JSON.parse(r&&r.data||"[]")}catch(x){}if(!a.length)return;
  a.forEach(p=>{if(!p||!p.id||!/^\d{4}-\d{2}-\d{2}$/.test(p.d||"")||S.ev[p.id])return;const g=p.r=="guest";S.ev[p.id]={id:p.id,date:p.d,title:String(p.t||"").trim()||p.m||"Chasse",mode:p.m||"",role:["part","guest","trq"].includes(p.r)?p.r:"part",host:g?String(p.host||"").trim():"",guests:[],place:{name:String(p.pl||"").trim(),lat:null,lng:null},desc:String(p.n||"").trim()};if(/^\d{2}:\d{2}$/.test(p.h||""))S.ev[p.id].time=p.h});
@@ -1794,16 +1795,18 @@ async function importFile(f){if(!f)return toast("Aucun fichier reçu. Réessaie 
 
 /* ---------- calendrier ---------- */
 const gList=e=>e.role!="guest"&&(e.guests||[]).length?e.guests.join(", "):"",gTag=e=>{const g=e.role!="guest"?(e.guests||[]):[];return g.length?`<span class="gu">${esc(String(g[0]).split(" ")[0])}${g.length>1?" +"+(g.length-1):""}</span>`:""};
-const evCls=(e,td)=>e.nh?"nh":e.fiche?"ok":e.date<td?"todo":"";
+const evCls=(e,td)=>e.nh?"nh":e.role=="trq"?"tq":e.fiche?"ok":e.date<td?"todo":"",
+ tqT=(e,t)=>e.role=="trq"&&!/traque/i.test(e.title)?"Traque "+t.replace(/^Chasse\s+/i,""):t,/* journée de traque : « Traque » dans le nom affiché */
+ evT=e=>tqT(e,e.title.replace(/^Chasse\s+(?:du|de la|des|de|aux|au|à la)\s+|^Chasse\s+d'\s*/i,"")||e.title);
 const wxCell=(ds,td)=>{const w=WXH&&ds>=td&&WXH.days[ds];return w&&w.hi!=null?`<div class="wx">${WI(w.c)} ${Math.round(w.hi)}°</div>`:""};
 function monthP(d0){const y=d0.getFullYear(),m=d0.getMonth(),td=iso(new Date()),first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),rows=Math.ceil((first+n)/7);
  let h=`<div class="ttl">${MN[m].toUpperCase()} ${y}</div><div class="wd"><i></i>${["LUN.","MAR.","MER.","JEU.","VEN.","SAM.","DIM."].map((x,i)=>`<span class="${i==6?"su":""}">${x}</span>`).join("")}</div><div class="wks" style="--r:${rows}">`;
  for(let r=0;r<rows;r++){h+=`<div class="wr"><i class="wn">${isoWeek(new Date(y,m,1-first+r*7))}</i>`;
   for(let i=0;i<7;i++){const d=new Date(y,m,1-first+r*7+i),ds=iso(d),a=on(ds),show=ds==sel?a:a.slice(0,3);
-   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${wxCell(ds,td)}${show.slice(0,2).map(e=>`<u class="ev${a.length>1?" ev2":""} ${evCls(e,td)}">${e.time?`<b>${e.time.replace(":","h")}</b>`:""}${esc(e.title.replace(/^Chasse\s+(?:du|de la|des|de|aux|au|à la)\s+|^Chasse\s+d'\s*/i,"")||e.title)}${gTag(e)}</u>`).join("")}${a.length>2?`<small>+${a.length-2}</small>`:""}</div>`}
+   h+=`<div class="dc${d.getMonth()!=m?" o":""}" data-d="${ds}"><span class="dn${i==6?" su":""}${ds==td?" td":""}${ds==sel?" sl":""}">${d.getDate()}</span>${wxCell(ds,td)}${show.slice(0,2).map(e=>`<u class="ev${a.length>1?" ev2":""} ${evCls(e,td)}">${e.time?`<b>${e.time.replace(":","h")}</b>`:""}${esc(evT(e))}${gTag(e)}</u>`).join("")}${a.length>2?`<small>+${a.length-2}</small>`:""}</div>`}
   h+="</div>"}
  return h+"</div>"}
-function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${e.nh?"nh":e.fiche?"ok":""}" data-ev="${e.id}">${e.time?e.time.replace(":","h")+" · ":""}${esc(e.title)}${gList(e)?` · ${esc(gList(e))}`:""}</u>`;
+function panel(d){const td=iso(new Date()),y=d.getFullYear(),chip=e=>`<u class="${evCls(e,td)}" data-ev="${e.id}">${e.time?e.time.replace(":","h")+" · ":""}${esc(tqT(e,e.title))}${gList(e)?` · ${esc(gList(e))}`:""}</u>`;
  if(cv=="month")return monthP(d);
  if(cv=="year")return `<div class="ttl">${y}</div><div class="ysc"><div class="yr">`+MN.map((M,mo)=>{const first=(new Date(y,mo,1).getDay()+6)%7,n=new Date(y,mo+1,0).getDate();let g="<i></i>".repeat(first);
   for(let k=1;k<=n;k++){const ds=iso(new Date(y,mo,k));g+=`<i class="${on(ds).length?"hv":""}${ds==td?" tt":""}">${k}</i>`}return `<div class="ym" data-m="${mo}" data-y="${y}"><b>${M}</b><div class="mini">${g}</div></div>`}).join("")+"</div></div>";

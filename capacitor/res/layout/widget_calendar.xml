@@ -58,6 +58,16 @@
                 android:gravity="center"
                 android:text="+"
                 android:textSize="24sp" />
+            <TextView
+                android:id="@+id/w_today"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
+                android:contentDescription="@string/w_today"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -168,7 +168,10 @@ public class CalendarWidget extends AppWidgetProvider {
         v.setTextColor(R.id.w_add, ink);
         v.setOnClickPendingIntent(R.id.w_prev, nav(c, id, -1));
         v.setOnClickPendingIntent(R.id.w_next, nav(c, id, 1));
-        v.setOnClickPendingIntent(R.id.w_title, nav(c, id, 0));
+        v.setTextViewText(R.id.w_today, String.valueOf(today.get(Calendar.DAY_OF_MONTH)));
+        v.setTextColor(R.id.w_today, dark ? 0xFF8FB56A : 0xFF3F5A2B);
+        v.setInt(R.id.w_today, "setBackgroundResource", dark ? R.drawable.w_tbox_d : R.drawable.w_tbox_l);
+        v.setOnClickPendingIntent(R.id.w_today, nav(c, id, 0));
         v.setOnClickPendingIntent(R.id.w_add, add(c, td));
         for (int k = 0; k < 7; k++) v.setTextColor(WEEKDAYS[k], k == 6 ? red : mut);
 

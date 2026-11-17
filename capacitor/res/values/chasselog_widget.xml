@@ -11,6 +11,7 @@
     <string name="w_prev">Mois précédent</string>
     <string name="w_next">Mois suivant</string>
     <string name="w_add">Ajouter une journée</string>
+    <string name="w_today">Revenir à aujourd'hui</string>
     <style name="ChasseLogWidgetWeekday">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

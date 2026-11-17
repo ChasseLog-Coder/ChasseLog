@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.RemoteViews;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -147,6 +149,14 @@ public class CalendarWidget extends AppWidgetProvider {
                 l.add(new String[] {t, tq ? "tq" : d.compareTo(td) < 0 ? "todo" : "fut", h, ""});
             }
         } catch (Exception ignored) {}
+        // journées d'un même jour : par heure, sans heure en dernier (comme dans l'app)
+        for (List<String[]> l : days.values()) {
+            Collections.sort(l, new Comparator<String[]>() {
+                @Override public int compare(String[] a, String[] b) {
+                    return (a[2].isEmpty() ? "99" : a[2]).compareTo(b[2].isEmpty() ? "99" : b[2]);
+                }
+            });
+        }
 
         RemoteViews v = new RemoteViews(c.getPackageName(), R.layout.widget_calendar);
         v.setInt(R.id.w_bg, "setColorFilter", card);

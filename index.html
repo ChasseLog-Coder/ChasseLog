@@ -249,8 +249,8 @@ button.tl{cursor:pointer;text-align:left}
 button.bar{width:100%;background:none;border:0;color:var(--ink);padding:4px 0;font:.9rem system-ui;text-align:left}button.bar.on em{font-weight:700;color:var(--acc)}
 .toast{position:fixed;left:50%;bottom:calc(100px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));transform:translateX(-50%);background:var(--ink);color:var(--bg);font:.9rem system-ui;padding:10px 14px;border-radius:8px;z-index:1300;max-width:90%}
 html.in-on,html.in-on body{overflow:hidden}
+#apk{position:fixed;inset:0;z-index:2000;background:var(--bg);color:var(--ink);overflow:auto;padding:calc(28px + var(--safe-area-inset-top,env(safe-area-inset-top,0px))) 22px calc(16px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px)));display:flex;flex-direction:column;font-family:system-ui}#apk img{width:72px;height:72px;border-radius:16px;margin:10px 0 18px}#apk h1{font:800 1.55rem/1.2 system-ui;margin:0 0 6px;color:var(--acc)}#apk>p{margin:0 0 26px;font:500 1rem/1.4 system-ui;opacity:.8}.apk-st{display:flex;gap:14px;align-items:flex-start;margin:0 0 22px}.apk-st>b{flex:0 0 30px;height:30px;border:1.5px solid var(--acc);border-radius:50%;display:grid;place-items:center;font:700 .95rem system-ui;color:var(--acc)}.apk-st>div{flex:1}.apk-st p{margin:4px 0 10px;font:600 1.02rem/1.35 system-ui}.apk-st button{width:100%;margin:0}#apk-web{margin-top:auto;align-self:center;border:0;background:none;color:var(--ink);opacity:.65;font:500 .9rem system-ui;text-decoration:underline;padding:12px}
 #inst{position:fixed;inset:0;z-index:1000;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#2f4620;color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:max(18px,var(--safe-area-inset-top,env(safe-area-inset-top))) 16px calc(24px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)))}
-#inst.in-and.in-p{padding-top:calc(76px + var(--safe-area-inset-top,env(safe-area-inset-top)))}
 .in-w0{max-width:460px;margin:0 auto}
 .in-hd{display:flex;align-items:center;gap:14px;margin:4px 0 12px}.in-hd img{width:58px;height:58px;border-radius:8px}
 .in-hd h1{margin:0;font:800 1.5rem/1.15 system-ui}.in-hd p{margin:2px 0 0;font:.92rem system-ui;color:#cfd8c0}
@@ -263,11 +263,8 @@ html.in-on,html.in-on body{overflow:hidden}
 .in-t{display:flex;gap:10px;align-items:center}.in-t>span{flex:0 0 30px;height:30px;border-radius:50%;background:#3f5a2b;color:#fff;font:800 .95rem/30px system-ui;text-align:center}
 .in-t p{margin:0;font:.98rem/1.35 system-ui}
 .in-st img{display:block;width:100%;max-width:380px;margin:10px auto 0;border-radius:8px;border:1px solid #d9d6c5}
-.in-hp{background:#ffffff14;border-radius:8px;padding:10px 12px;margin:4px 0 8px;font:.85rem/1.45 system-ui;color:#e3e8d8}.in-hp summary{font-weight:700;color:#f5b83d;cursor:pointer}.in-hp ol{margin:8px 0 0 18px;padding:0}.in-hp li{margin-bottom:6px}
-.in-ar{position:fixed;z-index:1001;left:0;right:0;display:flex;align-items:center;gap:10px;padding:0 14px;height:64px;background:#1a2811;color:#f5b83d;font:800 .95rem system-ui;pointer-events:none}
-.in-and .in-ar{top:0;padding-top:var(--safe-area-inset-top,env(safe-area-inset-top));height:calc(64px + var(--safe-area-inset-top,env(safe-area-inset-top)));justify-content:flex-end}.in-and .in-ar svg{animation:inUp 1s ease-in-out infinite;align-self:flex-start;margin-top:4px}
 .in-ic{width:17px;height:18px;vertical-align:-3px}.in-m{color:#6d7461;font-size:.88rem}
-@keyframes inUp{50%{transform:translateY(-6px)}}@keyframes inDn{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(-8px)}}
+@keyframes inDn{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(-8px)}}
 #tour{position:fixed;inset:0;z-index:1100;display:flex;flex-direction:column;background:#2f4620;color:#f4f1e6;font-family:system-ui,-apple-system,sans-serif;padding:calc(10px + var(--safe-area-inset-top,env(safe-area-inset-top))) 14px calc(12px + var(--safe-area-inset-bottom,env(safe-area-inset-bottom)));user-select:none;-webkit-user-select:none}
 .to-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.to-pg{flex:1;display:flex;gap:4px}.to-pg i{flex:1;height:5px;border-radius:3px;background:#ffffff2e;transition:background .4s}.to-pg i.on{background:#f5b83d}
 .to-n{font:700 .8rem system-ui;color:#cfd8c0;min-width:34px;text-align:right}.to-x{border:0;background:#ffffff1f;color:#fff;border-radius:8px;font:700 .85rem system-ui;padding:8px 11px}
@@ -819,37 +816,39 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
  document.body.appendChild(d);d.querySelector("button").onclick=()=>d.remove()})();
 
 /* ---------- installation : écran d'aide quand ChasseLog est ouvert dans le navigateur d'un téléphone ---------- */
-let BIP=null;addEventListener("beforeinstallprompt",e=>{e.preventDefault();BIP=e;const b=document.getElementById("in-go");if(b)b.hidden=false});
 (()=>{if(IS_APP)return;const ua=navigator.userAgent||"",q=(location.search.match(/[?&]install=?(\w*)/)||[])[1];
  const sa=["standalone","fullscreen","minimal-ui"].some(m=>matchMedia(`(display-mode: ${m})`).matches)||navigator.standalone===true;
  if(q==null){if(sa||location.hostname=="raw.githack.com"||/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram/i.test(ua))return;try{if(/[?&]web\b/.test(location.search))sessionStorage.setItem("chasselog-skipinst","1");if(sessionStorage.getItem("chasselog-skipinst"))return}catch(e){}}
- let ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1),and=/Android/i.test(ua);
- if(q=="ios"||q=="ios26"){ios=true;and=false}else if(q=="android"){and=true;ios=false}
- if(!ios&&!and)return;
- const safari=ios&&!/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua),chrome=and&&/Chrome\//.test(ua)&&!/SamsungBrowser|Firefox|EdgA|OPR|YaBrowser|DuckDuckGo/.test(ua);
+ const ios=/iPhone|iPad|iPod/i.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)||q=="ios"||q=="ios26";
+ if(!ios)return;
+ const safari=!/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua);
  const st=(n,t,img)=>`<div class="in-st"><div class="in-t"><span>${n}</span><p>${t}</p></div>${img?`<img src="install/${img}" alt="" loading="${n>1?"lazy":"eager"}">`:""}</div>`;
- const steps=and?st(1,"Touche les <b>3 points ⋮</b> en haut à droite de l'écran","android-1.jpg")+st(2,"Choisis <b>« Installer et créer un raccourci »</b>","android-2.jpg")+st(3,"Choisis <b>« Installer »</b>, puis confirme","android-3.jpg")+st(4,"C'est fait : ouvre ChasseLog depuis l'icône de ton <b>écran d'accueil</b>")
-  :st(1,"Touche le bouton <b>Partager</b> <svg class=\"in-ic\" viewBox=\"0 0 28 30\"><path d=\"M14 2v17M8 8l6-6 6 6M9 12H5v16h18V12h-4\" fill=\"none\" stroke=\"#007aff\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> en bas de l'écran.<br><span class=\"in-m\">Tu ne le vois pas ? Touche d'abord <b>•••</b> en bas à droite, puis <b>Partager</b>.</span>","ios-1.jpg")+st(2,"Fais défiler et choisis <b>« Sur l'écran d'accueil »</b> <span class=\"in-m\">(touche <b>« Plus »</b> s'il n'apparaît pas)</span>","ios-2.jpg")+st(3,"Touche <b>« Ajouter »</b> en haut à droite <span class=\"in-m\">(si « Ouvrir comme app web » apparaît, laisse-le activé)</span>","ios-3.jpg")+st(4,"C'est fait : ouvre ChasseLog depuis l'icône de ton <b>écran d'accueil</b>");
- const warn=and&&/Firefox/.test(ua)?`<div class="in-w">Dans <b>Firefox</b> : touche le menu <b>⋮</b>, puis <b>« Installer »</b> (ou « Ajouter à l'écran d'accueil »).</div>`:and&&!chrome?`<div class="in-w">Pour installer ChasseLog, utilise <b>Google Chrome</b>.<a class="in-b" href="intent://${location.host}${location.pathname}#Intent;scheme=https;package=com.android.chrome;end">Ouvrir dans Chrome</a></div>`
-  :ios&&!safari?`<div class="in-w">Pour installer ChasseLog sur iPhone, ouvre ce lien dans <b>Safari</b> (copie-le et colle-le dans Safari).</div>`:"";
- const o=document.createElement("div");o.id="inst";o.className=and?"in-and"+(chrome?" in-p":""):"in-ios";
+ const steps=st(1,"Touche le bouton <b>Partager</b> <svg class=\"in-ic\" viewBox=\"0 0 28 30\"><path d=\"M14 2v17M8 8l6-6 6 6M9 12H5v16h18V12h-4\" fill=\"none\" stroke=\"#007aff\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg> en bas de l'écran.<br><span class=\"in-m\">Tu ne le vois pas ? Touche d'abord <b>•••</b> en bas à droite, puis <b>Partager</b>.</span>","ios-1.jpg")+st(2,"Fais défiler et choisis <b>« Sur l'écran d'accueil »</b> <span class=\"in-m\">(touche <b>« Plus »</b> s'il n'apparaît pas)</span>","ios-2.jpg")+st(3,"Touche <b>« Ajouter »</b> en haut à droite <span class=\"in-m\">(si « Ouvrir comme app web » apparaît, laisse-le activé)</span>","ios-3.jpg")+st(4,"C'est fait : ouvre ChasseLog depuis l'icône de ton <b>écran d'accueil</b>");
+ const warn=!safari?`<div class="in-w">Pour installer ChasseLog sur iPhone, ouvre ce lien dans <b>Safari</b> (copie-le et colle-le dans Safari).</div>`:"";
+ const o=document.createElement("div");o.id="inst";o.className="in-ios";
  o.innerHTML=`<div class="in-w0"><div class="in-hd"><img src="icons/icon-192.png" alt=""><div><h1>Installe ChasseLog</h1><p>sur ton écran d'accueil, comme une vraie appli</p></div></div>
  <p class="in-i">Tu es dans ton navigateur internet. Ajoute ChasseLog à ton téléphone en 3 étapes : c'est gratuit, sans compte, et tes données restent sur ton téléphone.</p>
- ${warn}<button class="in-b in-go" id="in-go" hidden>Installer ChasseLog</button>
+ ${warn}
  <div id="in-ss">${steps}</div>
- <p class="in-i in-sm">Déjà installée ? Ouvre-la depuis l'icône ChasseLog de ton écran d'accueil.</p>${and?`<details class="in-hp"><summary>Je ne trouve pas « Installer » dans le menu</summary><ol>
- <li><b>Xiaomi, Redmi, Poco :</b> Paramètres › Applications › Gérer les applications › <b>Chrome</b> › Autres autorisations › <b>Raccourcis sur l'écran d'accueil</b> › Autoriser. Ferme Chrome complètement puis rouvre ce lien. <i>L'option n'existe pas ou reste grisée ? Passe directement à la solution 4.</i></li>
- <li><b>Mets Chrome à jour</b> dans le Play Store, puis réessaie.</li>
- <li>Si tu utilises un autre écran d'accueil (launcher) que celui d'origine, repasse temporairement sur celui du téléphone.</li>
- <li><b>Toujours rien ?</b> Installe <b>Firefox</b> depuis le Play Store, ouvre ce lien dedans, puis menu ⋮ › <b>Installer</b> (ou « Ajouter à l'écran d'accueil »).</li>
-</ol></details>`:""}</div>
- ${and&&chrome?`<div class="in-ar" aria-hidden="true"><span>Touche les 3 points ⋮ ici</span><svg viewBox="0 0 40 60" width="30" height="46"><path d="M20 56V10M6 24L20 8l14 16" fill="none" stroke="#f5b83d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`:""}`;
+ <p class="in-i in-sm">Déjà installée ? Ouvre-la depuis l'icône ChasseLog de ton écran d'accueil.</p></div>
+`;
  document.body.appendChild(o);document.documentElement.classList.add("in-on");
- const done=()=>{$("#in-ss").innerHTML=st("✓","<b>ChasseLog est installée !</b> Tu peux fermer cet onglet et l'ouvrir depuis ton écran d'accueil.");const g=$("#in-go");if(g)g.hidden=true};
- if(BIP)$("#in-go").hidden=false;
- $("#in-go").onclick=async()=>{if(!BIP)return;try{BIP.prompt();const r=await BIP.userChoice;if(r&&r.outcome=="accepted")done()}catch(e){}BIP=null;$("#in-go").hidden=true};
- addEventListener("appinstalled",done);
  })();
+
+/* ---------- version web sur Android : passage obligatoire à l'app Google Play (sauf « Je n'ai pas Google Play ») ---------- */
+(()=>{if(IS_APP||!/Android/i.test(navigator.userAgent||""))return;if(location.hostname=="raw.githack.com"&&!/\/prep-android-app\//.test(location.pathname))return;
+ try{if(localStorage.getItem("chasselog-noplay"))return}catch(e){}
+ const d=document.createElement("div");d.id="apk";d.setAttribute("role","dialog");d.setAttribute("aria-modal","true");
+ d.innerHTML=`<img src="icons/icon-192.png" alt=""><h1>ChasseLog passe en app Android</h1><p>La version web n'est plus disponible sur Android.</p>
+<div class="apk-st"><b>1</b><div><p>Sauvegarde ton carnet</p><button class="s" id="apk-ex">Exporter la sauvegarde complète</button></div></div>
+<div class="apk-st"><b>2</b><div><p>Installe l'app</p><button class="p" id="apk-gp">Ouvrir Google Play</button></div></div>
+<div class="apk-st"><b>3</b><div><p>Ouvre l'app : Menu › Importer un calendrier, puis choisis le fichier <i>chasselog.json</i></p></div></div>
+<button id="apk-web">Je n'ai pas Google Play</button>`;
+ document.body.appendChild(d);document.documentElement.classList.add("in-on");
+ $("#apk-ex").onclick=async e=>{const b=e.currentTarget;b.disabled=true;try{dl("chasselog.json","application/json",await exportJSON())}catch(x){alert("L'export a échoué. Réessaie.")}b.disabled=false};
+ $("#apk-gp").onclick=()=>window.open("https://play.google.com/store/apps/details?id=be.chasselog.app","_blank","noopener");
+ $("#apk-web").onclick=()=>{try{localStorage.setItem("chasselog-noplay","1")}catch(e){}d.remove();document.documentElement.classList.remove("in-on")};
+})();
 
 /* ---------- visite guidée « Découvre l'application » ---------- */
 const TAPS={"bang":[195,793],"cpl":[283.1,101.5],"dadd":[195,129.1],"dvid":[73.3,421.8],"fab":[344,796],"fsave":[261.3,804.8],"kg":[250,501.3],"mdoc":[149.5,312],"mn":[30,26],"mtro":[149.5,354],"muok":[285,807],"ok":[261.3,813.9],"om":[198.2,156.9],"ouv":[149.5,186],"plus":[80.7,200.5],"psok":[330.8,762.3],"pst":[195,26],"sang":[71.7,172.8],"save":[285.5,813],"share":[195,152.3],"sprev":[258,80.6],"stats":[46,796],"tabplus":[344,464.2],"tb":[195,458],"tgg":[195,484.5],"tgrid":[351.5,171.6],"title":[195,276.5],"tka":[329,501.3],"tok":[195,807.2],"tro1":[249,523.3],"mout":[149.5,396],"oiv":[195,654]};

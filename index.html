@@ -836,7 +836,7 @@ function nlModal(auto){modal(`<h2 style="margin-top:0">Tu aimes ChasseLog ?</h2>
  })();
 
 /* ---------- version web sur Android : passage obligatoire à l'app Google Play (sauf « Je n'ai pas Google Play ») ---------- */
-(()=>{if(IS_APP||!/Android/i.test(navigator.userAgent||""))return;if(location.hostname=="raw.githack.com"&&!/\/prep-android-app\//.test(location.pathname))return;
+(()=>{if(IS_APP||!/Android/i.test(navigator.userAgent||""))return;if(location.hostname=="raw.githack.com")return;
  try{if(localStorage.getItem("chasselog-noplay"))return}catch(e){}
  const d=document.createElement("div");d.id="apk";d.setAttribute("role","dialog");d.setAttribute("aria-modal","true");
  d.innerHTML=`<img src="icons/icon-192.png" alt=""><h1>ChasseLog passe en app Android</h1><p>La version web n'est plus disponible sur Android.</p>
@@ -1664,7 +1664,7 @@ function rArmes(){S.guns=S.guns||[];const cat=ag.type?ARMES[ag.type]:null,brandO
 /* ---------- rappels ---------- */
 const RM=()=>{if(!S.rem)S.rem={};const r=S.rem;if(r.sleep===undefined)r.sleep=false;if(!r.time)r.time="20:00";if(r.auto===undefined)r.auto=false;return r};
 const dueOf=e=>new Date(e.date+"T"+e.rem+":00").getTime();
-const APP_V="2026-11-17a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
+const APP_V="2026-11-18a",APP_URL="https://chasselog.be",INV_URL="https://chasselog.be/testeur.html";
 const REM_ON=false;
 async function syncRem(){if(!REM_ON)return;try{const RMs=RM(),now=Date.now();let old=[];try{old=JSON.parse(await DB.get("_rem")||"[]")}catch(x){}const fired=new Set(old.filter(x=>x.fired).map(x=>x.id+"|"+x.due));
  const list=RMs.sleep?[]:evs().filter(e=>e.rem&&!e.fiche&&!e.remDone&&now-dueOf(e)<36*36e5).map(e=>({id:e.id,title:e.title,date:e.date,due:dueOf(e),fired:fired.has(e.id+"|"+dueOf(e))}));await DB.put("_rem",JSON.stringify(list));
